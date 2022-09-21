@@ -1,2 +1,0 @@
-class Bulletin < ApplicationRecord
-end
