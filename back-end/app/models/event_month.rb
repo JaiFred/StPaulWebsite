@@ -1,0 +1,2 @@
+class EventMonth < ApplicationRecord
+end
