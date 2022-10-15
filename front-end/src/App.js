@@ -1,4 +1,8 @@
 import logo from './logo.svg';
+import react, {useState, useEffect} from 'react'
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import EventsContainer from './EventsContainer';
+import NavBar from './Navbar';
 import './App.css';
 
 function App() {
@@ -6,6 +10,7 @@ function App() {
   const [authChecked, setAuthChecked] = useState(false)
 
   console.log(currentUser)
+
   useEffect(() => {
     fetch('/me', {
       credentials: 'include'
@@ -25,7 +30,14 @@ function App() {
 
   return (
     <div className="App">
-      
+            <hr />
+      {/* <NavBar /> */}
+      <Router>
+        <Routes>        
+          <Route exact path='/events' element={<EventsContainer />} />
+          {/* <Route exact path='/about_us' component={AboutUsContainer} /> */}
+        </Routes>
+      </Router>
     </div>
   );
 }
