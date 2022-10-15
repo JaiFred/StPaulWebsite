@@ -15,7 +15,17 @@ june = EventMonth.create!(name: "June")
 #     t.string :details
 #     t.string :location
 
-e1 =  Events.create!(title: "Shenandoah Camping Trip", starts: "2022-06-12", ends: "2022-06-17", details: "A verity summer youth camp for children between ages 5-17.", location: "Shenandoah National Park Skyline Dr Mile 57.5 Elkton, VA 22835 United States" )
+# "%A, %d %b %Y %l:%M %p"
+
+a = Time.now
+
+puts "Time a strftime form : #{Time.now.strftime("at %I:%M %p")}\n\n"
+
+
+
+e1 =  Event.create!(title: "Shenandoah Camping Trip", starts: Time.new(2022, 06, 12, 9, 00, 0).strftime("%A %d %b %Y, at %-I:%M%p"), ends: Time.new(2022, 06, 17, 13, 00, 0).strftime("%A %d %b %Y, at %-I:%M%p"), details: "A verity summer youth camp for children between ages 5-17.", location: "Shenandoah National Park Skyline Dr Mile 57.5 Elkton, VA 22835 United States" )
+
+puts "#{Time.new(2022, 06, 12, 9, 00, 0).strftime("%B %d %Y, at %-I:%M%p")}"
 
 # t.string :first_name
 #       t.string :last_name
