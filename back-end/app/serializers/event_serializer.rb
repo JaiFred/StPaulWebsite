@@ -13,7 +13,7 @@
 #  updated_at     :datetime         not null
 #
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :title, :starts, :ends, :details, :location, :time
+  attributes :id, :title, :starts, :ends, :details, :location
 
   def time
       "From #{object.starts.strftime("%A %d %b %Y, at %-I:%M%p")} to #{object.ends.strftime("%A %d %b %Y, at %-I:%M%p")}"
