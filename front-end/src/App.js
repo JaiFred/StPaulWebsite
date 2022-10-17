@@ -1,18 +1,32 @@
 import logo from './logo.svg';
 import react, {useState, useEffect} from 'react'
-import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { Navigate, Routes, Route } from 'react-router-dom'
+
+import ChurchLandingAttributes from './ChurchLanding';
 import EventsContainer from './EventsContainer';
 import NavBar from './Navbar';
+
 import './App.css';
 
 function App() {
-  const [currentUser, setCurrentUser] = useState(null)
   const [authChecked, setAuthChecked] = useState(false)
+  const [currentUser, setCurrentUser] = useState(null)
+  
+  // const [home, setHome] = useState ([])
+  
 
   console.log(currentUser)
 
+  // useEffect(() => {
+  //   fetch('/me', {
+  //     credentials: 'include'
+  //   })
+  //   .then((res) => res.json())
+  //   .then((home) => setCurrentUser(home));
+  //   })
+
   useEffect(() => {
-    fetch('/me', {
+    fetch('/user', {
       credentials: 'include'
     })
       .then(res => {
@@ -31,13 +45,13 @@ function App() {
   return (
     <div className="App">
             <hr />
-      {/* <NavBar /> */}
-      <Router>
-        <Routes>        
-          <Route exact path='/events' element={<EventsContainer />} />
+      <NavBar />
+      hello
+        <Routes>      
+          <Route path='/' element={<ChurchLandingAttributes />} />  
+          <Route path='/events' element={<EventsContainer/>}/>
           {/* <Route exact path='/about_us' component={AboutUsContainer} /> */}
         </Routes>
-      </Router>
     </div>
   );
 }
