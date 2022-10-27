@@ -1,20 +1,10 @@
 module Api
     class UsersController < ApplicationController
-    
-        # skip_before_action :authenticate_user, only: [:show]
-    
-        def index
-            render json: User.all, status: :ok #200
-        end
+        before_action :authenticate_user, only: [:show]
     
         # get '/me'
         def show 
-            current_user = User.find_by_id(session[:user_id])
-            if current_admin
-                render json: current_user, status: :ok
-            else
-                render json: { errors: "No Active Sessions" }, status: :unauthorized #401
-            end
+            render json: current_user, status: :ok
         end
     
         private

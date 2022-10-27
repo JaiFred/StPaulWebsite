@@ -1,6 +1,6 @@
 module Api
     class EventsController < ApplicationController
-        skip_before_action :verify_authenticity_token
+        before_action :authenticate_user, only: [:create, :update, :destroy]
 
         #get '/events'
         #get '/events?starts_time=2022-06-01&ends_time=2022-06-31'

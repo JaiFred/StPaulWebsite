@@ -1,21 +1,38 @@
-import logo from './logo.svg';
-import react, {useState, useEffect} from 'react'
+import {useState, useEffect} from 'react'
 import { Navigate, Routes, Route } from 'react-router-dom'
 
-import ChurchLandingAttributes from './ChurchLanding';
+import Login from './Login';
+import Logout from './Logout';
+import ChurchLandingAttributes from './ChurchLandingAttributes';
+import GivingModal from './GivingModal';
 import EventsContainer from './EventsContainer';
-import NavBar from './Navbar';
+import EventInfoPage from './EventInfoPage';
+import NavBar from './NavBar';
 
 import './App.css';
 
+
 function App() {
-  const [authChecked, setAuthChecked] = useState(false)
-  const [currentUser, setCurrentUser] = useState(null)
+  const [ authChecked, setAuthChecked ] = useState(false)
+  const [ currentUser, setCurrentUser ] = useState(null)
+  const [ events, setEvents ] = useState([]);
+  const [ givingIsOpen, setGivingIsOpen ] = useState(false);
+  const [ staffIsOpen, setStaffIsOpen ] = useState(false);
+  const [ logoutIsOpen, setLogoutIsOpen ] = useState(false);
+  const [ showEvents, setShowEvents ] = useState([]);
+
   
   // const [home, setHome] = useState ([])
+
+  useEffect(() => {
+    fetch(`/api/events`)
+      .then((r) => r.json())
+      .then(events => setShowEvents(events))
+  },[])
+
   
 
-  console.log(currentUser)
+  // console.log(currentUser)
 
   // useEffect(() => {
   //   fetch('/me', {
@@ -26,7 +43,7 @@ function App() {
   //   })
 
   useEffect(() => {
-    fetch('/user', {
+    fetch('/api/me', {
       credentials: 'include'
     })
       .then(res => {
@@ -42,34 +59,28 @@ function App() {
      })
   }, [])
 
+  if (!authChecked){
+    return(
+      <div></div>
+    )
+  }
   return (
     <div className="App">
-            <hr />
-      <NavBar />
-      hello
+      <NavBar givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen} staffIsOpen={staffIsOpen} setStaffIsOpen={setStaffIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser} logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen}/>
         <Routes>      
-          <Route path='/' element={<ChurchLandingAttributes />} />  
-          <Route path='/events' element={<EventsContainer/>}/>
+          <Route path='/' element={<ChurchLandingAttributes currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>}/>  
+          <Route path='/events' element={<EventsContainer events={events} setEvents={setEvents} showEvents={showEvents} setShowEvents={setShowEvents}/>}/>
           {/* <Route exact path='/about_us' component={AboutUsContainer} /> */}
+          <Route path='/events/:id/more_information' element={<EventInfoPage events={events} setEvents={setEvents} showEvents={showEvents} setShowEvents={setShowEvents}/>}/>
+          <Route path='/login' element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser}/>}  />
+          <Route path='/logout' element={<Logout currentUser={currentUser} setCurrentUser={setCurrentUser}/>}/>
         </Routes>
+        {/* <button className='giving-modal-btn' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
+        <GivingModal givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/> */}
+
     </div>
   );
 }
 
 export default App;
 
-
-{/* <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header> */}

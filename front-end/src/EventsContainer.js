@@ -1,23 +1,26 @@
-import React, {useEffect, useState} from "react";
+import { Link } from "react-router-dom";
 
-import Navbar from "./Navbar";
+import NavBar from "./NavBar";
 import EventCard from './EventCard';
+import EventInfoPage from "./EventInfoPage";
 
 function EventsContainer({ events, setEvents, showEvents, setShowEvents }){
 
-    const EventList = showEvents.map((event) => (
+    const EventList = showEvents.map((event) =>(
         <EventCard key={event.id} event={event}/>
+        // <EventInfoPage key={event.id} event={event}/>
+
     ))
 
 
-      console.log(`events: ${events}`);
+    
 
     return(
         <div>
-            {EventList}
-            <Navbar />
             <h1>Events</h1>
-           
+            {EventList}
+            <Link to='/'>back</Link>
+
         </div>
     )
 }

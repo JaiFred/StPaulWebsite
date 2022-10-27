@@ -1,6 +1,12 @@
 import React, { useState } from "react";
+import { Link } from "react-router-dom";
 
-function EventCard({title, starts}) {    
+import EventInfoPage from "./EventInfoPage";
+
+
+function EventCard({event, showEvents}) {    
+
+    const { id, title, starts, ends} = event
 
     // function handleEditReview() {
     //     setEditReviewForm(!showEditReviewForm);
@@ -24,18 +30,21 @@ function EventCard({title, starts}) {
     //             setReviews(updatedReviews);                
     //         })         
     // }
+      console.log(`events: ${id} ${title}`);
 
     return (
         <div>
-
+            <button className="event-card">
                 <div>
-                    <h2>Title: {title}</h2>               
-                    <h2>Starts: {starts}</h2>
+                    <h2>{title}</h2>               
+                    <h2>{starts}</h2>
                     {/* // <h3><StarRating totalStars={5} currentRating={rating} displayStar={true} /></h3>
                     // <button onClick={handleDeleteReview} type="button">Delete Review</button>
                     // <button onClick={handleEditReview} type="button">Edit Review</button> */}
                     <hr />
-                </div>              
+                    <Link to='/events/:id/more_information'>More Info</Link>
+                </div>
+            </button>
         </div> 
     )
 }
