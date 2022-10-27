@@ -6,8 +6,6 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 
-june = EventMonth.create!(name: "June")
-
 # create_table :events do |t|
 #     t.string :title
 #     t.datetime :starts
@@ -20,8 +18,6 @@ june = EventMonth.create!(name: "June")
 a = Time.now
 
 puts "Time a strftime form : #{Time.now.strftime("at %I:%M %p")}\n\n"
-
-
 
 e1 =  Event.create!(title: "Shenandoah Camping Trip", starts: Time.new(2022, 06, 12, 9, 00, 0).strftime("%A %d %b %Y, at %-I:%M%p"), ends: Time.new(2022, 06, 17, 13, 00, 0).strftime("%A %d %b %Y, at %-I:%M%p"), details: "A verity summer youth camp for children between ages 5-17.", location: "Shenandoah National Park Skyline Dr Mile 57.5 Elkton, VA 22835 United States" )
 

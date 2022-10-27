@@ -116,6 +116,7 @@ GEM
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
     jsonapi-renderer (0.2.2)
+    jwt (2.5.0)
     loofah (2.19.0)
       crass (~> 1.0.2)
       nokogiri (>= 1.5.9)
@@ -235,13 +236,14 @@ PLATFORMS
 DEPENDENCIES
   active_model_serializers (~> 0.10.12)
   annotate
-  bcrypt (~> 3.1.7)
+  bcrypt (>= 3.1.18)
   bootsnap
   byebug
   capybara
   debug
   importmap-rails
   jbuilder
+  jwt (~> 2.2)
   pry
   puma (~> 5.0)
   rack-cors
