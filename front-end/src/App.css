@@ -1,13 +1,178 @@
+html{
+  background-color: rgb(60, 43, 35);
+}
 .App {
   text-align: center;
 }
 
 /* //////////////////
-Navbar (header)
+admin-navbar (header) starts
 ////////////////// */
 
-div .header a {
-  color: black;
-  /* text-decoration: none; */
+.header{
+  height: 250px;
 }
 
+.title {
+  padding-top: 15px;
+  margin-bottom: -10px;
+  font-size: 30px;
+  font-family: 'Inter', sans-serif;
+  font-variant: small-caps;
+}
+
+div .admin-navbar {
+  /* background-color: rgb(83, 52, 34); */
+  background-color: rgb(60, 43, 35);
+}
+
+div .admin-navbar ul li{
+ display: inline;
+ padding-left: 45px;
+}
+
+/* //////////////////
+admin-navbar (header) ends
+////////////////// */
+
+
+/* //////////////////
+non-admin-navbar (header) starts
+////////////////// */
+
+
+div .non-admin-navbar {
+  background-color: rgb(60, 43, 35);
+}
+
+div .non-admin-navbar ul li{
+  display: inline-flex;
+  flex-wrap : wrap;
+  padding-left: 20px;
+  font-size: 12px;
+}
+
+.non-admin-nav-container li a.main {
+  color: white;
+  font-weight: regular;
+  text-decoration: none;
+}
+
+.non-admin-nav-links{
+  margin-bottom: -18px;
+  padding-left: 900px;
+  padding-bottom: 30px;
+}
+
+/* image for cross */
+.cross {
+  padding-top: 10px;
+}
+
+/* button on hamburger dropdown */
+.hamburger-button {
+  border: none;
+  background: none;
+  content: none;
+}
+
+/* hides arrow on hamburger dropdown */
+.hamburger-button::after{
+  content: none;
+}
+
+
+/* image for hamburger dropdown */
+.hamburger {
+  height: 30px; 
+  width: 45px;
+  transition: none;
+}
+
+.staff-modal-btn {
+  color: grey;
+  padding-left: 10px;
+  border: none;
+  background: none;
+}
+
+a.dropdownitem {
+  display: block;
+  padding-left: 10px;
+
+}
+
+a.dropdownitem:hover {
+  color: gray;
+
+}
+
+.admin-nav-links li a.main {
+  color: white;
+  font-weight: regular;
+  text-decoration: none;
+}
+
+.admin-nav-links li a:hover{
+  color: grey;
+}
+
+.navbar-giving-modal-btn {
+  color: white;
+  border: none;
+  background: none;
+}
+
+
+.navbar-giving-modal-btn:hover{
+  color: grey;
+  border: none;
+  background: none;
+}
+
+.navbar-banner-container {
+  background-color: black;
+  padding-top: 0px;
+  display: inline-flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 20px;
+  border: 1px solid white;
+  width: 300px;
+}
+
+h3.navbar-banner {
+  border-radius: 100px;
+  padding-top: 9px;
+  font-size: 12px;
+  color: white;
+  font-weight: regular;
+}
+
+.dropdown-menu{ 
+  background-color: white; 
+}
+
+.dropdown-item a{
+  color: black;
+}
+
+.homepage-body {
+  background-color: none;
+  height: 800px;
+}
+
+.months {
+  color: white;
+  border: none;
+  background: grey;
+}
+
+.footer {
+  background-color: rgba(26, 25, 25, 1);
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  height: 200px;
+  width: 100%;
+}

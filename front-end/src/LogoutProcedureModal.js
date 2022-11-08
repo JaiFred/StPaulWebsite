@@ -24,7 +24,7 @@ function LogoutProcedureModal({ logoutIsOpen, setLogoutIsOpen, currentUser, setC
         <div>
             <Modal className='modal'
                 show={ logoutIsOpen }
-                // hide={() => {setIsOpen(false)}}
+                // hide={() => {setLogoutIsOpen(false)}}
             >
                 <ModalHeader >
                     <ModalTitle>Are you Sure You want to Logout</ModalTitle>
