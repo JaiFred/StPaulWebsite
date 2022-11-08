@@ -7,14 +7,14 @@ function ChurchLanding({givingIsOpen, setGivingIsOpen}){
   
 
   return(
-    <div>
+    <div class="homepage-body">
       <button>
         <div className="big-bulletin-button">
           <Link to='/events'>Bulletin</Link>
         </div>
       </button>
         {/* <div className="big-Giving-button"> */}
-        <button className='giving-modal-btn' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
+        <button className="big-giving-modal-btn" type="button" onClick={() => setGivingIsOpen(true)}>Giving</button>
             <GivingModal givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>
         {/* </div> */}
       <button>

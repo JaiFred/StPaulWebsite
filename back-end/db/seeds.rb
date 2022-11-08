@@ -19,7 +19,18 @@ a = Time.now
 
 puts "Time a strftime form : #{Time.now.strftime("at %I:%M %p")}\n\n"
 
-e1 =  Event.create!(title: "Shenandoah Camping Trip", starts: Time.new(2022, 06, 12, 9, 00, 0).strftime("%A %d %b %Y, at %-I:%M%p"), ends: Time.new(2022, 06, 17, 13, 00, 0).strftime("%A %d %b %Y, at %-I:%M%p"), details: "A verity summer youth camp for children between ages 5-17.", location: "Shenandoah National Park Skyline Dr Mile 57.5 Elkton, VA 22835 United States" )
+
+Event.destroy_all
+
+e1 =  Event.create!(title: "Shenandoah Camping Trip", starts: DateTime.new(2022, 06, 12, 9, 00, 0), ends: DateTime.new(2022, 06, 17, 13, 00, 0), details: "A verity summer youth camp for children between ages 5-17.", location: "Shenandoah National Park Skyline Dr Mile 57.5 Elkton, VA 22835 United States" )
+e2 =  Event.create!(title: "Test", starts: DateTime.new(2022, 04, 18, 10, 00, 0), ends: DateTime.new(2022, 04, 22, 13, 00, 0), details: "test", location: "test" )
+e3 =  Event.create!(title: "Test2", starts: DateTime.new(2022, 04, 20, 10, 00, 0), ends: DateTime.new(2022, 04, 22, 14, 00, 0), details: "tests", location: "tests" )
+e4 =  Event.create!(title: "Test3", starts: DateTime.new(2022, 05, 10, 10, 00, 0), ends: DateTime.new(2022, 05, 10, 14, 00, 0), details: "tests3", location: "tests3" )
+e4 =  Event.create!(title: "Test4", starts: DateTime.new(2022, 01, 10, 10, 00, 0), ends: DateTime.new(2022, 12, 10, 14, 00, 0), details: "tests4", location: "tests4" )
+
+# I recieved an octal numbers problem/error when I switched e4's day numbers to 09
+
+
 
 puts "#{Time.new(2022, 06, 12, 9, 00, 0).strftime("%B %d %Y, at %-I:%M%p")}"
 
