@@ -2,7 +2,10 @@ import React, {Component} from "react"
 import ReactPlayer from "react-player";
 
 
-// function BroadcastsContainer(){
+
+    //remember to remove these when pushing to github
+    
+    const result = 1
 
 
     var finalURL = `https://www.googgleapis.com/youtube/v3/search?key=${API}&channelId=${channelID}&part=snippet,id&order=date&maxResults=${result}`

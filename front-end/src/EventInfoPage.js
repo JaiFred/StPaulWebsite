@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
+import { Link } from "react-router-dom";
 
 import EventInfoDetails from "./EventInfoDetails";
 
@@ -9,6 +10,12 @@ import EventInfoDetails from "./EventInfoDetails";
 // Have a months filter bar that appears when an event within that month is made - you can click on months to show events that take place during the month
 
 function EventInfoPage(){
+
+    // t.string :title
+    // t.datetime :starts
+    // t.datetime :ends
+    // t.string :details
+    // t.string :location
 
     let { id } = useParams();
 
@@ -41,9 +48,13 @@ function EventInfoPage(){
 
             <h1>{event?.title}</h1>
             <div className="detailed-start-info">
-            <h3>Time</h3>
-            <h3>{event?.starts} - {event?.ends}</h3>
+                <h3>Time</h3>
+                <h3>{event?.starts} - {event?.ends}</h3>
             </div>
+            <div className="back-to-bulletin-page">
+                <Link to='/events' className="main">Back</Link>
+            </div>
+
 
             
         </div>

@@ -10,7 +10,7 @@ admin-navbar (header) starts
 ////////////////// */
 
 .header{
-  height: 250px;
+  height: 210px;
 }
 
 .title {
@@ -19,16 +19,6 @@ admin-navbar (header) starts
   font-size: 30px;
   font-family: 'Inter', sans-serif;
   font-variant: small-caps;
-}
-
-div .admin-navbar {
-  /* background-color: rgb(83, 52, 34); */
-  background-color: rgb(60, 43, 35);
-}
-
-div .admin-navbar ul li{
- display: inline;
- padding-left: 45px;
 }
 
 /* //////////////////
@@ -41,27 +31,31 @@ non-admin-navbar (header) starts
 ////////////////// */
 
 
-div .non-admin-navbar {
+div .--navbar {
   background-color: rgb(60, 43, 35);
+  width: 100%;
+  height: 220px;
+  margin-bottom: -28px;
 }
 
-div .non-admin-navbar ul li{
+div .--navbar ul li a.main{
   display: inline-flex;
   flex-wrap : wrap;
   padding-left: 20px;
-  font-size: 12px;
 }
 
 .non-admin-nav-container li a.main {
   color: white;
   font-weight: regular;
-  text-decoration: none;
+
 }
 
 .non-admin-nav-links{
-  margin-bottom: -18px;
-  padding-left: 900px;
-  padding-bottom: 30px;
+  display: inline-flex;
+  margin-bottom: 0px;
+  list-style-type: none;
+  padding-left: 55%;
+  font-size: 12px;
 }
 
 /* image for cross */
@@ -69,11 +63,44 @@ div .non-admin-navbar ul li{
   padding-top: 10px;
 }
 
+
+/* //////////////////
+ admin name 
+////////////////////*/
+.admin-name-container{
+  float: left;
+  
+}
+
+.name-container-list{
+  margin-bottom: 0px;
+  padding-left: 45px;
+}
+
+.admin-greeting{
+  color: white;
+  display: inline-flex;
+  font-size: 30px;
+  font-weight: 2px;
+  margin-bottom: -10px;
+}
+
+.admin-name {
+  color: white;
+  display: inline-flex;
+  font-size: 40px;
+  margin-bottom: -10px;
+  padding-left: 10px;
+}
+
 /* button on hamburger dropdown */
 .hamburger-button {
   border: none;
   background: none;
   content: none;
+  padding-top: -30px;
+  padding-right: 0px;
+  padding-left: 10px;
 }
 
 /* hides arrow on hamburger dropdown */
@@ -121,6 +148,8 @@ a.dropdownitem:hover {
   color: white;
   border: none;
   background: none;
+  padding-right: 0px;
+  padding-left: 10px;
 }
 
 
@@ -135,7 +164,6 @@ a.dropdownitem:hover {
   padding-top: 0px;
   display: inline-flex;
   justify-content: center;
-  align-items: center;
   border-radius: 20px;
   border: 1px solid white;
   width: 300px;
@@ -158,8 +186,19 @@ h3.navbar-banner {
 }
 
 .homepage-body {
-  background-color: none;
+  background-image: url(images/trees-wallpaper.jpeg);
+  background-position: center center;
   height: 800px;
+  perspective: -1px;
+}
+
+.homepage-links-container {
+  padding-top: 100px;
+}
+
+.bible-dec-background {
+  margin-top: 100px;
+  background-color: white;
 }
 
 .months {
@@ -170,9 +209,7 @@ h3.navbar-banner {
 
 .footer {
   background-color: rgba(26, 25, 25, 1);
-  position: fixed;
-  left: 0;
-  bottom: 0;
+  margin: auto 0;
   height: 200px;
   width: 100%;
 }

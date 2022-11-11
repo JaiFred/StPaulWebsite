@@ -3,6 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 import NavBar from "./NavBar";
 import EventCard from './EventCard';
 import EventInfoPage from "./EventInfoPage";
+import SubmitNewEventModal from "./SubmitNewEventModal";
 
 
 // Goal:
@@ -10,11 +11,10 @@ import EventInfoPage from "./EventInfoPage";
 // Have each event display with the day, day number, month, year and time on the EventInfoPage
 // Have a months filter bar that appears when an event within that month is made - you can click on months to show events that take place during the month √
 
-function EventsContainer({ currentUser, events, setEvents, showEvents, setShowEvents, eventMonths, handleEditEvent, handleDeleteEvent }){
+function EventsContainer({ currentUser, events, setEvents, eventMonths, handleAddNewEvent, handleEditEvent, handleDeleteEvent, addEventIsOpen, setAddEventIsOpen }){
     // debugger;
     const EventList = events.map((event) =>( 
-        <EventCard key={event.id} event={event} currentUser={currentUser} handleEditEvent={handleEditEvent} handleDeleteEvent={handleDeleteEvent}/>
-        // <EventInfoPage key={event.id} event={event}/>        
+        <EventCard key={event.id} event={event} events={events} setEvents={setEvents} currentUser={currentUser} handleEditEvent={handleEditEvent} handleDeleteEvent={handleDeleteEvent}/>    
     ))
 
     const navigate = useNavigate()
@@ -51,14 +51,15 @@ function EventsContainer({ currentUser, events, setEvents, showEvents, setShowEv
         return <button className='months' value={month} onClick={handleButtonClick}>{month}</button>
     })
 
-    
 
     return(
         <div>
             <h1>Events</h1>
             <h2>{EventMonthFilter}</h2>
             {EventList}
-            <Link to='/'>back</Link>
+            <button className='add-new-event-modal-btn' type='button' onClick={() => setAddEventIsOpen(true)}>Add New Event</button>
+            <SubmitNewEventModal events={events} setEvents={setEvents} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen} handleAddNewEvent={handleAddNewEvent}/>
+            <Link to='/'>Back Home</Link>
         </div>
     )
 }
