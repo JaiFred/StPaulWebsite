@@ -3,6 +3,7 @@ import {useState, useEffect} from 'react'
 import { Navigate, Routes, Route } from 'react-router-dom'
 
 // Components
+import AboutPage from './AboutPage';
 import Login from './Login';
 import ChurchLandingAttributes from './ChurchLandingAttributes';
 import GivingModal from './GivingModal';
@@ -15,6 +16,7 @@ import Footer from './Footer';
 import PrayerRequestsContainer from './PrayerRequestsContainer';
 
 import './App.css';
+
 
 
 //BUGS
@@ -123,6 +125,7 @@ function App() {
           <Route path='/profile' element={<ProfilePage currentUser={currentUser} authChecked={authChecked}/>}/>
           <Route path='/broadcasts' element={<BroadcastsContainer/>}/>
           <Route path='/prayer_requests' element={<PrayerRequestsContainer/>}/>
+          <Route path='/about' element={<AboutPage/>}/>
         </Routes>
         {/* <button className='giving-modal-btn' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
         <GivingModal givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/> */}

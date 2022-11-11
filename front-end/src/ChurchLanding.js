@@ -3,11 +3,14 @@ import { Link } from "react-router-dom";
 
 import GivingModal from "./GivingModal";
 
+
+// Child Component of App.js
+
 function ChurchLanding({givingIsOpen, setGivingIsOpen}){
   
 
   return(
-    <div class="homepage-body">
+    <div class="homepage-background">
       <div className="homepage-links-container">
       <button>
         <div className="big-bulletin-button">

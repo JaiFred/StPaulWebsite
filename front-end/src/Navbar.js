@@ -44,8 +44,6 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
                   <li className="admin-name">{currentUser.last_name}</li>
                 </ul>
                 </div>  
-              {/* <Navbar bg="primary" variant="dark">
-                <Container> */}
             <nav className="non-admin-nav-container">
               <ul className="non-admin-nav-links">
                 <li> 
@@ -76,10 +74,10 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
                           <LogoutProcedureModal logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
                         </DropdownItem>
                         <Link to='/broadcasts' class="dropdownitem">Broadcasts</Link>
-                        <Link to="/pastors_corner" class="dropdownitem">Pastor's Corner</Link>
                         <Link to="/youth_corner" class="dropdownitem">Youth Corner</Link>
                         <Link to="/bible_study" class="dropdownitem">Bible Study</Link>
                         <Link to="/honors" class="dropdownitem">Honors</Link>
+                        <Link to="/profile" class="dropdownitem">Profile</Link>
                       </DropdownMenu>
                     </Dropdown>
                 </li>
@@ -94,8 +92,6 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
           <img src={Cross} className="cross"></img>
           <h1 className="title">St Paul Baptist Church</h1>
           </Link>   
-        {/* <Navbar bg="primary" variant="dark">
-          <Container> */}
       <nav className="non-admin-nav-container">
         <ul className="non-admin-nav-links">
           <li> 
