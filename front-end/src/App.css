@@ -13,6 +13,7 @@ admin-navbar (header) starts
   height: 210px;
 }
 
+/* title for navbar */
 .title {
   padding-top: 15px;
   margin-bottom: -10px;
@@ -21,15 +22,12 @@ admin-navbar (header) starts
   font-variant: small-caps;
 }
 
-/* //////////////////
-admin-navbar (header) ends
-////////////////// */
-
-
-/* //////////////////
-non-admin-navbar (header) starts
-////////////////// */
-
+/* title for about page */
+.about-page-title {
+  font-size: 45px;
+  font-family: 'Inter', sans-serif;
+  font-variant: small-caps;
+}
 
 div .--navbar {
   background-color: rgb(60, 43, 35);
@@ -58,7 +56,9 @@ div .--navbar ul li a.main{
   font-size: 12px;
 }
 
-/* image for cross */
+/* //////////////////
+ image for cross
+////////////////////*/
 .cross {
   padding-top: 10px;
 }
@@ -103,6 +103,7 @@ div .--navbar ul li a.main{
   padding-left: 10px;
 }
 
+/* Would like to make an animated hamburger */
 /* hides arrow on hamburger dropdown */
 .hamburger-button::after{
   content: none;
@@ -185,12 +186,68 @@ h3.navbar-banner {
   color: black;
 }
 
-.homepage-body {
-  background-image: url(images/trees-wallpaper.jpeg);
+.About-page-background {
+  --bg-image: url(images/StPaulBaptistChurch.JPG);
+  --bg-image-opacity: .25;
+  height: 3000px;
+
+  position: relative;
+  isolation: isolate;
+}
+
+.About-page-background::after {
+  content: '';
+  
+  position: absolute;
+  background-position: -1924px -86px;
+  z-index: -1;
+  inset: 0;
+  opacity: var(--bg-image-opacity);
+  background-image: var(--bg-image);
+  background-size: 4910.3px 3265px;
+  background-repeat: no-repeat;
+  height: 3000px;
+}
+
+/* unorganized list for pictures */
+.pastor-pictures{
+  list-style-type: none;
+}
+
+/* Pastor Brown's picture */
+.pastor-brown {
+  width: 300px;
+}
+
+.pastor-bullock {
+  width: 745px;
+}
+
+
+/* Profile Page background */
+.profile-page-background {
+  background-image: url(images/tree-background-red.jpeg);
+  background-position: center center;
+  height: 800px;
+
+}
+
+.profile-info-square {
+  background-color: white;
+  width: 20%;
+  padding-bottom: 20%;
+  border-radius: 20px;
+}
+
+/* Would like to set up parallax for the backgrounds */
+/* Homepage background */
+.homepage-background {
+  background-image: url(images/trees-wallpaper-green.jpeg);
   background-position: center center;
   height: 800px;
   perspective: -1px;
 }
+
 
 .homepage-links-container {
   padding-top: 100px;

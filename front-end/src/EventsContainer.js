@@ -7,9 +7,10 @@ import SubmitNewEventModal from "./SubmitNewEventModal";
 
 
 // Goal:
-// Have each event display with only the day number, month and year on the EventCard page 
-// Have each event display with the day, day number, month, year and time on the EventInfoPage
-// Have a months filter bar that appears when an event within that month is made - you can click on months to show events that take place during the month √
+// Get the Add new event to work properly
+// clean up Event info page
+
+// Child Component of App.js
 
 function EventsContainer({ currentUser, events, setEvents, eventMonths, handleAddNewEvent, handleEditEvent, handleDeleteEvent, addEventIsOpen, setAddEventIsOpen }){
     // debugger;
@@ -54,12 +55,23 @@ function EventsContainer({ currentUser, events, setEvents, eventMonths, handleAd
 
     return(
         <div>
-            <h1>Events</h1>
-            <h2>{EventMonthFilter}</h2>
-            {EventList}
-            <button className='add-new-event-modal-btn' type='button' onClick={() => setAddEventIsOpen(true)}>Add New Event</button>
-            <SubmitNewEventModal events={events} setEvents={setEvents} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen} handleAddNewEvent={handleAddNewEvent}/>
-            <Link to='/'>Back Home</Link>
+            {currentUser ? (
+            <div className='admin-events-container'>
+                <h1>Events</h1>
+                <h2>{EventMonthFilter}</h2>
+                {EventList}
+                <button className='add-new-event-modal-btn' type='button' onClick={() => setAddEventIsOpen(true)}>Add New Event</button>
+                <SubmitNewEventModal events={events} setEvents={setEvents} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen} handleAddNewEvent={handleAddNewEvent}/>
+                <Link to='/'>Back Home</Link>
+            </div> 
+            ) : (
+            <div className='events-container'>
+                <h1>Events</h1>
+                <h2>{EventMonthFilter}</h2>
+                {EventList}
+                <Link to='/'>Back Home</Link>
+            </div>
+            )}
         </div>
     )
 }
