@@ -15,7 +15,7 @@ import EventDeleteConfirmationModal from "./EventDeleteConfirmationModal";
 // Have a months filter bar that appears when an event within that month is made - you can click on months to show events that take place during the month 
 
 
-function EventCard({event, currentUser, handleDeleteEvent, handleEditEvent}){
+function EventCard({event, events, setEvents, currentUser, handleDeleteEvent, handleEditEvent}){
     
     const [ deleteIsOpen , setDeleteIsOpen ] = useState(false);
     const [ editEventIsOpen , setEditEventIsOpen ] = useState(false);
@@ -24,7 +24,7 @@ function EventCard({event, currentUser, handleDeleteEvent, handleEditEvent}){
 
     const { id, title, starts_short, ends_short, details, location } = event;
 
-    console.log(event);
+    // console.log(event);
 
 
     const navigate = useNavigate()
@@ -86,7 +86,7 @@ function EventCard({event, currentUser, handleDeleteEvent, handleEditEvent}){
                                 // <button onClick={handleDeleteReview} type="button">Delete Review</button>
                                 // <button onClick={handleEditReview} type="button">Edit Review</button> */}
                                 <Routes>
-                                    <Route path="/events/:id" element={<EventInfoPage />}/>
+                                    <Route path="/events/:id" element={<EventInfoPage currentUser={currentUser} event={event} events={events} setEvents={setEvents} />}/>
                                 </Routes>
                                 <Link to={`/events/${event.id}`}>More Info</Link>
                             </div>
@@ -104,7 +104,7 @@ function EventCard({event, currentUser, handleDeleteEvent, handleEditEvent}){
                                 // <button onClick={handleDeleteReview} type="button">Delete Review</button>
                                 // <button onClick={handleEditReview} type="button">Edit Review</button> */}
                                 <Routes>
-                                    <Route path="/events/:id" element={<EventInfoPage />}/>
+                                    <Route path="/events/:id" element={<EventInfoPage currentUser={currentUser} event={event} events={events} setEvents={setEvents}/>}/>
                                 </Routes>
                                 <Link to={`/events/${event.id}`}>More Info</Link>
                             </div>

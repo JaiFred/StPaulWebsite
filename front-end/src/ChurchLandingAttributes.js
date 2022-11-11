@@ -18,7 +18,13 @@ function ChurchLandingAttributes({ events, setEvents, showEvents, setShowEvents,
         <div>
             {currentUser ? (
                 <div> 
-                    ADMIN STUFF
+                    <form>
+                        <Routes>
+                            <Route path='/' element={<ChurchLanding givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>}/>
+                            <Route path='/events' element={<EventsContainer events={events} setEvents={setEvents} showEvents={showEvents} setShowEvents={setShowEvents}/>}/>
+                            <Route path='/events/:id' element={<EventInfoPage events={events} setEvents={setEvents} showEvents={showEvents} setShowEvents={setShowEvents}/>}/>
+                        </Routes>
+                    </form>
                 </div> 
                     
                    ) : (

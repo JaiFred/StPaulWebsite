@@ -8,6 +8,7 @@ function ChurchLanding({givingIsOpen, setGivingIsOpen}){
 
   return(
     <div class="homepage-body">
+      <div className="homepage-links-container">
       <button>
         <div className="big-bulletin-button">
           <Link to='/events'>Bulletin</Link>
@@ -27,7 +28,8 @@ function ChurchLanding({givingIsOpen, setGivingIsOpen}){
           <Link to='/prayer_requests'>Prayer Requests</Link>
         </div>
       </button>
-      <div className="Bible-Dec-Background">
+      </div>
+      <div className="bible-dec-background">
         <h1>
         Bible Declaration
         </h1>

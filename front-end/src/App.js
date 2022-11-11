@@ -31,6 +31,7 @@ function App() {
   const [ eventMonths, setEventMonths ] = useState([]);
   const [ givingIsOpen, setGivingIsOpen ] = useState(false);
   const [ staffIsOpen, setStaffIsOpen ] = useState(false);
+  const [ addEventIsOpen, setAddEventIsOpen ] = useState(false);
   const [ logoutIsOpen, setLogoutIsOpen ] = useState(false);
   const [ showEvents, setShowEvents ] = useState([]);
 
@@ -79,6 +80,11 @@ function App() {
      })
   }, [])
 
+  function handleAddNewEvent(newEvent){
+    const newEvents = [...events, newEvent]
+    setEvents(newEvents);
+  }
+
   //function that runs an update request for an event 
   const handleEditEvent = (editedEvent) => {
     const eventEdit = events.map((oldEvent) => {
@@ -110,7 +116,7 @@ function App() {
       <NavBar givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen} staffIsOpen={staffIsOpen} setStaffIsOpen={setStaffIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser} logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} authChecked={authChecked} setAuthChecked={setAuthChecked}/>
         <Routes>      
           <Route path='/' element={<ChurchLandingAttributes currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>}/>  
-          <Route path='/events' element={<EventsContainer currentUser={currentUser} eventMonths={eventMonths} events={events} setEvents={setEvents} showEvents={showEvents} setShowEvents={setShowEvents} handleDeleteEvent={handleDeleteEvent} handleEditEvent={handleEditEvent}/>}/>
+          <Route path='/events' element={<EventsContainer currentUser={currentUser} eventMonths={eventMonths} events={events} setEvents={setEvents} showEvents={showEvents} setShowEvents={setShowEvents} handleAddNewEvent={handleAddNewEvent} handleDeleteEvent={handleDeleteEvent} handleEditEvent={handleEditEvent} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen}/>}/>
           {/* <Route exact path='/about_us' component={AboutUsContainer} /> */}
           <Route path='/events/:id' element={<EventInfoPage currentUser={currentUser} events={events} setEvents={setEvents}/>}/>
           <Route path='/login' element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} setLogoutIsOpen={setLogoutIsOpen} />}/>
