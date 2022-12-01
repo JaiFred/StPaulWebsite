@@ -12,11 +12,11 @@
 #  updated_at :datetime         not null
 #
 class User < ApplicationRecord
-    has_secure_password
+  # Include default devise modules. Others available are:
+  # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
+  devise :database_authenticatable, :registerable,
+         :recoverable, :rememberable, :validatable  
 
     has_many :events
     has_many :subscriptions, dependent: :destroy
-
-    validates :username, uniqueness: true
-    validates :password, presence: true
 end
