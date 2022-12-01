@@ -8,19 +8,22 @@ import EventInfoPage from './EventInfoPage';
 
 function ChurchLandingAttributes({ events, setEvents, showEvents, setShowEvents, givingIsOpen, setGivingIsOpen, currentUser}) {
 
-    if (currentUser) {
+    if ((currentUser?.admin === true || currentUser?.user?.admin === true)) {
         console.log("Admin logged in!");
     }
-      else {
-        console.log("Admin not logged in!");
+    else if ((currentUser?.admin === false || currentUser?.user?.admin === false)) {
+        console.log("Regular user logged in!")
+    }
+    else {
+        console.log("User not logged in!");
       }
     return(
         <div>
-            {currentUser ? (
+            {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (
                 <div> 
                     <form>
                         <Routes>
-                            <Route path='/' element={<ChurchLanding givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>}/>
+                            <Route path='/' element={<ChurchLanding currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>}/>
                             <Route path='/events' element={<EventsContainer events={events} setEvents={setEvents} showEvents={showEvents} setShowEvents={setShowEvents}/>}/>
                             <Route path='/events/:id' element={<EventInfoPage events={events} setEvents={setEvents} showEvents={showEvents} setShowEvents={setShowEvents}/>}/>
                         </Routes>
@@ -32,7 +35,7 @@ function ChurchLandingAttributes({ events, setEvents, showEvents, setShowEvents,
                 <div>
                     <form>
                         <Routes>
-                            <Route path='/' element={<ChurchLanding givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>}/>
+                            <Route path='/' element={<ChurchLanding currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>}/>
                             <Route path='/events' element={<EventsContainer events={events} setEvents={setEvents} showEvents={showEvents} setShowEvents={setShowEvents}/>}/>
                             <Route path='/events/:id' element={<EventInfoPage events={events} setEvents={setEvents} showEvents={showEvents} setShowEvents={setShowEvents}/>}/>
                         </Routes>

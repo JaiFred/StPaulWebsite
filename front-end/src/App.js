@@ -5,24 +5,98 @@ import { Navigate, Routes, Route } from 'react-router-dom'
 // Components
 import AboutPage from './AboutPage';
 import Login from './Login';
+import SignUp from './SignUp';
 import ChurchLandingAttributes from './ChurchLandingAttributes';
 import GivingModal from './GivingModal';
+
 import EventsContainer from './EventsContainer';
 import EventInfoPage from './EventInfoPage';
 import BroadcastsContainer from './BroadcastsContainer';
+import NextServicePage from './NextServicePage';
 import NavBar from './NavBar';
 import ProfilePage from './ProfilePage';
+import SubscriptionCard from './SubscriptionCard';
 import Footer from './Footer';
 import PrayerRequestsContainer from './PrayerRequestsContainer';
+import RecurringPayment from './RecurringPayment';
+import ContactUsPage from './ContactUsPage';
+import HonorsPage from './HonorsPage';
+import EditHonorsDocuments from './EditHonorsItem';
+import PasswordRecoveryPage from './PasswordRecoveryPage';
 
+// CSS
 import './App.css';
 
+//Goal:
+// Users can delete their account
+// Password recovery
+  // have a form where the user fills up their email with us
+  // it goes to backend (route/controller/action). we check in the database whether the email exists
+  // password_verifications_controller  
+  // if email does not exist, we return a message saying 'we could not find this email!'
+  // if the email exist, we have to generate an OTP code and send it to the user at his email
+  // think about OTP expiration, how to generate and store OTP codes in our database
+  // then user needs to come to a page in our website, where they can submit their email and OTP code, and the new passord
+  // and then in the backend (another route/controller/action) we will verify the OTP code and email, if all good, we will 
+  // reset the password for the user to the new passord...
 
+//2 way authentication for signup - email
+
+
+//Events page issues
+  //BUGS
+  //event errors out when created - without date - without title - 
+  //events arent
+
+
+//Honors page issue
+  //BUGS
+  //document errors out when created with just a description
+  //document errors out when created with just a picture
+
+
+//Sign up - "all parameters required" first_name, Last_name, email, username, password and password confirmation... 
+//user can edit their info - email adress, name,  in their profile
+//user must delete subscriptions before deleting account or subscriptions delete with account
+//user must fill out name and email before proceeding with custom payment
+//Adding an Event produces visible error and doesn't get created if end and start date values aren't present 
+//Mapbox Gl directions
 
 //BUGS
-//Once login has been submitted logout model popup displays for some reason
-//edit throws an error and won't update in realtime in state
-//delete throws an error and won't update in realtime state
+//sign up not generating first name last name email parameters.
+//recurring payment not showing up
+
+// Goal:
+// I want recurring modal visible even if single payment is not
+// fix address inputs on edit event and add event
+// connect address input routes in backend  
+
+// Goal:
+// Get broadcast page to show most recent three videos on Broadcast Page √
+// Get Donation set up on the Giving submission - Church wants to use Paypal -√
+// Get Donation pay to be able to cancel the amount
+// Get Donation to have regular monthly payment set up -√
+
+// # Send Invoice to subscription payers
+// # TODO Make an Admin request to delete customers that want to leave subscription.
+// # TODO Make twice monthly cycles for: 
+// # 1st and 15th
+// # 6th and 20th
+// # 11th and 25th
+// # Make Monthly payment on a specific day
+// # Make weekly payment on a specific day
+
+// Prayer Request Page to be able to submit prayers to leader's email - sender gets an acknowlegdement email back to their email
+
+// Get the Add new event to work properly 
+// clean up Event info page
+// Event isn't showing up for December
+// Submit a picture for the Event Thumbnail
+
+//BUGS
+// The Admin's name doesn't show up when first logging in - have to refresh page 
+// Single Payment only sending $1.00
+// Single payment doesn't submit if no value has been added
 
 function App() {
 
@@ -30,12 +104,17 @@ function App() {
   const [ authChecked, setAuthChecked ] = useState(false)
   const [ currentUser, setCurrentUser ] = useState(null)
   const [ events, setEvents ] = useState([]);
+  const [ showEvents, setShowEvents ] = useState([]);
   const [ eventMonths, setEventMonths ] = useState([]);
   const [ givingIsOpen, setGivingIsOpen ] = useState(false);
   const [ staffIsOpen, setStaffIsOpen ] = useState(false);
   const [ addEventIsOpen, setAddEventIsOpen ] = useState(false);
   const [ logoutIsOpen, setLogoutIsOpen ] = useState(false);
-  const [ showEvents, setShowEvents ] = useState([]);
+  const [ addHonorIsOpen, setAddHonorIsOpen ] = useState(false);
+  const [ accountDeleteIsOpen, setAccountDeleteIsOpen ] = useState(false);
+  const [ editProfileIsOpen, setEditProfileIsOpen ] = useState(false);
+  const [ cancelSubscriptionIsOpen, setCancelSubscriptionIsOpen ] = useState(false);
+ 
 
   
   // const [home, setHome] = useState ([])
@@ -122,10 +201,18 @@ function App() {
           {/* <Route exact path='/about_us' component={AboutUsContainer} /> */}
           <Route path='/events/:id' element={<EventInfoPage currentUser={currentUser} events={events} setEvents={setEvents}/>}/>
           <Route path='/login' element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} setLogoutIsOpen={setLogoutIsOpen} />}/>
-          <Route path='/profile' element={<ProfilePage currentUser={currentUser} authChecked={authChecked}/>}/>
+          <Route path='/sign_up' element={<SignUp currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} setLogoutIsOpen={setLogoutIsOpen}/>}/>
+          <Route path='/profile' element={<ProfilePage currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} editProfileIsOpen={editProfileIsOpen} setEditProfileIsOpen={setEditProfileIsOpen} accountDeleteIsOpen={accountDeleteIsOpen} setAccountDeleteIsOpen={setAccountDeleteIsOpen}/>}/>
           <Route path='/broadcasts' element={<BroadcastsContainer/>}/>
           <Route path='/prayer_requests' element={<PrayerRequestsContainer/>}/>
           <Route path='/about' element={<AboutPage/>}/>
+          <Route path='/recurring-payment' element={<RecurringPayment/>}/>  
+          <Route path='/contact_us' element={<ContactUsPage/>}/>
+          <Route path='/honors' element={<HonorsPage currentUser={currentUser} addHonorIsOpen={addHonorIsOpen} setAddHonorIsOpen={setAddHonorIsOpen}/>}/>
+          <Route path='/edithonors/:id' element={<EditHonorsDocuments/>}/>
+          <Route path='/subscriptions_page' element={<SubscriptionCard currentUser={currentUser} cancelSubscriptionIsOpen={cancelSubscriptionIsOpen} setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen}/>}/>
+          <Route path='/password_recovery' element={<PasswordRecoveryPage/>}/>
+          <Route path='/next_service' element={<NextServicePage/>}/>
         </Routes>
         {/* <button className='giving-modal-btn' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
         <GivingModal givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/> */}

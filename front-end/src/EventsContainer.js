@@ -2,7 +2,6 @@ import { Link, useNavigate } from "react-router-dom";
 
 import NavBar from "./NavBar";
 import EventCard from './EventCard';
-import EventInfoPage from "./EventInfoPage";
 import SubmitNewEventModal from "./SubmitNewEventModal";
 
 
@@ -15,7 +14,7 @@ import SubmitNewEventModal from "./SubmitNewEventModal";
 function EventsContainer({ currentUser, events, setEvents, eventMonths, handleAddNewEvent, handleEditEvent, handleDeleteEvent, addEventIsOpen, setAddEventIsOpen }){
     // debugger;
     const EventList = events.map((event) =>( 
-        <EventCard key={event.id} event={event} events={events} setEvents={setEvents} currentUser={currentUser} handleEditEvent={handleEditEvent} handleDeleteEvent={handleDeleteEvent}/>    
+        <EventCard key={event.id} event={event} events={events} setEvents={setEvents} currentUser={currentUser} handleEditEvent={handleEditEvent} handleDeleteEvent={handleDeleteEvent}/>
     ))
 
     const navigate = useNavigate()
@@ -52,10 +51,11 @@ function EventsContainer({ currentUser, events, setEvents, eventMonths, handleAd
         return <button className='months' value={month} onClick={handleButtonClick}>{month}</button>
     })
 
+    console.log(`In EventsContainer: currentUser?.admin: ${currentUser?.admin} | currentUser?.user?.admin: ${currentUser?.user?.admin}`)
 
     return(
         <div>
-            {currentUser ? (
+            {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (
             <div className='admin-events-container'>
                 <h1>Events</h1>
                 <h2>{EventMonthFilter}</h2>

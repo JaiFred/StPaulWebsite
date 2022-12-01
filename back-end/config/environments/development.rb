@@ -58,6 +58,12 @@ Rails.application.configure do
 
   # Suppress logger output for asset requests.
   config.assets.quiet = true
+  
+  # config.action_controller.default_url_options = { host: 'localhost:3000' }
+  Rails.application.routes.default_url_options[:host] = 'http://localhost:3000'
+
+  config.action_dispatch.default_headers['X-Frame-Options'] = "ALLOW-FROM http://localhost:3001"
+
 
   # Raises error for missing translations.
   # config.i18n.raise_on_missing_translations = true

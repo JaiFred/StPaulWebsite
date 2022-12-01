@@ -1,12 +1,18 @@
-import { Link } from "react-router-dom"
+//Hooks
+import { Link, Navigate, Routes, Route } from 'react-router-dom'
 import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
+
+
+//Components
+import PasswordRecoveryPage from './PasswordRecoveryPage';
 
 function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
 
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
+    const [error, setError ] = useState ("");
 
     let navigate = useNavigate();
 
@@ -33,6 +39,7 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
           });
         } else {
             console.log('Wrong credentials!');
+            setError("Wrong username/password!");
         } 
       });
     };
@@ -43,25 +50,10 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
       )
     }
     return(
-        <div>
-            <h1>Staff Login</h1>
-                {/* <input 
-                    type="text"
-                    placeholder="Username..."
-                />
-
-                <input 
-                    type="text"
-                    placeholder="Password..."
-                />
-
-                <button type="button">Submit</button>
-                <button> 
-                    <Link to='/'>back</Link>
-                </button>*/}
-
-  <div className="form-container">
-          <h3>Login</h3>
+    <div>
+      <h1>Login</h1>
+      <div className="form-container">
+          {error}
           <form className="register-form" onSubmit={handleSubmit}>
             <input
               className="username-input"
@@ -76,6 +68,20 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
               onChange={(event) => setPassword(event.target.value)}
             />
           <Button variant="primary" type="submit">Login</Button>
+          
+          <div>
+          <label>Don't have an account?</label>
+          <Link to='/sign_up' className="main">Signup</Link>
+          </div>
+
+          <div>
+          <label>Forgot your password?</label>
+          <Link to='/password_recovery' className="main">forgot your password</Link>
+          </div>
+          
+          <Routes>
+            <Route path='/password_recovery' element={<PasswordRecoveryPage/>}/>
+          </Routes>
         </form>
       </div>
     </div>

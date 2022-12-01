@@ -5,12 +5,48 @@ html{
   text-align: center;
 }
 
+/* #f6f9fc - I like this color */
+
 /* //////////////////
 admin-navbar (header) starts
 ////////////////// */
 
 .header{
   height: 210px;
+}
+
+.who-input {
+  width: 350px;
+}
+
+.what-input {
+  width: 350px;
+}
+
+.prayer-details-input {
+  text-indent: 20px;
+  width: 350px;
+  background-attachment: local;
+  background-image:
+      linear-gradient(to right, white 10px, transparent 10px),
+      linear-gradient(to left, white 10px, transparent 10px),
+      repeating-linear-gradient(white, white 30px, #ccc 30px, #ccc 31px, white 31px);
+  line-height: 31px;
+  padding: 3px 15px;
+  border-radius: 20px;
+}
+
+.name-date-list li{
+  display: inline-flex;
+  text-decoration-line: none;
+}
+
+.name{
+  width: 300px;
+}
+
+.date{
+  width: 300px;
 }
 
 /* title for navbar */
@@ -269,4 +305,20 @@ h3.navbar-banner {
   margin: auto 0;
   height: 200px;
   width: 100%;
+}
+
+.honors {
+background-color: white  ;
+height: 900px;
+
+}
+
+.password-recovery-overlay {
+  background-color: white;
+  height: 900px;
+}
+
+.subscriptions-page-overlay {
+  background-color: white;
+  height: 900px;
 }

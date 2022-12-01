@@ -1,3 +1,4 @@
+//Hooks
 import React from "react";
 import { Link } from "react-router-dom";
 import Navbar from 'react-bootstrap/Navbar';
@@ -6,11 +7,11 @@ import {useEffect} from 'react'
 import { Container } from "react-bootstrap";
 
 
-
+//components
 import GivingModal from "./GivingModal";
 import DropdownMenu from "react-bootstrap/esm/DropdownMenu";
 import DropdownItem from "react-bootstrap/esm/DropdownItem";
-import StaffConfirmationModal from "./StaffConfirmationModal";
+import LoginModal from "./LoginModal";
 import LogoutProcedureModal from "./LogoutProcedureModal";
 import Hamburger from "./images/Hamburger Button.png"
 import Cross from "./images/Cross.webp"
@@ -30,9 +31,16 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
   //     <div></div>
   //   )
   // }
+
+  console.log(`Inside NavBar, currentUser: ${JSON.stringify(currentUser)}`);
+  const lastName = currentUser?.user?.last_name || currentUser?.last_name;
+  // const firstName = currentUser?.user?.first_name || currentUser?.first_name;
+  console.log(`Inside NavBar, currentUser last name: ${lastName}`);
+  
+
   return (
     <div className="header">
-      {currentUser ? (
+      {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (
                 <div className="--navbar">
                 <Link to='/'>
                 <img src={Cross} className="cross"></img>
@@ -41,7 +49,7 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
                 <div className="admin-name-container"> 
                 <ul className="name-container-list">
                   <li className="admin-greeting">Hello</li>
-                  <li className="admin-name">{currentUser.last_name}</li>
+                  <li className="admin-name">{lastName}</li>
                 </ul>
                 </div>  
             <nav className="non-admin-nav-container">
@@ -50,7 +58,8 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
                   <Link to='/about' className="main">About</Link>
                 </li>        
                 <li> 
-                  <Link to='/events' className="main">Bulletin</Link> 
+                  <a href='/events' className="main">Bulletin</a>
+                  {/* <Link to='/events' className="main">Bulletin</Link>  */}
                 </li >
                 <li>
                   <Link to='/prayer_requests' className="main">Prayer Requests</Link>
@@ -60,7 +69,7 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
                 </li>
                 <li>
                   <button className='navbar-giving-modal-btn' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
-                  <GivingModal givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>
+                  <GivingModal currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>
                 </li >
                 <li>
                     <Dropdown>
@@ -91,14 +100,23 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
           <Link to='/'>
           <img src={Cross} className="cross"></img>
           <h1 className="title">St Paul Baptist Church</h1>
-          </Link>   
+          </Link>  
+          {(currentUser?.user &&
+            <div className="admin-name-container"> 
+              <ul className="name-container-list">
+                <li className="admin-greeting">Hello</li>
+                <li className="admin-name">{lastName}</li>
+              </ul>
+            </div>  
+          )}
       <nav className="non-admin-nav-container">
         <ul className="non-admin-nav-links">
           <li> 
             <Link to='/about' className="main">About</Link>
           </li>        
           <li> 
-            <Link to='/events' className="main">Bulletin</Link> 
+            <a href='/events' className="main">Bulletin</a>
+            {/* <Link to='/events' className="main">Bulletin</Link>  */}
           </li >
           <li>
             <Link to='/prayer_requests' className="main">Prayer Requests</Link>
@@ -108,22 +126,39 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
           </li>
           <li>
             <button className='navbar-giving-modal-btn' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
-            <GivingModal givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>
+            <GivingModal currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>
           </li >
           <li>
               <Dropdown>
                 <Dropdown.Toggle className="hamburger-button" variant="success" id="dropdown-basic"> 
                 <img src={Hamburger} className="hamburger" alt="dropdown-toggle-button"></img>
                 </Dropdown.Toggle>
-
+                
                 <DropdownMenu>
-                  <button className='staff-modal-btn' type='button' onClick={() => setStaffIsOpen(true)}>Staff</button>
-                  <StaffConfirmationModal staffIsOpen={staffIsOpen} setStaffIsOpen={setStaffIsOpen}/>
+                  {
+                    !currentUser &&
+                    <div>
+                      <button className='staff-modal-btn' type='button' onClick={() => setStaffIsOpen(true)}>Login</button>
+                      <LoginModal staffIsOpen={staffIsOpen} setStaffIsOpen={setStaffIsOpen}/>
+                    </div>
+                  }     
+                   { 
+                    currentUser &&
+                    <div>
+                      <button className='staff-modal-btn' type='button' onClick={() => setLogoutIsOpen(true)}>Logout</button>
+                      <LogoutProcedureModal logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
+                    </div>                    
+                  }              
                   <Link to='/broadcasts' class="dropdownitem">Broadcasts</Link>
-                  <Link to="/pastors_corner" class="dropdownitem">Pastor's Corner</Link>
                   <Link to="/youth_corner" class="dropdownitem">Youth Corner</Link>
                   <Link to="/bible_study" class="dropdownitem">Bible Study</Link>
                   <Link to="/honors" class="dropdownitem">Honors</Link>
+                  { 
+                    currentUser &&
+                    <div>
+                      <Link to="/profile" class="dropdownitem">Profile</Link>
+                    </div>                    
+                  } 
                 </DropdownMenu>
               </Dropdown>
           </li>
