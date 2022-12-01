@@ -2,7 +2,7 @@ import { Link } from 'react-router-dom'
 import { Modal, ModalHeader, ModalFooter, ModalTitle, Button } from 'react-bootstrap'
 
 
-function StaffConfirmationModal({ staffIsOpen, setStaffIsOpen }){
+function LoginModal({ staffIsOpen, setStaffIsOpen }){
 
     return(
         <div className='overlay_staff_modal'>
@@ -11,7 +11,7 @@ function StaffConfirmationModal({ staffIsOpen, setStaffIsOpen }){
                 // hide={() => {setIsOpen(false)}}
             >
                 <ModalHeader >
-                    <ModalTitle>Are you A Staff Member</ModalTitle>
+                    <ModalTitle>Do you wish to login/sign up?</ModalTitle>
                 </ModalHeader>
                     <ModalFooter> 
                         <Link to='/login'>
@@ -26,4 +26,4 @@ function StaffConfirmationModal({ staffIsOpen, setStaffIsOpen }){
 
 }
 
-export default StaffConfirmationModal
+export default LoginModal

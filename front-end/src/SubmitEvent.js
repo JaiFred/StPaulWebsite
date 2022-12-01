@@ -1,8 +1,8 @@
 //Hooks
 import React, { useState, useEffect } from "react";
 
-//Need to make Event submit page accept specific adress information
-// 
+
+
 
 function SubmitEvent({ handleAddNewEvent }){
 
@@ -12,38 +12,68 @@ function SubmitEvent({ handleAddNewEvent }){
     // t.string :details
     // t.string :location
 
+    // t.string :address_line_1
+    // t.string :address_line_2
+    // t.string :city
+    // t.string :state_province_region
+    // t.string :zip_postalcode
+    // t.string :country
+
     const [ title, setTitle ] = useState("")
     const [ starts, setStarts ] = useState("")
     const [ ends, setEnds ] = useState("")
     const [ details, setDetails ] = useState("")
-    const [ location, setLocation ] = useState("")
+    const [ addressLine1, setaddressLine1 ] = useState("")
+    const [ addressLine2, setaddressLine2 ] = useState("")
+    const [ city, setCity ] = useState("")
+    const [ image, setImage ] = useState("")
 
     function handleSubmit(e){
         console.log("submitted")
+        console.log(`submitting form with image: ${image}`);
         e.preventDefault();
+
+        const formData = new FormData();
+        formData.append("image", image);
+        formData.append("title", title);
+        formData.append("starts", starts);
+        formData.append("ends", ends);
+        formData.append("details", details);
+        formData.append("address_line_1", addressLine1);
+        formData.append("address_line_2", addressLine2);
+        formData.append("city", city);
+
+
         fetch("api/events", {
             method: "POST",
-            headers: {
-                "content-Type" : "application/json",
-            },
-            body: JSON.stringify({
-                title: title,
-                starts: starts,
-                ends: ends,
-                details: details,
-                location: location
-            })
+            body: formData
         })
         .then((res) => res.json())
         .then((newEvent) => handleAddNewEvent(newEvent));
         console.log();
     }
 
+    function handleImageChange (e) {
+        console.log(`e.target.files[0]: ${e.target.files[0]}`)
+        if (e.target.files[0]) setImage(e.target.files[0]);
+    };
+
+    console.log(`image: ${image}`);
+
+
 
     return(
         <div>
             <h1>Submit New Event</h1>
             <ul>
+
+            <input 
+                type="file" 
+                name="image"
+                accept="image/png, image/jpeg"
+                onChange={handleImageChange} 
+            />
+
                 <input 
                 type='text'
                 className='title-input'
@@ -72,23 +102,33 @@ function SubmitEvent({ handleAddNewEvent }){
                 />
                 <input
                 type='text'
-                className='location-input'
-                id='location'
-                placeholder='street address'
-                onChange={(e) => setDetails(e.target.value)}
+                className='address_line_1_input'
+                id='address_line_1_input'
+                placeholder='address line 1'
+                onChange={(e) => setaddressLine1(e.target.value)}
                 />
                 {/* I want a new location input for the apt/suite etc.(optional) */}
+                
                 <input
-                type='text'
-                className='location-input'
-                id='location'
-                placeholder='apt'
-                onChange={(e) => setLocation(e.target.value)}
+                    type='text'
+                    className='address_line_2_input'
+                    id='address_line_2_input'
+                    placeholder='address line 2'
+                    onChange={(e) => setaddressLine2(e.target.value)}
+                /><label htmlFor="address_line_2_input">Apartment, suite, unit, building, floor</label>
+                
+                <input
+                    type='text'
+                    className='city_input'
+                    id='city_input'
+                    placeholder='city'
+                    onChange={(e) => setCity(e.target.value)}
                 />
                 {/* I want a city dropdown*/}
                 {/* I want a country dropdown - other dropdowns such as "state" must be reactive */}
                 {/* I want a state dropdown - this disappears if the country is not the United States*/}
                 {/* ZIP/Postal code*/}
+
                 
             </ul>
             <button id='submitBtn' type="button" onClick={handleSubmit} method="post">Submit</button>

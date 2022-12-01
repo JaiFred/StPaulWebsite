@@ -33,6 +33,7 @@ function LogoutProcedureModal({ logoutIsOpen, setLogoutIsOpen, currentUser, setC
                         <Link to='/logout'>
                         <button type="button" onClick={handleLogout}>Logout</button>
                         </Link>
+                        
                         <button type="button" onClick={() => {setLogoutIsOpen(false)}}>No</button> 
                     </ModalFooter> 
             </Modal>

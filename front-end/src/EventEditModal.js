@@ -50,7 +50,10 @@ function EventEditModal({ event, editEventIsOpen, setEditEventIsOpen, handleEdit
         starts: "",
         ends: "",  
         details: "",
-        location: "",        
+        address_line_1: "", 
+        address_line_2: "",
+        city: "",
+        image: "",       
     });
 
     useEffect(() => {
@@ -59,7 +62,7 @@ function EventEditModal({ event, editEventIsOpen, setEditEventIsOpen, handleEdit
         .then((event) => setFormData(event));
     }, []);
 
-    const { id, title, starts_short, ends_short, details, location } = event;
+    const { id, title, starts_short, ends_short, details, address_line_1, address_line_2, city, image = "" } = event;
 
 
     return(

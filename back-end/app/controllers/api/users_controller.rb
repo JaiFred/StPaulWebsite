@@ -7,6 +7,29 @@ module Api
             render json: current_user, status: :ok
         end
     
+        # DELETE '/users/:id'
+        def destroy 
+            @user = User.find_by(username: params[:username])
+            
+            if @user && @user.id == params[:id].to_i && @user.authenticate(params[:password])
+                
+                @user.subscriptions.each do |subscription|
+                    Stripe::Subscription.update(
+                        subscription.stripe_subscription_id,
+                            {
+                                cancel_at_period_end: true,
+                            }
+                    )        
+                end
+
+                @user.destroy
+
+                render json: { message: 'User Deleted Successfully' }, status: :ok
+            else
+                render json: { errors: 'Invalid username or password' }, status: 422
+            end
+        end
+    
         private
     
         # t.string :first_name

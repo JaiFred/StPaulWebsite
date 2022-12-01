@@ -7,13 +7,17 @@
 #  starts         :datetime
 #  ends           :datetime
 #  details        :string
-#  location       :string
-#  event_month_id :integer
-#  created_at     :datetime         not null
-#  updated_at     :datetime         not null
+#  t.string :address_line_1
+#  t.string :address_line_2
+#  t.string :city
+#  t.string :state_province_region
+#  t.string :zip_postalcode
+#  t.string :country
 #
 class EventSerializer < ActiveModel::Serializer
-  attributes :id, :title, :starts, :ends, :details, :location, :starts_short, :ends_short
+  include Rails.application.routes.url_helpers
+
+  attributes :id, :title, :starts, :ends, :details, :address_line_1, :address_line_2, :city, :state_province_region, :zip_postalcode, :country, :starts_short, :ends_short, :image
 
   def time
       "From #{object.starts.strftime("%A %d %b %Y, at %-I:%M%p")} to #{object.ends.strftime("%A %d %b %Y, at %-I:%M%p")}"
@@ -34,6 +38,11 @@ class EventSerializer < ActiveModel::Serializer
   
   def ends_short
     object.ends.strftime("%d %b %Y")
-  end  
+  end
+
+  def image    
+    Rails.application.routes.default_url_options[:host] + rails_blob_path(object.image) if object.image.present?
+  end
+  
 
 end

@@ -1,16 +1,105 @@
-
+//Hooks
+import React from "react";
+import emailjs from "@emailjs/browser"
 
 
 function PrayerRequestsContainer(){
 
+        const sendEmail = (e) => {
+            e.preventDefault();
+            alert("submitted")
+    
+            emailjs.sendForm('REACT_EMAILJS_SERVICE_KEY','REACT_EMAILJS_PRAYER_REQUEST_TEMPLATE_KEY', e.target, 'REACT_EMAILJS_PUBLIC_KEY')
+        }
+    
+
     return(
         <div>
-
+            <form className="prayer-request"  onSubmit={sendEmail}>
         <h1>
             You are in the Prayer Request Page 
         </h1>
-        </div>
+        <label htmlFor="who-input">Who needs Prayer?</label>
+        <input
+            className="who-input"
+            type="text"
+            id="who"
+            name="who-input"
+            // value=
+            placeholder="friend, mom, dad, spouse, me, etc..."
+        />
+        <label htmlFor="what-input">What is their relationship to you?</label>
+        <input
+            className="what-input"
+            type="text"
+            id="what"
+            name="what-input"
+            // value=
+            placeholder="(optional) or leave blank if request is for you..."
+        />
+        <h2>Prayer Details</h2>
+        <textarea
+            className='prayer-details-input'
+            type='text'
+            id='prayer-details-input'
+            name='prayer-details-input'
+            rows='5'
+            cols='30'
+            // value=
+            placeholder='type here --'
+        />
+        <h2>Name and Date</h2>
+        <ul className="name-date-list">
+            <li className="name-cell">
+                <input
+                className='name'
+                type='text'
+                id='name'
+                name='name-cell'
+                // value=
+                placeholder='name'
+                />
+            </li>
+            <li className="date-cell">
+                <input
+                className='date'
+                type='datetime-local'
+                id='date'
+                name='date-cell'
+                // value=
+                placeholder='date'
+                />
+            </li>
+        </ul>
         
+            <fieldset>
+                <legend>Would you like us to pray for your intention during the morning announcments?</legend>
+               
+                <div>
+                    <p1 htmlFor='decision1'>Yes</p1>
+                    <input type='radio' id='Yes' name="drone1" value='Yes' checked/> 
+                </div>
+                <div>
+                    <p1 htmlFor='decision1'>No</p1>
+                    <input type='radio' id='No' name="drone1" value='No'/>
+                </div>
+            </fieldset>
+            <fieldset>
+                <legend>Is it OK to post your request in Church?</legend>
+                <div>
+                    <p1 htmlFor='decision2'>Yes</p1>
+                    <input type='radio' id='Yes' name="drone2" value='Yes' checked/>
+                </div>
+                <div>
+                    <p1 htmlFor='decision2'>No</p1>
+                    <input type='radio' id='No' name="drone2" value='No'/>
+                </div>
+            </fieldset>
+            <label htmlFor="email-from">Your Email:</label>
+            <input type="text" name="email-from" id="email-from" className="email-form"></input>
+            <button type="submit" className="submit-button">send</button>
+        </form>
+        </div>
     )
 }
 

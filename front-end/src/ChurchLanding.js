@@ -6,7 +6,7 @@ import GivingModal from "./GivingModal";
 
 // Child Component of App.js
 
-function ChurchLanding({givingIsOpen, setGivingIsOpen}){
+function ChurchLanding({ currentUser, givingIsOpen, setGivingIsOpen}){
   
 
   return(
@@ -14,12 +14,13 @@ function ChurchLanding({givingIsOpen, setGivingIsOpen}){
       <div className="homepage-links-container">
       <button>
         <div className="big-bulletin-button">
-          <Link to='/events'>Bulletin</Link>
+          <button className="main"><a href='/events' >Bulletin</a></button>
+          {/* <Link to='/events'>Bulletin</Link> */}
         </div>
       </button>
         {/* <div className="big-Giving-button"> */}
         <button className="big-giving-modal-btn" type="button" onClick={() => setGivingIsOpen(true)}>Giving</button>
-            <GivingModal givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>
+            <GivingModal currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>
         {/* </div> */}
       <button>
         <div className="big-broadcasts-button">
@@ -29,6 +30,11 @@ function ChurchLanding({givingIsOpen, setGivingIsOpen}){
       <button>
         <div className="big-Prayer-button">
           <Link to='/prayer_requests'>Prayer Requests</Link>
+        </div>
+      </button>
+      <button>
+        <div className="Test-button">
+          <Link to='/recurring-payment'>Recurring Payment</Link>
         </div>
       </button>
       </div>

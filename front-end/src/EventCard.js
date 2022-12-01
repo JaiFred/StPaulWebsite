@@ -22,7 +22,7 @@ function EventCard({event, events, setEvents, currentUser, handleDeleteEvent, ha
 
     //edit
 
-    const { id, title, starts_short, ends_short, details, location } = event;
+    const { id, title, starts_short, ends_short, details, location, image } = event;
 
     // console.log(event);
 
@@ -66,8 +66,9 @@ function EventCard({event, events, setEvents, currentUser, handleDeleteEvent, ha
 
     return (
         <div>
-            {currentUser ? (
+            {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (
                     <div>
+                        
                         <button className="event-card">
                             <div>
                                 <div>
@@ -80,35 +81,38 @@ function EventCard({event, events, setEvents, currentUser, handleDeleteEvent, ha
                                 </button>
                                 </div>
                                 <EventEditModal event={event} editEventIsOpen={editEventIsOpen} setEditEventIsOpen={setEditEventIsOpen} handleEditEvent={handleEditEvent} />
-                                <h2>{title}</h2>               
+                                <h2>{title}</h2>
+                                {
+                                    image ? <img src={image} width="500" height="600"></img> : <img src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=" width="500" height="600"></img>
+                                }
+
                                 <h2>starts: {starts_short} - ends: {ends_short}</h2>
-                                {/* // <h3><StarRating totalStars={5} currentRating={rating} displayStar={true} /></h3>
-                                // <button onClick={handleDeleteReview} type="button">Delete Review</button>
-                                // <button onClick={handleEditReview} type="button">Edit Review</button> */}
                                 <Routes>
                                     <Route path="/events/:id" element={<EventInfoPage currentUser={currentUser} event={event} events={events} setEvents={setEvents} />}/>
                                 </Routes>
-                                <Link to={`/events/${event.id}`}>More Info</Link>
+                                <Link to={`/events/${event.id}`}>Click on this link for More Info</Link>
+                                
                             </div>
                         </button>
+                        
                     </div>
                 ) : (
                     <div> 
+                        <Link to={`/events/${event.id}`}>
                         <button className="event-card">
-            
                             <div>
-                                {/* <h2>{id}</h2> */}
-                                <h2>{title}</h2>               
+                                <h2>{title}</h2>   
+                                {
+                                    image ? <img src={image} width="500" height="600"></img> : <img src="https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM=" width="500" height="600"></img>
+                                }            
                                 <h2>starts: {starts_short} - ends: {ends_short}</h2>
-                                {/* // <h3><StarRating totalStars={5} currentRating={rating} displayStar={true} /></h3>
-                                // <button onClick={handleDeleteReview} type="button">Delete Review</button>
-                                // <button onClick={handleEditReview} type="button">Edit Review</button> */}
                                 <Routes>
                                     <Route path="/events/:id" element={<EventInfoPage currentUser={currentUser} event={event} events={events} setEvents={setEvents}/>}/>
                                 </Routes>
-                                <Link to={`/events/${event.id}`}>More Info</Link>
+                               <label htmlFor="more-info">Click for More Info</label>
                             </div>
                         </button>
+                        </Link>
                     </div>
                 )}
            

@@ -16,7 +16,7 @@ module Api
                 Event.between(params[:starts_time], params[:ends_time])
             elsif (month = params[:month]).present?
                 starts_time = "2022-#{month}-01"
-                ends_time = "2022-#{month}-30"
+                ends_time = Date.parse("2022-#{month}-30").end_of_month.to_s
                 Event.between(starts_time, ends_time)
             else
                 Event.all
@@ -36,7 +36,12 @@ module Api
         end
 
         def create
-            event = Event.create!(event_params) 
+            event = Event.create!(event_params)    
+                    
+            if event_params[:image].present?                
+                event.image.attach(event_params[:image])       
+            end
+
             render json: event, status: :created
         end
 
@@ -47,11 +52,16 @@ module Api
             @event_months = (start_months + end_months).uniq
 
             render json: @event_months, status: :ok
-        end
+        end        
 
         def update
             @event = Event.find(params[:id])
-            @event.update!(event_params)
+            @event.update!(event_params.except(:image))
+            
+            if event_params[:image].present?                
+                @event.image.attach(event_params[:image])   
+            end
+
             render json: @event, status: :created #201
         end
 
@@ -68,7 +78,7 @@ module Api
         end
 
         def event_params
-            params.permit(:id, :title, :starts, :ends, :details, :location)
+            params.permit(:id, :title, :starts, :ends, :details, :address_line_1, :address_line_2, :city, :state_province_region, :zip_postalcode, :country, :image)
         end
 
     end
