@@ -101,7 +101,7 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
           <img src={Cross} className="cross"></img>
           <h1 className="title">St Paul Baptist Church</h1>
           </Link>  
-          {(currentUser?.user &&
+          {((currentUser || currentUser?.user) &&
             <div className="admin-name-container"> 
               <ul className="name-container-list">
                 <li className="admin-greeting">Hello</li>
