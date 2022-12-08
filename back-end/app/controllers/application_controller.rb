@@ -4,6 +4,16 @@ class ApplicationController < ActionController::API
     rescue_from ActiveRecord::RecordInvalid, with: :render_validation_errors
     rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
     
+    before_action :configure_permitted_parameters, if: :devise_controller?
+
+    protected
+  
+    def configure_permitted_parameters
+      devise_parameter_sanitizer.permit(:sign_up, keys: %i[first_name last_name email username password_confirmation])
+    #   devise_parameter_sanitizer.permit(:sign_in, keys: [:username])
+    #   devise_parameter_sanitizer.permit(:account_update, keys: [:username])
+    end
+
     private
 
     def authenticate_user

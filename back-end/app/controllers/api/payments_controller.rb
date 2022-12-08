@@ -8,14 +8,24 @@ module Api
 
         PLANS = {
             # monthly rates
-            '100_dollars_Monthly' => ENV['DOLLARS_MONTHLY_100'],
-            '20_dollars_Monthly' => ENV['DOLLARS_MONTHLY_20'],
-            '10_dollars_Monthly' => ENV['DOLLARS_MONTHLY_10'],
             '5_dollars_Monthly' => ENV['DOLLARS_MONTHLY_5'],
+            '10_dollars_Monthly' => ENV['DOLLARS_MONTHLY_10'],
+            '15_dollars_Monthly' => ENV['DOLLARS_MONTHLY_15'],
+            '20_dollars_Monthly' => ENV['DOLLARS_MONTHLY_20'],
+            '100_dollars_Monthly' => ENV['DOLLARS_MONTHLY_100'],
             # weekly rates
+            '5_dollars_Weekly' => ENV['DOLLARS_WEEKLY_5'],
             '10_dollars_Weekly' => ENV['DOLLARS_WEEKLY_10'],
+            '15_dollars_Weekly' => ENV['DOLLARS_WEEKLY_15'],
+            '20_dollars_Weekly' => ENV['DOLLARS_WEEKLY_20'],
+            '100_dollars_Weekly' => ENV['DOLLARS_WEEKLY_100'],
             # biweekly rates
+            '5_dollars_BiWeekly' => ENV['DOLLARS_BIWEEKLY_5'],
+            '10_dollars_BiWeekly' => ENV['DOLLARS_BIWEEKLY_10'],
             '15_dollars_BiWeekly' => ENV['DOLLARS_BIWEEKLY_15'],
+            '20_dollars_BiWeekly' => ENV['DOLLARS_BIWEEKLY_20'],
+            '100_dollars_BiWeekly' => ENV['DOLLARS_BIWEEKLY_100'],
+
         }
         
         def client_secret_recurring

@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
 class Users::SessionsController < Devise::SessionsController
+  respond_to :json
   # before_action :configure_sign_in_params, only: [:create]
 
   # GET /resource/sign_in
@@ -14,9 +15,13 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # DELETE /resource/sign_out
-  # def destroy
-  #   super
-  # end
+  def destroy
+    if current_user 
+        session.clear
+    else
+        render json: { errors: 'No active session'}, status: :unauthorized #401
+    end    
+  end
 
   # protected
 
@@ -28,10 +33,7 @@ class Users::SessionsController < Devise::SessionsController
   private
 
   def respond_with(resource, _opts = {})
-    render json: {
-      status: {code: 200, message: 'logged in successfully.'},
-      data: UserSerializer.new(resource).serializable_hash[:data][:attributes]
-    }, status: :ok
+    render json: { user: UserSerializer.new(resource).serializable_hash }, status: :ok
   end
 
   def respond_to_on_destroy
