@@ -19,10 +19,4 @@ class User < ApplicationRecord
 
     has_many :events
     has_many :subscriptions, dependent: :destroy
-
-    protected
-    
-    def confirmation_required?
-      true
-    end
 end

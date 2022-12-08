@@ -6,6 +6,7 @@ import { Navigate, Routes, Route } from 'react-router-dom'
 import AboutPage from './AboutPage';
 import Login from './Login';
 import SignUp from './SignUp';
+import SignUpSuccessPage from './SignUpSuccessPage';
 import ChurchLandingAttributes from './ChurchLandingAttributes';
 import GivingModal from './GivingModal';
 
@@ -24,6 +25,7 @@ import HonorsPage from './HonorsPage';
 import EditHonorsDocuments from './EditHonorsItem';
 import PasswordRecoveryPage from './PasswordRecoveryPage';
 
+
 // CSS
 import './App.css';
 
@@ -40,7 +42,7 @@ import './App.css';
   // and then in the backend (another route/controller/action) we will verify the OTP code and email, if all good, we will 
   // reset the password for the user to the new passord...
 
-//2 way authentication for signup - email
+//2 way authentication for signup - email √
 
 
 //Events page issues
@@ -202,6 +204,7 @@ function App() {
           <Route path='/events/:id' element={<EventInfoPage currentUser={currentUser} events={events} setEvents={setEvents}/>}/>
           <Route path='/login' element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} setLogoutIsOpen={setLogoutIsOpen} />}/>
           <Route path='/signup' element={<SignUp currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} setLogoutIsOpen={setLogoutIsOpen}/>}/>
+          <Route path='/signup_success' element={<SignUpSuccessPage/>}/>
           <Route path='/profile' element={<ProfilePage currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} editProfileIsOpen={editProfileIsOpen} setEditProfileIsOpen={setEditProfileIsOpen} accountDeleteIsOpen={accountDeleteIsOpen} setAccountDeleteIsOpen={setAccountDeleteIsOpen}/>}/>
           <Route path='/broadcasts' element={<BroadcastsContainer/>}/>
           <Route path='/prayer_requests' element={<PrayerRequestsContainer/>}/>
@@ -213,6 +216,7 @@ function App() {
           <Route path='/subscriptions_page' element={<SubscriptionCard currentUser={currentUser} cancelSubscriptionIsOpen={cancelSubscriptionIsOpen} setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen}/>}/>
           <Route path='/password_recovery' element={<PasswordRecoveryPage/>}/>
           <Route path='/next_service' element={<NextServicePage/>}/>
+
         </Routes>
         {/* <button className='giving-modal-btn' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
         <GivingModal givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/> */}

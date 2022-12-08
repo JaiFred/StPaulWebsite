@@ -12,12 +12,14 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create    
     resource = User.find_by(email: params[:user][:email])
-    # binding.pry
-    unless resource.confirmed?
-      render json: { message: 'Please confirm your email before logging in' }, status: 401
-      return
+    unless resource.confirmed?      
+      return render json: { errors: 'Please confirm your email before logging in' }, status: :ok
     else
-      super
+      self.resource = warden.authenticate!(auth_options)
+      set_flash_message!(:notice, :signed_in)
+      sign_in(resource_name, resource)
+      yield resource if block_given?
+      respond_with resource, location: after_sign_in_path_for(resource)
     end
   end
 

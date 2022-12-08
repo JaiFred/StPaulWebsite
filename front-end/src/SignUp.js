@@ -46,7 +46,7 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
           response.json().then((user) => {
             // setCurrentUser(user);
             // localStorage.setItem("currentUserId", JSON.stringify(user));
-            navigate("/login");
+            navigate("/signup_success");
             console.log(JSON.stringify(user));
           });
         } else {
