@@ -201,7 +201,7 @@ function App() {
           {/* <Route exact path='/about_us' component={AboutUsContainer} /> */}
           <Route path='/events/:id' element={<EventInfoPage currentUser={currentUser} events={events} setEvents={setEvents}/>}/>
           <Route path='/login' element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} setLogoutIsOpen={setLogoutIsOpen} />}/>
-          <Route path='/sign_up' element={<SignUp currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} setLogoutIsOpen={setLogoutIsOpen}/>}/>
+          <Route path='/signup' element={<SignUp currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} setLogoutIsOpen={setLogoutIsOpen}/>}/>
           <Route path='/profile' element={<ProfilePage currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} editProfileIsOpen={editProfileIsOpen} setEditProfileIsOpen={setEditProfileIsOpen} accountDeleteIsOpen={accountDeleteIsOpen} setAccountDeleteIsOpen={setAccountDeleteIsOpen}/>}/>
           <Route path='/broadcasts' element={<BroadcastsContainer/>}/>
           <Route path='/prayer_requests' element={<PrayerRequestsContainer/>}/>

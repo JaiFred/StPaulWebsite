@@ -6,17 +6,20 @@ function LogoutProcedureModal({ logoutIsOpen, setLogoutIsOpen, currentUser, setC
 
     let navigate = useNavigate();
 
+    console.log('Rendered LogoutProcedureModal');
+    console.log(`logoutIsOpen: ${logoutIsOpen}`);
+
     const handleLogout = (e) => {
+      console.log('inside handleLogout');
         e.preventDefault()
-        fetch(`/api/logout`, {
+        fetch(`/logout`, {
           method: 'DELETE',
           credentials: 'include'
         })
-        .then(res => {
-          if (res.ok) {
-            setCurrentUser(null)
+        .then(res => {          
+            setCurrentUser(null);
+            localStorage.setItem("currentUserId", null);
             navigate('/', {replace:false})
-          }
         })
       }
 

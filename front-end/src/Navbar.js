@@ -79,7 +79,7 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
       
                       <DropdownMenu>
                          <DropdownItem>
-                          <button className='staff-modal-btn' type='button' onClick={() => setLogoutIsOpen(true)}>Logout</button>
+                          <button className='staff-modal-btn' type='button' onClick={() => setLogoutIsOpen(true)}>Logout 2</button>
                           <LogoutProcedureModal logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
                         </DropdownItem>
                         <Link to='/broadcasts' class="dropdownitem">Broadcasts</Link>
@@ -145,7 +145,7 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
                    { 
                     currentUser &&
                     <div>
-                      <button className='staff-modal-btn' type='button' onClick={() => setLogoutIsOpen(true)}>Logout</button>
+                      <button className='staff-modal-btn' type='button' onClick={() => setLogoutIsOpen(true)}>Logout 1</button>
                       <LogoutProcedureModal logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
                     </div>                    
                   }              
