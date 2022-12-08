@@ -10,7 +10,9 @@ import PasswordRecoveryPage from './PasswordRecoveryPage';
 
 function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
 
-    const [username, setUsername] = useState("");
+
+    // const [username, setUsername] = useState("");
+    const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
     const [error, setError ] = useState ("");
 
@@ -20,20 +22,23 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
 
     function handleSubmit (event) {
       event.preventDefault();
-      fetch("/api/login", {
+      fetch("/login", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          username: username,
+          // username: username,
+          email: email,
           password: password,
         }),
       }).then((response) => {
+        console.log(`response: ${JSON.stringify(response)}`);
         if (response.ok) {
           response.json().then((user) => {
+            console.log(`I AM HERE: user: ${JSON.stringify(user)}`);
             setCurrentUser(user);
-            localStorage.setItem("currentUserId", JSON.stringify(user));
+            localStorage.setItem("currentUserId", JSON.stringify(user.user.id));
             navigate("/");
             console.log(JSON.stringify(user));
           });
@@ -55,11 +60,17 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
       <div className="form-container">
           {error}
           <form className="register-form" onSubmit={handleSubmit}>
-            <input
+            {/* <input
               className="username-input"
               type="text"
               placeholder="Username..."
               onChange={(event) => setUsername(event.target.value)}
+            /> */}
+             <input
+              className="email-input"
+              type="email"
+              placeholder="email..."
+              onChange={(event) => setEmail(event.target.value)}
             />
             <input
               className="password-input"
@@ -71,7 +82,7 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
           
           <div>
           <label>Don't have an account?</label>
-          <Link to='/sign_up' className="main">Signup</Link>
+          <Link to='/signup' className="main">Signup</Link>
           </div>
 
           <div>

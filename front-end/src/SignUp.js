@@ -10,6 +10,7 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
     const [ email, setEmail ] = useState ("")
     const [ username, setUsername ] = useState("");
     const [ password, setPassword ] = useState("");
+    const [ passwordConfirmation, setPasswordConfirmation ] = useState("");
 
 // #  id         :integer          not null, primary key
 // #  first_name :string
@@ -26,23 +27,25 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
 
     function handleSubmit (event) {
       event.preventDefault();
-      fetch("/api/sign_up", {
+      fetch("/signup", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({
+        body: JSON.stringify(
+          { user: {
           first_name: firstName,
           last_name: lastName,
           email: email,
           username: username,
           password: password,
-        }),
+          passwordConfirmation: passwordConfirmation
+        } }),
       }).then((response) => {
         if (response.ok) {
           response.json().then((user) => {
-            setCurrentUser(user);
-            localStorage.setItem("currentUserId", JSON.stringify(user));
+            // setCurrentUser(user);
+            // localStorage.setItem("currentUserId", JSON.stringify(user));
             navigate("/login");
             console.log(JSON.stringify(user));
           });
@@ -91,6 +94,12 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
               type="password"
               placeholder="password..."
               onChange={(event) => setPassword(event.target.value)}
+            />
+            <input
+              className="password-confirmation-input"
+              type="password-confirmation"
+              placeholder="password confirmation..."
+              onChange={(event) => setPasswordConfirmation(event.target.value)}
             />
           <Button variant="primary" type="submit">SignUp</Button>
         </form>
