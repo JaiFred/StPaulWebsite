@@ -10,9 +10,16 @@ class Users::SessionsController < Devise::SessionsController
   # end
 
   # POST /resource/sign_in
-  # def create
-  #   super
-  # end
+  def create    
+    resource = User.find_by(email: params[:user][:email])
+    # binding.pry
+    unless resource.confirmed?
+      render json: { message: 'Please confirm your email before logging in' }, status: 401
+      return
+    else
+      super
+    end
+  end
 
   # DELETE /resource/sign_out
   def destroy
