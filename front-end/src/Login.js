@@ -28,9 +28,10 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
           "Content-Type": "application/json",
         },
         body: JSON.stringify({
-          // username: username,
-          email: email,
-          password: password,
+          user:{
+            email: email,
+            password: password
+          }
         }),
       }).then((response) => {
         console.log(`response: ${JSON.stringify(response)}`);

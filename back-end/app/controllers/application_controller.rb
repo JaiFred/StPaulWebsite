@@ -20,9 +20,9 @@ class ApplicationController < ActionController::API
         render json: { errors: "You must be logged in to do that." }, status: :unauthorized unless current_user
     end
 
-    def current_user
-        @current_user ||= User.find_by_id(session[:user_id])
-    end
+    # def current_user
+    #     @current_user ||= User.find_by_id(session[:user_id])
+    # end
 
     def render_uprocessable_entity(invalid)
         render json: {errors: invalid.record.errors}, status: :unprocessable_entity #422
