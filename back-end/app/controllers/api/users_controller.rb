@@ -1,9 +1,9 @@
 module Api
     class UsersController < ApplicationController
-        before_action :authenticate_user, only: [:show]
+        before_action :authenticate_user!, only: [:show]
     
         # get '/me'
-        def show 
+        def show
             render json: current_user, status: :ok
         end
     
@@ -16,9 +16,9 @@ module Api
                 @user.subscriptions.each do |subscription|
                     Stripe::Subscription.update(
                         subscription.stripe_subscription_id,
-                            {
-                                cancel_at_period_end: true,
-                            }
+                        {
+                            cancel_at_period_end: true,
+                        }
                     )        
                 end
 

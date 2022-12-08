@@ -38,15 +38,21 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
         if (response.ok) {
           response.json().then((user) => {
             console.log(`I AM HERE: user: ${JSON.stringify(user)}`);
-            setCurrentUser(user);
-            localStorage.setItem("currentUserId", JSON.stringify(user.user.id));
-            navigate("/");
-            console.log(JSON.stringify(user));
+            if (user.errors) {
+              console.log(user.errors || 'Wrong credentials!');
+              setError(user.errors || 'Wrong credentials!');
+            }
+            else {
+              setCurrentUser(user);
+              localStorage.setItem("currentUserId", JSON.stringify(user.user.id));
+              navigate("/");
+              console.log(JSON.stringify(user));
+            }
           });
-        } else {
+        } else {            
             console.log('Wrong credentials!');
             setError("Wrong username/password!");
-        } 
+        }
       });
     };
 

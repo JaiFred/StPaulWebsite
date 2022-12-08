@@ -14,11 +14,25 @@ class ApplicationController < ActionController::API
     #   devise_parameter_sanitizer.permit(:account_update, keys: [:username])
     end
 
+    def after_confirmation_path_for(resource_name, resource)
+        puts "INSIDE after_confirmation_path_for !!!"
+        if signed_in?(resource_name)
+            sign_out(resource)
+        end
+
+        if signed_in?(resource_name)
+          signed_in_root_path(resource)
+        else
+          new_session_path(resource_name)
+        end
+    end
+
+
     private
 
-    def authenticate_user
-        render json: { errors: "You must be logged in to do that." }, status: :unauthorized unless current_user
-    end
+    # def authenticate_user
+    #     render json: { errors: "You must be logged in to do that." }, status: :unauthorized unless current_user
+    # end
 
     # def current_user
     #     @current_user ||= User.find_by_id(session[:user_id])
