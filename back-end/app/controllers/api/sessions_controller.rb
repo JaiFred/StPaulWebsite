@@ -4,13 +4,13 @@ module Api
 
         # POST '/login'
         def create
-            @user = User.find_by(username: params[:username])
+            @user = User.find_by(email: params[:email])
             if @user && @user.authenticate(params[:password])
                 # @token = encode_token({ user_id: @user.id }) 
                 session[:user_id] = @user.id
                 render json: { user: UserSerializer.new(@user) }, status: :accepted
             else
-                render json: { errors: 'Invalid username or password' }, status: :unauthorized #401
+                render json: { errors: 'Invalid email or password' }, status: :unauthorized #401
             end
         end
     
@@ -27,7 +27,7 @@ module Api
         private
 
         def user_login_params
-          params.require(:user).permit(:username, :password)
+          params.require(:user).permit(:email, :password)
         end
     end
 end

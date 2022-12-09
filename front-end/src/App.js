@@ -30,7 +30,8 @@ import PasswordRecoveryPage from './PasswordRecoveryPage';
 import './App.css';
 
 //Goal:
-// Users can delete their account
+
+
 // Password recovery
   // have a form where the user fills up their email with us
   // it goes to backend (route/controller/action). we check in the database whether the email exists
@@ -42,7 +43,26 @@ import './App.css';
   // and then in the backend (another route/controller/action) we will verify the OTP code and email, if all good, we will 
   // reset the password for the user to the new passord...
 
-//2 way authentication for signup - email √
+//For accounts
+//Member information is editable
+//Users can delete their account
+
+//For signup
+//Lets users know the password requirements if invalid password is given - show completed requirements
+    //At least 5 characters (and up to 100 characters)
+    //5 or more unique characters.
+    //At least 3 of the following: uppercase, lowercase, numeric, or special characters. The allowed special characters are ~ ! @ # $ % ^ * - _ = + [ { ] } / ; : , . ?
+
+//password confirmation sends alert if it is not filled or not the same as password
+
+
+//Youth Corner - can is be created post deployment - 
+
+//Admin has the ability to disable Facebook button 
+
+//2 way authentication for signup - email √ 
+
+
 
 
 //Events page issues
