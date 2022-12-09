@@ -40,5 +40,3 @@ puts "#{Time.new(2022, 06, 12, 9, 00, 0).strftime("%B %d %Y, at %-I:%M%p")}"
 #       t.string :username
 #       t.string :email
 #       t.string :password
-
-u1 = User.create!(last_name: "Steve", username: "steve", email: "steve@gmail.com", password: "0*****", password_confirmation: "0*****" )

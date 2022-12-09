@@ -9,7 +9,7 @@ module Api
     
         # DELETE '/users/:id'
         def destroy 
-            @user = User.find_by(username: params[:username])
+            @user = User.find_by(email: params[:email])
             
             if @user && @user.id == params[:id].to_i && @user.authenticate(params[:password])
                 
@@ -39,7 +39,7 @@ module Api
         # t.string :password
     
         def user_params
-            params.permit(:username, :password, :password_confirmation)
+            params.permit(:email, :password, :password_confirmation)
         end
 
     end

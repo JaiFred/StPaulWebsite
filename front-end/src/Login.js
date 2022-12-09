@@ -51,7 +51,7 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
           });
         } else {            
             console.log('Wrong credentials!');
-            setError("Wrong username/password!");
+            setError("Wrong email/password!");
         }
       });
     };
@@ -75,7 +75,7 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
             /> */}
              <input
               className="email-input"
-              type="email"
+              type="E-mail"
               placeholder="email..."
               onChange={(event) => setEmail(event.target.value)}
             />
@@ -100,6 +100,9 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
           <Routes>
             <Route path='/password_recovery' element={<PasswordRecoveryPage/>}/>
           </Routes>
+          <div>
+            <Link to='/' className="main">back to home</Link>
+          </div>
         </form>
       </div>
     </div>

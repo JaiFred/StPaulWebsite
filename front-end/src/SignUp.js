@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom"
 import { useState } from "react";
-import { Button } from "react-bootstrap";
+import { Button, Popover } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
@@ -8,7 +8,7 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
     const [ firstName, setFirstName ] = useState("")
     const [ lastName, setLastName ] = useState("")
     const [ email, setEmail ] = useState ("")
-    const [ username, setUsername ] = useState("");
+    // const [ username, setUsername ] = useState("");
     const [ password, setPassword ] = useState("");
     const [ passwordConfirmation, setPasswordConfirmation ] = useState("");
 
@@ -37,7 +37,6 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
           first_name: firstName,
           last_name: lastName,
           email: email,
-          username: username,
           password: password,
           passwordConfirmation: passwordConfirmation
         } }),
@@ -80,20 +79,23 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
             <input
               className="email-input"
               type="text"
-              placeholder="janedoe@..."
+              placeholder="E-mail..."
               onChange={(event) => setEmail(event.target.value)}
             />
-            <input
+            {/* <input
               className="username-input"
               type="text"
               placeholder="username..."
               onChange={(event) => setUsername(event.target.value)}
-            />
+            /> */}
             <input
               className="password-input"
               type="password"
               placeholder="password..."
               onChange={(event) => setPassword(event.target.value)}
+              // data-toggle="popover" 
+              // data-trigger="hover" 
+              // data-content="My popover content.My popover content.My popover content.My popover content."
             />
             <input
               className="password-confirmation-input"

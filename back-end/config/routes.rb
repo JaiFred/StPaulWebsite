@@ -9,7 +9,12 @@ Rails.application.routes.draw do
     sessions: 'users/sessions',
     registrations: 'users/registrations',
     confirmations: 'users/confirmations',
+    passwords: 'users/passwords',
   }
+
+  devise_scope :user do
+    post 'reset_password' => 'users/passwords#update'
+  end
       
     namespace :api do       
       resources :events

@@ -138,7 +138,7 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
                   {
                     !currentUser &&
                     <div>
-                      <button className='staff-modal-btn' type='button' onClick={() => setStaffIsOpen(true)}>Login</button>
+                      <button className='staff-modal-btn' type='button' onClick={() => setStaffIsOpen(true)}>Login / Sign Up</button>
                       <LoginModal staffIsOpen={staffIsOpen} setStaffIsOpen={setStaffIsOpen}/>
                     </div>
                   }     
