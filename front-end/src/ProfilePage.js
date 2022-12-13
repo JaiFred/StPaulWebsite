@@ -16,14 +16,18 @@ function ProfilePage({ currentUser, setCurrentUser, authChecked, editProfileIsOp
 
 let navigate = useNavigate();
 
-const { first_name, last_name, email } = currentUser;
+console.log(`currentUser: ${JSON.stringify(currentUser)}`);
+console.log(`currentUser?.user: ${JSON.stringify(currentUser?.user)}`);
+
+const first_name = currentUser?.first_name || currentUser?.user.first_name;
+const last_name = currentUser?.last_name || currentUser?.user.last_name;
+const email = currentUser?.email || currentUser?.user.email;
 
 const userId = currentUser?.id || currentUser?.user?.id;
 
 const [ username, setUsername ] = useState("");
 const [ password, setPassword ] = useState("");
 const [ error, setError ] = useState ("");
-
 
 function handleUserDelete (event) {
     event.preventDefault();

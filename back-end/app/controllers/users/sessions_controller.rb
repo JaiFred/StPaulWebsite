@@ -12,7 +12,7 @@ class Users::SessionsController < Devise::SessionsController
   # POST /resource/sign_in
   def create    
     resource = User.find_by(email: params[:user][:email])
-    unless resource.confirmed?      
+    unless resource.confirmed?  
       return render json: { errors: 'Please confirm your email before logging in' }, status: :ok
     else
       self.resource = warden.authenticate!(auth_options)

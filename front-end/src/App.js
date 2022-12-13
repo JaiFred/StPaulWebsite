@@ -9,7 +9,7 @@ import SignUp from './SignUp';
 import SignUpSuccessPage from './SignUpSuccessPage';
 import ChurchLandingAttributes from './ChurchLandingAttributes';
 import GivingModal from './GivingModal';
-
+import PasswordRecoveryRequestSuccess from './PasswordRecoveryRequestSuccess';
 import EventsContainer from './EventsContainer';
 import EventInfoPage from './EventInfoPage';
 import BroadcastsContainer from './BroadcastsContainer';
@@ -48,6 +48,7 @@ import './App.css';
 //Users can delete their account
 
 //For signup
+//Can't signup without filling all inputs
 //Lets users know the password requirements if invalid password is given - show completed requirements
     //At least 5 characters (and up to 100 characters)
     //5 or more unique characters.
@@ -236,6 +237,7 @@ function App() {
           <Route path='/subscriptions_page' element={<SubscriptionCard currentUser={currentUser} cancelSubscriptionIsOpen={cancelSubscriptionIsOpen} setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen}/>}/>
           <Route path='/password_recovery' element={<PasswordRecoveryPage/>}/>
           <Route path='/next_service' element={<NextServicePage/>}/>
+          <Route path='/password_recovery_success' element={<PasswordRecoveryRequestSuccess/>}/>
 
         </Routes>
         {/* <button className='giving-modal-btn' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>

@@ -16,6 +16,17 @@ class Users::RegistrationsController < Devise::RegistrationsController
   #   super
   # end
 
+    # POST '/sign_up'
+    # def create
+    #     @user = User.new(user_sign_up_params)
+    #     if @user.save         
+    #         session[:user_id] = @user.id
+    #         render json: { user: UserSerializer.new(@user) }, status: :accepted
+    #     else
+    #         render json: { errors: @user.errors.messages.join(", ") }, status: :ok
+    #     end
+    # end
+
   # GET /resource/edit
   # def edit
   #   super
@@ -71,9 +82,8 @@ class Users::RegistrationsController < Devise::RegistrationsController
         data: UserSerializer.new(resource).serializable_hash
       }
     else
-      render json: {
-        status: { message: "User couldn't be created successfully. #{resource.errors.full_messages.to_sentence}" }
-      }, status: :unprocessable_entity
+      # binding.pry
+      render json: { errors: resource.errors.full_messages }, status: :ok
     end
   end
 end
