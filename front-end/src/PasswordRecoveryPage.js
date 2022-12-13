@@ -1,10 +1,13 @@
 import { Link } from 'react-router-dom';
 import { Button } from "react-bootstrap";
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 function PasswordRecoveryPage(){
+  
+  const navigate = useNavigate();
 
-    const [email, setEmail] = useState("");
+    const [email, setEmail] = useState("");    
 
     function handleSubmit (event) {
         event.preventDefault();
@@ -20,6 +23,7 @@ function PasswordRecoveryPage(){
           }),
         }).then((response) => {
           console.log(`Please check your email inbox and follow instructions!`);
+          navigate("/password_recovery_success");
         });
       };
 
