@@ -35,33 +35,41 @@ class User < ApplicationRecord
   (?=.*[[:^alnum:]]) # Must contain a symbol
   /x
 
-
   validates :first_name, :last_name, presence: true
-  validates :email, format: { with: Devise::email_regexp, message: 'must be valid' }
+  validates :email, format: { with: Devise::email_regexp }
 
   validates :password,
     presence: true, 
     length: { in: Devise.password_length }, 
     format: { with: PASSWORD_FORMAT_1, message: 'Must contain 6 or more characters' },
-    confirmation: true
+    confirmation: true,
+    if: :password_validation?
 
   validates :password,
     presence: true, 
     length: { in: Devise.password_length }, 
     format: { with: PASSWORD_FORMAT_2, message: 'Must contain a digit' },
-    confirmation: true
+    confirmation: true,
+    if: :password_validation?
     
 
   validates :password,
     presence: true, 
     length: { in: Devise.password_length }, 
     format: { with: PASSWORD_FORMAT_3, message: 'Must contain a lower case and upper case character' },
-    confirmation: true   
+    confirmation: true,
+    if: :password_validation?
 
   validates :password,
     presence: true, 
     length: { in: Devise.password_length }, 
     format: { with: PASSWORD_FORMAT_4, message: 'Must contain a symbol' },
-    confirmation: true
+    confirmation: true,
+    if: :password_validation?
 
+    private
+
+    def password_validation?
+      new_record? || will_save_change_to_encrypted_password?
+    end
 end

@@ -11,8 +11,7 @@ module Api
         def destroy 
             @user = User.find_by(email: params[:email])
             
-            if @user && @user.id == params[:id].to_i && @user.authenticate(params[:password])
-                
+            if @user && @user.id == params[:id].to_i && @user.valid_password?(params[:password])                
                 @user.subscriptions.each do |subscription|
                     Stripe::Subscription.update(
                         subscription.stripe_subscription_id,
@@ -29,17 +28,21 @@ module Api
                 render json: { errors: 'Invalid username or password' }, status: 422
             end
         end
+        
+        def update
+            @user = User.find(params[:id])
+
+            if @user.update(user_params)
+                render json: { user: @user, message: 'User Updated Successfully' }, status: :ok
+            else
+                render json: { message: @user.errors.full_messages }, status: 422
+            end
+        end
     
         private
     
-        # t.string :first_name
-        # t.string :last_name
-        # t.string :username
-        # t.string :email
-        # t.string :password
-    
         def user_params
-            params.permit(:email, :password, :password_confirmation)
+            params.require(:user).permit(:email, :first_name, :last_name)
         end
 
     end
