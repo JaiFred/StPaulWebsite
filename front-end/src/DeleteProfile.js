@@ -2,7 +2,7 @@
 import { Button } from 'react-bootstrap'
 import { navigate} from 'react-router-dom'
 
-function DeleteProfile({handleUserDelete,  username, setUsername, password, setPassword, error, setAccountDeleteIsOpen }){
+function DeleteProfile({handleUserDelete, email, setEmail, password, setPassword, error, setAccountDeleteIsOpen }){
 
     return(
         <div className="form-container">
@@ -10,10 +10,10 @@ function DeleteProfile({handleUserDelete,  username, setUsername, password, setP
           { error }
           <form className="register-form" onSubmit={handleUserDelete}>
             <input
-              className="username-input"
+              className="email-input"
               type="text"
-              placeholder="username..."
-              onChange={(event) => setUsername(event.target.value)}
+              placeholder="E-mail..."
+              onChange={(event) => setEmail(event.target.value)}
             />
             <input
               className="password-input"

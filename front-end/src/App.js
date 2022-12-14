@@ -10,6 +10,7 @@ import SignUpSuccessPage from './SignUpSuccessPage';
 import ChurchLandingAttributes from './ChurchLandingAttributes';
 import GivingModal from './GivingModal';
 import PasswordRecoveryRequestSuccess from './PasswordRecoveryRequestSuccess';
+import UpdateEmailSuccessPage from './UpdateEmailSuccessPage';
 import EventsContainer from './EventsContainer';
 import EventInfoPage from './EventInfoPage';
 import BroadcastsContainer from './BroadcastsContainer';
@@ -238,6 +239,7 @@ function App() {
           <Route path='/password_recovery' element={<PasswordRecoveryPage/>}/>
           <Route path='/next_service' element={<NextServicePage/>}/>
           <Route path='/password_recovery_success' element={<PasswordRecoveryRequestSuccess/>}/>
+          <Route path='/update_email_success' element={<UpdateEmailSuccessPage/>}/>
 
         </Routes>
         {/* <button className='giving-modal-btn' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>

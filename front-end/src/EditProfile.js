@@ -1,45 +1,37 @@
+//Hooks
+import { useState } from "react";
+import { Button } from "react-bootstrap";
 
-function EditProfile({ currentUser, editProfileIsOpen, setEditProfileIsOpen }){
+function EditProfile({ errors, currentUser, editProfileIsOpen, setEditProfileIsOpen, handleUserEdit, firstName, setFirstName, lastName, setLastName, email, setEmail }){  
 
     return(
-        <div>
-
-<form className="register-form">
-{/* <form className="register-form" onSubmit={handleSubmit}> */}
+      <div>
+        <form className="register-form" onSubmit={handleUserEdit}>
             <input
               className="first-name-input"
               type="text"
               placeholder="First Name..."
-            //   onChange={(event) => setFirstName(event.target.value)}
+              value={firstName}
+              onChange={(event) => setFirstName(event.target.value)}
             />
             <input
               className="last-name-input"
               type="text"
               placeholder="Last Name..."
-            //   onChange={(event) => setLastName(event.target.value)}
+              value={lastName}
+              onChange={(event) => setLastName(event.target.value)}
             />
             <input
               className="email-input"
               type="text"
-              placeholder="janedoe@..."
-            //   onChange={(event) => setEmail(event.target.value)}
+              value={email}
+              placeholder="E-mail..."
+              onChange={(event) => setEmail(event.target.value)}
             />
-            <input
-              className="username-input"
-              type="text"
-              placeholder="Username..."
-            //   onChange={(event) => setUsername(event.target.value)}
-            />
-            <input
-              className="password-input"
-              type="password"
-              placeholder="Password..."
-            //   onChange={(event) => setPassword(event.target.value)}
-            />
-          {/* <Button variant="primary" type="submit">SignUp</Button> */}
-        </form>
-            
-        </div>
+          <Button variant="primary" type="submit">Update Profile</Button>
+        </form>            
+        {errors.map((error) => <p>{error}</p>)}
+      </div>
     )
 
 }

@@ -19,15 +19,19 @@ let navigate = useNavigate();
 console.log(`currentUser: ${JSON.stringify(currentUser)}`);
 console.log(`currentUser?.user: ${JSON.stringify(currentUser?.user)}`);
 
-const first_name = currentUser?.first_name || currentUser?.user.first_name;
-const last_name = currentUser?.last_name || currentUser?.user.last_name;
-const email = currentUser?.email || currentUser?.user.email;
+const profileFirstName = currentUser?.first_name || currentUser?.user.first_name;
+const profileLastName = currentUser?.last_name || currentUser?.user.last_name;
+const profileEmail = currentUser?.email || currentUser?.user.email;
 
 const userId = currentUser?.id || currentUser?.user?.id;
 
-const [ username, setUsername ] = useState("");
+
+const [ email, setEmail ] = useState(profileEmail);
+const [ firstName, setFirstName ] = useState(profileFirstName);
+const [ lastName, setLastName ] = useState(profileLastName);
 const [ password, setPassword ] = useState("");
 const [ error, setError ] = useState ("");
+const [errors, setErrors] = useState([]);
 
 function handleUserDelete (event) {
     event.preventDefault();
@@ -37,7 +41,7 @@ function handleUserDelete (event) {
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
-        username: username,
+        email: email,
         password: password,
       }),
     }).then((response) => {
@@ -54,7 +58,41 @@ function handleUserDelete (event) {
     });
   };
 
+  function handleUserEdit (event) {
+    event.preventDefault();
+    fetch(`/api/users/${userId}`, {
+      method: "PATCH",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        email: email,        
+        first_name: firstName,
+        last_name: lastName
+      }),
+    }).then((response) => {
+      if (response.ok) {
+        response.json().then((user) => {
+          setCurrentUser(user.user);
+          setErrors([]);
+          setEditProfileIsOpen(false);
 
+          if (profileEmail !== email) {
+            setCurrentUser(null);
+            navigate('/update_email_success');
+          }
+
+        });
+      }
+      else {
+        console.log('server response');
+        response.json().then((error) => {
+          console.log(`message: ${JSON.stringify(error)}`);
+          setErrors(error.message)
+        });
+      }  
+    });
+  };
 
 if (!authChecked){
     return(
@@ -65,13 +103,24 @@ if (!authChecked){
         <div className='profile-page-background'>
             <div className='profile-info-square'>
                 <h1 className='profile-page-title'>Your Profile</h1>
-                <h3>Name: {first_name} {last_name}</h3>
+                <h3>Name: {profileFirstName} {profileLastName}</h3>
                 
-                <h3>email: {email}</h3>
-            
-                
+                <h3>email: {profileEmail}</h3>
+                        
                 <button className='change-account-info-modal-btn' type='button' onClick={() => setEditProfileIsOpen(true)}>Edit account info</button>
-                    <EditProfileModal currentUser={currentUser} editProfileIsOpen={editProfileIsOpen} setEditProfileIsOpen={setEditProfileIsOpen}/>
+                    <EditProfileModal 
+                      currentUser={currentUser} 
+                      editProfileIsOpen={editProfileIsOpen} 
+                      setEditProfileIsOpen={setEditProfileIsOpen}
+                      handleUserEdit={handleUserEdit}
+                      firstName={firstName}
+                      setFirstName={setFirstName}
+                      lastName={lastName}
+                      setLastName={setLastName}
+                      email={email}
+                      setEmail={setEmail}
+                      errors={errors}
+                    />
 
                 <h3>Subscriptions</h3>
                 <div>
@@ -88,8 +137,8 @@ if (!authChecked){
                         accountDeleteIsOpen={accountDeleteIsOpen} 
                         setAccountDeleteIsOpen={setAccountDeleteIsOpen} 
                         handleUserDelete={handleUserDelete}
-                        username={username}
-                        setUsername={setUsername}
+                        email={email}
+                        setEmail={setEmail}
                         password={password}
                         setPassword={setPassword}
                         error={error}
