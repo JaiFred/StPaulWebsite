@@ -1,6 +1,6 @@
 module Api
     class EventsController < ApplicationController
-        before_action :authenticate_user, only: [ :create, :update, :destroy]
+        before_action :authenticate_user!, only: [ :create, :update, :destroy]
 
         #get '/events'
         #get '/events?starts_time=2022-06-01&ends_time=2022-06-31'
@@ -36,7 +36,12 @@ module Api
         end
 
         def create
-            event = Event.create!(event_params)    
+            event = Event.new(event_params.except(:image))
+
+            unless event.save
+                render json: { errors: event.errors.full_messages }, status: 422
+                return
+            end
                     
             if event_params[:image].present?                
                 event.image.attach(event_params[:image])       
@@ -56,13 +61,17 @@ module Api
 
         def update
             @event = Event.find(params[:id])
-            @event.update!(event_params.except(:image))
+            
+            unless @event.update(event_params.except(:image))
+                render json: { errors: @event.errors.full_messages }, status: 422
+                return
+            end
             
             if event_params[:image].present?                
                 @event.image.attach(event_params[:image])   
             end
 
-            render json: @event, status: :created #201
+            render json: @event, status: :ok
         end
 
         def destroy

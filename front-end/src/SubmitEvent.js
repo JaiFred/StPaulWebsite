@@ -27,6 +27,7 @@ function SubmitEvent({ handleAddNewEvent }){
     const [ addressLine2, setaddressLine2 ] = useState("")
     const [ city, setCity ] = useState("")
     const [ image, setImage ] = useState("")
+    const [errors, setErrors] = useState([]);
 
     function handleSubmit(e){
         console.log("submitted")
@@ -47,11 +48,16 @@ function SubmitEvent({ handleAddNewEvent }){
         fetch("api/events", {
             method: "POST",
             body: formData
-        })
-        .then((res) => res.json())
-        .then((newEvent) => handleAddNewEvent(newEvent));
-        console.log();
+        })        
+        .then((response) => { 
+            if (response.ok) {
+                response.json().then((newEvent) => handleAddNewEvent(newEvent));
+              } else {
+                    response.json().then((response) => setErrors(response.errors))                  ;
+              }
+        })        
     }
+
 
     function handleImageChange (e) {
         console.log(`e.target.files[0]: ${e.target.files[0]}`)
@@ -66,7 +72,7 @@ function SubmitEvent({ handleAddNewEvent }){
         <div>
             <h1>Submit New Event</h1>
             <ul>
-
+             {errors.map((error) => <p>{error}</p>)}
             <input 
                 type="file" 
                 name="image"

@@ -17,7 +17,7 @@
 class EventSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
-  attributes :id, :title, :starts, :ends, :details, :address_line_1, :address_line_2, :city, :state_province_region, :zip_postalcode, :country, :starts_short, :ends_short, :image
+  attributes :id, :title, :starts, :ends, :starts_raw, :ends_raw, :details, :address_line_1, :address_line_2, :city, :state_province_region, :zip_postalcode, :country, :starts_short, :ends_short, :image
 
   def time
       "From #{object.starts.strftime("%A %d %b %Y, at %-I:%M%p")} to #{object.ends.strftime("%A %d %b %Y, at %-I:%M%p")}"
@@ -25,6 +25,10 @@ class EventSerializer < ActiveModel::Serializer
 
   def starts
     object.starts.strftime("%A %d %b %Y, at %-I:%M%p")
+  end
+
+  def starts_raw
+      object.starts.strftime("%Y-%m-%dT%H:%M")
   end
   
   # 
@@ -35,6 +39,10 @@ class EventSerializer < ActiveModel::Serializer
   def ends
     object.ends.strftime("%A %d %b %Y, at %-I:%M%p")
   end
+
+  def ends_raw
+    object.ends.strftime("%Y-%m-%dT%H:%M")
+  end  
   
   def ends_short
     object.ends.strftime("%d %b %Y")

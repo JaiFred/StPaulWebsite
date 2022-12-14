@@ -1,4 +1,8 @@
 <h2>Change your password</h2>
+<p> Your password must fulfill the follwoing criteria:</p>
+<em>Must contain a digit</em><br />
+<em>Must contain an upper and lower case character</em><br />
+<em>Must contain a symbol</em><br />
 
 <%= form_for(resource, as: resource_name, url: reset_password_path, method: :post) do |f| %>
   <%= render "devise/shared/error_messages", resource: resource %>
