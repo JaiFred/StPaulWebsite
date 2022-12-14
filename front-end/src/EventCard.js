@@ -22,7 +22,7 @@ function EventCard({event, events, setEvents, currentUser, handleDeleteEvent, ha
 
     //edit
 
-    const { id, title, starts_short, ends_short, details, location, image } = event;
+    const { id, title, starts_short, ends_short, details, location, image, starts_raw } = event;
 
     // console.log(event);
 
