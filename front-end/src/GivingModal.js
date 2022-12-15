@@ -152,9 +152,21 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
             body: JSON.stringify(reqBody)
         })
         .then((res) => res.json())
-        .then((res) => setClientSecret(res.client_secret));        
-
+        .then((res) => setClientSecret(res.client_secret))
+          
     }
+
+    // if (response.ok) {
+    //     response.json().then((user) => {
+    //       console.log(`I AM HERE: user: ${JSON.stringify(user)}`);
+    //       if (user.errors) {
+    //         console.log(user.errors || 'Wrong credentials!');
+    //         setErrors(user.errors || ['Wrong credentials!']);
+    //       }
+    //       else {
+    //         navigate("/signup_success");
+    //       }
+    //     });
     
       const options = {
         // passing the client secret obtained from the server
@@ -245,7 +257,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                         <div> 
                             <h3>Recurring Offering</h3>
                             <Elements stripe={stripePromise} options={optionsRecurring}>
-                                <RecurringCheckoutForm currentUser={currentUser} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod}/>
+                                <RecurringCheckoutForm currentUser={currentUser} resetForm={resetForm} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod}/>
                             </Elements>
                         </div>
                         }
