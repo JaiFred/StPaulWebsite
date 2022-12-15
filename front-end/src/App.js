@@ -64,15 +64,30 @@ import './App.css';
 
 //2 way authentication for signup - email √ 
 
+// Today
+// Validations
+
+// Only one Admin
+// If email doesn’t exist on server don’t proceed with password change.
+
+// Emailjs doesn’t work
+
+// Weekdays do not work
+
+//Giving modal is glitched after making a single payment
+
+// 1st
+// Subscription starting - User can schedule a payment by month and date
 
 
 
-//Events page issues
+
+//Events page issues √
   //BUGS
   //event errors out when created - without date - without title - 
   //events arent
 
-
+// 2nd
 //Honors page issue
   //BUGS
   //document errors out when created with just a description
@@ -89,6 +104,8 @@ import './App.css';
 //BUGS
 //sign up not generating first name last name email parameters.
 //recurring payment not showing up
+
+
 
 // Goal:
 // I want recurring modal visible even if single payment is not

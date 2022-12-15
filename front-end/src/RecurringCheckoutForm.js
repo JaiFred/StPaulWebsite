@@ -124,7 +124,7 @@ const ELEMENTS_OPTIONS = {
   ],
 };
 
-const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) => {
+const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod, resetForm}) => {
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
@@ -138,8 +138,8 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
 
   const [frequency, FrequencyDropDown] = useDropdown("Choose a Frequency", "Monthly", "", FREQUENCY_OPTIONS);
   const [amount, AmountDropDown] = useDropdown("Choose an Amount", "$5", "", AMOUNT_OPTIONS);
-  const [paymentDate, PaymentDaysDropDown] = useDropdown("On the ", "1st", " of the month", ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th" ])
-  const [biWeeklyPaymentDate, BiWeeklyPaymentDropDown] = useDropdown("Starting On the", "1st", "", ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th"])
+  const [paymentDate, PaymentDaysDropDown] = useDropdown("On the ", "1st", " of the month", ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th" ])
+  const [biWeeklyPaymentDate, BiWeeklyPaymentDropDown] = useDropdown("Starting On the", "1st", "", ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th"])
   const [weekday, WeekdayDropDown] = useDropdown("Every ", "monday", " of the week", ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
 
   const handleSubmit = async (event) => {
@@ -293,10 +293,10 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
       { frequency && frequency == 'BiWeekly' && <BiWeeklyPaymentDropDown />}    
       
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
-      <SubmitButton processing={processing} error={error} disabled={!stripe}>
+      <SubmitButton processing={processing} error={error} disabled={!stripe} resetForm={resetForm}>
         { amount && frequency && frequency == 'Monthly' && <p>Pay {amount} every {paymentDate} of the month </p> }
         { amount && frequency && frequency == 'Weekly' && <p>Pay {amount} every {weekday} of the week </p> }
-        { amount && frequency && frequency == 'BiWeekly' && <p>Pay {amount} every two weeks, starting the {biWeeklyPaymentDate} of this month </p> }
+        { amount && frequency && frequency == 'BiWeekly' && <p>Pay {amount} every two weeks, starting the {biWeeklyPaymentDate}</p> }
       </SubmitButton>
     </form>
   );

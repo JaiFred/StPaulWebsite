@@ -28,6 +28,7 @@ const CheckoutForm = ({setGivingIsOpen, setAmount, setClientSecret, setShowAmoun
     const result = await stripe.confirmPayment({
       //`Elements` instance that was used to create the Payment Element
       elements,
+      resetForm,
       confirmParams: {
         return_url: "http://localhost:3001/",
       },

@@ -34,6 +34,7 @@ function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubsc
         .then(() => {
             const updatedSubs = subscriptions.filter((sub) => sub.id !== subscriptionId)         
             setSubscriptions(updatedSubs);
+            setCancelSubscriptionIsOpen(false)
         });
     }
 
@@ -41,9 +42,11 @@ function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubsc
 
     return (
         <div className="subscriptions-page-overlay">
+            <h1>Use this page to cancel your subscription payments</h1>   
             {
                 subscriptions.map((subscription) =>( 
-                    <div>                    
+                    <div> 
+                                       
                         <p>Name: {subscription.title}</p>
                         <button className='Subscription-cancel-modal-btn' type='button' onClick={() => setCancelSubscriptionIsOpen(true)}>Cancel Subscription</button>
                           <SubscriptionCancelModal subscription={subscription} setSubscriptions={setSubscriptions} cancelSubscription={cancelSubscription} cancelSubscriptionIsOpen={cancelSubscriptionIsOpen} setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen}/>
