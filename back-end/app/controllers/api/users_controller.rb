@@ -9,16 +9,19 @@ module Api
     
         # DELETE '/users/:id'
         def destroy 
-            @user = User.find_by(email: params[:email])
+            @user = User.find_by(email: params[:email])            
             
-            if @user && @user.id == params[:id].to_i && @user.valid_password?(params[:password])                
-                @user.subscriptions.each do |subscription|
+            if @user && @user.id == params[:id].to_i && @user.valid_password?(params[:password])
+                puts "correct password given!"
+                @user.subscriptions.active.each do |subscription|
+                    puts "cancelling subscription: stripe_subscription_id = #{subscription.stripe_subscription_id}"
                     Stripe::Subscription.update(
                         subscription.stripe_subscription_id,
                         {
                             cancel_at_period_end: true,
                         }
-                    )        
+                    )                    
+                    subscription.update!(cancelled_at: DateTime.current)
                 end
 
                 @user.destroy

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_12_01_013956) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_16_023132) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -62,6 +62,18 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_013956) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "future_subscriptions", force: :cascade do |t|
+    t.bigint "billing_cycle_anchor"
+    t.date "payment_start_date"
+    t.integer "user_id", null: false
+    t.string "plan"
+    t.string "title"
+    t.integer "frequency"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_future_subscriptions_on_user_id"
+  end
+
   create_table "honor_pages", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -100,5 +112,6 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_01_013956) do
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "documents", "honor_pages"
+  add_foreign_key "future_subscriptions", "users"
   add_foreign_key "subscriptions", "users"
 end

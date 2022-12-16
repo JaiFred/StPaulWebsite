@@ -50,6 +50,7 @@ function handleUserDelete (event) {
           setCurrentUser(null);
           localStorage.setItem("currentUserId", null);
           navigate("/login");
+          setAccountDeleteIsOpen(false) //new
         });
         } else {
             console.log('Wrong credentials!');
