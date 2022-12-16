@@ -64,6 +64,8 @@ import './App.css';
 
 //2 way authentication for signup - email √ 
 
+//
+
 // Today
 // Validations
 
@@ -248,7 +250,7 @@ function App() {
           <Route path='/broadcasts' element={<BroadcastsContainer/>}/>
           <Route path='/prayer_requests' element={<PrayerRequestsContainer/>}/>
           <Route path='/about' element={<AboutPage/>}/>
-          <Route path='/recurring-payment' element={<RecurringPayment/>}/>  
+          <Route path='/recurring-payment' element={<RecurringPayment/>}/>
           <Route path='/contact_us' element={<ContactUsPage/>}/>
           <Route path='/honors' element={<HonorsPage currentUser={currentUser} addHonorIsOpen={addHonorIsOpen} setAddHonorIsOpen={setAddHonorIsOpen}/>}/>
           <Route path='/edithonors/:id' element={<EditHonorsDocuments/>}/>

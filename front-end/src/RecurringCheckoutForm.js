@@ -124,12 +124,13 @@ const ELEMENTS_OPTIONS = {
   ],
 };
 
-const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod, resetForm}) => {
+const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) => {
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
   const [cardComplete, setCardComplete] = useState(false);
   const [processing, setProcessing] = useState(false);  
+  const [paymentStartDate, setPaymentStartDate] = useState(new Date())
   const [billingDetails, setBillingDetails] = useState({
     email: '',
     phone: '',
@@ -161,6 +162,14 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod, re
 
     if (error) {
       card.focus();
+      return;
+    }
+
+    console.log('checking paymentStartdate')
+    console.log(new Date(paymentStartDate) < new Date ())
+
+    if (new Date(paymentStartDate) < new Date ()) {
+      setError("Please choose a future date!");
       return;
     }
 
@@ -199,7 +208,18 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod, re
   // Must make another fetch request for the days
   // Must make a method in the backend for the payday options 
   // dropdown for the pay day options
-  const submitPaymentSubscription = () => {  
+
+  console.log(`paymentStartDate: ${paymentStartDate}`);
+  const submitPaymentSubscription = () => {
+
+    console.log('checking paymentStartdate')
+    console.log(new Date(paymentStartDate) < new Date ())
+
+    if (new Date(paymentStartDate) < new Date ()) {
+      setError("Please choose a future date!");
+      return;
+    }
+
     fetch("/api/payment_subscription", {
       method: "POST",
       headers: {
@@ -213,10 +233,23 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod, re
           weekday: weekday,
           biweekly_payment_date: biWeeklyPaymentDate,
           payment_method_id: paymentMethod.id,
+          payment_start_date: paymentStartDate,
           user_id: currentUser?.id || currentUser?.user?.id
       })
     })
     .then((res) => console.log(JSON.stringify(res)));
+  }
+
+  function handlePaymentStartDateChange(e) {
+    setPaymentStartDate(e.target.value);
+
+    if (new Date(e.target.value) < new Date ()) {
+      setError("Please choose a future date!");
+      return;
+    }
+    else {
+      setError(null);
+    }
   }
 
   return paymentMethod ? (
@@ -290,13 +323,24 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod, re
       <AmountDropDown />
       { frequency && frequency == 'Monthly' && <PaymentDaysDropDown />}
       { frequency && frequency == 'Weekly' && <WeekdayDropDown />}
-      { frequency && frequency == 'BiWeekly' && <BiWeeklyPaymentDropDown />}    
+      { frequency && frequency == 'BiWeekly' && <BiWeeklyPaymentDropDown />}
+
+      <Field
+          label="Payment Start Date"
+          id="payment-start-date"
+          type="datetime-local"  
+          required
+          value={paymentStartDate}
+          onChange={e => handlePaymentStartDateChange(e)}
+      />
+
+      {error}
       
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
-      <SubmitButton processing={processing} error={error} disabled={!stripe} resetForm={resetForm}>
-        { amount && frequency && frequency == 'Monthly' && <p>Pay {amount} every {paymentDate} of the month </p> }
-        { amount && frequency && frequency == 'Weekly' && <p>Pay {amount} every {weekday} of the week </p> }
-        { amount && frequency && frequency == 'BiWeekly' && <p>Pay {amount} every two weeks, starting the {biWeeklyPaymentDate}</p> }
+      <SubmitButton processing={processing} error={error} disabled={!stripe} >
+        { amount && frequency && frequency == 'Monthly' && <p>Pay {amount} every {paymentDate} of the month starting from {paymentStartDate.toString()} </p> }
+        { amount && frequency && frequency == 'Weekly' && <p>Pay {amount} every {paymentDate} of the week starting from {paymentStartDate.toString()}</p> }
+        { amount && frequency && frequency == 'BiWeekly' && <p>Pay {amount} every two weeks, starting the {paymentDate} starting from {paymentStartDate.toString()}</p> }
       </SubmitButton>
     </form>
   );

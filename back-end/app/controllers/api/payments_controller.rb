@@ -24,8 +24,13 @@ module Api
             '10_dollars_BiWeekly' => ENV['DOLLARS_BIWEEKLY_10'],
             '15_dollars_BiWeekly' => ENV['DOLLARS_BIWEEKLY_15'],
             '20_dollars_BiWeekly' => ENV['DOLLARS_BIWEEKLY_20'],
-            '100_dollars_BiWeekly' => ENV['DOLLARS_BIWEEKLY_100'],
+            '100_dollars_BiWeekly' => ENV['DOLLARS_BIWEEKLY_100']
+        }
 
+        FREQUENCY_HASH = {
+            'Monthly' => 28,
+            'Weekly' => 7,
+            'BiWeekly' => 14
         }
         
         def client_secret_recurring
@@ -119,7 +124,7 @@ module Api
                 phone: params[:billing_details][:phone],
                 payment_method: params[:payment_method_id], 
                 invoice_settings: { default_payment_method: params[:payment_method_id] }
-            )            
+            )         
 
             user.update_column(:stripe_customer_id, customer.id)
 
@@ -129,28 +134,87 @@ module Api
             plan = PLANS[plan_id_key]
             puts "plan: #{plan.inspect}"
 
+            payment_start_date = Date.parse(params[:payment_start_date])
+
+            # binding.pry # lets start from here....tomorrow 8pm or tonight after
+
+            natural_billing_date = DateTime.current
+
             billing_cycle_anchor = if params[:frequency] == 'Monthly'
-                (DateTime.now.next_month.beginning_of_month + (params[:payment_date].to_i - 1).days).to_time.to_i
-            elsif params[:frequency] == 'Weekly'
-                Date.today.next_occurring(params[:weekday].to_sym).to_time.to_i
-            elsif params[:frequency] == 'BiWeekly'
-                if DateTime.now.strftime("%d").to_i > params[:biweekly_payment_date].to_i
-                    (DateTime.now.beginning_of_month + (params[:biweekly_payment_date].to_i + 13).days).to_time.to_i
-                elsif DateTime.now.strftime("%d").to_i == params[:biweekly_payment_date].to_i
-                    DateTime.now.to_i
+                natural_billing_date += 1.month
+
+                if DateTime.now.day <= payment_start_date.day && DateTime.now.year == payment_start_date.year &&  DateTime.now.month == payment_start_date.month
+                    (DateTime.now.next_month.beginning_of_month + (params[:payment_date].to_i - 1).days).to_time.to_i                
                 else
-                    (DateTime.now.beginning_of_month + (params[:biweekly_payment_date].to_i - 1).days).to_time.to_i
+                    (payment_start_date.beginning_of_month + (params[:payment_date].to_i - 1).days).to_time.to_i
+                end                
+            elsif params[:frequency] == 'Weekly'
+                natural_billing_date += 1.week
+
+                if payment_start_date.strftime("%A").downcase == params[:weekday].downcase
+                    payment_start_date
+                else
+                    payment_start_date.next_occurring(params[:weekday].downcase.to_sym)
+                end.to_time.to_i
+                            
+            elsif params[:frequency] == 'BiWeekly'
+                natural_billing_date += 2.weeks
+
+                # todo: use payment_start_date
+                # if DateTime.now.strftime("%d").to_i > params[:biweekly_payment_date].to_i
+                #     (DateTime.now.beginning_of_month + (params[:biweekly_payment_date].to_i + 13).days).to_time.to_i
+                # elsif DateTime.now.strftime("%d").to_i == params[:biweekly_payment_date].to_i
+                #     DateTime.now.to_i
+                # else
+                #     (DateTime.now.beginning_of_month + (params[:biweekly_payment_date].to_i - 1).days).to_time.to_i
+                # end
+
+                if DateTime.now.year == payment_start_date.year && DateTime.now.month == payment_start_date.month && payment_start_date.strftime("%d").to_i > params[:biweekly_payment_date].to_i
+                    (payment_start_date.next_month.beginning_of_month + (params[:biweekly_payment_date].to_i + 13).days).to_time.to_i
+                elsif payment_start_date.strftime("%d").to_i > params[:biweekly_payment_date].to_i
+                    (payment_start_date.beginning_of_month + (params[:biweekly_payment_date].to_i + 13).days).to_time.to_i
+                elsif payment_start_date.strftime("%d").to_i == params[:biweekly_payment_date].to_i
+                    payment_start_date.to_time.to_i
+                else
+                    (payment_start_date.beginning_of_month + (params[:biweekly_payment_date].to_i - 1).days).to_time.to_i
                 end
             end
 
-            response = Stripe::Subscription.create({customer: customer.id,
-            items: [
-                {price: plan},
-            ],                
-                billing_cycle_anchor: billing_cycle_anchor
-            })
+            puts "billing_cycle_anchor #{Time.at billing_cycle_anchor}"
+            puts "natural_billing_date: #{natural_billing_date}"
 
-            user.subscriptions.create!(stripe_subscription_id: response.id, title: plan_id_key.gsub("_", " "))
+            if Time.at(billing_cycle_anchor) <= natural_billing_date
+                response = Stripe::Subscription.create({customer: customer.id,
+                items: [
+                    {price: plan},
+                ],                
+                    billing_cycle_anchor: billing_cycle_anchor
+                })
+                user.subscriptions.create!(stripe_subscription_id: response.id, title: plan_id_key.gsub("_", " "))
+            else
+                # we should have a background (sidekiq job) that will run everyday, and will find future subscription records that
+                # are less than a month away from today ((payment_start_date - Date.today) < frequency ). 
+                # f = FutureSubscription.last
+                # (f.payment_start_date - Date.today).to_i <= f.frequency ==> true, then create stripe subscription
+                # And we will then create Stripe::Subscription for those and 
+                # also user.subscriptions.create!
+                # TODO: setup sidekiq and background job
+                # TODO: setup schedule to run the job everyday
+
+                # TODO Future subscriptions can be visible in the profile as well
+
+                FutureSubscription.create!(
+                    user_id: user.id,
+                    payment_start_date: Time.at(billing_cycle_anchor).to_date,
+                    billing_cycle_anchor: billing_cycle_anchor,
+                    plan: plan,
+                    title: plan_id_key.gsub("_", " "),
+                    frequency: FREQUENCY_HASH[params[:frequency]]
+                )
+            end
+
+            # TODO avoid paying for a partial invoice before an actual billing anchor date
+            # example: https://dashboard.stripe.com/test/subscriptions/sub_1MFUAVLKt794Fmx8FtLFbJDm
 
             # https://stripe.com/docs/billing/subscriptions/billing-cycle
             render json: { subscription: response }, status: :ok
