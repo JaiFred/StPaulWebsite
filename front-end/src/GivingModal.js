@@ -252,16 +252,16 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                 </div>
                 
                     
-                    <div className="AppWrapper">
-                        { clientSecretRecurring && showRecurringForm && currentUser &&
-                        <div> 
-                            <h3>Recurring Offering </h3>
-                            <Elements stripe={stripePromise} options={optionsRecurring}>
-                                <RecurringCheckoutForm currentUser={currentUser} resetForm={resetForm} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod}/>
-                            </Elements>
-                        </div>
-                        }
+                <div className="AppWrapper">
+                    { clientSecretRecurring && showRecurringForm && currentUser &&
+                    <div> 
+                        <h3>Recurring Offering </h3>
+                        <Elements stripe={stripePromise} options={optionsRecurring}>
+                            <RecurringCheckoutForm currentUser={currentUser} resetForm={resetForm} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod}/>
+                        </Elements>
                     </div>
+                    }
+                </div>
                 </ModalBody>
                 <ModalFooter>
                     <button type="button" onClick={() => {resetForm()}}>cancel</button>

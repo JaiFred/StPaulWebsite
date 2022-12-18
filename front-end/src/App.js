@@ -78,6 +78,9 @@ import './App.css';
 
 //Giving modal is glitched after making a single payment
 
+//Cancel subscriptions is deleting random subscriptions - not the ones we choose...
+//# TODO show next payment date
+
 // 1st
 // Subscription starting - User can schedule a payment by month and date
 
