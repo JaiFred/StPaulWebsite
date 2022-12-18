@@ -202,6 +202,11 @@ module Api
                 # TODO: setup schedule to run the job everyday
 
                 # TODO Future subscriptions can be visible in the profile as well
+                # TODO show next payment date
+                # TODO Changing tthe date formated in payment button
+                # TODO nil frequency should be denied
+                # TODO nil amount should be denied
+                # //Cancel subscriptions is deleting random subscriptions - not the ones we choose...
 
                 FutureSubscription.create!(
                     user_id: user.id,
