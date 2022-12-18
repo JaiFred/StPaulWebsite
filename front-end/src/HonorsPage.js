@@ -7,7 +7,7 @@ import AddHonorsItemModal from "./AddHonorsItemModal";
 import DeleteHonorsItemModal from "./DeleteHonorsItemModal";
 import EditHonorsItem from "./EditHonorsItem";
 import EditHonorsItemModal from "./EditHonorsItemModal";
- 
+
 function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
 
     const [ document, setDocument ] = useState(null)
@@ -26,7 +26,7 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
                 res.json().then(honorPages => {
                   setDocuments(honorPages[0].documents)
                 })
-              }            
+              }
            })
     }
 
@@ -37,7 +37,7 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
       console.log(`documents: ${documents}`);
 
     function handleSubmit(e) {
-        console.log("submitted!")        
+        console.log("submitted!")
         e.preventDefault();
 
         const formData = new FormData();
@@ -57,8 +57,8 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
     function handleDocumentsChange (e) {
         console.log(`e.target.files[0]: ${e.target.files[0]}`)
         if (e.target.files[0]) setDocument(e.target.files[0]);
-    };  
-    
+    };
+
     // function handleDocumentDeleteClick(e) {
     //     e.preventDefault()
     //     const reqObj = {
@@ -91,33 +91,45 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
         setDeleteHonorIsOpen(true);
     }
 
-
     return(
         <div className="honors">
             {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (
             <div>
                 <button className='add-new-honor-item-modal-btn' type='button' onClick={() => setAddHonorIsOpen(true)}>add new item</button>
                 <AddHonorsItemModal document={document} setDocument={setDocument} documents={documents} setDocuments={setDocuments} description={description} setDescription={setDescription} handleSubmit={handleSubmit} handleDocumentsChange={handleDocumentsChange} addHonorIsOpen={addHonorIsOpen} setAddHonorIsOpen={setAddHonorIsOpen}/>
-                
             {
-                documents && documents.map(doc => {                    
-                    
+                documents && documents.map(doc => {
+
                     if (doc.file.endsWith(".pdf")) {
                         return <div>
                         <embed src={doc.file} target="_parent" width="500" height="600" />;
                             <p>Description: {doc.description}</p>;
-                            
+
                             {/* This will edit a document in the Honors Page */}
                             <button className='edit-honor-item-modal-btn' type='button' onClick={() => selectEditModal(doc)}>Edit</button>
-                            <EditHonorsItemModal fetchDocuments={fetchDocuments} selectedDocument={selectedDocument} doc={doc} document={document} setDocument={setDocument} documents={documents} setDocuments={setDocuments} description={description} setDescription={setDescription} handleSubmit={handleSubmit} handleDocumentsChange={handleDocumentsChange} editHonorIsOpen={editHonorIsOpen} setEditHonorIsOpen={setEditHonorIsOpen}/>
+                            <EditHonorsItemModal
+                                fetchDocuments={fetchDocuments}
+                                selectedDocument={selectedDocument}
+                                doc={doc}
+                                document={document}
+                                setDocument={setDocument}
+                                documents={documents}
+                                setDocuments={setDocuments}
+                                description={description}
+                                setDescription={setDescription}
+                                initDescription={doc.description}
+                                handleSubmit={handleSubmit}
+                                handleDocumentsChange={handleDocumentsChange}
+                                editHonorIsOpen={editHonorIsOpen}
+                                setEditHonorIsOpen={setEditHonorIsOpen}/>
                             {/* <button><Link to={`/edithonors/${doc.id}`}>Edit</Link></button> */}
-                            
+
                             {/* This will delete a document in the Honors Page */}
                             <button className='delete-honor-item-modal-btn' type='button' onClick={() => selectDeleteModal(doc)}>Delete</button>
                             <DeleteHonorsItemModal selectedDocument={selectedDocument} doc={doc} document={document} setDocument={setDocument} documents={documents} setDocuments={setDocuments} description={description} setDescription={setDescription} deleteHonorIsOpen={deleteHonorIsOpen} setDeleteHonorIsOpen={setDeleteHonorIsOpen} handleDocumentDelete={handleDocumentDelete}/>
 
                         </div>
-                            
+
                     } else {
                         return <div>
                             <img src={doc.file} width="500" height="600"></img>;
@@ -125,7 +137,20 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
 
                              {/* This will edit a document in the Honors Page */}
                              <button className='edit-honor-item-modal-btn' type='button' onClick={() => selectEditModal(doc)}>Edit</button>
-                             <EditHonorsItemModal fetchDocuments={fetchDocuments} selectedDocument={selectedDocument} doc={doc} document={document} setDocument={setDocument} documents={documents} setDocuments={setDocuments} description={description} setDescription={setDescription} handleSubmit={handleSubmit} handleDocumentsChange={handleDocumentsChange} editHonorIsOpen={editHonorIsOpen} setEditHonorIsOpen={setEditHonorIsOpen}/>
+                             <EditHonorsItemModal
+                             fetchDocuments={fetchDocuments}
+                             selectedDocument={selectedDocument}
+                             doc={doc} document={document}
+                             setDocument={setDocument}
+                             documents={documents}
+                             setDocuments={setDocuments}
+                             description={description}
+                             setDescription={setDescription}
+                             initDescription={doc.description}
+                             handleSubmit={handleSubmit}
+                             handleDocumentsChange={handleDocumentsChange}
+                             editHonorIsOpen={editHonorIsOpen}
+                             setEditHonorIsOpen={setEditHonorIsOpen}/>
                             {/* <button><Link to={`/edithonors/${doc.id}`}>Edit</Link></button> */}
 
                             {/* This will delete a document in the Honors Page */}
@@ -133,8 +158,8 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
                             <DeleteHonorsItemModal selectedDocument={selectedDocument} doc={doc} document={document} setDocument={setDocument} documents={documents} setDocuments={setDocuments} description={description} setDescription={setDescription} deleteHonorIsOpen={deleteHonorIsOpen} setDeleteHonorIsOpen={setDeleteHonorIsOpen} handleDocumentDelete={handleDocumentDelete}/>
 
                         </div>
-                     }                     
-                })                
+                     }
+                })
 
             }</div>
 
@@ -142,21 +167,21 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
 
             <div>
             {
-                documents && documents.map(doc => {                    
-                    
-                    if (doc.file.endsWith(".pdf")) {                        
+                documents && documents.map(doc => {
+
+                    if (doc.file.endsWith(".pdf")) {
                         return <div>
                             <embed src={doc.file} target="_parent" width="500" height="600" />;
                             <p>Description: {doc.description}</p>;
                         </div>
-                            
+
                     } else {
                         return <div>
                                 <img src={doc.file} width="500" height="600"></img>
                                 <p>Description: {doc.description}</p>
                             </div>
-                    }                     
-                })                
+                    }
+                })
 
             }
             </div>

@@ -4,7 +4,7 @@ import { useParams } from 'react-router-dom';
 
 // send props into here to make this work again...
 
-function EditHonorsItem({ fetchDocuments, doc, document, setDocument, description, setDescription, handleDocumentsChange, setEditHonorIsOpen }){
+function EditHonorsItem({ fetchDocuments, doc, document, setDocument, description, initDescription, setDescription, handleDocumentsChange, setEditHonorIsOpen }){
 
     //  const { id } = document;
 
@@ -62,7 +62,7 @@ function EditHonorsItem({ fetchDocuments, doc, document, setDocument, descriptio
                 name="description"
                 rows='5'
                 cols='30'
-                value={description}
+                value={description || initDescription}
                 placeholder="description..."
                 onChange={(e) => { setDescription(e.target.value)}}
             />

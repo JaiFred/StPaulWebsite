@@ -4,7 +4,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, ModalTitle, Button } from '
 //components
 import EditHonorsItem from "./EditHonorsItem"
 
-function EditHonorsItemModal({ fetchDocuments, selectedDocument, doc, document, setDocument, description, setDescription, editHonorIsOpen, setEditHonorIsOpen, handleSubmit, handleDocumentsChange }){
+function EditHonorsItemModal({ fetchDocuments, selectedDocument, doc, document, setDocument, description, setDescription, initDescription, editHonorIsOpen, setEditHonorIsOpen, handleSubmit, handleDocumentsChange }){
 
     return(
         <div className='overlay-edit-honors-modal'>
@@ -13,16 +13,15 @@ function EditHonorsItemModal({ fetchDocuments, selectedDocument, doc, document, 
              >
                 <ModalHeader >
                     <ModalTitle>Saint Paul Baptist Church</ModalTitle>
-                    <ModalTitle><button type="button" onClick={() => {setEditHonorIsOpen(false)}}>X</button></ModalTitle> 
+                    <ModalTitle><button type="button" onClick={() => {setEditHonorIsOpen(false)}}>X</button></ModalTitle>
                 </ModalHeader>
                 <ModalHeader>
                     <ModalTitle>Edit</ModalTitle>
                 </ModalHeader>
                 <ModalBody>
-                    <EditHonorsItem fetchDocuments={fetchDocuments} doc={doc} document={document} setDocument={setDocument} description={description} setDescription={setDescription} handleSubmit={handleSubmit} handleDocumentsChange={handleDocumentsChange} setEditHonorIsOpen={setEditHonorIsOpen}/>
+                    <EditHonorsItem fetchDocuments={fetchDocuments} doc={doc} document={document} setDocument={setDocument} description={description} initDescription={initDescription} setDescription={setDescription} handleSubmit={handleSubmit} handleDocumentsChange={handleDocumentsChange} setEditHonorIsOpen={setEditHonorIsOpen}/>
                 </ModalBody>
              </Modal>
-
         </div>
     )
 }
