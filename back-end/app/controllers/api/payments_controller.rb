@@ -36,9 +36,7 @@ module Api
         def client_secret_recurring
             # TODO:  move secret keys to ENV variable
             # TODO: think about proper authentication
-
-
-            Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+            
             puts "PARAMS: #{params.inspect}"
             puts "params[:amount]: #{params[:amount]}"
             
@@ -64,11 +62,9 @@ module Api
             render json: { client_secret: intent.client_secret }.to_json
         end
         
-        def client_secret
-            # TODO:  move secret keys to ENV variable
+        def client_secret            
             # TODO: think about proper authentication
-
-            Stripe.api_key = ENV['STRIPE_SECRET_KEY']
+            
             puts "PARAMS: #{params.inspect}"
             puts "params[:amount]: #{params[:amount]}"
             
@@ -101,10 +97,6 @@ module Api
         end
 
         def payment_subscription
-            require 'stripe'
-            # TODO: move to ENV
-            Stripe.api_key = ENV['STRIPE_SECRET_KEY']
-
             # get payment_method_id from front end: params[:payment_method]
             # get price id from front end: params[:price_id]
             # billing date every month from the front end: params[:day_of_month_to_charge]
@@ -192,21 +184,12 @@ module Api
                 })
                 user.subscriptions.create!(stripe_subscription_id: response.id, title: plan_id_key.gsub("_", " "))
             else
-                # we should have a background (sidekiq job) that will run everyday, and will find future subscription records that
-                # are less than a month away from today ((payment_start_date - Date.today) < frequency ). 
-                # f = FutureSubscription.last
-                # (f.payment_start_date - Date.today).to_i <= f.frequency ==> true, then create stripe subscription
-                # And we will then create Stripe::Subscription for those and 
-                # also user.subscriptions.create!
-                # TODO: setup sidekiq and background job
-                # TODO: setup schedule to run the job everyday
-
                 # TODO Future subscriptions can be visible in the profile as well
                 # TODO show next payment date
-                # TODO Changing tthe date formated in payment button
+                # TODO Changing the date formated in payment button
                 # TODO nil frequency should be denied
                 # TODO nil amount should be denied
-                # //Cancel subscriptions is deleting random subscriptions - not the ones we choose...
+                # // Cancel subscriptions is deleting random subscriptions - not the ones we choose...
 
                 FutureSubscription.create!(
                     user_id: user.id,

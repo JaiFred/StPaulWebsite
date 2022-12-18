@@ -69,6 +69,7 @@ ActiveRecord::Schema[7.0].define(version: 2022_12_16_023132) do
     t.string "plan"
     t.string "title"
     t.integer "frequency"
+    t.boolean "converted", default: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["user_id"], name: "index_future_subscriptions_on_user_id"

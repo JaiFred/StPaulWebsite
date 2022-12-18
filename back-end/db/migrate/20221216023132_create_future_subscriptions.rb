@@ -7,6 +7,7 @@ class CreateFutureSubscriptions < ActiveRecord::Migration[7.0]
       t.string :plan
       t.string :title
       t.integer :frequency
+      t.boolean :converted, default: false
 
       t.timestamps
     end
