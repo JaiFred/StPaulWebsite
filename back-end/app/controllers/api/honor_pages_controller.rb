@@ -1,6 +1,6 @@
 module Api
     class HonorPagesController < ApplicationController
-        before_action :authenticate_user, only: [ :create, :update, :destroy]
+        before_action :authenticate_user!, only: [ :create, :update, :destroy]
 
         def index
             @honor_pages = HonorPage.all

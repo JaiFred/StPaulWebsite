@@ -1,6 +1,6 @@
 module Api
     class PaymentsController < ApplicationController
-        before_action :authenticate_user, only: [ :create, :update, :destroy]
+        before_action :authenticate_user!, only: [ :create, :update, :destroy]
 
         # be able to delete membership to website - unsignup
         # Make request to cancel subscriptions 
