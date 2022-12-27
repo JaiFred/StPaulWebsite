@@ -145,7 +145,7 @@ import './App.css';
 // Single payment doesn't submit if no value has been added
 
 function App() {
-  
+
   const [ authChecked, setAuthChecked ] = useState(false)
   const [ currentUser, setCurrentUser ] = useState(null)
   const [ events, setEvents ] = useState([]);
@@ -159,8 +159,6 @@ function App() {
   const [ accountDeleteIsOpen, setAccountDeleteIsOpen ] = useState(false);
   const [ editProfileIsOpen, setEditProfileIsOpen ] = useState(false);
   const [ cancelSubscriptionIsOpen, setCancelSubscriptionIsOpen ] = useState(false);
- 
-
   
   // const [home, setHome] = useState ([])
 
