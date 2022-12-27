@@ -10,9 +10,9 @@ module Api
         def create
             honor_page = HonorPage.first_or_create
                     
-            if honor_pages_params[:document].present?
+            if honor_pages_params[:file].present?
                 document = honor_page.documents.create(description: honor_pages_params[:description])
-                document.file.attach(honor_pages_params[:document])
+                document.file.attach(honor_pages_params[:file])
             end
 
             render json: honor_page, status: :created
@@ -42,7 +42,7 @@ module Api
         end
 
         def honor_pages_params
-            params.permit(:description, :document)
+            params.permit(:description, :file)
         end
 
     end

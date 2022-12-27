@@ -4,11 +4,9 @@ module Api
         before_action :set_document
 
         def update            
-            if document_params[:description].present?
-                @document.update!(description: document_params[:description])
-            end            
+            @document.update!(description: document_params[:description])         
             
-            if document_params[:file].present?                
+            if document_params[:file].present?
                 @document.file.attach(document_params[:file])
             end
 
