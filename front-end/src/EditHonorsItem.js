@@ -1,10 +1,14 @@
 
 import react, { useState, useEffect } from 'react';
+import { Link, Navigate, Routes, Route } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 // send props into here to make this work again...
 
 function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen }){
+
+    const navigate = useNavigate();
 
     //  const { id } = document;
     // let { id } = useParams();
@@ -12,7 +16,9 @@ function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen }){
     console.log(`EditHonorsItem..document.id: ${doc.id}`);
 
     const [editedDescription, setEditedDescription] = useState(doc.description);
-    const [ document, setDocument ] = useState(null)    
+    const [ document, setDocument ] = useState(null)
+    const [isDocumentPdf, setIsDocumentPdf] = useState(doc.file.endsWith(".pdf"));
+    const [showExistingDocument, setShowExistingDocument] = useState(true);
 
     function handleSubmit(e) {
         e.preventDefault();
@@ -29,21 +35,29 @@ function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen }){
             body: formData
         }
         fetch(`/api/documents/${doc.id}`, configObj)
-        .then((r) => r.json())
-        .then(fetchDocuments())
-        .then(setEditHonorIsOpen(false));
+        .then((r) => r.json())        
+        .then(setEditHonorIsOpen(false))
+        .then(navigate(0));
         // .then((editedEvent) => handleEditEvent(editedEvent))
         // .then(navigate(`/events`))        
     };
 
     function handleDocumentsChange (e) {
         console.log(`e.target.files[0]: ${e.target.files[0]}`)
-        if (e.target.files[0]) setDocument(e.target.files[0]);
-    };  
+        if (e.target.files[0]) { 
+            setDocument(e.target.files[0]); 
+            setShowExistingDocument(false);
+        }
+    };
 
     return(
         <form onSubmit={handleSubmit}>
             <ul>
+            {
+                showExistingDocument && (isDocumentPdf ? <embed src={doc.file} target="_parent" width="500" height="600" /> 
+                    : 
+                <img src={doc.file} width="500" height="600"></img>)
+            }
             <input 
                 type="file" 
                 name="documents"

@@ -145,8 +145,7 @@ import './App.css';
 // Single payment doesn't submit if no value has been added
 
 function App() {
-
-
+  
   const [ authChecked, setAuthChecked ] = useState(false)
   const [ currentUser, setCurrentUser ] = useState(null)
   const [ events, setEvents ] = useState([]);
