@@ -58,9 +58,12 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
                 documents && documents.map(doc => {
 
                     if (doc.file.endsWith(".pdf")) {
-                        return <div>
-                        <embed src={doc.file} target="_parent" width="500" height="600" />;
-                            <p>Description: {doc.description}</p>;
+                        return <div>                            
+                            
+                            <embed src={doc.file} target="_blank" width="500" height="600" />
+                            <p>Description: {doc.description}</p>
+                            
+                            <a href={doc.file} target="_blank">Click to Open</a>
 
                             {/* This will edit a document in the Honors Page */}
                             <button className='edit-honor-item-modal-btn' type='button' onClick={() => selectEditModal(doc)}>Edit</button>
@@ -87,7 +90,7 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
 
                     } else {
                         return <div>
-                            <img src={doc.file} width="500" height="600"></img>;
+                            <img src={doc.file} width="500" height="600"></img>
                              <p>Description: {doc.description}</p>
 
                              {/* This will edit a document in the Honors Page */}
@@ -111,7 +114,6 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
                                 deleteHonorIsOpen={deleteHonorIsOpen} 
                                 setDeleteHonorIsOpen={setDeleteHonorIsOpen}                                 
                             />
-
                         </div>
                      }
                 })
