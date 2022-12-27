@@ -4,30 +4,25 @@ import { useParams } from 'react-router-dom';
 
 // send props into here to make this work again...
 
-function EditHonorsItem({ fetchDocuments, doc, document, setDocument, description, initDescription, setDescription, handleDocumentsChange, setEditHonorIsOpen }){
+function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen }){
 
     //  const { id } = document;
-
     // let { id } = useParams();
 
     console.log(`EditHonorsItem..document.id: ${doc.id}`);
 
-    // useEffect(() => {
-    //     fetch(`/api/documents/${id}`)
-    //     .then((res) => res.json())
-    //     .then((document) => setDocument(document));
-    // }, []);
-
-    // const [description, setDescription] = useState('');
-    // const [file, setFile] = useState('');
+    const [editedDescription, setEditedDescription] = useState(doc.description);
+    const [ document, setDocument ] = useState(null)    
 
     function handleSubmit(e) {
         e.preventDefault();
         console.log(`handleSubmit updating document: ${doc.id}`);
 
         const formData = new FormData();
-        formData.append("file", document);
-        formData.append("description", description);
+        if (document) {
+            formData.append("file", document);
+        }        
+        formData.append("description", editedDescription);
 
         const configObj = {
             method: "PATCH",
@@ -41,10 +36,10 @@ function EditHonorsItem({ fetchDocuments, doc, document, setDocument, descriptio
         // .then(navigate(`/events`))        
     };
 
-    // function handleDocumentsChange (e) {
-    //     console.log(`e.target.files[0]: ${e.target.files[0]}`)
-    //     if (e.target.files[0]) setFile(e.target.files[0]);
-    // };    
+    function handleDocumentsChange (e) {
+        console.log(`e.target.files[0]: ${e.target.files[0]}`)
+        if (e.target.files[0]) setDocument(e.target.files[0]);
+    };  
 
     return(
         <form onSubmit={handleSubmit}>
@@ -62,9 +57,9 @@ function EditHonorsItem({ fetchDocuments, doc, document, setDocument, descriptio
                 name="description"
                 rows='5'
                 cols='30'
-                value={description || initDescription}
+                value={editedDescription}
                 placeholder="description..."
-                onChange={(e) => { setDescription(e.target.value)}}
+                onChange={(e) => { setEditedDescription(e.target.value)}}
             />
             </ul>
             <button id='submitBtn' type="button" onClick={handleSubmit} method="post">Edit</button>

@@ -4,7 +4,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, ModalTitle, Button } from '
 //components
 import EditHonorsItem from "./EditHonorsItem"
 
-function EditHonorsItemModal({ fetchDocuments, selectedDocument, doc, document, setDocument, description, setDescription, initDescription, editHonorIsOpen, setEditHonorIsOpen, handleSubmit, handleDocumentsChange }){
+function EditHonorsItemModal({ fetchDocuments, selectedDocument, doc, editHonorIsOpen, setEditHonorIsOpen }){
 
     return(
         <div className='overlay-edit-honors-modal'>
@@ -19,7 +19,11 @@ function EditHonorsItemModal({ fetchDocuments, selectedDocument, doc, document, 
                     <ModalTitle>Edit</ModalTitle>
                 </ModalHeader>
                 <ModalBody>
-                    <EditHonorsItem fetchDocuments={fetchDocuments} doc={doc} document={document} setDocument={setDocument} description={description} initDescription={initDescription} setDescription={setDescription} handleSubmit={handleSubmit} handleDocumentsChange={handleDocumentsChange} setEditHonorIsOpen={setEditHonorIsOpen}/>
+                    <EditHonorsItem 
+                        fetchDocuments={fetchDocuments}
+                        doc={doc}                        
+                        setEditHonorIsOpen={setEditHonorIsOpen}
+                    />
                 </ModalBody>
              </Modal>
         </div>

@@ -18,7 +18,7 @@ class DocumentSerializer < ActiveModel::Serializer
   attributes :id, :description, :file
 
   def file 
-    Rails.application.routes.default_url_options[:host] + rails_blob_path(object.file)
+    Rails.application.routes.default_url_options[:host] + rails_blob_path(object.file) if object.file.present?
   end
 
 end
