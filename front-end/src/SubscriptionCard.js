@@ -2,9 +2,10 @@
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
 import SubscriptionCancelModal from "./SubscriptionCancelModal";
+import FutureSubscriptionCard from "./FutureSubscriptionCard";
 
 
-function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubscriptionIsOpen}) {
+function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubscriptionIsOpen, cancelFutureSubscriptionIsOpen, setCancelFutureSubscriptionIsOpen}) {
     const userId = currentUser?.id || currentUser?.user?.id;
 
     const [ subscriptions, setSubscriptions] = useState([]);
@@ -15,7 +16,14 @@ function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubsc
             <p>Name: {subscription.title}</p>
             <p></p>
             <button className='Subscription-cancel-modal-btn' type='button' onClick={() => selectCancelSubscriptionModal(subscription)}>Cancel Subscription</button>
-            <SubscriptionCancelModal subscription={subscription} selectedSubscription={selectedSubscription} setSubscriptions={setSubscriptions} cancelSubscription={cancelSubscription} cancelSubscriptionIsOpen={cancelSubscriptionIsOpen} setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen}/>
+            <SubscriptionCancelModal 
+                subscription={subscription} 
+                selectedSubscription={selectedSubscription} 
+                setSubscriptions={setSubscriptions} 
+                cancelSubscription={cancelSubscription} 
+                cancelSubscriptionIsOpen={cancelSubscriptionIsOpen} 
+                setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen}
+            />
             {/* <button onClick={() => cancelSubscription(subscription.id)}>Cancel Subscription</button> */}
         </div>    
     ))
@@ -74,6 +82,9 @@ function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubsc
                 //     </div>                
                 // ))
             }
+
+            <h2>Future Subscriptions</h2>
+            <FutureSubscriptionCard currentUser={currentUser} cancelFutureSubscriptionIsOpen={cancelFutureSubscriptionIsOpen} setCancelFutureSubscriptionIsOpen={setCancelFutureSubscriptionIsOpen}/>
             <div>
             <Link to='/profile'>Back to profile</Link>
             </div>

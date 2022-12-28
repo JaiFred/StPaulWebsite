@@ -159,6 +159,7 @@ function App() {
   const [ accountDeleteIsOpen, setAccountDeleteIsOpen ] = useState(false);
   const [ editProfileIsOpen, setEditProfileIsOpen ] = useState(false);
   const [ cancelSubscriptionIsOpen, setCancelSubscriptionIsOpen ] = useState(false);
+  const [ cancelFutureSubscriptionIsOpen, setCancelFutureSubscriptionIsOpen ] = useState(false);
   
   // const [home, setHome] = useState ([])
 
@@ -254,7 +255,7 @@ function App() {
           <Route path='/contact_us' element={<ContactUsPage/>}/>
           <Route path='/honors' element={<HonorsPage currentUser={currentUser} addHonorIsOpen={addHonorIsOpen} setAddHonorIsOpen={setAddHonorIsOpen}/>}/>
           <Route path='/edithonors/:id' element={<EditHonorsDocuments/>}/>
-          <Route path='/subscriptions_page' element={<SubscriptionCard currentUser={currentUser} cancelSubscriptionIsOpen={cancelSubscriptionIsOpen} setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen}/>}/>
+          <Route path='/subscriptions_page' element={<SubscriptionCard currentUser={currentUser} cancelSubscriptionIsOpen={cancelSubscriptionIsOpen} setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen} cancelFutureSubscriptionIsOpen={cancelFutureSubscriptionIsOpen} setCancelFutureSubscriptionIsOpen={setCancelFutureSubscriptionIsOpen} />}/>
           <Route path='/password_recovery' element={<PasswordRecoveryPage/>}/>
           <Route path='/next_service' element={<NextServicePage/>}/>
           <Route path='/password_recovery_success' element={<PasswordRecoveryRequestSuccess/>}/>

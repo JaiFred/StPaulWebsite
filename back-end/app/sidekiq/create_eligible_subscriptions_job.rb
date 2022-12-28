@@ -22,9 +22,10 @@ class CreateEligibleSubscriptionsJob
       
       future_sub.user.subscriptions.create!(
         stripe_subscription_id: response.id, 
-        title: future_sub.title, 
-        converted: true
+        title: future_sub.title                
       )
+
+      future_sub.update!(converted: true)
     end
   end
 end

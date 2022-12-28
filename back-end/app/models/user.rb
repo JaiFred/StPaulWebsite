@@ -18,6 +18,7 @@ class User < ApplicationRecord
 
     has_many :events
     has_many :subscriptions, dependent: :destroy
+    has_many :future_subscriptions, dependent: :destroy
   
   PASSWORD_FORMAT_1 = /\A
     (?=.{6,})          # Must contain 6 or more characters
