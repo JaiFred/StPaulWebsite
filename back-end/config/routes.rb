@@ -19,6 +19,7 @@ Rails.application.routes.draw do
     namespace :api do       
       resources :events
       resources :subscriptions
+      resources :future_subscriptions
       resources :users
 
       get '/event_months', to: "events#event_months"

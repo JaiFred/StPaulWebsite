@@ -1,0 +1,71 @@
+
+import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
+import FutureSubscriptionCancelModal from "./FutureSubscriptionCancelModal";
+
+
+function FutureSubscriptionCard({currentUser, cancelFutureSubscriptionIsOpen, setCancelFutureSubscriptionIsOpen}) {
+    const userId = currentUser?.id || currentUser?.user?.id;
+
+    const [ subscriptions, setSubscriptions] = useState([]);
+    const [ selectedFutureSubscription, setSelectedFutureSubscription ] = useState(null)
+
+    const SubscriptionsList = subscriptions.map((subscription) =>( 
+        <div>                
+            <p>Name: {subscription.title}</p>
+            <p></p>
+            <button className='Subscription-cancel-modal-btn' type='button' onClick={() => selectCancelFutureSubscriptionModal(subscription)}>Cancel Future Subscription</button>
+            <FutureSubscriptionCancelModal 
+                subscription={subscription} 
+                selectedFutureSubscription={selectedFutureSubscription} 
+                setSubscriptions={setSubscriptions} 
+                cancelSubscription={cancelSubscription} 
+                cancelFutureSubscriptionIsOpen={cancelFutureSubscriptionIsOpen} 
+                setCancelFutureSubscriptionIsOpen={setCancelFutureSubscriptionIsOpen}
+            />
+        </div>    
+    ))
+
+    useEffect(() => {
+        if (userId) {
+            fetch(`/api/future_subscriptions?user_id=${userId}`)
+            .then((r) => r.json())
+            .then(subscriptions => setSubscriptions(subscriptions))
+        }
+    },[])
+
+    function cancelSubscription(subscriptionId) {
+        console.log(`cancelling...! ${subscriptionId}`);
+
+        fetch(`api/future_subscriptions/${subscriptionId}?user_id=${userId}`, {
+            method: "DELETE",
+            headers: {
+                "Content-Type": "application/json",
+            }
+        })
+        .then((res) => res.json())
+        .then(() => {
+            const updatedSubs = subscriptions.filter((sub) => sub.id !== subscriptionId)         
+            setSubscriptions(updatedSubs);
+            setCancelFutureSubscriptionIsOpen(false)
+        });
+    }
+
+
+    function selectCancelFutureSubscriptionModal(subscription) {
+        console.log('inside selectCancelFutureSubscriptionModal')
+        console.log(`selected future subscription: ${subscription.id}`)
+        setSelectedFutureSubscription(subscription);        
+        setCancelFutureSubscriptionIsOpen(true)
+    }
+
+    console.log(`subscriptions: ${JSON.stringify(subscriptions)}`);
+
+    return (
+        <div>
+            { SubscriptionsList }
+        </div>            
+    )
+}
+
+export default FutureSubscriptionCard;
