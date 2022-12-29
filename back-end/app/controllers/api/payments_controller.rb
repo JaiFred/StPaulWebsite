@@ -3,7 +3,7 @@ module Api
         before_action :authenticate_user!, only: [ :create, :update, :destroy]
 
         # be able to delete membership to website - unsignup
-        # Make request to cancel subscriptions 
+        # Make request to cancel subscriptions
         # Make cancel recurring payments button on front-end
 
         PLANS = {
@@ -32,14 +32,14 @@ module Api
             'Weekly' => 7,
             'BiWeekly' => 14
         }
-        
+
         def client_secret_recurring
             # TODO:  move secret keys to ENV variable
             # TODO: think about proper authentication
-            
+
             puts "PARAMS: #{params.inspect}"
             puts "params[:amount]: #{params[:amount]}"
-            
+
             if params[:amount].blank? || params[:amount] == 'null'
                 render json: { error: 'Amount cant be blank' }, status: 422
                 return
@@ -51,9 +51,9 @@ module Api
 
             intent = Stripe::PaymentIntent.create(
                 {
-                    amount: amount, 
-                    currency: 'usd', 
-                    payment_method_types: ['card']                    
+                    amount: amount,
+                    currency: 'usd',
+                    payment_method_types: ['card']
                 },
             )
 
@@ -61,13 +61,13 @@ module Api
 
             render json: { client_secret: intent.client_secret }.to_json
         end
-        
-        def client_secret            
+
+        def client_secret
             # TODO: think about proper authentication
-            
+
             puts "PARAMS: #{params.inspect}"
             puts "params[:amount]: #{params[:amount]}"
-            
+
             if params[:amount].blank? || params[:amount] == 'null'
                 render json: { error: 'Amount cant be blank' }, status: 422
                 return
@@ -84,8 +84,8 @@ module Api
 
             intent = Stripe::PaymentIntent.create(
                 {
-                    amount: amount, 
-                    currency: 'usd', 
+                    amount: amount,
+                    currency: 'usd',
                     payment_method_types: ['card'],
                     customer: customer
                 },
@@ -109,20 +109,20 @@ module Api
 
 
             user = User.find(params[:user_id])
-            
+
             customer = Stripe::Customer.create(
                 email: params[:billing_details][:email],
                 name: params[:billing_details][:name],
                 phone: params[:billing_details][:phone],
-                payment_method: params[:payment_method_id], 
+                payment_method: params[:payment_method_id],
                 invoice_settings: { default_payment_method: params[:payment_method_id] }
-            )         
+            )
 
             user.update_column(:stripe_customer_id, customer.id)
 
             plan_id_key = "#{params[:amount].gsub("$", "")}_dollars_#{params[:frequency]}"
             puts "plan_id_key: #{plan_id_key.inspect}"
-            
+
             plan = PLANS[plan_id_key]
             puts "plan: #{plan.inspect}"
 
@@ -136,10 +136,10 @@ module Api
                 natural_billing_date += 1.month
 
                 if DateTime.now.day <= payment_start_date.day && DateTime.now.year == payment_start_date.year &&  DateTime.now.month == payment_start_date.month
-                    (DateTime.now.next_month.beginning_of_month + (params[:payment_date].to_i - 1).days).to_time.to_i                
+                    (DateTime.now.next_month.beginning_of_month + (params[:payment_date].to_i - 1).days).to_time.to_i
                 else
                     (payment_start_date.beginning_of_month + (params[:payment_date].to_i - 1).days).to_time.to_i
-                end                
+                end
             elsif params[:frequency] == 'Weekly'
                 natural_billing_date += 1.week
 
@@ -148,7 +148,7 @@ module Api
                 else
                     payment_start_date.next_occurring(params[:weekday].downcase.to_sym)
                 end.to_time.to_i
-                            
+
             elsif params[:frequency] == 'BiWeekly'
                 natural_billing_date += 2.weeks
 
@@ -175,12 +175,14 @@ module Api
             puts "billing_cycle_anchor #{Time.at billing_cycle_anchor}"
             puts "natural_billing_date: #{natural_billing_date}"
 
+
             if Time.at(billing_cycle_anchor) <= natural_billing_date
                 response = Stripe::Subscription.create({customer: customer.id,
                 items: [
                     {price: plan},
-                ],                
-                    billing_cycle_anchor: billing_cycle_anchor
+                ],
+                    billing_cycle_anchor: billing_cycle_anchor,
+                    proration_behavior: 'none'
                 })
                 user.subscriptions.create!(stripe_subscription_id: response.id, title: plan_id_key.gsub("_", " "))
             else
