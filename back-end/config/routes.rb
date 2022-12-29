@@ -42,6 +42,7 @@ Rails.application.routes.draw do
       delete "/logout", to: "sessions#destroy"
 
       resources :honor_pages
+      resources :button_visible_configs
       resources :documents, only: %i[show update destroy]
     end
     
