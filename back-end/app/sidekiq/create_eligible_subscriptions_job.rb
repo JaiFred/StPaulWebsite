@@ -17,7 +17,8 @@ class CreateEligibleSubscriptionsJob
         items: [
             { price: future_sub.plan },
         ],                
-        billing_cycle_anchor: future_sub.billing_cycle_anchor
+        billing_cycle_anchor: future_sub.billing_cycle_anchor,
+        proration_behavior: 'none'
       })
       
       future_sub.user.subscriptions.create!(

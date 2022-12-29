@@ -16,6 +16,9 @@
 #
 class SubscriptionSerializer < ActiveModel::Serializer
 
-  attributes :id, :title
-
+  attributes :id, :title, :next_payment_date
+  
+  def next_payment_date    
+    Time.at(Stripe::Subscription.retrieve(object.stripe_subscription_id).current_period_end).strftime("%A %d %b %Y")
+  end
 end
