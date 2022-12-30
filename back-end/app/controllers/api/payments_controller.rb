@@ -138,7 +138,12 @@ module Api
                 if DateTime.now.day <= payment_start_date.day && DateTime.now.year == payment_start_date.year &&  DateTime.now.month == payment_start_date.month
                     (DateTime.now.next_month.beginning_of_month + (params[:payment_date].to_i - 1).days).to_time.to_i
                 else
-                    (payment_start_date.beginning_of_month + (params[:payment_date].to_i - 1).days).to_time.to_i
+                    # binding.pry
+                    if payment_start_date.day > params[:payment_date].to_i
+                        (payment_start_date.next_month.beginning_of_month + (params[:payment_date].to_i - 1).days).to_time.to_i
+                    else
+                        (payment_start_date.beginning_of_month + (params[:payment_date].to_i - 1).days).to_time.to_i
+                    end
                 end
             elsif params[:frequency] == 'Weekly'
                 natural_billing_date += 1.week
@@ -161,10 +166,12 @@ module Api
                 #     (DateTime.now.beginning_of_month + (params[:biweekly_payment_date].to_i - 1).days).to_time.to_i
                 # end
 
+                # binding.pry
+
                 if DateTime.now.year == payment_start_date.year && DateTime.now.month == payment_start_date.month && payment_start_date.strftime("%d").to_i > params[:biweekly_payment_date].to_i
-                    (payment_start_date.next_month.beginning_of_month + (params[:biweekly_payment_date].to_i + 13).days).to_time.to_i
+                    (payment_start_date.next_month.beginning_of_month + (params[:biweekly_payment_date].to_i - 1).days).to_time.to_i
                 elsif payment_start_date.strftime("%d").to_i > params[:biweekly_payment_date].to_i
-                    (payment_start_date.beginning_of_month + (params[:biweekly_payment_date].to_i + 13).days).to_time.to_i
+                    (payment_start_date.next_month.beginning_of_month + (params[:biweekly_payment_date].to_i - 1).days).to_time.to_i
                 elsif payment_start_date.strftime("%d").to_i == params[:biweekly_payment_date].to_i
                     payment_start_date.to_time.to_i
                 else

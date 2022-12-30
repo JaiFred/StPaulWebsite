@@ -32,7 +32,7 @@ function DeleteHonorsItemModal({ selectedDocument, doc, documents, setDocuments,
                 // hide={() => {setIsOpen(false)}}
             >
             <ModalHeader >
-                <ModalTitle>Are you sure you want to delete {doc.id}?</ModalTitle>
+                <ModalTitle>Are you sure you want to delete #{doc.id}?</ModalTitle>
             </ModalHeader>
                 <ModalFooter> 
                     <button onClick={(e) => handleDocumentDeleteClick(e)}>Yes</button>

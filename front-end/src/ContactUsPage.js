@@ -15,7 +15,7 @@ function ContactUsPage(){
         e.preventDefault();
         alert("submitted")
 
-        emailjs.sendForm('REACT_EMAILJS_SERVICE_KEY','REACT_EMAILJS_CONTACT_US_TEMPLATE_KEY', e.target, 'REACT_EMAILJS_PUBLIC_KEY')
+        emailjs.sendForm(process.env.REACT_APP_EMAILJS_SERVICE_KEY, process.env.REACT_APP_EMAILJS_CONTACT_US_TEMPLATE_KEY, e.target, process.env.REACT_APP_EMAILJS_PUBLIC_KEY)
     }
 
     //States for map to generate with
@@ -55,7 +55,7 @@ function ContactUsPage(){
                 </p1> 
             </div>
             <Map
-             mapboxAccessToken='REACT_MAPBOX_TOKEN' 
+             mapboxAccessToken = {process.env.REACT_APP_MAPBOX_TOKEN}
             style={{
                 width: "500px",
                 height: "500px",
@@ -84,7 +84,7 @@ function ContactUsPage(){
                 
             </Map>
             <div>
-                <a href="https://www.google.com/maps/place/1995+Globe+Rd,+Aylett,+VA+23009/@37.8135257,-77.2050461,17z/data=!3m1!4b1!4m5!3m4!1s0x89b128245469bbb9:0x54383625ecd83599!8m2!3d37.8135215!4d-77.2028574">Directions</a>
+                <a href="https://www.google.com/maps/place/1995+Globe+Rd,+Aylett,+VA+23009/@37.8135257,-77.2050461,17z/data=!3m1!4b1!4m5!3m4!1s0x89b128245469bbb9:0x54383625ecd83599!8m2!3d37.8135215!4d-77.2028574" target='_blank'>Directions</a>
             </div>
             
             

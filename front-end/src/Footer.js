@@ -77,7 +77,7 @@ function Footer({ currentUser }){
                 <div>
                     <button>
                         <div className="contact-us-button">
-                            <Link to='/contact_us'>Contact Us 12</Link>
+                            <Link to='/contact_us'>Contact Us</Link>
                         </div>
                     </button>
 

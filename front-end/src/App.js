@@ -32,6 +32,12 @@ import './App.css';
 
 //Goal:
 
+//Subscription schedule date should only issue the creation of a subscription and should not prompt it to consider previous dates it has missed
+//Subscription should have a hard start on the date of choice even/especially if that date has been passed and must start in a separate month
+//Subscription does not calculate the values of time in the month it is made. It calculates for the value of time after the first issued payment
+//
+//Subscription is cl
+
 
 // Password recovery
   // have a form where the user fills up their email with us
