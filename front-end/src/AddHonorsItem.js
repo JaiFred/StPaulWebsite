@@ -11,6 +11,7 @@ function AddHonorsItem({setDocuments}){
     function handleSubmit(e) {
         console.log("submitted!")
         e.preventDefault();
+        
 
         if (!document) {
             setError('Image must be uploaded!')
@@ -34,7 +35,8 @@ function AddHonorsItem({setDocuments}){
             body: formData
         })
         .then((res) => res.json())
-        .then((honorPage) => setDocuments(honorPage.documents));
+        .then((honorPage) => setDocuments(honorPage.documents))
+        .then(alert("New Document Created!"))
     }
 
     function handleDocumentsChange (e) {

@@ -13,7 +13,7 @@ function FutureSubscriptionCard({currentUser, cancelFutureSubscriptionIsOpen, se
     const SubscriptionsList = subscriptions.map((subscription) =>( 
         <div>                
             <p>Name: {subscription.title}</p>
-            <p>Subscription scheduled to start on {subscription.next_payment_date}</p>
+            <p>Payment begins on {subscription.next_payment_date}</p>
             <button className='Subscription-cancel-modal-btn' type='button' onClick={() => selectCancelFutureSubscriptionModal(subscription)}>Cancel Future Subscription</button>
             <FutureSubscriptionCancelModal 
                 subscription={subscription} 

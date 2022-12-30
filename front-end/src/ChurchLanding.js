@@ -32,11 +32,6 @@ function ChurchLanding({ currentUser, givingIsOpen, setGivingIsOpen}){
           <Link to='/prayer_requests'>Prayer Requests</Link>
         </div>
       </button>
-      <button>
-        <div className="Test-button">
-          <Link to='/recurring-payment'>Recurring Payment</Link>
-        </div>
-      </button>
       </div>
       <div className="bible-dec-background">
         <h1>
