@@ -1,0 +1,2 @@
+class ButtonVisibleConfig < ApplicationRecord
+end

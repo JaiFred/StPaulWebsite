@@ -2,12 +2,12 @@
 import { Modal, ModalHeader, ModalFooter, ModalTitle, Button } from 'react-bootstrap'
 
 
-function SubscriptionCancelModal({ subscription, setSubscription, cancelSubscription, cancelSubscriptionIsOpen, setCancelSubscriptionIsOpen }){
+function SubscriptionCancelModal({ subscription, selectedSubscription, setSubscription, cancelSubscription, cancelSubscriptionIsOpen, setCancelSubscriptionIsOpen }){
 
     return(
         <div>
-            <Modal className='modal'
-                show={ cancelSubscriptionIsOpen }
+            <Modal className='modal'                
+                show={ cancelSubscriptionIsOpen && selectedSubscription === subscription }
                 // hide={() => {setIsOpen(false)}}
             >
             <ModalHeader >

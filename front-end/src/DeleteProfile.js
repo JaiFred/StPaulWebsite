@@ -2,18 +2,18 @@
 import { Button } from 'react-bootstrap'
 import { navigate} from 'react-router-dom'
 
-function DeleteProfile({handleUserDelete,  username, setUsername, password, setPassword, error, setAccountDeleteIsOpen }){
-
+function DeleteProfile({handleUserDelete, email, setEmail, password, setPassword, error, setAccountDeleteIsOpen }){
+// onSubmit={handleUserDelete} ------- this was in the first <div> 
     return(
-        <div className="form-container">
+        <div className="form-container" onSubmit={handleUserDelete}>
           <h3>Delete User Form</h3>
           { error }
-          <form className="register-form" onSubmit={handleUserDelete}>
+          <form className="register-form" >
             <input
-              className="username-input"
+              className="email-input"
               type="text"
-              placeholder="username..."
-              onChange={(event) => setUsername(event.target.value)}
+              placeholder="E-mail..."
+              onChange={(event) => setEmail(event.target.value)}
             />
             <input
               className="password-input"
@@ -21,7 +21,7 @@ function DeleteProfile({handleUserDelete,  username, setUsername, password, setP
               placeholder="password..."
               onChange={(event) => setPassword(event.target.value)}
             />
-          <Button variant="primary" type="submit" onClick={() => {setAccountDeleteIsOpen(false)}}>Delete My Profile</Button>
+          <Button variant="primary" type="submit" onClick={() => {handleUserDelete()}}>Delete My Profile</Button>
         </form>
         </div>
 

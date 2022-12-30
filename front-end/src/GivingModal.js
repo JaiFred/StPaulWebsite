@@ -1,5 +1,5 @@
 //Hooks
-import { Modal, ModalHeader, ModalFooter, ModalTitle, Button } from 'react-bootstrap'
+import { Modal, ModalHeader, ModalFooter, ModalTitle, Button, ModalBody } from 'react-bootstrap'
 import { Elements, CardElement, useStripe, useElements, } from "@stripe/react-stripe-js";
 import {useState, useEffect} from 'react'
 import {loadStripe} from '@stripe/stripe-js';
@@ -152,9 +152,21 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
             body: JSON.stringify(reqBody)
         })
         .then((res) => res.json())
-        .then((res) => setClientSecret(res.client_secret));        
-
+        .then((res) => setClientSecret(res.client_secret))
+          
     }
+
+    // if (response.ok) {
+    //     response.json().then((user) => {
+    //       console.log(`I AM HERE: user: ${JSON.stringify(user)}`);
+    //       if (user.errors) {
+    //         console.log(user.errors || 'Wrong credentials!');
+    //         setErrors(user.errors || ['Wrong credentials!']);
+    //       }
+    //       else {
+    //         navigate("/signup_success");
+    //       }
+    //     });
     
       const options = {
         // passing the client secret obtained from the server
@@ -187,43 +199,43 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                 <ModalTitle>Saint Paul Baptist Church</ModalTitle>
                 <ModalTitle> <button type="button" onClick={() => {resetForm()}}>X</button></ModalTitle> 
             </ModalHeader>
-                <ModalFooter>
+            <ModalBody>
                 <div>
                     {error && <p>{error}</p>}
-                {showAmountForm && 
-                <div> 
-                    <h3>One Time Offering</h3>
-                    <form onSubmit={fetchClientSecret}>
-                        <input
-                            label="Email"
-                            id="email"
-                            type="text"
-                            placeholder="email..."
-                            required
-                            autoComplete="email"
-                            value={billingDetails.email}
-                            onChange={handleEmailChange}
-                        />  
-                        <input
-                            label="Name"
-                            id="name"
-                            type="text"
-                            placeholder="full name on card"
-                            required
-                            autoComplete="name"
-                            value={billingDetails.name}
-                            onChange={handleNameChange}
-                        />    
-                        <input
-                            type="text"
-                            id="amount"
-                            name="amount"
-                            value={amount} 
-                            onChange={handleAmountChange}               
-                        />                
-                        <button id='submitBtn' type="button" onClick={fetchClientSecret}>Confirm Amount</button>
-                    </form>
-                </div>}
+                    {showAmountForm && 
+                    <div> 
+                        <h3>One Time Offering</h3>
+                        <form onSubmit={fetchClientSecret}>
+                            <input
+                                label="Email"
+                                id="email"
+                                type="text"
+                                placeholder="email..."
+                                required
+                                autoComplete="email"
+                                value={billingDetails.email}
+                                onChange={handleEmailChange}
+                            />  
+                            <input
+                                label="Name"
+                                id="name"
+                                type="text"
+                                placeholder="full name on card"
+                                required
+                                autoComplete="name"
+                                value={billingDetails.name}
+                                onChange={handleNameChange}
+                            />    
+                            <input
+                                type="text"
+                                id="amount"
+                                name="amount"
+                                value={amount} 
+                                onChange={handleAmountChange}               
+                            />                
+                            <button id='submitBtn' type="button" onClick={fetchClientSecret}>Confirm Amount</button>
+                        </form>
+                    </div>}
                     
                     { clientSecret &&
                         <Elements stripe={stripePromise} options={options}>
@@ -237,28 +249,25 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                         </Elements>
                     }
                     {showAmountForm === false && amount && parseFloat(amount) > 0 && <div>{billingDetails.name}, you are paying: ${amount}</div>}
-                    </div>
-
-                    
-                    <div className="AppWrapper">
-                        { clientSecretRecurring && showRecurringForm && currentUser &&
-                        <div> 
-                            <h3>Recurring Offering</h3>
-                            <Elements stripe={stripePromise} options={optionsRecurring}>
-                                <RecurringCheckoutForm currentUser={currentUser} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod}/>
-                            </Elements>
-                        </div>
-                        }
                 </div>
-                </ModalFooter>
-                <ModalFooter> 
+                
+                    
+                <div className="AppWrapper">
+                    { clientSecretRecurring && showRecurringForm && currentUser &&
+                    <div> 
+                        <h3>Recurring Offering </h3>
+                        <Elements stripe={stripePromise} options={optionsRecurring}>
+                            <RecurringCheckoutForm currentUser={currentUser} resetForm={resetForm} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod}/>
+                        </Elements>
+                    </div>
+                    }
+                </div>
+                </ModalBody>
+                <ModalFooter>
                     <button type="button" onClick={() => {resetForm()}}>cancel</button>
                 </ModalFooter>
             </Modal>
-            <div>
         </div>
-        </div>
-        
     )
 }
 

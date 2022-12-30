@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2022_11_28_040738) do
+ActiveRecord::Schema[7.0].define(version: 2022_12_29_044906) do
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -39,6 +39,12 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_040738) do
     t.index ["blob_id", "variation_digest"], name: "index_active_storage_variant_records_uniqueness", unique: true
   end
 
+  create_table "button_visible_configs", force: :cascade do |t|
+    t.boolean "facebook", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
   create_table "documents", force: :cascade do |t|
     t.text "description"
     t.integer "honor_page_id", null: false
@@ -62,6 +68,19 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_040738) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "future_subscriptions", force: :cascade do |t|
+    t.bigint "billing_cycle_anchor"
+    t.date "payment_start_date"
+    t.integer "user_id", null: false
+    t.string "plan"
+    t.string "title"
+    t.integer "frequency"
+    t.boolean "converted", default: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_id"], name: "index_future_subscriptions_on_user_id"
+  end
+
   create_table "honor_pages", force: :cascade do |t|
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
@@ -80,17 +99,26 @@ ActiveRecord::Schema[7.0].define(version: 2022_11_28_040738) do
   create_table "users", force: :cascade do |t|
     t.string "first_name"
     t.string "last_name"
-    t.string "username"
     t.string "email"
-    t.string "password_digest"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.boolean "admin", default: false
     t.string "stripe_customer_id"
+    t.string "encrypted_password", default: "", null: false
+    t.string "reset_password_token"
+    t.datetime "reset_password_sent_at"
+    t.datetime "remember_created_at"
+    t.string "confirmation_token"
+    t.datetime "confirmed_at"
+    t.datetime "confirmation_sent_at"
+    t.string "unconfirmed_email"
+    t.index ["email"], name: "index_users_on_email", unique: true
+    t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
   add_foreign_key "active_storage_variant_records", "active_storage_blobs", column: "blob_id"
   add_foreign_key "documents", "honor_pages"
+  add_foreign_key "future_subscriptions", "users"
   add_foreign_key "subscriptions", "users"
 end

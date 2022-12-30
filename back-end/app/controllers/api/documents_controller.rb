@@ -1,18 +1,16 @@
 module Api
     class DocumentsController < ApplicationController
-        before_action :authenticate_user, only: [ :create, :update, :destroy]
+        before_action :authenticate_user!, only: [ :create, :update, :destroy]
         before_action :set_document
 
         def update            
-            if document_params[:description].present?
-                @document.update!(description: document_params[:description])
-            end            
+            @document.update!(description: document_params[:description])         
             
-            if document_params[:file].present?                
+            if document_params[:file].present?
                 @document.file.attach(document_params[:file])
             end
 
-            render json: @event, status: :created #201
+            render json: @document, status: :ok
         end
         
         def show

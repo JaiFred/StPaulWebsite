@@ -6,9 +6,11 @@ import { Navigate, Routes, Route } from 'react-router-dom'
 import AboutPage from './AboutPage';
 import Login from './Login';
 import SignUp from './SignUp';
+import SignUpSuccessPage from './SignUpSuccessPage';
 import ChurchLandingAttributes from './ChurchLandingAttributes';
 import GivingModal from './GivingModal';
-
+import PasswordRecoveryRequestSuccess from './PasswordRecoveryRequestSuccess';
+import UpdateEmailSuccessPage from './UpdateEmailSuccessPage';
 import EventsContainer from './EventsContainer';
 import EventInfoPage from './EventInfoPage';
 import BroadcastsContainer from './BroadcastsContainer';
@@ -24,11 +26,19 @@ import HonorsPage from './HonorsPage';
 import EditHonorsDocuments from './EditHonorsItem';
 import PasswordRecoveryPage from './PasswordRecoveryPage';
 
+
 // CSS
 import './App.css';
 
 //Goal:
-// Users can delete their account
+
+//Subscription schedule date should only issue the creation of a subscription and should not prompt it to consider previous dates it has missed
+//Subscription should have a hard start on the date of choice even/especially if that date has been passed and must start in a separate month
+//Subscription does not calculate the values of time in the month it is made. It calculates for the value of time after the first issued payment
+//
+//Subscription is cl
+
+
 // Password recovery
   // have a form where the user fills up their email with us
   // it goes to backend (route/controller/action). we check in the database whether the email exists
@@ -40,15 +50,55 @@ import './App.css';
   // and then in the backend (another route/controller/action) we will verify the OTP code and email, if all good, we will 
   // reset the password for the user to the new passord...
 
-//2 way authentication for signup - email
+//For accounts
+//Member information is editable
+//Users can delete their account
+
+//For signup
+//Can't signup without filling all inputs
+//Lets users know the password requirements if invalid password is given - show completed requirements
+    //At least 5 characters (and up to 100 characters)
+    //5 or more unique characters.
+    //At least 3 of the following: uppercase, lowercase, numeric, or special characters. The allowed special characters are ~ ! @ # $ % ^ * - _ = + [ { ] } / ; : , . ?
+
+//password confirmation sends alert if it is not filled or not the same as password
 
 
-//Events page issues
+//Youth Corner - can is be created post deployment - 
+
+//Admin has the ability to disable Facebook button 
+
+//2 way authentication for signup - email √ 
+
+//
+
+// Today
+// Validations
+
+// Only one Admin
+// If email doesn’t exist on server don’t proceed with password change.
+
+// Emailjs doesn’t work
+
+// Weekdays do not work
+
+//Giving modal is glitched after making a single payment
+
+//Cancel subscriptions is deleting random subscriptions - not the ones we choose...
+//# TODO show next payment date
+
+// 1st
+// Subscription starting - User can schedule a payment by month and date
+
+
+
+
+//Events page issues √
   //BUGS
   //event errors out when created - without date - without title - 
   //events arent
 
-
+// 2nd
 //Honors page issue
   //BUGS
   //document errors out when created with just a description
@@ -65,6 +115,8 @@ import './App.css';
 //BUGS
 //sign up not generating first name last name email parameters.
 //recurring payment not showing up
+
+
 
 // Goal:
 // I want recurring modal visible even if single payment is not
@@ -100,7 +152,6 @@ import './App.css';
 
 function App() {
 
-
   const [ authChecked, setAuthChecked ] = useState(false)
   const [ currentUser, setCurrentUser ] = useState(null)
   const [ events, setEvents ] = useState([]);
@@ -114,8 +165,7 @@ function App() {
   const [ accountDeleteIsOpen, setAccountDeleteIsOpen ] = useState(false);
   const [ editProfileIsOpen, setEditProfileIsOpen ] = useState(false);
   const [ cancelSubscriptionIsOpen, setCancelSubscriptionIsOpen ] = useState(false);
- 
-
+  const [ cancelFutureSubscriptionIsOpen, setCancelFutureSubscriptionIsOpen ] = useState(false);
   
   // const [home, setHome] = useState ([])
 
@@ -201,18 +251,22 @@ function App() {
           {/* <Route exact path='/about_us' component={AboutUsContainer} /> */}
           <Route path='/events/:id' element={<EventInfoPage currentUser={currentUser} events={events} setEvents={setEvents}/>}/>
           <Route path='/login' element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} setLogoutIsOpen={setLogoutIsOpen} />}/>
-          <Route path='/sign_up' element={<SignUp currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} setLogoutIsOpen={setLogoutIsOpen}/>}/>
+          <Route path='/signup' element={<SignUp currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} setLogoutIsOpen={setLogoutIsOpen}/>}/>
+          <Route path='/signup_success' element={<SignUpSuccessPage/>}/>
           <Route path='/profile' element={<ProfilePage currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} editProfileIsOpen={editProfileIsOpen} setEditProfileIsOpen={setEditProfileIsOpen} accountDeleteIsOpen={accountDeleteIsOpen} setAccountDeleteIsOpen={setAccountDeleteIsOpen}/>}/>
           <Route path='/broadcasts' element={<BroadcastsContainer/>}/>
           <Route path='/prayer_requests' element={<PrayerRequestsContainer/>}/>
           <Route path='/about' element={<AboutPage/>}/>
-          <Route path='/recurring-payment' element={<RecurringPayment/>}/>  
+          <Route path='/recurring-payment' element={<RecurringPayment/>}/>
           <Route path='/contact_us' element={<ContactUsPage/>}/>
           <Route path='/honors' element={<HonorsPage currentUser={currentUser} addHonorIsOpen={addHonorIsOpen} setAddHonorIsOpen={setAddHonorIsOpen}/>}/>
           <Route path='/edithonors/:id' element={<EditHonorsDocuments/>}/>
-          <Route path='/subscriptions_page' element={<SubscriptionCard currentUser={currentUser} cancelSubscriptionIsOpen={cancelSubscriptionIsOpen} setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen}/>}/>
+          <Route path='/subscriptions_page' element={<SubscriptionCard currentUser={currentUser} cancelSubscriptionIsOpen={cancelSubscriptionIsOpen} setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen} cancelFutureSubscriptionIsOpen={cancelFutureSubscriptionIsOpen} setCancelFutureSubscriptionIsOpen={setCancelFutureSubscriptionIsOpen} />}/>
           <Route path='/password_recovery' element={<PasswordRecoveryPage/>}/>
           <Route path='/next_service' element={<NextServicePage/>}/>
+          <Route path='/password_recovery_success' element={<PasswordRecoveryRequestSuccess/>}/>
+          <Route path='/update_email_success' element={<UpdateEmailSuccessPage/>}/>
+
         </Routes>
         {/* <button className='giving-modal-btn' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
         <GivingModal givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/> */}

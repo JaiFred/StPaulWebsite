@@ -4,9 +4,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, ModalTitle, Button } from '
 //components
 import AddHonorsItem from './AddHonorsItem'
 
-function AddHonorsItemModal({ addHonorIsOpen, setAddHonorIsOpen, setDescription, handleDocumentsChange, handleSubmit }){
-    
-
+function AddHonorsItemModal({ setDocuments, addHonorIsOpen, setAddHonorIsOpen }){    
     return(
         <div className='overlay-add-honors-modal'>
              <Modal className='modal'
@@ -21,7 +19,7 @@ function AddHonorsItemModal({ addHonorIsOpen, setAddHonorIsOpen, setDescription,
                     <ModalTitle>Add</ModalTitle>
                 </ModalHeader>
                 <ModalBody>
-                    <AddHonorsItem setDescription={setDescription} handleSubmit={handleSubmit} handleDocumentsChange={handleDocumentsChange}/>
+                    <AddHonorsItem setDocuments={setDocuments} />
                 </ModalBody>
              </Modal>
         </div>

@@ -1,9 +1,25 @@
 Rails.application.routes.draw do
-      
+  
+  devise_for :users, path: '', path_names: {
+    sign_in: 'login',
+    sign_out: 'logout',
+    registration: 'signup'
+  },
+  controllers: {
+    sessions: 'users/sessions',
+    registrations: 'users/registrations',
+    confirmations: 'users/confirmations',
+    passwords: 'users/passwords',
+  }
 
+  devise_scope :user do
+    post 'reset_password' => 'users/passwords#update'
+  end
+      
     namespace :api do       
       resources :events
       resources :subscriptions
+      resources :future_subscriptions
       resources :users
 
       get '/event_months', to: "events#event_months"
@@ -26,11 +42,11 @@ Rails.application.routes.draw do
       delete "/logout", to: "sessions#destroy"
 
       resources :honor_pages
+      resources :button_visible_configs
       resources :documents, only: %i[show update destroy]
     end
     
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 
-  # Defines the root path route ("/")
-  # root "articles#index"
+  # Defines the root path route ("/")  
 end

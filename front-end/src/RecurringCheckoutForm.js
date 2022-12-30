@@ -4,6 +4,7 @@ import {useState, useEffect} from 'react'
 import {loadStripe} from '@stripe/stripe-js';
 import "./stripeElementStyles.css";
 import useDropdown from "./useDropdown";
+import moment from 'moment';
 
 const FREQUENCY_OPTIONS = [
   'Monthly', 
@@ -16,9 +17,9 @@ const AMOUNT_OPTIONS = [
   '$10',
   '$15',
   '$20',
-  '$25',
-  '$30',
-  '$35',
+  // '$25',
+  // '$30',
+  // '$35',
   '$100'
 ]
 
@@ -130,6 +131,7 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
   const [error, setError] = useState(null);
   const [cardComplete, setCardComplete] = useState(false);
   const [processing, setProcessing] = useState(false);  
+  const [paymentStartDate, setPaymentStartDate] = useState(new Date())
   const [billingDetails, setBillingDetails] = useState({
     email: '',
     phone: '',
@@ -138,8 +140,8 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
 
   const [frequency, FrequencyDropDown] = useDropdown("Choose a Frequency", "Monthly", "", FREQUENCY_OPTIONS);
   const [amount, AmountDropDown] = useDropdown("Choose an Amount", "$5", "", AMOUNT_OPTIONS);
-  const [paymentDate, PaymentDaysDropDown] = useDropdown("On the ", "1st", " of the month", ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th" ])
-  const [biWeeklyPaymentDate, BiWeeklyPaymentDropDown] = useDropdown("Starting On the", "1st", "", ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th"])
+  const [paymentDate, PaymentDaysDropDown] = useDropdown("On the ", "1st", " of the month", ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th" ])
+  const [biWeeklyPaymentDate, BiWeeklyPaymentDropDown] = useDropdown("Starting on the", "1st", "of the month", ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th"])
   const [weekday, WeekdayDropDown] = useDropdown("Every ", "monday", " of the week", ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
 
   const handleSubmit = async (event) => {
@@ -161,6 +163,14 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
 
     if (error) {
       card.focus();
+      return;
+    }
+
+    console.log('checking paymentStartdate')
+    console.log(new Date(paymentStartDate) < new Date ())
+
+    if (new Date(paymentStartDate) < new Date ()) {
+      setError("Please choose a future date!");
       return;
     }
 
@@ -199,7 +209,18 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
   // Must make another fetch request for the days
   // Must make a method in the backend for the payday options 
   // dropdown for the pay day options
-  const submitPaymentSubscription = () => {  
+
+  console.log(`paymentStartDate: ${paymentStartDate}`);
+  const submitPaymentSubscription = () => {
+
+    console.log('checking paymentStartdate')
+    console.log(new Date(paymentStartDate) < new Date ())
+
+    if (new Date(paymentStartDate) < new Date ()) {
+      setError("Please choose a future date!");
+      return;
+    }
+
     fetch("/api/payment_subscription", {
       method: "POST",
       headers: {
@@ -213,10 +234,23 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
           weekday: weekday,
           biweekly_payment_date: biWeeklyPaymentDate,
           payment_method_id: paymentMethod.id,
+          payment_start_date: paymentStartDate,
           user_id: currentUser?.id || currentUser?.user?.id
       })
     })
     .then((res) => console.log(JSON.stringify(res)));
+  }
+
+  function handlePaymentStartDateChange(e) {
+    setPaymentStartDate(e.target.value);
+
+    if (new Date(e.target.value) < new Date ()) {
+      setError("Please choose a future date!");
+      return;
+    }
+    else {
+      setError(null);
+    }
   }
 
   return paymentMethod ? (
@@ -290,13 +324,24 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
       <AmountDropDown />
       { frequency && frequency == 'Monthly' && <PaymentDaysDropDown />}
       { frequency && frequency == 'Weekly' && <WeekdayDropDown />}
-      { frequency && frequency == 'BiWeekly' && <BiWeeklyPaymentDropDown />}    
+      { frequency && frequency == 'BiWeekly' && <BiWeeklyPaymentDropDown />}
+
+      <Field
+          label="Schedule Subscription Date"
+          id="payment-start-date"
+          type="datetime-local"  
+          required
+          value={paymentStartDate}
+          onChange={e => handlePaymentStartDateChange(e)}
+      />
+
+      {error}
       
       {error && <ErrorMessage>{error.message}</ErrorMessage>}
-      <SubmitButton processing={processing} error={error} disabled={!stripe}>
-        { amount && frequency && frequency == 'Monthly' && <p>Pay {amount} every {paymentDate} of the month </p> }
-        { amount && frequency && frequency == 'Weekly' && <p>Pay {amount} every {weekday} of the week </p> }
-        { amount && frequency && frequency == 'BiWeekly' && <p>Pay {amount} every two weeks, starting the {biWeeklyPaymentDate} of this month </p> }
+      <SubmitButton processing={processing} error={error} disabled={!stripe} >
+        { amount && frequency && frequency == 'Monthly' && <p>Pay {amount} every {paymentDate} of the month. Subscription scheduled for {moment(paymentStartDate).format('lll')} </p> }
+        { amount && frequency && frequency == 'Weekly' && <p>Pay {amount} every {weekday} of the week. Subscription scheduled for {moment(paymentStartDate).format('lll')}</p> }
+        { amount && frequency && frequency == 'BiWeekly' && <p>Pay {amount} every two weeks, starting the {biWeeklyPaymentDate}. Subscription scheduled for {moment(paymentStartDate).format('lll')}</p> }
       </SubmitButton>
     </form>
   );

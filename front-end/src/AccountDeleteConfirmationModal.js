@@ -4,7 +4,7 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, ModalTitle, Button } from '
 
 import DeleteProfile from './DeleteProfile'
 
-function AccountDeleteConfirmationModal({ currentUser, accountDeleteIsOpen, setAccountDeleteIsOpen, handleUserDelete, username, setUsername, password, setPassword, error }){
+function AccountDeleteConfirmationModal({ currentUser, accountDeleteIsOpen, setAccountDeleteIsOpen, handleUserDelete, email, setEmail, password, setPassword, error }){
 
     return (
         <div className='overlay-account-delete-modal'>
@@ -24,8 +24,8 @@ function AccountDeleteConfirmationModal({ currentUser, accountDeleteIsOpen, setA
                         </Link> */}
                         <DeleteProfile 
                             handleUserDelete={handleUserDelete} 
-                            username={username}
-                            setUsername={setUsername}
+                            email={email}
+                            setEmail={setEmail}
                             password={password}
                             setPassword={setPassword}
                             error={error}
