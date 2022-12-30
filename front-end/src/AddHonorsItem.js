@@ -12,15 +12,14 @@ function AddHonorsItem({setDocuments}){
         console.log("submitted!")
         e.preventDefault();
         
-
-        if (!document) {
-            setError('Image must be uploaded!')
-            return;
-        }
-
         if (!document && !description) {
             setError('Both document and description cant be blank!')
             return
+        }
+        
+        if (!document) {
+            setError('Image must be uploaded!')
+            return;
         }
 
         const formData = new FormData();
