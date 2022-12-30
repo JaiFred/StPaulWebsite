@@ -6,7 +6,12 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
 
     const { id, title, starts, ends, details, address_line_1, address_line_2, city } = formData;
 
+    console.log(`formData in EditEvent: ${JSON.stringify(formData)}`);
+    console.log(`starts: ${starts}`);
+
+
     const [image, setImage] = useState("");
+    const [errors, setErrors] = useState([]);
 
     const navigate = useNavigate()
 
@@ -15,7 +20,6 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
         console.log("handleSubmit updating event");
 
         const formData = new FormData();
-
 
         formData.append("image", image);
         formData.append("title", title);
@@ -29,17 +33,21 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
 
         const configObj = {
             method: "PATCH",
-            // headers: {
-            //     "Content-Type" : "application/json",
-            //     Accept: "application/json",
-            // },
             body: formData
         }
+
         fetch(`/api/events/${id}`, configObj)
-        .then((r) => r.json())
-        .then((editedEvent) => handleEditEvent(editedEvent))
-        .then(setEditEventIsOpen(false))
-        .then(navigate(`/events`))
+        .then((response) => { 
+            if (response.ok) {
+                response.json().then((editedEvent) => {
+                    handleEditEvent(editedEvent);
+                    setEditEventIsOpen(false);
+                    navigate(`/events`)
+                });
+              } else {
+                    response.json().then((response) => setErrors(response.errors))                 ;
+              }
+        })         
         
     };
 
@@ -61,6 +69,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
 
     return(
         <form onSubmit={handleSubmit}>
+            {errors.map((error) => <p>{error}</p>)}
             <ul>
             <input 
                 type="file" 

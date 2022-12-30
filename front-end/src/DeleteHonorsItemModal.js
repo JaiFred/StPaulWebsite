@@ -2,9 +2,17 @@
 import { Modal, ModalHeader, ModalFooter, ModalTitle, Button } from 'react-bootstrap'
 
 
-function DeleteHonorsItemModal({ selectedDocument, doc, document, setDocument, documents, setDocuments, description, setDescription, deleteHonorIsOpen, setDeleteHonorIsOpen, handleDocumentDelete}){
+function DeleteHonorsItemModal({ selectedDocument, doc, documents, setDocuments, deleteHonorIsOpen, setDeleteHonorIsOpen}){
 
-    const { id } = doc
+    const { id } = doc;
+
+    function handleDocumentDelete(deletedDocument) {
+        // console.log(deletedID)
+        const updatedDocumentArray = documents.filter(
+          (document) => document.id !== deletedDocument
+        );
+        setDocuments(updatedDocumentArray);
+    }
 
     function handleDocumentDeleteClick(e) {
         e.preventDefault()
@@ -24,7 +32,7 @@ function DeleteHonorsItemModal({ selectedDocument, doc, document, setDocument, d
                 // hide={() => {setIsOpen(false)}}
             >
             <ModalHeader >
-                <ModalTitle>Are you sure you want to delete {doc.id}?</ModalTitle>
+                <ModalTitle>Are you sure you want to delete #{doc.id}?</ModalTitle>
             </ModalHeader>
                 <ModalFooter> 
                     <button onClick={(e) => handleDocumentDeleteClick(e)}>Yes</button>

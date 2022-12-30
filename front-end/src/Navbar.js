@@ -34,9 +34,10 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
 
   console.log(`Inside NavBar, currentUser: ${JSON.stringify(currentUser)}`);
   const lastName = currentUser?.user?.last_name || currentUser?.last_name;
-  // const firstName = currentUser?.user?.first_name || currentUser?.first_name;
+  const firstName = currentUser?.user?.first_name || currentUser?.first_name;
   console.log(`Inside NavBar, currentUser last name: ${lastName}`);
-  
+  console.log(`currentUser?.admin: ${currentUser?.admin}`)
+  console.log(`currentUser?.user?.admin: ${currentUser?.user?.admin}`)
 
   return (
     <div className="header">
@@ -49,7 +50,7 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
                 <div className="admin-name-container"> 
                 <ul className="name-container-list">
                   <li className="admin-greeting">Hello</li>
-                  <li className="admin-name">{lastName}</li>
+                  <li className="admin-name">{firstName}</li>
                 </ul>
                 </div>  
             <nav className="non-admin-nav-container">
@@ -79,7 +80,7 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
       
                       <DropdownMenu>
                          <DropdownItem>
-                          <button className='staff-modal-btn' type='button' onClick={() => setLogoutIsOpen(true)}>Logout</button>
+                          <button className='staff-modal-btn' type='button' onClick={() => setLogoutIsOpen(true)}>Logout 2</button>
                           <LogoutProcedureModal logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
                         </DropdownItem>
                         <Link to='/broadcasts' class="dropdownitem">Broadcasts</Link>
@@ -101,11 +102,11 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
           <img src={Cross} className="cross"></img>
           <h1 className="title">St Paul Baptist Church</h1>
           </Link>  
-          {(currentUser?.user &&
+          {((currentUser || currentUser?.user) &&
             <div className="admin-name-container"> 
               <ul className="name-container-list">
                 <li className="admin-greeting">Hello</li>
-                <li className="admin-name">{lastName}</li>
+                <li className="admin-name">{firstName}</li>
               </ul>
             </div>  
           )}
@@ -138,14 +139,14 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
                   {
                     !currentUser &&
                     <div>
-                      <button className='staff-modal-btn' type='button' onClick={() => setStaffIsOpen(true)}>Login</button>
+                      <button className='staff-modal-btn' type='button' onClick={() => setStaffIsOpen(true)}>Login / Sign Up</button>
                       <LoginModal staffIsOpen={staffIsOpen} setStaffIsOpen={setStaffIsOpen}/>
                     </div>
                   }     
-                   { 
+                  { 
                     currentUser &&
                     <div>
-                      <button className='staff-modal-btn' type='button' onClick={() => setLogoutIsOpen(true)}>Logout</button>
+                      <button className='staff-modal-btn' type='button' onClick={() => setLogoutIsOpen(true)}>Logout 1</button>
                       <LogoutProcedureModal logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
                     </div>                    
                   }              

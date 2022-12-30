@@ -11,7 +11,7 @@ function LoginModal({ staffIsOpen, setStaffIsOpen }){
                 // hide={() => {setIsOpen(false)}}
             >
                 <ModalHeader >
-                    <ModalTitle>Do you wish to login/sign up?</ModalTitle>
+                    <ModalTitle>Do you wish to Login / Sign Up?</ModalTitle>
                 </ModalHeader>
                     <ModalFooter> 
                         <Link to='/login'>

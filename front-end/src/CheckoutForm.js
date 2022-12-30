@@ -41,6 +41,7 @@ const CheckoutForm = ({setGivingIsOpen, setAmount, setClientSecret, setShowAmoun
       // methods like iDEAL, your customer will be redirected to an intermediate
       // site first to authorize the payment, then redirected to the `return_url`.
     }
+    resetForm();
   };
 
   return (

@@ -1,20 +1,14 @@
 //Hooks
 import { Modal, ModalHeader, ModalFooter, ModalTitle, ModalBody } from 'react-bootstrap'
+import { Button } from "react-bootstrap";
 
 //Components
 import EditProfile from "./EditProfile"
 
 
-function EditProfileModal({ currentUser, editProfileIsOpen, setEditProfileIsOpen }){
+function EditProfileModal({ errors, currentUser, editProfileIsOpen, setEditProfileIsOpen, handleUserEdit, firstName, setFirstName, lastName, setLastName, email, setEmail }){
 
-    // const resetForm = () => {
-    //     setAmount(null);
-    //     setClientSecret(null);
-    //     setGivingIsOpen(false);
-    //     setShowAmountForm(true);
-    //     setShowRecurringForm(true);
-    //     setBillingDetails('')        
-    // }
+    console.log(`firstName 1: ${firstName}`);
 
     return(
         <div>
@@ -30,7 +24,17 @@ function EditProfileModal({ currentUser, editProfileIsOpen, setEditProfileIsOpen
                 </ModalBody>
             </ModalHeader>
             <ModalFooter>
-                <EditProfile currentUser={currentUser} />
+                <EditProfile 
+                    currentUser={currentUser} 
+                    handleUserEdit={handleUserEdit}
+                    firstName={firstName}
+                    setFirstName={setFirstName}
+                    lastName={lastName}
+                    setLastName={setLastName}
+                    email={email}
+                    setEmail={setEmail}
+                    errors={errors}
+                />
                 <button type="button" onClick={() => {setEditProfileIsOpen(false)}}>Cancel</button>
             </ModalFooter>
 

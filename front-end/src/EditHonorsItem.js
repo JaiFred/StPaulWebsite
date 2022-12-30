@@ -1,54 +1,66 @@
 
 import react, { useState, useEffect } from 'react';
+import { Link, Navigate, Routes, Route } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 // send props into here to make this work again...
 
-function EditHonorsItem({ fetchDocuments, doc, document, setDocument, description, setDescription, handleDocumentsChange, setEditHonorIsOpen }){
+function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen }){
+
+    const navigate = useNavigate();
 
     //  const { id } = document;
-
     // let { id } = useParams();
 
     console.log(`EditHonorsItem..document.id: ${doc.id}`);
 
-    // useEffect(() => {
-    //     fetch(`/api/documents/${id}`)
-    //     .then((res) => res.json())
-    //     .then((document) => setDocument(document));
-    // }, []);
-
-    // const [description, setDescription] = useState('');
-    // const [file, setFile] = useState('');
+    const [editedDescription, setEditedDescription] = useState(doc.description);
+    const [ document, setDocument ] = useState(null)
+    const [isDocumentPdf, setIsDocumentPdf] = useState(doc.file.endsWith(".pdf"));
+    const [showExistingDocument, setShowExistingDocument] = useState(true);
 
     function handleSubmit(e) {
         e.preventDefault();
         console.log(`handleSubmit updating document: ${doc.id}`);
 
         const formData = new FormData();
-        formData.append("file", document);
-        formData.append("description", description);
+        if (document) {
+            formData.append("file", document);
+        }        
+        formData.append("description", editedDescription);
 
         const configObj = {
             method: "PATCH",
             body: formData
         }
-        fetch(`/api/documents/${doc.id}`, configObj)
-        .then((r) => r.json())
-        .then(fetchDocuments())
-        .then(setEditHonorIsOpen(false));
-        // .then((editedEvent) => handleEditEvent(editedEvent))
-        // .then(navigate(`/events`))        
+
+        fetch(`api/documents/${doc.id}`, configObj)
+        .then((response) => {
+            console.log('document updated successfully');
+            console.log('fetching latest documents 1')
+            setEditHonorIsOpen(false);
+            console.log('fetching latest documents 2')
+            fetchDocuments();
+          })      
     };
 
-    // function handleDocumentsChange (e) {
-    //     console.log(`e.target.files[0]: ${e.target.files[0]}`)
-    //     if (e.target.files[0]) setFile(e.target.files[0]);
-    // };    
+    function handleDocumentsChange (e) {
+        console.log(`e.target.files[0]: ${e.target.files[0]}`)
+        if (e.target.files[0]) { 
+            setDocument(e.target.files[0]); 
+            setShowExistingDocument(false);
+        }
+    };
 
     return(
         <form onSubmit={handleSubmit}>
             <ul>
+            {
+                showExistingDocument && (isDocumentPdf ? <embed src={doc.file} target="_parent" width="500" height="600" /> 
+                    : 
+                <img src={doc.file} width="500" height="600"></img>)
+            }
             <input 
                 type="file" 
                 name="documents"
@@ -62,9 +74,9 @@ function EditHonorsItem({ fetchDocuments, doc, document, setDocument, descriptio
                 name="description"
                 rows='5'
                 cols='30'
-                value={description}
+                value={editedDescription}
                 placeholder="description..."
-                onChange={(e) => { setDescription(e.target.value)}}
+                onChange={(e) => { setEditedDescription(e.target.value)}}
             />
             </ul>
             <button id='submitBtn' type="button" onClick={handleSubmit} method="post">Edit</button>

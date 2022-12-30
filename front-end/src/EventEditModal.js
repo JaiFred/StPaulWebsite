@@ -47,7 +47,7 @@ function EventEditModal({ event, editEventIsOpen, setEditEventIsOpen, handleEdit
 
     const[formData, setFormData] = useState({
         title: "",
-        starts: "",
+        starts: '',
         ends: "",  
         details: "",
         address_line_1: "", 
@@ -56,13 +56,19 @@ function EventEditModal({ event, editEventIsOpen, setEditEventIsOpen, handleEdit
         image: "",       
     });
 
+    console.log(`formData in EventEditModal: ${JSON.stringify(formData)}`);
+    console.log(`Date.parse(event.starts_raw): ${new Date(event.starts_raw)}`)
+
     useEffect(() => {
         fetch(`/api/events/${id}`)
         .then((res) => res.json())
-        .then((event) => setFormData(event));
+        .then((event) => {            
+            const updatedEvent = { ...event, starts: event.starts_raw, ends: event.ends_raw }
+            setFormData(updatedEvent);
+        });
     }, []);
 
-    const { id, title, starts_short, ends_short, details, address_line_1, address_line_2, city, image = "" } = event;
+    const { id, title, starts_raw, starts_short, ends_short, details, address_line_1, address_line_2, city, image = "" } = event;
 
 
     return(

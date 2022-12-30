@@ -4,14 +4,13 @@ import emailjs from "@emailjs/browser"
 
 
 function PrayerRequestsContainer(){
-
         const sendEmail = (e) => {
             e.preventDefault();
             alert("submitted")
     
-            emailjs.sendForm('REACT_EMAILJS_SERVICE_KEY','REACT_EMAILJS_PRAYER_REQUEST_TEMPLATE_KEY', e.target, 'REACT_EMAILJS_PUBLIC_KEY')
+            emailjs.sendForm(process.env.REACT_APP_EMAILJS_SERVICE_KEY, process.env.REACT_APP_EMAILJS_PRAYER_REQUEST_TEMPLATE_KEY, e.target, process.env.REACT_APP_EMAILJS_PUBLIC_KEY)
         }
-    
+
 
     return(
         <div>
