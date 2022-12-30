@@ -34,12 +34,15 @@ function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen }){
             method: "PATCH",
             body: formData
         }
-        fetch(`/api/documents/${doc.id}`, configObj)
-        .then((r) => r.json())        
-        .then(setEditHonorIsOpen(false))
-        .then(navigate(0));
-        // .then((editedEvent) => handleEditEvent(editedEvent))
-        // .then(navigate(`/events`))        
+
+        fetch(`api/documents/${doc.id}`, configObj)
+        .then((response) => {
+            console.log('document updated successfully');
+            console.log('fetching latest documents 1')
+            setEditHonorIsOpen(false);
+            console.log('fetching latest documents 2')
+            fetchDocuments();
+          })      
     };
 
     function handleDocumentsChange (e) {

@@ -10,7 +10,7 @@ module Api
                 @document.file.attach(document_params[:file])
             end
 
-            render json: @event, status: :created #201
+            render json: @document, status: :ok
         end
         
         def show
