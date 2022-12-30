@@ -1,6 +1,6 @@
 import { Link, useNavigate } from "react-router-dom";
 
-import NavBar from "./NavBar";
+import Navbar from "./Navbar";
 import EventCard from './EventCard';
 import SubmitNewEventModal from "./SubmitNewEventModal";
 

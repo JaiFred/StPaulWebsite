@@ -1,7 +1,6 @@
 //Hooks
 import React from "react";
 import { Link } from "react-router-dom";
-import Navbar from 'react-bootstrap/Navbar';
 import Dropdown from 'react-bootstrap/Dropdown';
 import {useEffect} from 'react'
 import { Container } from "react-bootstrap";
@@ -17,7 +16,7 @@ import Hamburger from "./images/Hamburger Button.png"
 import Cross from "./images/Cross.webp"
 
 
-function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, currentUser, setCurrentUser, logoutIsOpen, setLogoutIsOpen, authChecked, setAuthChecked }) {
+function Navbar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, currentUser, setCurrentUser, logoutIsOpen, setLogoutIsOpen, authChecked, setAuthChecked }) {
 
   // <DropdownItem>
   //   <button className='staff-modal-btn' type='button' onClick={() => setLogoutIsOpen(true)}>Logout</button>
@@ -180,4 +179,4 @@ function NavBar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
   )
 }
 
-export default NavBar;
+export default Navbar;
