@@ -14,6 +14,7 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
     const [ deleteHonorIsOpen, setDeleteHonorIsOpen ] = useState(false);
 
     function fetchDocuments() {
+        console.log('Fetching documents from teh backend server !!!');
         fetch('/api/honor_pages', {
             credentials: 'include'
           })
