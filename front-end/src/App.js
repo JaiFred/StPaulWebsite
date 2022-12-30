@@ -15,7 +15,7 @@ import EventsContainer from './EventsContainer';
 import EventInfoPage from './EventInfoPage';
 import BroadcastsContainer from './BroadcastsContainer';
 import NextServicePage from './NextServicePage';
-import NavBar from './NavBar';
+import Navbar from './Navbar';
 import ProfilePage from './ProfilePage';
 import SubscriptionCard from './SubscriptionCard';
 import Footer from './Footer';
@@ -244,7 +244,7 @@ function App() {
   }
   return (
     <div className="App">
-      <NavBar givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen} staffIsOpen={staffIsOpen} setStaffIsOpen={setStaffIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser} logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} authChecked={authChecked} setAuthChecked={setAuthChecked}/>
+      <Navbar givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen} staffIsOpen={staffIsOpen} setStaffIsOpen={setStaffIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser} logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} authChecked={authChecked} setAuthChecked={setAuthChecked}/>
         <Routes>      
           <Route path='/' element={<ChurchLandingAttributes currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>}/>  
           <Route path='/events' element={<EventsContainer currentUser={currentUser} eventMonths={eventMonths} events={events} setEvents={setEvents} showEvents={showEvents} setShowEvents={setShowEvents} handleAddNewEvent={handleAddNewEvent} handleDeleteEvent={handleDeleteEvent} handleEditEvent={handleEditEvent} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen}/>}/>
