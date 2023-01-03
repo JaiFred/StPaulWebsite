@@ -27,7 +27,11 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
         name: '',
     });
     const [paymentMethod, setPaymentMethod] = useState(null);
+    const [paymentOption, PaymentOptionDropdown] = useDropdown("Choose a Payment option", "One Time Payment", "", ["One Time Payment", "Regularly"]);
 
+    console.log(`paymentOption: ${paymentOption}`);
+    console.log(`clientSecretRecurring: ${clientSecretRecurring}`);
+    console.log(`showRecurringForm: ${showRecurringForm}`);
 
     const resetForm = () => {
         setAmount(null);
@@ -39,8 +43,8 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
         setPaymentMethod(null);
     }
 
-    const handleAmountChange = (e) => {     
-        setAmount(e.target.value);        
+    const handleAmountChange = (e) => {
+        setAmount(e.target.value);
     };
 
     const handleEmailChange = (e) => {
@@ -51,27 +55,27 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
         setBillingDetails({...billingDetails, name: e.target.value});
     };
 
+    const validateEmail = (email) => {
+        return email.match(
+          /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/
+        );
+    };
 
     useEffect(() => {
         fetch(`/api/client_secret_recurring?amount=1`)
         .then((r) => r.json())
         .then(res => setClientSecretRecurring(res.client_secret))
-      }, [])  
+      }, [])
 
     const fetchClientSecret = (e) => {
         e.preventDefault();
-        
+
         console.log(`amount: ${amount}`)
 
         if (!(amount && parseFloat(amount) > 0)) {
             setError('Amount must be entered and must be more than zero dollars')
             return
         }
-
-        // if (!billingDetails.email || !billingDetails.name) {
-        //     setError('please fill out your email and name before proceeding')
-        //     return
-        // }
 
         if (!billingDetails.name && billingDetails.email ) {
             setError('please fill out your full name before proceeding')
@@ -93,6 +97,11 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
             return
         }
 
+        if (billingDetails.email && !validateEmail(billingDetails.email)) {
+            setError('Invalid email format!')
+            return
+        }
+
         if (!billingDetails.email && billingDetails.name && (amount && parseFloat(amount) > 0)) {
             setError('please fill out your email before proceeding')
             return
@@ -107,14 +116,12 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
             setError('please fill out your full name and email before proceeding')
             return
         }
-        
-        
-        
+
         setError(null);
 
         setShowAmountForm(false);
 
-        setShowRecurringForm(false);
+        // setShowRecurringForm(false);
 
         // fetch(`/api/client_secret?amount=${amount}`)
         // .then((r) => r.json())
@@ -132,42 +139,18 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
             billing_details: billingDetails
         }
 
-    //     fetch("/api/login", {
-    //     method: "POST",
-    //     headers: {
-    //       "Content-Type": "application/json",
-    //     },
-    //     body: JSON.stringify({
-    //       username: username,
-    //       password: password,
-    //     }),
-    //   })
-
-
         fetch("api/client_secret", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
-              },            
+              },
             body: JSON.stringify(reqBody)
         })
         .then((res) => res.json())
         .then((res) => setClientSecret(res.client_secret))
-          
+
     }
 
-    // if (response.ok) {
-    //     response.json().then((user) => {
-    //       console.log(`I AM HERE: user: ${JSON.stringify(user)}`);
-    //       if (user.errors) {
-    //         console.log(user.errors || 'Wrong credentials!');
-    //         setErrors(user.errors || ['Wrong credentials!']);
-    //       }
-    //       else {
-    //         navigate("/signup_success");
-    //       }
-    //     });
-    
       const options = {
         // passing the client secret obtained from the server
         clientSecret: clientSecret,
@@ -186,10 +169,8 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
               cssSrc: 'https://fonts.googleapis.com/css?family=Roboto',
             },
           ],
-      };  
+      };
 
-
-      
     return(
         <div className='overlay_giving_modal'>
             <Modal className='modal'
@@ -197,13 +178,14 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
             >
             <ModalHeader >
                 <ModalTitle>Saint Paul Baptist Church</ModalTitle>
-                <ModalTitle> <button type="button" onClick={() => {resetForm()}}>X</button></ModalTitle> 
+                <ModalTitle> <button type="button" onClick={() => {resetForm()}}>X</button></ModalTitle>
             </ModalHeader>
             <ModalBody>
                 <div>
                     {error && <p>{error}</p>}
-                    {showAmountForm && 
-                    <div> 
+                    <PaymentOptionDropdown />
+                    { paymentOption == 'One Time Payment' && showAmountForm &&
+                    <div>
                         <h3>One Time Offering</h3>
                         <form onSubmit={fetchClientSecret}>
                             <input
@@ -215,7 +197,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                                 autoComplete="email"
                                 value={billingDetails.email}
                                 onChange={handleEmailChange}
-                            />  
+                            />
                             <input
                                 label="Name"
                                 id="name"
@@ -225,36 +207,36 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                                 autoComplete="name"
                                 value={billingDetails.name}
                                 onChange={handleNameChange}
-                            />    
+                            />
                             <input
                                 type="text"
                                 id="amount"
                                 name="amount"
-                                value={amount} 
-                                onChange={handleAmountChange}               
-                            />                
+                                value={amount}
+                                onChange={handleAmountChange}
+                            />
                             <button id='submitBtn' type="button" onClick={fetchClientSecret}>Confirm Amount</button>
                         </form>
                     </div>}
-                    
-                    { clientSecret &&
+
+                    { paymentOption == 'One Time Payment' && clientSecret &&
                         <Elements stripe={stripePromise} options={options}>
-                            <CheckoutForm 
-                                setGivingIsOpen={setGivingIsOpen} 
-                                setAmount={setAmount} 
-                                setClientSecret={setClientSecret} 
+                            <CheckoutForm
+                                setGivingIsOpen={setGivingIsOpen}
+                                setAmount={setAmount}
+                                setClientSecret={setClientSecret}
                                 setShowAmountForm={setShowAmountForm}
                                 setShowRecurringForm={setShowRecurringForm}
                             />
                         </Elements>
                     }
-                    {showAmountForm === false && amount && parseFloat(amount) > 0 && <div>{billingDetails.name}, you are paying: ${amount}</div>}
+                    {paymentOption == 'One Time Payment' && showAmountForm === false && amount && parseFloat(amount) > 0 && <div>{billingDetails.name}, you are paying: ${amount}</div>}
                 </div>
-                
-                    
+
+
                 <div className="AppWrapper">
-                    { clientSecretRecurring && showRecurringForm && currentUser &&
-                    <div> 
+                    { paymentOption == 'Regularly' && clientSecretRecurring && showRecurringForm && currentUser &&
+                    <div>
                         <h3>Recurring Offering </h3>
                         <Elements stripe={stripePromise} options={optionsRecurring}>
                             <RecurringCheckoutForm currentUser={currentUser} resetForm={resetForm} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod}/>
