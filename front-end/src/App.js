@@ -156,7 +156,6 @@ function App() {
   const [ currentUser, setCurrentUser ] = useState(null)
   const [ events, setEvents ] = useState([]);
   const [ showEvents, setShowEvents ] = useState([]);
-  const [ eventMonths, setEventMonths ] = useState([]);
   const [ givingIsOpen, setGivingIsOpen ] = useState(false);
   const [ staffIsOpen, setStaffIsOpen ] = useState(false);
   const [ addEventIsOpen, setAddEventIsOpen ] = useState(false);
@@ -174,25 +173,6 @@ function App() {
       .then((r) => r.json())
       .then(events => setEvents(events))
   },[])
-
-  useEffect(() => {
-    fetch(`/api/event_months`)
-      .then((r) => r.json())
-      .then(event_months => setEventMonths(event_months))
-  },[])
-
-  console.log(`eventMonths: ${JSON.stringify(eventMonths)}`);
-
-
-  // console.log(currentUser)
-
-  // useEffect(() => {
-  //   fetch('/me', {
-  //     credentials: 'include'
-  //   })
-  //   .then((res) => res.json())
-  //   .then((home) => setCurrentUser(home));
-  //   })
 
   useEffect(() => {
     fetch('/api/me', {
@@ -247,7 +227,7 @@ function App() {
       <Navbar givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen} staffIsOpen={staffIsOpen} setStaffIsOpen={setStaffIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser} logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} authChecked={authChecked} setAuthChecked={setAuthChecked}/>
         <Routes>      
           <Route path='/' element={<ChurchLandingAttributes currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>}/>  
-          <Route path='/events' element={<EventsContainer currentUser={currentUser} eventMonths={eventMonths} events={events} setEvents={setEvents} showEvents={showEvents} setShowEvents={setShowEvents} handleAddNewEvent={handleAddNewEvent} handleDeleteEvent={handleDeleteEvent} handleEditEvent={handleEditEvent} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen}/>}/>
+          <Route path='/events' element={<EventsContainer currentUser={currentUser} events={events} setEvents={setEvents} showEvents={showEvents} setShowEvents={setShowEvents} handleAddNewEvent={handleAddNewEvent} handleDeleteEvent={handleDeleteEvent} handleEditEvent={handleEditEvent} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen}/>}/>
           {/* <Route exact path='/about_us' component={AboutUsContainer} /> */}
           <Route path='/events/:id' element={<EventInfoPage currentUser={currentUser} events={events} setEvents={setEvents}/>}/>
           <Route path='/login' element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} setLogoutIsOpen={setLogoutIsOpen} />}/>

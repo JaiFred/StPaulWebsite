@@ -72,10 +72,6 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
 
         console.log(`amount: ${amount}`)
 
-        if (!(amount && parseFloat(amount) > 0)) {
-            setError('Amount must be entered and must be more than zero dollars')
-            return
-        }
 
         if (!billingDetails.name && billingDetails.email ) {
             setError('please fill out your full name before proceeding')
@@ -114,6 +110,12 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
 
         if (!billingDetails.name || !billingDetails.email && (amount && parseFloat(amount) > 0)) {
             setError('please fill out your full name and email before proceeding')
+            return
+        }
+
+
+        if (!(amount && parseFloat(amount) > 0)) {
+            setError('Amount must be at least $0.50')
             return
         }
 

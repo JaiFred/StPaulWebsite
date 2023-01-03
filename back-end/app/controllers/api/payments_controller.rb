@@ -73,7 +73,7 @@ module Api
                 return
             end
 
-            amount =  params[:amount].to_i * 100
+            amount =  (params[:amount].to_f * 100).to_i
 
             puts "amount: #{amount}"
 
