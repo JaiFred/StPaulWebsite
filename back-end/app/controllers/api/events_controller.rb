@@ -7,20 +7,33 @@ module Api
         #get '/events?month=06'
 
 # Goal:
-# Have each event display with only the day number, month and year on the EventCard page 
+# Have each event display with only the day number, month and year on the EventCard page
 # Have each event display with the day, day number, month, year and time on the EventInfoPage
-# Have a months filter bar that appears when an event within that month is made - you can click on months to show events that take place during the month 
+# Have a months filter bar that appears when an event within that month is made - you can click on months to show events that take place during the month
 
         def index
+            # binding.pry
             @events = if params[:starts_time].present? && params[:ends_time].present?
                 Event.between(params[:starts_time], params[:ends_time])
             elsif (month = params[:month]).present?
-                starts_time = "2022-#{month}-01"
-                ends_time = Date.parse("2022-#{month}-30").end_of_month.to_s
+                year = params[:month].split(" ").last
+                month = params[:month].split(" ").first
+                month_number = Date::MONTHNAMES.index(month)
+
+                starts_time = "#{year}-#{month_number}-01"
+                
+                ends_time = if month == 'February'
+                    Date.parse("#{year}-#{month_number}-28").end_of_month.to_s
+                else
+                    Date.parse("#{year}-#{month_number}-30").end_of_month.to_s
+                end
+                
                 Event.between(starts_time, ends_time)
             else
                 Event.all
             end
+            @events = @events.order(starts: :desc)
+
             render json: @events, status: :ok #200
         end
 
@@ -42,33 +55,24 @@ module Api
                 render json: { errors: event.errors.full_messages }, status: 422
                 return
             end
-                    
-            if event_params[:image].present?                
-                event.image.attach(event_params[:image])       
+
+            if event_params[:image].present?
+                event.image.attach(event_params[:image])
             end
 
             render json: event, status: :created
         end
 
-        def event_months
-            start_months = Event.order(:starts).pluck(:starts).map{ |s| s.strftime("%B") }.uniq
-            end_months = Event.order(:ends).pluck(:ends).map{ |s| s.strftime("%B") }.uniq
-            
-            @event_months = (start_months + end_months).uniq
-
-            render json: @event_months, status: :ok
-        end        
-
         def update
             @event = Event.find(params[:id])
-            
+
             unless @event.update(event_params.except(:image))
                 render json: { errors: @event.errors.full_messages }, status: 422
                 return
             end
-            
-            if event_params[:image].present?                
-                @event.image.attach(event_params[:image])   
+
+            if event_params[:image].present?
+                @event.image.attach(event_params[:image])
             end
 
             render json: @event, status: :ok

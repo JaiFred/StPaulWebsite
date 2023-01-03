@@ -20,9 +20,7 @@ Rails.application.routes.draw do
       resources :events
       resources :subscriptions
       resources :future_subscriptions
-      resources :users
-
-      get '/event_months', to: "events#event_months"
+      resources :users      
       
       post '/client_secret', to: "payments#client_secret"
       get '/client_secret_recurring', to: "payments#client_secret_recurring"
