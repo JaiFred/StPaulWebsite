@@ -21,13 +21,13 @@ module Api
                 month_number = Date::MONTHNAMES.index(month)
 
                 starts_time = "#{year}-#{month_number}-01"
-                
+
                 ends_time = if month == 'February'
                     Date.parse("#{year}-#{month_number}-28").end_of_month.to_s
                 else
                     Date.parse("#{year}-#{month_number}-30").end_of_month.to_s
                 end
-                
+
                 Event.between(starts_time, ends_time)
             else
                 Event.all

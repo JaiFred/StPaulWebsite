@@ -2,15 +2,17 @@ import { useState } from 'react';
 import { Link } from "react-router-dom";
 
 import GivingModal from "./GivingModal";
-
+import background from './images/trees-wallpaper-green.jpeg'
+import { Parallax } from 'react-parallax';
+import './ChurchLanding.scss'
 
 // Child Component of App.js
 
 function ChurchLanding({ currentUser, givingIsOpen, setGivingIsOpen}){
   
 
-  return(
-    <div class="homepage-background">
+  return(<>
+    <Parallax bgImage={background} bgImageAlt="homepage background" strength={-200} className={'homepage-background'}>
       <div className="homepage-links-container">
       <button>
         <div className="big-bulletin-button">
@@ -48,7 +50,8 @@ function ChurchLanding({ currentUser, givingIsOpen, setGivingIsOpen}){
         </p>
 
       </div>   
-    </div>
+    </Parallax>
+    </>
   )
 }
 export default ChurchLanding

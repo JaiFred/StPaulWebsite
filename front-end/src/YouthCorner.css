@@ -1,0 +1,8 @@
+
+
+.youth-corner-overlay {
+    background-image: url(images/wallpaperflare.com_wallpaper.jpg);
+    background-position: center center;
+    height: 800px;
+    perspective: -1px;
+}

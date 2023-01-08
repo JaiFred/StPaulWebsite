@@ -25,10 +25,12 @@ import ContactUsPage from './ContactUsPage';
 import HonorsPage from './HonorsPage';
 import EditHonorsDocuments from './EditHonorsItem';
 import PasswordRecoveryPage from './PasswordRecoveryPage';
+import YouthCorner from './YouthCorner';
 
 
 // CSS
 import './App.css';
+import './YouthCorner.css';
 
 //Goal:
 
@@ -246,6 +248,7 @@ function App() {
           <Route path='/next_service' element={<NextServicePage/>}/>
           <Route path='/password_recovery_success' element={<PasswordRecoveryRequestSuccess/>}/>
           <Route path='/update_email_success' element={<UpdateEmailSuccessPage/>}/>
+          <Route path='/youth_corner' element={<YouthCorner/>}/>
 
         </Routes>
         {/* <button className='giving-modal-btn' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
