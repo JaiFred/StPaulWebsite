@@ -2,7 +2,7 @@
 import { Elements, CardElement, useStripe, useElements, PaymentElement } from "@stripe/react-stripe-js";
 import {useState, useEffect} from 'react'
 import {loadStripe} from '@stripe/stripe-js';
-import "./stripeElementStyles.css";
+import "./stripeElementStyles.scss";
 import useDropdown from "./useDropdown";
 import moment from 'moment';
 
@@ -81,7 +81,7 @@ const Field = ({
 );
 
 const SubmitButton = ({processing, error, children, disabled}) => (
-  <button
+  <button 
     className={`SubmitButton ${error ? 'SubmitButton--error' : ''}`}
     type="submit"
     disabled={processing || disabled}
@@ -253,7 +253,8 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
     }
   }
 
-  return paymentMethod ? (
+  return  <div className="stripe-container">
+  {paymentMethod ? (
     <div className="Result">
       <div className="ResultTitle" role="alert">
         Payment successful
@@ -344,7 +345,8 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
         { amount && frequency && frequency == 'BiWeekly' && <p>Pay {amount} every two weeks, starting the {biWeeklyPaymentDate}. Subscription scheduled for {moment(paymentStartDate).format('lll')}</p> }
       </SubmitButton>
     </form>
-  );
+  )}
+  </div>
 };
 
 export default RecurringCheckoutForm;

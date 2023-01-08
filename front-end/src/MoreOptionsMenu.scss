@@ -1,0 +1,15 @@
+.more-options-menu {
+    &-icon {
+        width: 30px
+    }
+
+    &-button {
+        background-color: transparent;
+        padding: 0;
+        border: 0;
+
+        &:after {
+            content: none;
+        }
+    }
+}

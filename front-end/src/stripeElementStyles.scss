@@ -1,3 +1,5 @@
+.stripe-container {
+
 * {
     box-sizing: border-box;
   }
@@ -241,6 +243,16 @@ label {
   margin-top: 10px;
 } */
 
+
+/* .stripe-contaienr-title
+
+.stripe-container {
+
+ &-title {
+  color:Red;pap
+ } */
+
+
 button:hover {
   color: #fff;
   cursor: pointer;
@@ -331,4 +343,5 @@ More info: https://stripe.com/docs/stripe-js/reference#element-options
 .StripeElementEPS,
 .StripeElementFpx {
   padding: 0;
+}
 }

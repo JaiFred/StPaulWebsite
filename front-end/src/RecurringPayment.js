@@ -2,7 +2,7 @@
 import { Elements, CardElement, useStripe, useElements, PaymentElement } from "@stripe/react-stripe-js";
 import {useState, useEffect} from 'react'
 import {loadStripe} from '@stripe/stripe-js';
-import "./stripeElementStyles.css";
+import "./stripeElementStyles.scss";
 import RecurringCheckoutForm from "./RecurringCheckoutForm";
 
 
@@ -32,6 +32,7 @@ function RecurringPayment(){
       };     
     
     return(
+      <div className="stripe-container">
         <div className="AppWrapper">
         { clientSecret && 
         <Elements stripe={stripePromise} options={options}>
@@ -39,6 +40,7 @@ function RecurringPayment(){
         </Elements>
         }
         </div>
+      </div>
     )
 }
 
