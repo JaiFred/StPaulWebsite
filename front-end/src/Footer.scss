@@ -1,0 +1,48 @@
+@import './bootstrap-utils';
+
+.footer {
+    color: #fff;
+    text-align: left;
+    background-color: #1A1919;
+
+    &-top {
+        display: flex;
+        justify-content: space-between;
+        flex-direction: column;
+
+        @include media-breakpoint-up(md) {
+            flex-direction: row;
+        }
+    }
+
+    &-contact-info {
+        max-width: 250px;
+    }
+
+    &-menu {
+        display:flex;
+            flex-direction: column;
+        
+
+
+        &-item {
+            color:#fff;
+            text-decoration: none;
+            font-weight: bold;
+            background-color: transparent;
+            border: 0;
+            padding: 0;
+
+            &:hover {
+                color: grey
+            }
+        }
+    }
+
+    &-bottom {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+
+}

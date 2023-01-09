@@ -148,14 +148,6 @@ div .navbar ul li a.main{
   padding-left: 10px;
 }
 
-
-.staff-modal-btn {
-  color: grey;
-  padding-left: 10px;
-  border: none;
-  background: none;
-}
-
 a.dropdownitem {
   display: block;
   padding-left: 10px;
@@ -165,31 +157,6 @@ a.dropdownitem {
 a.dropdownitem:hover {
   color: gray;
 
-}
-
-.admin-nav-links li a.main {
-  color: white;
-  font-weight: regular;
-  text-decoration: none;
-}
-
-.admin-nav-links li a:hover{
-  color: grey;
-}
-
-.navbar-giving-modal-btn {
-  color: white;
-  border: none;
-  background: none;
-  padding-right: 0px;
-  padding-left: 10px;
-}
-
-
-.navbar-giving-modal-btn:hover{
-  color: grey;
-  border: none;
-  background: none;
 }
 
 .navbar-banner-container {
@@ -276,16 +243,6 @@ h3.navbar-banner {
 }
 
 /* Would like to set up parallax for the backgrounds */
-/* Homepage background */
-.homepage-background {
-  height: 800px;
-  perspective: -1px;
-}
-
-
-.homepage-links-container {
-  padding-top: 100px;
-}
 
 .bible-dec-background {
   margin-top: 100px;
@@ -298,12 +255,6 @@ h3.navbar-banner {
   background: grey;
 }
 
-.footer {
-  background-color: rgba(26, 25, 25, 1);
-  margin: auto 0;
-  height: 200px;
-  width: 100%;
-}
 
 .honors {
 background-color: white  ;

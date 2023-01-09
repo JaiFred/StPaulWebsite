@@ -1,3 +1,5 @@
+//Hooks
+import { Link, Navigate, Routes, Route } from 'react-router-dom'
 import React, {useState, useEffect} from "react";
 import ReactPlayer, { controls } from "react-player";
 
@@ -32,7 +34,11 @@ import ReactPlayer, { controls } from "react-player";
             return(
                 <div>
                     {videos.map(url => <div><ReactPlayer url={url} controls/></div>)}
+                    <div>
+                        <Link to='/' className="main">back to home</Link>
+                    </div>
                 </div>
+                
             )
     
     }

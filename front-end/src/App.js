@@ -159,7 +159,8 @@ function App() {
   const [ events, setEvents ] = useState([]);
   const [ showEvents, setShowEvents ] = useState([]);
   const [ givingIsOpen, setGivingIsOpen ] = useState(false);
-  const [ staffIsOpen, setStaffIsOpen ] = useState(false);
+  const [ loginIsOpen, setLoginIsOpen ] = useState(false);
+  const [ signUpIsOpen, setSignUpIsOpen ] = useState(false);
   const [ addEventIsOpen, setAddEventIsOpen ] = useState(false);
   const [ logoutIsOpen, setLogoutIsOpen ] = useState(false);
   const [ addHonorIsOpen, setAddHonorIsOpen ] = useState(false);
@@ -226,13 +227,24 @@ function App() {
   }
   return (
     <div className="App">
-      <Navbar givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen} staffIsOpen={staffIsOpen} setStaffIsOpen={setStaffIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser} logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} authChecked={authChecked} setAuthChecked={setAuthChecked}/>
+      <Navbar givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen} signUpIsOpen={signUpIsOpen} setSignUpIsOpen={setSignUpIsOpen} loginIsOpen={loginIsOpen} setLoginIsOpen={setLoginIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser} logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} authChecked={authChecked} setAuthChecked={setAuthChecked}/>
         <Routes>      
           <Route path='/' element={<ChurchLandingAttributes currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>}/>  
           <Route path='/events' element={<EventsContainer currentUser={currentUser} events={events} setEvents={setEvents} showEvents={showEvents} setShowEvents={setShowEvents} handleAddNewEvent={handleAddNewEvent} handleDeleteEvent={handleDeleteEvent} handleEditEvent={handleEditEvent} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen}/>}/>
           {/* <Route exact path='/about_us' component={AboutUsContainer} /> */}
-          <Route path='/events/:id' element={<EventInfoPage currentUser={currentUser} events={events} setEvents={setEvents}/>}/>
-          <Route path='/login' element={<Login currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} setLogoutIsOpen={setLogoutIsOpen} />}/>
+          <Route path='/events/:id' 
+            element={<EventInfoPage 
+            currentUser={currentUser} 
+            events={events} 
+            setEvents={setEvents}
+          />}/>
+          <Route path='/login' 
+            element={<Login 
+            currentUser={currentUser} 
+            setCurrentUser={setCurrentUser} 
+            authChecked={authChecked} 
+            setLogoutIsOpen={setLogoutIsOpen} 
+          />}/>
           <Route path='/signup' element={<SignUp currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} setLogoutIsOpen={setLogoutIsOpen}/>}/>
           <Route path='/signup_success' element={<SignUpSuccessPage/>}/>
           <Route path='/profile' element={<ProfilePage currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} editProfileIsOpen={editProfileIsOpen} setEditProfileIsOpen={setEditProfileIsOpen} accountDeleteIsOpen={accountDeleteIsOpen} setAccountDeleteIsOpen={setAccountDeleteIsOpen}/>}/>
@@ -253,7 +265,19 @@ function App() {
         </Routes>
         {/* <button className='giving-modal-btn' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
         <GivingModal givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/> */}
-      <Footer givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen} staffIsOpen={staffIsOpen} setStaffIsOpen={setStaffIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser} logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} authChecked={authChecked} setAuthChecked={setAuthChecked}/>
+      <Footer 
+        givingIsOpen={givingIsOpen} 
+        setGivingIsOpen={setGivingIsOpen} 
+        signUpIsOpen={signUpIsOpen} 
+        setSignUpIsOpen={setSignUpIsOpen} 
+        loginIsOpen={loginIsOpen} 
+        setLoginIsOpen={setLoginIsOpen} 
+        currentUser={currentUser} 
+        setCurrentUser={setCurrentUser} 
+        logoutIsOpen={logoutIsOpen} 
+        setLogoutIsOpen={setLogoutIsOpen} 
+        authChecked={authChecked} 
+        setAuthChecked={setAuthChecked}/>
     </div>
   );
 }
