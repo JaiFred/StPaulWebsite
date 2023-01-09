@@ -1,5 +1,7 @@
+//Hooks
+import { Link, Navigate, Routes, Route } from 'react-router-dom'
 
-
+// CSS
 import PastorBrown from "./images/Pastor.webp"
 import PastorBullock from "./images/Pastorpic.JPG"
 // Child Component of App.js
@@ -29,6 +31,10 @@ function AboutPage(){
                         <img className="pastor-bullock" src={PastorBullock}></img>
                     </li>
                 </ul>
+            
+            <div>
+                <Link to='/' className="main">back to home</Link>
+            </div>
             
 
             </div>

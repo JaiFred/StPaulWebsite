@@ -1,0 +1,121 @@
+@import '../bootstrap-utils';
+
+.homepage-background {
+    .react-parallax-bgimage {
+        width: 100% !important;
+        height: 150% !important;
+        object-fit: cover;
+    }
+}
+
+.homepage-big-buttons {
+    padding-top: 50px;
+
+    .container {
+        max-width: 80%;
+        @include media-breakpoint-up(lg) {
+            max-width: 1050px;
+        }
+    }
+    .homepage-big-button {
+        border-radius: 50px;
+        border: 1px solid #FFFFFF;
+        font-size: 50px;
+        background-size: cover;
+        display:block;
+        overflow: hidden;
+        max-width: 400px;
+        margin: 0 auto 30px;
+        line-height: 1;
+
+
+        @include media-breakpoint-up(sm) {
+            font-size: 40px;
+        }
+
+        @include media-breakpoint-up(md) {
+            font-size: 50px;
+        }
+
+        @include media-breakpoint-up(lg) {
+            font-size: 70px;
+            margin: 0 auto 20%;
+        }
+
+        &-outer {
+            padding-top:100%;
+            position: relative;
+        }
+        
+        &-inner {
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100%;
+            height: 100%;
+            text-decoration: none;
+            color: #fff;
+            background: transparent;
+            border: 0;
+            display:flex;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+        }
+
+        &-dim {
+            position: absolute;
+            top:0;
+            left:0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(black, 0.5);
+        }
+
+        &-icon {
+            width: 80px;
+
+            @include media-breakpoint-up(md) {
+                width: 160px;
+            }
+        }
+
+        &.bulletin {
+            background-image: url('../images/bulletin-calendar.jpeg');
+
+            .homepage-big-button-inner {
+                font-size: 76%;
+            }
+
+        }
+
+        &.giving {
+            background-image: url('../images/Giving.jpeg');
+
+            .homepage-big-button-inner {
+                font-size: 76%;
+            }
+
+        }
+
+        &.broadcasts {
+            background-image: url('../images/Broadcasts.jpeg');
+
+            .homepage-big-button-inner {
+                font-size: 76%;
+            }
+
+        }
+
+        &.prayer-requests {
+            background-image: url('../images/prayer-request.jpeg');
+
+            .homepage-big-button-inner {
+                font-size: 71%;
+                margin-top: 5px;
+            }
+        }
+    }
+
+    
+}

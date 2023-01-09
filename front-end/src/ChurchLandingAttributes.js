@@ -1,7 +1,7 @@
 import { useState, useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom'
 
-import ChurchLanding from './ChurchLanding';
+import ChurchLanding from './ChurchLanding/ChurchLanding';
 import EventsContainer from './EventsContainer';
 import GivingModal from './GivingModal';
 import EventInfoPage from './EventInfoPage';

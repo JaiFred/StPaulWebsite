@@ -1,0 +1,142 @@
+@import './bootstrap-utils';
+/* button on hamburger dropdown */
+.navbar {
+    padding-bottom: 30px;
+
+    &-outer {
+        display:flex;
+        justify-content: center;
+        flex-wrap: wrap;
+        align-items: center;
+
+
+        @include media-breakpoint-up(md) {
+            justify-content: flex-end;
+            flex-direction: row;
+        }
+    }
+
+    &-collapse {
+        flex:1 0 100%;
+
+        @include media-breakpoint-up(md) {
+            flex:initial;
+        }
+    }
+
+    .navbar-toggler-wrapper {
+        flex:1 0 100%;
+
+        @include media-breakpoint-up(md) {
+            flex:initial;
+        }
+    }
+
+
+
+    .hamburger-button {
+        border: none;
+        background: none;
+        content: none;
+        padding-top: -30px;
+        padding-right: 0px;
+        padding-left: 10px;
+        height: 30px; 
+        width: 45px;
+        position: relative;
+        box-shadow: none;
+        margin-bottom:10px;
+
+        @include media-breakpoint-up(md) {
+            margin-bottom: 0;
+        }
+      
+    
+      &:hover &-line {
+        background-color: blue;
+      }
+      
+      /* Would like to make an animated hamburger */
+      /* hides arrow on hamburger dropdown */
+        &::after{
+        content: none;
+      }
+    
+    
+        &-line {
+            background-color: white;
+            height: 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            border-radius: 20px;
+            transition: all 0.3s ease-in-out; 
+            opacity: 1;
+        
+        
+            &:nth-child(2) {
+                top: 50%;
+                transform: translateY(-50%);
+            }
+            &:nth-child(3) {
+                bottom: 0;
+                top: auto;
+            }
+        }
+
+
+        &:not(.collapsed) {
+            .hamburger-button-line:nth-child(2) {
+                transform: translateX(100px);
+                opacity: 0;
+            }
+            
+            .hamburger-button-line:nth-child(1) {
+                bottom: auto;
+                top: 50%;
+                transform: translateY(-50%) rotate(45deg);
+                transform-origin: center;
+            }
+            
+            .hamburger-button-line:nth-child(3) {
+                top: auto;
+                bottom: 50%;
+                transform: translateY(50%) rotate(-45deg);
+                transform-origin: center;
+            }
+        }
+
+
+
+    }
+
+    &-nav {
+        .nav-link {
+            margin: auto;
+            color: white;
+            font-weight: regular;
+            font-size: 14px;
+            text-decoration: none;
+            transition: all 0.3s ease-in-out;
+
+              
+             &:hover{
+                color: grey;
+                transform: translateY(-1px) scale(1.1);
+                
+              }
+        }
+        
+
+        .navbar-giving-modal-btn{
+            width: 100%;
+            border: none;
+            background: none;
+
+            @include media-breakpoint-up(md) {
+                width: auto;
+            }
+        }
+    }
+}

@@ -2,22 +2,22 @@ import { Link } from 'react-router-dom'
 import { Modal, ModalHeader, ModalFooter, ModalTitle, Button } from 'react-bootstrap'
 
 
-function LoginModal({ loginIsOpen, setLoginIsOpen }){
+function SignUpModal({ signUpIsOpen, setSignUpIsOpen }){
 
     return(
         <div className='overlay_staff_modal'>
             <Modal className='modal'
-                show={ loginIsOpen }
+                show={ signUpIsOpen }
                 // hide={() => {setIsOpen(false)}}
             >
                 <ModalHeader >
-                    <ModalTitle>Do you wish to Login</ModalTitle>
+                    <ModalTitle>Do you wish to Sign Up?</ModalTitle>
                 </ModalHeader>
                     <ModalFooter> 
-                        <Link to='/login'>
-                        <button type="button" onClick={() => {setLoginIsOpen(false)}}>yes</button>
+                        <Link to='/signup'>
+                        <button type="button" onClick={() => {setSignUpIsOpen(false)}}>yes</button>
                         </Link>
-                        <button type="button" onClick={() => {setLoginIsOpen(false)}}>No</button> 
+                        <button type="button" onClick={() => {setSignUpIsOpen(false)}}>No</button> 
                     </ModalFooter> 
 
             </Modal>
@@ -26,4 +26,4 @@ function LoginModal({ loginIsOpen, setLoginIsOpen }){
 
 }
 
-export default LoginModal
+export default SignUpModal

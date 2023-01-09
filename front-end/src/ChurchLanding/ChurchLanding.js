@@ -1,10 +1,11 @@
 import { useState } from 'react';
 import { Link } from "react-router-dom";
 
-import GivingModal from "./GivingModal";
-import background from './images/trees-wallpaper-green.jpeg'
+
+import background from '../images/trees-wallpaper-green.jpeg'
 import { Parallax } from 'react-parallax';
 import './ChurchLanding.scss'
+import { HomepageBigButtons } from './HomepageBigButtons/HomepageBigButtons';
 
 // Child Component of App.js
 
@@ -13,28 +14,7 @@ function ChurchLanding({ currentUser, givingIsOpen, setGivingIsOpen}){
 
   return(<>
     <Parallax bgImage={background} bgImageAlt="homepage background" strength={-200} className={'homepage-background'}>
-      <div className="homepage-links-container">
-      <button>
-        <div className="big-bulletin-button">
-          <button className="main"><a href='/events' >Bulletin</a></button>
-          {/* <Link to='/events'>Bulletin</Link> */}
-        </div>
-      </button>
-        {/* <div className="big-Giving-button"> */}
-        <button className="big-giving-modal-btn" type="button" onClick={() => setGivingIsOpen(true)}>Giving</button>
-            <GivingModal currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>
-        {/* </div> */}
-      <button>
-        <div className="big-broadcasts-button">
-          <Link to='/broadcasts'>Broadcasts</Link>
-        </div>
-      </button>
-      <button>
-        <div className="big-Prayer-button">
-          <Link to='/prayer_requests'>Prayer Requests</Link>
-        </div>
-      </button>
-      </div>
+      <HomepageBigButtons currentUser={currentUser} setGivingIsOpen={setGivingIsOpen} givingIsOpen={givingIsOpen}/>
       <div className="bible-dec-background">
         <h1>
         Bible Declaration

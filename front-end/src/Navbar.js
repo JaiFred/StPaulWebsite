@@ -8,13 +8,14 @@ import { Container } from "react-bootstrap";
 //components
 import GivingModal from "./GivingModal";
 
+//CSS
 import Hamburger from "./images/Hamburger Button.png"
 import Cross from "./images/Cross.webp"
-import "./Navbar.css"
+import "./Navbar.scss"
 import { MoreOptionsMenu } from "./MoreOptionsMenu";
 
 
-function Navbar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, currentUser, setCurrentUser, logoutIsOpen, setLogoutIsOpen, authChecked, setAuthChecked }) {
+function Navbar({givingIsOpen, signUpIsOpen, setSignUpIsOpen, loginIsOpen, setLoginIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, currentUser, setCurrentUser, logoutIsOpen, setLogoutIsOpen, authChecked, setAuthChecked }) {
 
   // <DropdownItem>
   //   <button className='staff-modal-btn' type='button' onClick={() => setLogoutIsOpen(true)}>Logout</button>
@@ -40,96 +41,71 @@ function Navbar({givingIsOpen, setGivingIsOpen, staffIsOpen, setStaffIsOpen, cur
   return (
     <>
     <div className="header">
-      { currentUser ? (
-                <nav className="navbar navbar-expand-md">
-                <Link to='/'>
-                <img src={Cross} className="cross"></img>
-                <h1 className="title">St Paul Baptist Church</h1>
-                </Link>
-                <div className="admin-name-container"> 
-                <ul className="name-container-list">
-                  <li className="admin-greeting">Hello</li>
-                  <li className="admin-name">{firstName}</li>
-                </ul>
-                </div>
-                <button class="navbar-toggler collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#churchNavBar" aria-controls="churchNavBar" aria-expanded="false" aria-label="Toggle navigation">
-        <span class="navbar-toggler-icon"></span>
-      </button>  
-  <div class="navbar-collapse collapse" id="churchNavBar">
-            {/* <div className="non-admin-nav-container"> */}
-              <ul className=" navbar-nav">
-                <li> 
-                  <Link to='/about' className="main">About</Link>
-                </li>        
-                <li> 
-                  <a href='/events' className="main">Bulletin</a>
-                  {/* <Link to='/events' className="main">Bulletin</Link>  */}
-                </li >
-                <li>
-                  <Link to='/prayer_requests' className="main">Prayer Requests</Link>
-                </li>
-                <li>
-                  <Link to='/next_service' className="main">Next Service</Link>
-                </li>
-                <li>
-                  <button className='navbar-giving-modal-btn' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
-                  <GivingModal currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>
-                </li >
-              </ul>
-              {/* </nav>  */}
-              </div>
-              <MoreOptionsMenu currentUser={currentUser} staffIsOpen={staffIsOpen} setStaffIsOpen={setStaffIsOpen} logoutIsOpen={logoutIsOpen} 
-                setCurrentUser={setCurrentUser} setLogoutIsOpen={setLogoutIsOpen}/>
-              </nav>
-                    
-                   ) : ( 
 
-        <div className="navbar">
-          <Link to='/'>
-          <img src={Cross} className="cross"></img>
-          <h1 className="title">St Paul Baptist Church</h1>
-          </Link>  
-      <nav className="non-admin-nav-container">
-        <ul className="non-admin-nav-links">
-          <li> 
-            <Link to='/about' className="main">About</Link>
-          </li>        
-          <li> 
-            <a href='/events' className="main">Bulletin</a>
-            {/* <Link to='/events' className="main">Bulletin</Link>  */}
-          </li >
-          <li>
-            <Link to='/prayer_requests' className="main">Prayer Requests</Link>
-          </li>
-          <li>
-            <Link to='/next_service' className="main">Next Service</Link>
-          </li>
-          <li>
-            <button className='navbar-giving-modal-btn' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
-            <GivingModal currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>
-          </li >
-        </ul>
-          <MoreOptionsMenu currentUser={currentUser} staffIsOpen={staffIsOpen} setStaffIsOpen={setStaffIsOpen} logoutIsOpen={logoutIsOpen} 
-            setCurrentUser={setCurrentUser} setLogoutIsOpen={setLogoutIsOpen}/>
-        </nav> 
+      <nav className="navbar navbar-expand-md navbar-dark">
+        <Link to='/' className="navbar-brand" title="home" alt="home" >
+        <img src={Cross} className="cross"></img>
+        <h1 className="title">St Paul Baptist Church</h1>
+        </Link>
+          {currentUser ? 
+          <div className="admin-name-container"> 
+            <ul className="name-container-list">
+              <li className="admin-greeting">Hello</li>
+              <li className="admin-name">{firstName}</li>
+            </ul>
+          </div> : '' }
+         <div class="navbar-outer">
+          <div className="navbar-toggler-wrapper">
+        <button class="navbar-toggler collapsed hamburger-button" type="button" data-bs-toggle="collapse" data-bs-target="#churchNavBar" aria-controls="churchNavBar" aria-expanded="false" aria-label="Toggle navigation">
+          <div className="hamburger-button-line"></div>
+          <div className="hamburger-button-line"></div> 
+          <div className="hamburger-button-line"></div>
+         </button>  
+         </div>
+        <div class="navbar-collapse collapse" id="churchNavBar">
+           
+          <ul className=" navbar-nav">
+            <li className="nav-item"> 
+              <Link to='/about' className="nav-link">About</Link>
+            </li>        
+            <li className="nav-item"> 
+              <a href='/events' className="nav-link">Bulletin</a>
+              {/* <Link to='/events' className="main">Bulletin</Link>  */}
+            </li >
+            <li className="nav-item">
+              <Link to='/prayer_requests' className="nav-link">Prayer Requests</Link>
+            </li>
+            <li className="nav-item">
+              <Link to='/next_service' className="nav-link">Next Service</Link>
+            </li>
+            <li className="nav-item">
+              <button className='navbar-giving-modal-btn nav-link' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
+              <GivingModal currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>
+            </li >
+          </ul>
         </div>
-        )}
-        
-        {/* </Container>
-        </Navbar> */}
-        
-    </div>
-
-        <div className="navbar-banner-container">
-        <h3 className="navbar-banner">Impacting lives for God's kingdom</h3>
+          <MoreOptionsMenu  
+            currentUser={currentUser} 
+            setCurrentUser={setCurrentUser} 
+            loginIsOpen={loginIsOpen} 
+            setLoginIsOpen={setLoginIsOpen} 
+            signUpIsOpen={signUpIsOpen} 
+            setSignUpIsOpen={setSignUpIsOpen}
+            logoutIsOpen={logoutIsOpen}  
+            setLogoutIsOpen={setLogoutIsOpen}
+          />
         </div>
+      </nav>
+      <div className="navbar-banner-container">
+      <h3 className="navbar-banner">Impacting lives for God's kingdom</h3>
+      </div>
+  </div>
       
 </>
-  )
+)
 }
 
 export default Navbar;
-
 
 /*
 <Dropdown className="hamburger">

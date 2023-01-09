@@ -25,7 +25,7 @@ function PrayerRequestsContainer(){
             id="who"
             name="who-input"
             // value=
-            placeholder="friend, mom, dad, spouse, me, etc..."
+            placeholder="Type name... "
         />
         <label htmlFor="what-input">What is their relationship to you?</label>
         <input
@@ -34,7 +34,7 @@ function PrayerRequestsContainer(){
             id="what"
             name="what-input"
             // value=
-            placeholder="(optional) or leave blank if request is for you..."
+            placeholder="(optional: friend, mom, dad, spouse, me, etc...) or leave blank if request is for you..."
         />
         <h2>Prayer Details</h2>
         <textarea
