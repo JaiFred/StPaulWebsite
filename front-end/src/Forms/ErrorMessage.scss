@@ -1,0 +1,9 @@
+.error-message {
+    display:flex;
+    align-items: center;
+    margin-bottom: 24px;
+
+    &-message {
+        margin-left: 10px;
+    }
+}

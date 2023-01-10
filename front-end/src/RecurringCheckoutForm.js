@@ -5,6 +5,9 @@ import {loadStripe} from '@stripe/stripe-js';
 import "./stripeElementStyles.scss";
 import useDropdown from "./useDropdown";
 import moment from 'moment';
+import { Input } from "./Forms/Input";
+import { ErrorMessage } from "./Forms/ErrorMessage";
+import './RecurringCheckoutForm.scss';
 
 const FREQUENCY_OPTIONS = [
   'Monthly', 
@@ -28,7 +31,7 @@ const CARD_OPTIONS = {
   style: {
     base: {
       iconColor: '#c4f0ff',
-      color: '#fff',
+      color: '#000',
       fontWeight: 500,
       fontFamily: 'Roboto, Open Sans, Segoe UI, sans-serif',
       fontSize: '16px',
@@ -48,7 +51,7 @@ const CARD_OPTIONS = {
 };
 
 const CardField = ({onChange}) => (
-  <div className="FormRow">
+  <div className="card-field">
     <CardElement options={CARD_OPTIONS} onChange={onChange} />
   </div>
 );
@@ -82,28 +85,12 @@ const Field = ({
 
 const SubmitButton = ({processing, error, children, disabled}) => (
   <button 
-    className={`SubmitButton ${error ? 'SubmitButton--error' : ''}`}
+    className={`btn recurring-submit ${error ? 'btn-danger' : 'btn-pink'}`}
     type="submit"
     disabled={processing || disabled}
   >
     {processing ? 'Processing...' : children}
   </button>
-);
-
-const ErrorMessage = ({children}) => (
-  <div className="ErrorMessage" role="alert">
-    <svg width="16" height="16" viewBox="0 0 17 17">
-      <path
-        fill="#48a4ff"
-        d="M8.5,17 C3.80557963,17 0,13.1944204 0,8.5 C0,3.80557963 3.80557963,0 8.5,0 C13.1944204,0 17,3.80557963 17,8.5 C17,13.1944204 13.1944204,17 8.5,17 Z"
-      />
-      <path
-        fill="#ff3f3f"
-        d="M8.5,7.29791847 L6.12604076,4.92395924 C5.79409512,4.59201359 5.25590488,4.59201359 4.92395924,4.92395924 C4.59201359,5.25590488 4.59201359,5.79409512 4.92395924,6.12604076 L7.29791847,8.5 L4.92395924,10.8739592 C4.59201359,11.2059049 4.59201359,11.7440951 4.92395924,12.0760408 C5.25590488,12.4079864 5.79409512,12.4079864 6.12604076,12.0760408 L8.5,9.70208153 L10.8739592,12.0760408 C11.2059049,12.4079864 11.7440951,12.4079864 12.0760408,12.0760408 C12.4079864,11.7440951 12.4079864,11.2059049 12.0760408,10.8739592 L9.70208153,8.5 L12.0760408,6.12604076 C12.4079864,5.79409512 12.4079864,5.25590488 12.0760408,4.92395924 C11.7440951,4.59201359 11.2059049,4.59201359 10.8739592,4.92395924 L8.5,7.29791847 L8.5,7.29791847 Z"
-      />
-    </svg>
-    {children}
-  </div>
 );
 
 const ResetButton = ({onClick}) => (
@@ -138,11 +125,11 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
     name: '',
   });
 
-  const [frequency, FrequencyDropDown] = useDropdown("Choose a Frequency", "Monthly", "", FREQUENCY_OPTIONS);
-  const [amount, AmountDropDown] = useDropdown("Choose an Amount", "$5", "", AMOUNT_OPTIONS);
-  const [paymentDate, PaymentDaysDropDown] = useDropdown("On the ", "1st", " of the month", ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th" ])
-  const [biWeeklyPaymentDate, BiWeeklyPaymentDropDown] = useDropdown("Starting on the", "1st", "of the month", ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th"])
-  const [weekday, WeekdayDropDown] = useDropdown("Every ", "monday", " of the week", ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"])
+  const [frequency, FrequencyDropDown] = useDropdown("Choose a Frequency", "Monthly", "", FREQUENCY_OPTIONS, true);
+  const [amount, AmountDropDown] = useDropdown("Choose an Amount", "$5", "", AMOUNT_OPTIONS, true);
+  const [paymentDate, PaymentDaysDropDown] = useDropdown("On the ", "1st", " of the month", ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th" ], true)
+  const [biWeeklyPaymentDate, BiWeeklyPaymentDropDown] = useDropdown("Starting on the", "1st", "of the month", ["1st", "2nd", "3rd", "4th", "5th", "6th", "7th", "8th", "9th", "10th", "11th", "12th", "13th", "14th", "15th", "16th", "17th", "18th", "19th", "20th", "21st", "22nd", "23rd", "24th", "25th", "26th", "27th", "28th"], true)
+  const [weekday, WeekdayDropDown] = useDropdown("Every ", "monday", " of the week", ["Sunday", "Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday"], true)
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -168,6 +155,8 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
 
     console.log('checking paymentStartdate')
     console.log(new Date(paymentStartDate) < new Date ())
+
+    console.log('paymant method from recurring form', paymentMethod)
 
     if (new Date(paymentStartDate) < new Date ()) {
       setError("Please choose a future date!");
@@ -253,7 +242,7 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
     }
   }
 
-  return  <div className="stripe-container">
+  return  <div className="stripe-containersssss recurring-checkout-form">
   {paymentMethod ? (
     <div className="Result">
       <div className="ResultTitle" role="alert">
@@ -269,7 +258,7 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
   ) : (
     <form className="Form" onSubmit={handleSubmit}>
       <fieldset className="FormGroup">
-        <Field
+        <Input
           label="Name"
           id="name"
           type="text"
@@ -281,7 +270,7 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
             setBillingDetails({...billingDetails, name: e.target.value});
           }}
         />
-        <Field
+        <Input
           label="Email"
           id="email"
           type="email"
@@ -293,7 +282,7 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
             setBillingDetails({...billingDetails, email: e.target.value});
           }}
         />
-        <Field
+        <Input
           label="Phone"
           id="phone"
           type="tel"
@@ -307,12 +296,7 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
         />
       </fieldset>
       <fieldset className="FormGroup">           
-      <CardField
-        onChange={(e) => {
-          setError(e.error);
-          setCardComplete(e.complete);
-        }}
-      />
+      
       {/* amount: amount,
           frequency: frequency,
           payment_date: paymentDate,
@@ -321,24 +305,43 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
           payment_method_id: paymentMethod.id, */}
       </fieldset>
 
+<div className="row">
+  <div className="col-12 col-md-4">
       <FrequencyDropDown />
-      <AmountDropDown />
-      { frequency && frequency == 'Monthly' && <PaymentDaysDropDown />}
+  </div>
+  <div className="col-12 col-md-4">
+  <AmountDropDown />
+  </div>
+  <div className="col-12 col-md-4">
+  { frequency && frequency == 'Monthly' && <PaymentDaysDropDown />}
       { frequency && frequency == 'Weekly' && <WeekdayDropDown />}
       { frequency && frequency == 'BiWeekly' && <BiWeeklyPaymentDropDown />}
+  </div>
+</div>
 
-      <Field
-          label="Schedule Subscription Date"
-          id="payment-start-date"
-          type="datetime-local"  
-          required
-          value={paymentStartDate}
-          onChange={e => handlePaymentStartDateChange(e)}
-      />
+<h3 className="text-center">Schedule Subscription Date</h3>
+<div className="box-with-shadow">
+<input type="datetime-local" 
+    class="form-control" 
+    id="payment-start-date" 
+    value="Tue Jan 10 2023 13:42:04 GMT-0500 (Eastern Standard Time)"
+    onChange={e => handlePaymentStartDateChange(e)}/>
+ 
+  </div>
+  
+    <h3 className="text-center">Enter Card</h3>
+  <div className="box-with-shadow">
+  <CardField
+      onChange={(e) => {
+        setError(e.error);
+        setCardComplete(e.complete);
+      }}
+  />
+  </div>
 
-      {error}
+
       
-      {error && <ErrorMessage>{error.message}</ErrorMessage>}
+      {error && <ErrorMessage message={error.message} />}
       <SubmitButton processing={processing} error={error} disabled={!stripe} >
         { amount && frequency && frequency == 'Monthly' && <p>Pay {amount} every {paymentDate} of the month. Subscription scheduled for {moment(paymentStartDate).format('lll')} </p> }
         { amount && frequency && frequency == 'Weekly' && <p>Pay {amount} every {weekday} of the week. Subscription scheduled for {moment(paymentStartDate).format('lll')}</p> }
