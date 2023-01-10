@@ -80,7 +80,7 @@ function Navbar({givingIsOpen, signUpIsOpen, setSignUpIsOpen, loginIsOpen, setLo
             </li>
             <li className="nav-item">
               <button className='navbar-giving-modal-btn nav-link' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
-              <GivingModal currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>
+              
             </li >
           </ul>
         </div>

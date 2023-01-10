@@ -14,11 +14,54 @@ import { FooterAccountOptions } from './FooterAccountOptions';
 import Cross from "./images/Cross.webp"
 import './Footer.scss';
 
+const useFetchConfig = () => {
+    
+}
+
 function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, signUpIsOpen, setSignUpIsOpen, loginIsOpen, setLoginIsOpen, logoutIsOpen, setLogoutIsOpen}){
 
+    const [facebook, setFacebook] = useState(null);
+
+    function fetchConfig() {
+        fetch(`/api/button_visible_configs`)
+          .then((r) => r.json())
+          .then(config => {
+            setFacebook(config.facebook)
+            setConfigId(config.id)
+          })
+    }
+
+    useEffect(() => {
+        fetchConfig();
+    },[])
+
+    const [configId,  setConfigId] = useState(null);
+
+    
+   
+
+    function updateFacebookLink(facebookVal) {        
+      fetch(`/api/button_visible_configs/${configId}`, {
+        method: "PATCH",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          facebook: facebookVal
+        }),
+      }).then((response) => {
+        if (response.ok) {
+          console.log('config updated successfully!');
+          fetchConfig();
+        }
+
+      });
+
+    }
 
     return(
         <div className="footer">
+            <div class="container">
                 <div className="footer-top">
 
                     <h4 className="footer-title">St Paul Baptist Church</h4>
@@ -34,47 +77,15 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
                         </div>
                     <div className="footer-menu">
                     <Link to='/about' className='footer-menu-item'>About</Link>
-                    <button>
-                        <div className="footer-button">
-                            <Link to='/broadcasts'>Broadcasts</Link>
-                        </div>
-                    </button>
-                    <button className="big-giving-modal-btn" type="button" onClick={() => setGivingIsOpen(true)}>Giving</button>
-                         <GivingModal 
-                            currentUser={currentUser} 
-                            givingIsOpen={givingIsOpen} 
-                            setGivingIsOpen={setGivingIsOpen}
-                         />
-                    <button>
-                        <div className="footer-button">
-                            <a href='/events' className="footer-link">Bulletin</a>
-                        </div>
-                    </button>
-                    <button>
-                        <div className="footer-button">
-                        <Link to='/prayer_requests'>Prayer Request</Link>
-                        </div>
-                    </button>
-                    <button>
-                        <div className="footer-button">
-                            <Link to='/bible_study'>Bible Study</Link>
-                        </div>
-                    </button>
-                    <button>
-                        <div className="footer-button">
-                            <Link to='/youth_corner'>Youth Corner</Link>
-                        </div>
-                    </button>
-                    <button>
-                        <div className="footer-button">
-                            <Link to='/next_service'>Next Service</Link>
-                        </div>
-                    </button>
-                    <button>
-                        <div className="footer-button">
-                            <Link to='/honors'>Honors</Link>
-                        </div>
-                    </button>
+                    <Link to='/broadcasts' className='footer-menu-item'>Broadcasts</Link>
+                    <div><button className='footer-menu-item' type="button" onClick={() => setGivingIsOpen(true)}>Giving</button>
+                         </div>
+                     <a href='/events' className='footer-menu-item'>Bulletin</a>
+                    <Link to='/prayer_requests' className='footer-menu-item'>Prayer Request</Link>
+                    <Link to='/bible_study' className='footer-menu-item'>Bible Study</Link>
+                    <Link to='/youth_corner' className='footer-menu-item'>Youth Corner</Link>
+                    <Link to='/next_service' className='footer-menu-item'>Next Service</Link>
+                    <Link to='/honors' className='footer-menu-item'>Honors</Link>
                     <div>
                         <FooterAccountOptions 
                             currentUser={currentUser} 
@@ -87,15 +98,26 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
                             setLoginIsOpen={setLoginIsOpen}
                             logoutIsOpen={logoutIsOpen}
                             setLogoutIsOpen={setLogoutIsOpen}
+                            updateFacebookLink={updateFacebookLink}
+                            facebook={facebook}
+                            configId={configId}
                         />
                     </div>
                 </div>
                     
                 </div>
+                <div className='footer-bottom'>
+                <p className='website-watermark'>@ 2022 St Paul Baptist Church</p>
+
+                {facebook === true && <div><link
+                rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+                </link>
+                <a href="https://www.facebook.com/" target="_blank" class="fa fa-facebook"></a></div>}
+            </div>  
+                </div>
             </div>
             )}
-            {/* <button className='contact-us-btn' type='button'><a href='mailto:stpaul23009@gmail.com
-            '>Contact Us</a></button> */}
+          
 
 export default Footer
 
@@ -196,3 +218,6 @@ export default Footer
 //                     </div> }                    
 //                 </div>
 //             ) : (
+
+  {/* <button className='contact-us-btn' type='button'><a href='mailto:stpaul23009@gmail.com
+            '>Contact Us</a></button> */}

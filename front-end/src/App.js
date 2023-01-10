@@ -26,6 +26,7 @@ import HonorsPage from './HonorsPage';
 import EditHonorsDocuments from './EditHonorsItem';
 import PasswordRecoveryPage from './PasswordRecoveryPage';
 import YouthCorner from './YouthCorner';
+import { Modals } from './Modals';
 
 
 // CSS
@@ -227,33 +228,97 @@ function App() {
   }
   return (
     <div className="App">
-      <Navbar givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen} signUpIsOpen={signUpIsOpen} setSignUpIsOpen={setSignUpIsOpen} loginIsOpen={loginIsOpen} setLoginIsOpen={setLoginIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser} logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} authChecked={authChecked} setAuthChecked={setAuthChecked}/>
+      <Navbar 
+        givingIsOpen={givingIsOpen} 
+        setGivingIsOpen={setGivingIsOpen} 
+        signUpIsOpen={signUpIsOpen} 
+        setSignUpIsOpen={setSignUpIsOpen} 
+        loginIsOpen={loginIsOpen} 
+        setLoginIsOpen={setLoginIsOpen} 
+        currentUser={currentUser} 
+        setCurrentUser={setCurrentUser} 
+        logoutIsOpen={logoutIsOpen} 
+        setLogoutIsOpen={setLogoutIsOpen} 
+        authChecked={authChecked} 
+        setAuthChecked={setAuthChecked}
+      />
         <Routes>      
-          <Route path='/' element={<ChurchLandingAttributes currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>}/>  
-          <Route path='/events' element={<EventsContainer currentUser={currentUser} events={events} setEvents={setEvents} showEvents={showEvents} setShowEvents={setShowEvents} handleAddNewEvent={handleAddNewEvent} handleDeleteEvent={handleDeleteEvent} handleEditEvent={handleEditEvent} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen}/>}/>
+          <Route path='/' element={
+            <ChurchLandingAttributes 
+              currentUser={currentUser} 
+              givingIsOpen={givingIsOpen} 
+              setGivingIsOpen={setGivingIsOpen}
+            />
+          }
+          />  
+          <Route path='/events' element={
+            <EventsContainer 
+              currentUser={currentUser} 
+              events={events}
+              setEvents={setEvents} 
+              showEvents={showEvents} 
+              setShowEvents={setShowEvents} 
+              handleAddNewEvent={handleAddNewEvent} 
+              handleDeleteEvent={handleDeleteEvent} 
+              handleEditEvent={handleEditEvent} 
+              addEventIsOpen={addEventIsOpen} 
+              setAddEventIsOpen={setAddEventIsOpen}
+            />
+          }
+          />
           {/* <Route exact path='/about_us' component={AboutUsContainer} /> */}
-          <Route path='/events/:id' 
-            element={<EventInfoPage 
-            currentUser={currentUser} 
-            events={events} 
-            setEvents={setEvents}
-          />}/>
-          <Route path='/login' 
-            element={<Login 
-            currentUser={currentUser} 
-            setCurrentUser={setCurrentUser} 
-            authChecked={authChecked} 
-            setLogoutIsOpen={setLogoutIsOpen} 
-          />}/>
-          <Route path='/signup' element={<SignUp currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} setLogoutIsOpen={setLogoutIsOpen}/>}/>
+          <Route path='/events/:id'element={
+            <EventInfoPage 
+              currentUser={currentUser} 
+              events={events} 
+              setEvents={setEvents}
+            />
+          }
+          />
+          <Route path='/login' element={
+            <Login 
+              currentUser={currentUser} 
+              setCurrentUser={setCurrentUser} 
+              authChecked={authChecked} 
+              setLogoutIsOpen={setLogoutIsOpen} 
+            />
+          }
+          />
+          <Route path='/signup' element={
+            <SignUp 
+              currentUser={currentUser} 
+              setCurrentUser={setCurrentUser} 
+              authChecked={authChecked} 
+              setLogoutIsOpen={setLogoutIsOpen}
+            />
+          }
+          />
           <Route path='/signup_success' element={<SignUpSuccessPage/>}/>
-          <Route path='/profile' element={<ProfilePage currentUser={currentUser} setCurrentUser={setCurrentUser} authChecked={authChecked} editProfileIsOpen={editProfileIsOpen} setEditProfileIsOpen={setEditProfileIsOpen} accountDeleteIsOpen={accountDeleteIsOpen} setAccountDeleteIsOpen={setAccountDeleteIsOpen}/>}/>
+          <Route path='/profile' element={
+            <ProfilePage 
+              currentUser={currentUser} 
+              setCurrentUser={setCurrentUser} 
+              authChecked={authChecked} 
+              editProfileIsOpen={editProfileIsOpen}
+              setEditProfileIsOpen={setEditProfileIsOpen} 
+              accountDeleteIsOpen={accountDeleteIsOpen} 
+              setAccountDeleteIsOpen={setAccountDeleteIsOpen}
+            />
+          }
+          />
           <Route path='/broadcasts' element={<BroadcastsContainer/>}/>
           <Route path='/prayer_requests' element={<PrayerRequestsContainer/>}/>
           <Route path='/about' element={<AboutPage/>}/>
           <Route path='/recurring-payment' element={<RecurringPayment/>}/>
           <Route path='/contact_us' element={<ContactUsPage/>}/>
-          <Route path='/honors' element={<HonorsPage currentUser={currentUser} addHonorIsOpen={addHonorIsOpen} setAddHonorIsOpen={setAddHonorIsOpen}/>}/>
+          <Route path='/honors' element={
+            <HonorsPage 
+              currentUser={currentUser} 
+              addHonorIsOpen={addHonorIsOpen} 
+              setAddHonorIsOpen={setAddHonorIsOpen}
+            />
+          }
+          />
           <Route path='/edithonors/:id' element={<EditHonorsDocuments/>}/>
           <Route path='/subscriptions_page' element={<SubscriptionCard currentUser={currentUser} cancelSubscriptionIsOpen={cancelSubscriptionIsOpen} setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen} cancelFutureSubscriptionIsOpen={cancelFutureSubscriptionIsOpen} setCancelFutureSubscriptionIsOpen={setCancelFutureSubscriptionIsOpen} />}/>
           <Route path='/password_recovery' element={<PasswordRecoveryPage/>}/>
@@ -278,6 +343,28 @@ function App() {
         setLogoutIsOpen={setLogoutIsOpen} 
         authChecked={authChecked} 
         setAuthChecked={setAuthChecked}/>
+
+      <Modals 
+        currentUser={currentUser} 
+        loginIsOpen={loginIsOpen}
+        setLoginIsOpen={setLoginIsOpen}
+        logoutIsOpen={logoutIsOpen}
+        setLogoutIsOpen={setLogoutIsOpen}
+        signUpIsOpen={signUpIsOpen}
+        setSignUpIsOpen={setSignUpIsOpen}
+        givingIsOpen={givingIsOpen}
+        setGivingIsOpen={setGivingIsOpen} 
+        addEventIsOpen={addEventIsOpen}
+        setAddEventIsOpen={setAddEventIsOpen}
+        addHonorIsOpen={addHonorIsOpen}
+        setAddHonorIsOpen={setAddHonorIsOpen}
+        cancelFutureSubscriptionIsOpen={cancelFutureSubscriptionIsOpen}
+        setCancelFutureSubscriptionIsOpen={setCancelFutureSubscriptionIsOpen}
+        cancelSubscriptionIsOpen={cancelSubscriptionIsOpen}
+        setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen}
+        editProfileIsOpen={editProfileIsOpen}
+        setEditProfileIsOpen={setEditProfileIsOpen}
+      />
     </div>
   );
 }
