@@ -3,9 +3,9 @@ import ReactDOM from 'react-dom/client';
 
 import { BrowserRouter as Router} from 'react-router-dom';
 import { Route } from 'react-router-dom';
-import '../node_modules/bootstrap/dist/css/bootstrap.min.css';
 
-import './index.css';
+
+import './index.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap'

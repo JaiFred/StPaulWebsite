@@ -5,9 +5,8 @@ const useDropdown = (label, defaultState, secondlabel, options) => {
   const id = `use-dropdown-${label.replace(" ", "").toLowerCase()}`;
   const secondId = `use-dropdown-${label.replace(" ", "").toLowerCase()}`;
 
-  const Dropdown = () => (
-    <label htmlFor={id}>
-      {label}
+  const Dropdown = () => (<div className="mb-4">
+    <label htmlFor={id} className="form-label">{label}</label>
       <select
         id={id}
         secondId={secondId}
@@ -15,6 +14,7 @@ const useDropdown = (label, defaultState, secondlabel, options) => {
         onChange={e => updateState(e.target.value)}
         onBlur={e => updateState(e.target.value)}
         disabled={!options.length}
+        className="form-select"
       >        
         {options.map(item => (
           <option key={item} value={item}>
@@ -22,8 +22,8 @@ const useDropdown = (label, defaultState, secondlabel, options) => {
           </option>
         ))}
       </select>
-      {secondlabel}
-    </label>
+      <label>{secondlabel}</label>
+      </div>
   );
   return [state, Dropdown, updateState];
 };

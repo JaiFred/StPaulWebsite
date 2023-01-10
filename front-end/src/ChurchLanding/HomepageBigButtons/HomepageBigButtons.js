@@ -23,5 +23,4 @@ export const HomepageBigButtons = ({currentUser, setGivingIsOpen, givingIsOpen})
             </div>
         </div>
     </div>
-    <GivingModal currentUser={currentUser} givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/>
 </div>
