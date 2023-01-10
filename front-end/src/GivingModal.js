@@ -13,6 +13,7 @@ import { Input } from './Forms/Input';
 // styles
 import './GivingModal.scss'
 import Cross from "./images/Cross.webp"
+import { ErrorMessage } from "./Forms/ErrorMessage";
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
@@ -32,20 +33,21 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
         name: '',
     });
     const [paymentMethod, setPaymentMethod] = useState(null);
-    const [paymentOption, PaymentOptionDropdown] = useDropdown("Choose a Payment option", "One Time Payment", "", ["One Time Payment", "Regularly"]);
+    const [paymentOption, PaymentOptionDropdown, setPaymentOption] = useDropdown("Choose a Payment option", "One Time Payment", "", ["One Time Payment", "Regularly"]);
 
     console.log(`paymentOption: ${paymentOption}`);
     console.log(`clientSecretRecurring: ${clientSecretRecurring}`);
     console.log(`showRecurringForm: ${showRecurringForm}`);
 
     const resetForm = () => {
+        setPaymentOption("One Time Payment")
+        setPaymentMethod(null);
         setAmount(null);
         setClientSecret(null);
         setGivingIsOpen(false);
         setShowAmountForm(true);
         setShowRecurringForm(true);
         setBillingDetails('');
-        setPaymentMethod(null);
     }
 
     const handleAmountChange = (e) => {
@@ -198,7 +200,10 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                 { paymentOption == 'Regularly' && showAmountForm &&
                     <h1 className="give-title">Recurring Offering </h1>
                 }
-                    {error && <p>{error}</p>}
+                { paymentOption == 'One Time Payment' && showAmountForm && error &&
+                   <ErrorMessage message={error}/>
+                }
+                    
                     { currentUser  && <PaymentOptionDropdown />}
                     { paymentOption == 'One Time Payment' && showAmountForm &&
                     <div>

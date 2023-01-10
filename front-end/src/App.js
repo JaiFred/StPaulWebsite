@@ -20,7 +20,6 @@ import ProfilePage from './ProfilePage';
 import SubscriptionCard from './SubscriptionCard';
 import Footer from './Footer';
 import PrayerRequestsContainer from './PrayerRequestsContainer';
-import RecurringPayment from './RecurringPayment';
 import ContactUsPage from './ContactUsPage';
 import HonorsPage from './HonorsPage';
 import EditHonorsDocuments from './EditHonorsItem';
@@ -309,7 +308,6 @@ function App() {
           <Route path='/broadcasts' element={<BroadcastsContainer/>}/>
           <Route path='/prayer_requests' element={<PrayerRequestsContainer/>}/>
           <Route path='/about' element={<AboutPage/>}/>
-          <Route path='/recurring-payment' element={<RecurringPayment/>}/>
           <Route path='/contact_us' element={<ContactUsPage/>}/>
           <Route path='/honors' element={
             <HonorsPage 
