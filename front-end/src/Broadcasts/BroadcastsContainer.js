@@ -8,8 +8,8 @@ import {VideoItem} from './VideoItem';
 
 //CSS
 import background from '../images/trees-wallpaper-green.jpeg'
-import BroadcastPage from '../images/Broadcast-page.mp4'
-import { Parallax } from 'react-parallax'; 
+import BroadcastPageVideo from '../images/Broadcast-page.mp4'
+import { Parallax } from 'react-scroll-parallax'; 
 import './BroadcastsContainer.scss'
 import moment from 'moment';
 
@@ -44,7 +44,10 @@ import moment from 'moment';
 
             return(
                 <div className="broadcasts-page">
-                     <Parallax bgImage={background} bgImageAlt="homepage background" strength={-200} className={'broadcasts-background'}>
+                    <div className="broadcasts-page-header">
+                        <Parallax className={'broadcasts-background'} speed={-50}>
+                            <video muted loop autoPlay playsInline src={BroadcastPageVideo}></video>
+                        </Parallax>
                         <div className="container">
                             <h1 className="title">Broadcasts</h1>
                             <h2 className="subtitle">Most Recent Broadcast</h2>
@@ -52,8 +55,7 @@ import moment from 'moment';
                             <h3 className='last-video-title'>{videos[0]?.title}</h3>
                             <p className='last-video-date'>{moment(videos[0]?.date).format('MMM Do, YYYY')}</p>
                         </div>
-                     </Parallax>
-                     {/* <video muted loop autoPlay playsInline src={BroadcastPage}></video> */}
+                    </div>
                     <div className="subheader-banner">Previous messages</div>
                     <div className='broadcasts-videos'>
                         <div class="container">

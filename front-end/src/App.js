@@ -11,7 +11,7 @@ import ChurchLandingAttributes from './ChurchLandingAttributes';
 import GivingModal from './GivingModal';
 import PasswordRecoveryRequestSuccess from './PasswordRecoveryRequestSuccess';
 import UpdateEmailSuccessPage from './UpdateEmailSuccessPage';
-import EventsContainer from './EventsContainer';
+import EventsContainer from './Events/EventsContainer';
 import EventInfoPage from './EventInfoPage';
 import BroadcastsContainer from './Broadcasts/BroadcastsContainer';
 import NextServicePage from './NextServicePage';
