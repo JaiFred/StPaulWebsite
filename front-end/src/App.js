@@ -13,7 +13,7 @@ import PasswordRecoveryRequestSuccess from './PasswordRecoveryRequestSuccess';
 import UpdateEmailSuccessPage from './UpdateEmailSuccessPage';
 import EventsContainer from './EventsContainer';
 import EventInfoPage from './EventInfoPage';
-import BroadcastsContainer from './BroadcastsContainer';
+import BroadcastsContainer from './Broadcasts/BroadcastsContainer';
 import NextServicePage from './NextServicePage';
 import Navbar from './Navbar';
 import ProfilePage from './ProfilePage';

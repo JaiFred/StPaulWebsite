@@ -56,9 +56,11 @@ function EventInfoPage({ currentUser }){
                 <h3>{event?.starts} - {event?.ends}</h3>
             </div>
             <div>
+                <h2>Details:</h2>
                 <h3>{event?.details}</h3>
             </div>
             <div>
+                <h2>Where:</h2>
                 <h3>{event?.address_line_1}</h3>
                 <h3>{event?.address_line_2}</h3>
                 <h3>{event?.city}</h3>

@@ -3,6 +3,34 @@
 .navbar {
     padding-bottom: 30px;
 
+    /* title for navbar */
+    .title {
+        padding-top: 15px;
+        margin-bottom: -10px;
+        font-size: 30px;
+        font-family: 'Inter', sans-serif;
+        font-variant: small-caps;
+    }
+
+        .admin-name{
+            font-size: 20px;
+            color: white;
+            margin-bottom: 12px;
+            text-align: left;
+
+            @include media-breakpoint-up(md) {
+                font-size: 30px;
+text-align: left;
+                margin:0;
+                flex-grow: 1;
+            }
+        
+            span {
+                font-size: 130%;
+            }
+            
+        }
+
     &-outer {
         display:flex;
         justify-content: center;
