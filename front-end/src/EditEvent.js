@@ -4,7 +4,19 @@ import { Link, useNavigate, useParams } from "react-router-dom";
 
 function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpen, setEditEventIsOpen }){
 
-    const { id, title, starts, ends, details, address_line_1, address_line_2, city } = formData;
+    const { 
+        id,
+        title, 
+        starts, 
+        ends, 
+        details, 
+        address_line_1, 
+        address_line_2, 
+        city, 
+        state_province_region, 
+        // zip_postalcode, 
+        country 
+    } = formData;
 
     console.log(`formData in EditEvent: ${JSON.stringify(formData)}`);
     console.log(`starts: ${starts}`);
@@ -26,10 +38,12 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
         formData.append("starts", starts);
         formData.append("ends", ends);
         formData.append("details", details);
-        // formData.append("location", location);
         formData.append("address_line_1", address_line_1);
         formData.append("address_line_2", address_line_2);
         formData.append("city", city);
+        formData.append("state_province_region", state_province_region);
+        // formData.append("zip_postalcode", zip_postalcode)
+        formData.append("country", country)
 
         const configObj = {
             method: "PATCH",
@@ -45,7 +59,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                     navigate(`/events`)
                 });
               } else {
-                    response.json().then((response) => setErrors(response.errors))                 ;
+                    response.json().then((response) => setErrors(response.errors));
               }
         })         
         
@@ -77,6 +91,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 accept="image/png, image/jpeg"
                 onChange={handleImageChange} 
             />
+            <h3>title</h3>
             <input
                 type="text"
                 id="title"
@@ -85,7 +100,8 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 placeholder="title..."
                 onChange={handleChange}
             />
-            <label htmlFor="starts">starts on</label>
+
+            <h3>starts on</h3>
             <input
                 type="datetime-local"
                 id="starts"
@@ -93,7 +109,8 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 value={starts}
                 onChange={handleChange}
             />
-            <label htmlFor="ends">ends on</label>
+
+            <h3>ends on</h3>
             <input
                 type="datetime-local"
                 id="ends"
@@ -101,7 +118,8 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 value={ends}
                 onChange={handleChange}
             />
-            <label htmlFor="address_line_1_input">address line 1</label>
+
+            <h3>address line 1</h3>
              <textarea
                 className="address_line_1_input"
                 id="address_line_1_input"
@@ -109,7 +127,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 value={address_line_1}
                 onChange={handleChange}
             />
-            <label htmlFor="address_line_2_input">address line 2</label>
+            <h3>address line 2</h3>
             <input
                 type="text"
                 id="address_line_2_input"
@@ -117,7 +135,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 value={address_line_2}
                 onChange={handleChange}
             />
-            <label htmlFor="city_input">city</label>
+            <h3>city</h3>
             <input
                 type="text"
                 id="city_input"
@@ -125,8 +143,34 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 value={city}
                 onChange={handleChange}
             />
+            <h3>State/Province/Region</h3>
+            <input
+                type="text"
+                id="state-province-region-input"
+                name="state-province-region"
+                value={state_province_region}
+                onChange={handleChange}
+            />
+            {/* <h3>ZIP/Postal code</h3>
+            <input
+                type="text"
+                id="zip-postalcode-input"
+                name="zip-postalcode"
+                value={zip_postalcode}
+                onChange={handleChange}
+            /> */}
+            <h3>Country</h3>
+            <input
+                type="text"
+                id="country_input"
+                name="country"
+                value={country}
+                onChange={handleChange}
+            />
+
             </ul>
             <button id='submitBtn' type="button" onClick={handleSubmit} method="post">Edit</button>
+            <button type="button" onClick={() => {setEditEventIsOpen(false)}}>Cancel</button>
         </form>
     )
 

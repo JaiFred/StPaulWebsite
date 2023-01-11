@@ -11,6 +11,7 @@
             color: $white;
             justify-content: center;
             position:relative;
+            
         
 
             .btn-close {
@@ -21,7 +22,26 @@
                 right: 20px;
                 width: 20px;
                 height: 20px;
-background-size: cover;
+                background-size: cover;
+
+            }
+
+            .btn{
+                .btn-primary{
+                    background-color: brown;
+                }
+            }
+            
+
+            .submitBtn{
+            
+                    
+                &:hover{
+                    transition: all 0.3s ease-in-out; 
+                    transform: translateY(-3px);
+                }
+    
+
             }
         }
 

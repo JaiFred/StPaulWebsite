@@ -122,7 +122,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
 
 
         if (!(amount && parseFloat(amount) > 0.50)) {
-            setError('Amount must be at least $0.50')
+            setError('Amount must be at least $0.51')
             return
         }
 

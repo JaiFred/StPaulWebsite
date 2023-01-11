@@ -20,13 +20,11 @@ export const FooterAccountOptions = ({
     setLoginIsOpen, 
     logoutIsOpen, 
     setLogoutIsOpen,
-  updateFacebookLink,
-facebook,
-configId}) => {
+    updateFacebookLink,
+    facebook,
+    configId}) => {
 
    
-
-
       console.log(`facebook: ${facebook}`);
 
     return(

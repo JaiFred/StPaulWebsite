@@ -92,9 +92,9 @@ function EventsContainer({ currentUser, events, setEvents, handleAddNewEvent, ha
             <div className='admin-events-container'>
                 <h1>Events</h1>
                 <h2>{EventMonthFilter}</h2>
-                {EventList}
                 <button className='add-new-event-modal-btn' type='button' onClick={() => setAddEventIsOpen(true)}>Add New Event</button>
                 <SubmitNewEventModal events={events} setEvents={setEvents} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen} handleAddNewEvent={handleAddNewEvent}/>
+                {EventList}
                 <Link to='/'>Back Home</Link>
             </div> 
             ) : (
