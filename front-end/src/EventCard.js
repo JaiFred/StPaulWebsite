@@ -67,7 +67,7 @@ function EventCard({event, events, setEvents, currentUser, handleDeleteEvent, ha
                                 <Link to={`/events/${event.id}`}>Click on this link for More Info</Link> */}
                             </img>
                         }
-                        <h2>starts: {starts_short} - ends: {ends_short}</h2>
+                        <h2>{starts_short}&#160;&#160; - &#160;&#160;{ends_short}</h2>
                         <Routes>
                             <Route path="/events/:id" element={<EventInfoPage currentUser={currentUser} event={event} events={events} setEvents={setEvents} />}/>
                         </Routes>

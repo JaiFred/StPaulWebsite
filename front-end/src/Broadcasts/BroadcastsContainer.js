@@ -3,13 +3,15 @@ import { Link, Navigate, Routes, Route } from 'react-router-dom'
 import React, {useState, useEffect} from "react";
 
 //Components
-import { ReactPlayerWrapper } from './ReactPlayerWrapper/ReactPlayerWrapper';
+import { ReactPlayerWrapper } from '../ReactPlayerWrapper/ReactPlayerWrapper';
+import {VideoItem} from './VideoItem';
 
 //CSS
-import background from './images/trees-wallpaper-green.jpeg'
-import BroadcastPage from './images/Broadcast-page.mp4'
+import background from '../images/trees-wallpaper-green.jpeg'
+import BroadcastPage from '../images/Broadcast-page.mp4'
 import { Parallax } from 'react-parallax'; 
 import './BroadcastsContainer.scss'
+import moment from 'moment';
 
     //remember to remove these when pushing to github
     const API = process.env.REACT_APP_MY_GOOGLE_API_KEY
@@ -38,41 +40,35 @@ import './BroadcastsContainer.scss'
               })
           },[])
                     
-        console.log(`videos: ${JSON.stringify(videos)}`);
+        console.log(`videos: ${JSON.stringify(videos)}`, videos);
 
             return(
-                <div>
-                     <Parallax bgImage={background} bgImageAlt="homepage background" strength={-200} className={'homepage-background'}>
+                <div className="broadcasts-page">
+                     <Parallax bgImage={background} bgImageAlt="homepage background" strength={-200} className={'broadcasts-background'}>
                         <div className="container">
                             <h1 className="title">Broadcasts</h1>
-                            <h2 className="recent-broadcast-title">Most Recent Broadcast</h2>
-                            <ReactPlayerWrapper url={videos[0].url}/>
+                            <h2 className="subtitle">Most Recent Broadcast</h2>
+                            <ReactPlayerWrapper url={videos[0]?.url}/>
+                            <h3 className='last-video-title'>{videos[0]?.title}</h3>
+                            <p className='last-video-date'>{moment(videos[0]?.date).format('MMM Do, YYYY')}</p>
                         </div>
                      </Parallax>
-                     <video muted loop autoPlay playsInline src={BroadcastPage}></video>
-                    <div className="subheader-banner">
-                        <h2>Previous messages</h2>
-                    </div>
-                    <div class="container">
-                        <div className={'row'}>
-                            <div className="col-12 col-md-6">
-                                <div className="broadcast-video-item">
-                                    <ReactPlayerWrapper url={videos[1].url}/>
-                                    <h3 className='broadcast-video-item-title'>{videos[1].title}</h3>
-                                    <p>{videos[1].date}</p>
+                     {/* <video muted loop autoPlay playsInline src={BroadcastPage}></video> */}
+                    <div className="subheader-banner">Previous messages</div>
+                    <div className='broadcasts-videos'>
+                        <div class="container">
+                            <div className={'row'}>
+                                <div className="col-12 col-md-6">
+                                    <VideoItem video={videos[1]} />
                                 </div>
-                            </div>
-                            <div className="col-12 col-md-6">
-                                <div className="broadcast-video-item">
-                                    <ReactPlayerWrapper url={videos[2].url}/>
-                                    <h3 className='broadcast-video-item-title'>{videos[2].title}</h3>
-                                    <p>{videos[2].date}</p>
+                                <div className="col-12 col-md-6">
+                                    <VideoItem video={videos[2]} />
                                 </div>
                             </div>
                         </div>
                     </div>
-                    <div className="broadcasts-to-back-home">
-                        <Link to='/' className="main">back to home</Link>
+                    <div className="broadcasts-back-home">
+                        <Link to='/' className="broadcasts-back-home-button">Back Home</Link>
                     </div>
                 </div>
                 

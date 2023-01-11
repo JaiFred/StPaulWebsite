@@ -119,20 +119,36 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 onChange={handleChange}
             />
 
-            <h3>address line 1</h3>
+            <h3>details</h3>
              <textarea
+                className="details_input"
+                id="details_input"
+                name="details"
+                value={details}
+                onChange={handleChange}
+            />
+            <h3>Street address</h3>
+             <input
                 className="address_line_1_input"
                 id="address_line_1_input"
                 name="address_line_1"
                 value={address_line_1}
                 onChange={handleChange}
             />
-            <h3>address line 2</h3>
+            <h3>Apt, Suite etc. (Optional)</h3>
             <input
                 type="text"
                 id="address_line_2_input"
                 name="address_line_2"
                 value={address_line_2}
+                onChange={handleChange}
+            />
+            <h3>Country</h3>
+            <input
+                type="text"
+                id="country_input"
+                name="country"
+                value={country}
                 onChange={handleChange}
             />
             <h3>city</h3>
@@ -159,14 +175,6 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 value={zip_postalcode}
                 onChange={handleChange}
             /> */}
-            <h3>Country</h3>
-            <input
-                type="text"
-                id="country_input"
-                name="country"
-                value={country}
-                onChange={handleChange}
-            />
 
             </ul>
             <button id='submitBtn' type="button" onClick={handleSubmit} method="post">Edit</button>

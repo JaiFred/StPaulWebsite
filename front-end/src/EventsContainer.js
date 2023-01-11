@@ -1,8 +1,13 @@
+//Hooks
 import { Link, useNavigate } from "react-router-dom";
 
+//Components
 import Navbar from "./Navbar";
 import EventCard from './EventCard';
 import SubmitNewEventModal from "./SubmitNewEventModal";
+
+//CSS
+import './EventsContainer.scss'
 
 
 // Goal:
@@ -91,18 +96,30 @@ function EventsContainer({ currentUser, events, setEvents, handleAddNewEvent, ha
             {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (
             <div className='admin-events-container'>
                 <h1>Events</h1>
+                <h2>Upcoming Event</h2>
+                <h2>Church Hours</h2>
+                <p>Sunday School services:<br/>
+                <strong>9:30 AM.</strong>
+                </p>
+                <p>Sunday Morning services:<br/>
+                <strong>11:00 AM.</strong></p>
+                <p>Bible Study is every <strong>second</strong> and <strong>third Wednesday</strong>  of each month at <strong>7:00 PM.</strong></p>
                 <h2>{EventMonthFilter}</h2>
                 <button className='add-new-event-modal-btn' type='button' onClick={() => setAddEventIsOpen(true)}>Add New Event</button>
                 <SubmitNewEventModal events={events} setEvents={setEvents} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen} handleAddNewEvent={handleAddNewEvent}/>
                 {EventList}
-                <Link to='/'>Back Home</Link>
+                <div className="bulletin-back-home">
+                    <Link to='/' className="bulletin-back-home-button">Back Home</Link>
+                </div>
             </div> 
             ) : (
             <div className='events-container'>
                 <h1>Events</h1>
                 <h2>{EventMonthFilter}</h2>
                 {EventList}
-                <Link to='/'>Back Home</Link>
+                <div className="bulletin-back-home">
+                    <Link to='/' className="bulletin-back-home-button">Back Home</Link>
+                </div>
             </div>
             )}
         </div>

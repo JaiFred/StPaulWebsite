@@ -47,14 +47,10 @@ function Navbar({givingIsOpen, signUpIsOpen, setSignUpIsOpen, loginIsOpen, setLo
         <img src={Cross} className="cross"></img>
         <h1 className="title">St Paul Baptist Church</h1>
         </Link>
+        <div class="navbar-outer">
           {currentUser ? 
-          <div className="admin-name-container"> 
-            <ul className="name-container-list">
-              <li className="admin-greeting">Hello</li>
-              <li className="admin-name">{firstName}</li>
-            </ul>
-          </div> : '' }
-         <div class="navbar-outer">
+            <div className="admin-name">Hello <span>{firstName}</span></div>
+          : '' }
           <div className="navbar-toggler-wrapper">
         <button class="navbar-toggler collapsed hamburger-button" type="button" data-bs-toggle="collapse" data-bs-target="#churchNavBar" aria-controls="churchNavBar" aria-expanded="false" aria-label="Toggle navigation">
           <div className="hamburger-button-line"></div>

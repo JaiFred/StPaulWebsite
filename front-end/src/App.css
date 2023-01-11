@@ -1,9 +1,6 @@
 html{
   background-color: rgb(60, 43, 35);
 }
-.App {
-  text-align: center;
-}
 
 .fa {
   padding: 20px;
@@ -32,6 +29,7 @@ admin-navbar (header) starts
 
 .header{
   min-height: 210px;
+  text-align: center;
 }
 
 .who-input {
@@ -68,14 +66,7 @@ admin-navbar (header) starts
   width: 300px;
 }
 
-/* title for navbar */
-.title {
-  padding-top: 15px;
-  margin-bottom: -10px;
-  font-size: 30px;
-  font-family: 'Inter', sans-serif;
-  font-variant: small-caps;
-}
+
 
 /* title for about page */
 .about-page-title {
@@ -118,35 +109,6 @@ div .navbar ul li a.main{
   padding-top: 10px;
 }
 
-
-/* //////////////////
- admin name 
-////////////////////*/
-.admin-name-container{
-  float: left;
-  
-}
-
-.name-container-list{
-  margin-bottom: 0px;
-  padding-left: 45px;
-}
-
-.admin-greeting{
-  color: white;
-  display: inline-flex;
-  font-size: 30px;
-  font-weight: 2px;
-  margin-bottom: -10px;
-}
-
-.admin-name {
-  color: white;
-  display: inline-flex;
-  font-size: 40px;
-  margin-bottom: -10px;
-  padding-left: 10px;
-}
 
 a.dropdownitem {
   display: block;

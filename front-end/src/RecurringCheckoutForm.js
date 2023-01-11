@@ -324,7 +324,7 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
 <input type="datetime-local" 
     class="form-control" 
     id="payment-start-date" 
-    value="Tue Jan 10 2023 13:42:04 GMT-0500 (Eastern Standard Time)"
+    value={paymentStartDate}
     onChange={e => handlePaymentStartDateChange(e)}/>
  
   </div>
