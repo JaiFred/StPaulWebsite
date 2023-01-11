@@ -1,11 +1,7 @@
 @import '../bootstrap-utils';
 
 .homepage-background {
-    .react-parallax-bgimage {
-        width: 100% !important;
-        height: 150% !important;
-        object-fit: cover;
-    }
+    position:static!important;
 }
 
 .homepage-big-buttons {

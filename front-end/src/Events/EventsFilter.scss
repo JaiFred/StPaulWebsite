@@ -1,0 +1,19 @@
+.events-filters {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: white;
+    border-radius: 40px;
+    padding: 15px 15px 6px;
+
+    &-button {
+        background-color: black;
+        border-radius: 100px;
+        color: white;
+        margin-right: 10px;
+        margin-bottom: 9px;
+        border: 0;
+        padding: 5px 12px;
+        text-transform: uppercase;
+    }
+}

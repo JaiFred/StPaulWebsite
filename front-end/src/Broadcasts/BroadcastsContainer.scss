@@ -2,13 +2,35 @@
 
 .broadcasts-page {
 
-    .broadcasts-background {
-        padding-top: 50px;
-        color: #fff;
 
+    .broadcasts-page-header {
+        position: relative;
+        overflow: hidden;
+        color: #fff;
+        padding-top: 50px;
         @include media-breakpoint-up(md) {
             padding-top: 80px;
         }
+
+        .container {
+            position: relative;
+        }
+    }
+    .broadcasts-background {
+       
+       
+       
+        position: absolute;
+       height: 150%;
+       width: 100%;
+
+        video {
+height: 100%;
+            position: absolute;
+    left: 50%;
+    transform: translateX(-50%) translateY(-12%);
+        }
+       
     }
 
     .title {
@@ -66,7 +88,7 @@
         padding: 40px 0;
 
         @include media-breakpoint-up(md) {
-            padding: 100px 0;
+            padding: 60px 0;
         }
     }
 }
@@ -76,7 +98,7 @@
     box-shadow: 0px 20px 20px rgba(0, 0, 0, 0.4);
     border-radius: 10px;
     padding: 27px 20px;
-    margin-bottom: 40px;
+    margin-bottom: 20px;
     font-weight: bold;
 
     &-title {
@@ -96,8 +118,12 @@
     font-size: 20px;
     font-weight: bold;
     text-align: left;
-    padding: 5px 15px;
+    padding: 20px 15px;
     margin:0;
+
+    @include media-breakpoint-up(md) {
+        font-size: 40px;
+    }
 }
 
 .broadcasts-back-home {
