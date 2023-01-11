@@ -64,44 +64,45 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
             <div class="container">
                 <div className="footer-top">
 
-                    <h4 className="footer-title">St Paul Baptist Church</h4>
-                    <div class="footer-contact-info">
-                        <p className='fw-bold'>1995 Globe Road Aylett, VA 23009</p>
-                        <p>Sunday School services:<br/>
-                            <strong>9:30 AM.</strong>
-                        </p>
-                        <p>Sunday Morning services:<br/>
-                        <strong>11:00 AM.</strong></p>
-                        <p>Bible Study is every <strong>second</strong> and <strong>third Wednesday</strong>  of each month at <strong>7:00 PM.</strong></p>
+                  <h4 className="footer-title">St Paul Baptist Church</h4>
+                  <div class="footer-contact-info">
+                      <p className='fw-bold'>1995 Globe Road Aylett, VA 23009</p>
+                      <p>Sunday School services:<br/>
+                          <strong>9:30 AM.</strong>
+                      </p>
+                      <p>Sunday Morning services:<br/>
+                      <strong>11:00 AM.</strong></p>
+                      <p>Bible Study is every <strong>second</strong> and <strong>third Wednesday</strong>  of each month at <strong>7:00 PM.</strong></p>
 
-                        </div>
-                    <div className="footer-menu">
-                    <Link to='/about' className='footer-menu-item'>About</Link>
-                    <Link to='/broadcasts' className='footer-menu-item'>Broadcasts</Link>
-                    <div><button className='footer-menu-item' type="button" onClick={() => setGivingIsOpen(true)}>Giving</button>
-                         </div>
-                     <a href='/events' className='footer-menu-item'>Bulletin</a>
-                    <Link to='/prayer_requests' className='footer-menu-item'>Prayer Request</Link>
-                    <Link to='/bible_study' className='footer-menu-item'>Bible Study</Link>
-                    <Link to='/youth_corner' className='footer-menu-item'>Youth Corner</Link>
-                    <Link to='/next_service' className='footer-menu-item'>Next Service</Link>
-                    <Link to='/honors' className='footer-menu-item'>Honors</Link>
+                  </div>
+                  <div className="footer-menu">
+                  <Link to='/about' className='footer-menu-item'>About</Link>
+                  <Link to='/broadcasts' className='footer-menu-item'>Broadcasts</Link>
                     <div>
-                        <FooterAccountOptions 
-                            currentUser={currentUser} 
-                            setCurrentUser={setCurrentUser} 
-                            givingIsOpen={givingIsOpen} 
-                            setGivingIsOpen={setGivingIsOpen}
-                            signUpIsOpen={signUpIsOpen}
-                            setSignUpIsOpen={setSignUpIsOpen}
-                            loginIsOpen={loginIsOpen}
-                            setLoginIsOpen={setLoginIsOpen}
-                            logoutIsOpen={logoutIsOpen}
-                            setLogoutIsOpen={setLogoutIsOpen}
-                            updateFacebookLink={updateFacebookLink}
-                            facebook={facebook}
-                            configId={configId}
-                        />
+                      <button className='footer-menu-item' type="button" onClick={() => setGivingIsOpen(true)}>Giving</button>
+                    </div>
+                  <a href='/events' className='footer-menu-item'>Bulletin</a>
+                  <Link to='/prayer_requests' className='footer-menu-item'>Prayer Request</Link>
+                  <Link to='/bible_study' className='footer-menu-item'>Bible Study</Link>
+                  <Link to='/youth_corner' className='footer-menu-item'>Youth Corner</Link>
+                  <Link to='/next_service' className='footer-menu-item'>Next Service</Link>
+                  <Link to='/honors' className='footer-menu-item'>Honors</Link>
+                    <div>
+                      <FooterAccountOptions 
+                          currentUser={currentUser} 
+                          setCurrentUser={setCurrentUser} 
+                          givingIsOpen={givingIsOpen} 
+                          setGivingIsOpen={setGivingIsOpen}
+                          signUpIsOpen={signUpIsOpen}
+                          setSignUpIsOpen={setSignUpIsOpen}
+                          loginIsOpen={loginIsOpen}
+                          setLoginIsOpen={setLoginIsOpen}
+                          logoutIsOpen={logoutIsOpen}
+                          setLogoutIsOpen={setLogoutIsOpen}
+                          updateFacebookLink={updateFacebookLink}
+                          facebook={facebook}
+                          configId={configId}
+                      />
                     </div>
                 </div>
                     

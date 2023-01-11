@@ -47,12 +47,15 @@ function EventEditModal({ event, editEventIsOpen, setEditEventIsOpen, handleEdit
 
     const[formData, setFormData] = useState({
         title: "",
-        starts: '',
+        starts: "",
         ends: "",  
         details: "",
         address_line_1: "", 
         address_line_2: "",
-        city: "",
+        city: "", 
+        state_province_region: "", 
+        zip_postalcode: "", 
+        country: "", 
         image: "",       
     });
 
@@ -68,7 +71,7 @@ function EventEditModal({ event, editEventIsOpen, setEditEventIsOpen, handleEdit
         });
     }, []);
 
-    const { id, title, starts_raw, starts_short, ends_short, details, address_line_1, address_line_2, city, image = "" } = event;
+    const { id, title, starts_raw, starts_short, ends_short, details, address_line_1, address_line_2, city, state_province_region, zip_postalcode, country, image = "" } = event;
 
 
     return(
@@ -86,8 +89,12 @@ function EventEditModal({ event, editEventIsOpen, setEditEventIsOpen, handleEdit
                     </ModalBody>
                 </ModalHeader>
                 <ModalFooter>
-                    <EditEvent formData={formData} setFormData={setFormData} handleEditEvent={handleEditEvent} setEditEventIsOpen={setEditEventIsOpen}/>
-                    <button type="button" onClick={() => {setEditEventIsOpen(false)}}>Cancel</button>
+                    <EditEvent 
+                        formData={formData} 
+                        setFormData={setFormData} 
+                        handleEditEvent={handleEditEvent} 
+                        setEditEventIsOpen={setEditEventIsOpen}
+                    />
                 </ModalFooter>
             </Modal>
         </div>

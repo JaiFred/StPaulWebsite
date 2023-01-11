@@ -2,6 +2,8 @@
 import React from "react";
 import emailjs from "@emailjs/browser"
 
+import prayerRequestBackground from "./images/Prayer-request-background.mp4"
+
 
 function PrayerRequestsContainer(){
         const sendEmail = (e) => {
@@ -16,8 +18,11 @@ function PrayerRequestsContainer(){
         <div>
             <form className="prayer-request"  onSubmit={sendEmail}>
         <h1>
-            You are in the Prayer Request Page 
+            Prayer Request Page 
         </h1>
+        <video muted loop autoPlay playsInline src={prayerRequestBackground}></video>
+
+
         <label htmlFor="who-input">Who needs Prayer?</label>
         <input
             className="who-input"

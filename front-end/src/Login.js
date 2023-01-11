@@ -8,6 +8,9 @@ import { useNavigate } from "react-router-dom";
 //Components
 import PasswordRecoveryPage from './PasswordRecoveryPage';
 
+//CSS
+
+
 function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
 
 
@@ -76,6 +79,7 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
              <input
               className="email-input"
               type="E-mail"
+              name="email"
               placeholder="email..."
               onChange={(event) => setEmail(event.target.value)}
             />
@@ -85,7 +89,12 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
               placeholder="Password..."
               onChange={(event) => setPassword(event.target.value)}
             />
-          <Button variant="primary" type="submit">Login</Button>
+          <div className="login-button-container">
+          <button className="login-btn" type="submit">Login</button>
+          </div>
+          <div className="back-to-home-from-login">
+            <Link to='/' >back to home</Link>
+          </div>
           
           <div>
           <label>Don't have an account?</label>
@@ -100,9 +109,6 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
           <Routes>
             <Route path='/password_recovery' element={<PasswordRecoveryPage/>}/>
           </Routes>
-          <div>
-            <Link to='/' className="main">back to home</Link>
-          </div>
         </form>
       </div>
     </div>

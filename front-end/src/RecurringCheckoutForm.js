@@ -340,13 +340,15 @@ const RecurringCheckoutForm = ({currentUser, paymentMethod, setPaymentMethod}) =
   </div>
 
 
-      
+     
       {error && <ErrorMessage message={error.message} />}
+      <h3>Click to submit recurring payment</h3>
       <SubmitButton processing={processing} error={error} disabled={!stripe} >
         { amount && frequency && frequency == 'Monthly' && <p>Pay {amount} every {paymentDate} of the month. Subscription scheduled for {moment(paymentStartDate).format('lll')} </p> }
         { amount && frequency && frequency == 'Weekly' && <p>Pay {amount} every {weekday} of the week. Subscription scheduled for {moment(paymentStartDate).format('lll')}</p> }
         { amount && frequency && frequency == 'BiWeekly' && <p>Pay {amount} every two weeks, starting the {biWeeklyPaymentDate}. Subscription scheduled for {moment(paymentStartDate).format('lll')}</p> }
       </SubmitButton>
+      <h3>*You can cancel your subscription at any time in your profile page</h3>
     </form>
   )}
   </div>

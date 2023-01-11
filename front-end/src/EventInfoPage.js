@@ -8,13 +8,18 @@ import { Link } from "react-router-dom";
 // Have each event display with the day, day number, month, year and time on the EventInfoPage that will show more information
 // Have a months filter bar that appears when an event within that month is made - you can click on months to show events that take place during the month
 
-function EventInfoPage(){
+function EventInfoPage({ currentUser }){
 
-    // t.string :title
-    // t.datetime :starts
-    // t.datetime :ends
-    // t.string :details
-    // t.string :location
+    // t.string "title"
+    // t.datetime "starts"
+    // t.datetime "ends"
+    // t.string "details"
+    // t.string "address_line_1"
+    // t.string "address_line_2"
+    // t.string "city"
+    // t.string "state_province_region"
+    // t.string "zip_postalcode"
+    // t.string "country"
 
     let { id } = useParams();
 
@@ -49,6 +54,20 @@ function EventInfoPage(){
             <div className="detailed-start-info">
                 <h3>Time</h3>
                 <h3>{event?.starts} - {event?.ends}</h3>
+            </div>
+            <div>
+                <h3>{event?.details}</h3>
+            </div>
+            <div>
+                <h3>{event?.address_line_1}</h3>
+                <h3>{event?.address_line_2}</h3>
+                <h3>{event?.city}</h3>
+                <h3>{event?.state_province_region}</h3>
+                {/* <h3>{event?.zip_postalcode}</h3> */}
+                <h3>{event?.country}</h3>
+            </div>
+            <div>
+                
             </div>
             <div className="back-to-bulletin-page">
                 <Link to='/events' className="main">Back</Link>

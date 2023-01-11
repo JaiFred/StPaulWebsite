@@ -7,6 +7,7 @@ import { ReactPlayerWrapper } from './ReactPlayerWrapper/ReactPlayerWrapper';
 
 //CSS
 import background from './images/trees-wallpaper-green.jpeg'
+import BroadcastPage from './images/Broadcast-page.mp4'
 import { Parallax } from 'react-parallax'; 
 import './BroadcastsContainer.scss'
 
@@ -42,10 +43,16 @@ import './BroadcastsContainer.scss'
             return(
                 <div>
                      <Parallax bgImage={background} bgImageAlt="homepage background" strength={-200} className={'homepage-background'}>
-                        <div class="container">
-                        <ReactPlayerWrapper url={videos[0].url}/>
+                        <div className="container">
+                            <h1 className="title">Broadcasts</h1>
+                            <h2 className="recent-broadcast-title">Most Recent Broadcast</h2>
+                            <ReactPlayerWrapper url={videos[0].url}/>
                         </div>
                      </Parallax>
+                     <video muted loop autoPlay playsInline src={BroadcastPage}></video>
+                    <div className="subheader-banner">
+                        <h2>Previous messages</h2>
+                    </div>
                     <div class="container">
                         <div className={'row'}>
                             <div className="col-12 col-md-6">
@@ -64,7 +71,7 @@ import './BroadcastsContainer.scss'
                             </div>
                         </div>
                     </div>
-                    <div>
+                    <div className="broadcasts-to-back-home">
                         <Link to='/' className="main">back to home</Link>
                     </div>
                 </div>
