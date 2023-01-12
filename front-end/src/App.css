@@ -151,42 +151,7 @@ h3.navbar-banner {
   color: black;
 }
 
-.About-page-background {
-  --bg-image: url(images/StPaulBaptistChurch.JPG);
-  --bg-image-opacity: .25;
-  height: 3000px;
 
-  position: relative;
-  isolation: isolate;
-}
-
-.About-page-background::after {
-  content: '';
-  
-  position: absolute;
-  background-position: -1924px -86px;
-  z-index: -1;
-  inset: 0;
-  opacity: var(--bg-image-opacity);
-  background-image: var(--bg-image);
-  background-size: 4910.3px 3265px;
-  background-repeat: no-repeat;
-  height: 3000px;
-}
-
-/* unorganized list for pictures */
-.pastor-pictures{
-  list-style-type: none;
-}
-
-/* Pastor Brown's picture */
-.pastor-brown {
-  width: 300px;
-}
-
-.pastor-bullock {
-  width: 745px;
-}
 
 
 /* Profile Page background */

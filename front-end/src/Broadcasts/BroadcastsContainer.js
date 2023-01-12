@@ -5,6 +5,7 @@ import React, {useState, useEffect} from "react";
 //Components
 import { ReactPlayerWrapper } from '../ReactPlayerWrapper/ReactPlayerWrapper';
 import {VideoItem} from './VideoItem';
+import { BackHomeButton } from '../BackHomeButton/BackHomeButton';
 
 //CSS
 import background from '../images/trees-wallpaper-green.jpeg'
@@ -69,9 +70,7 @@ import moment from 'moment';
                             </div>
                         </div>
                     </div>
-                    <div className="broadcasts-back-home">
-                        <Link to='/' className="broadcasts-back-home-button">Back Home</Link>
-                    </div>
+                    <BackHomeButton/>
                 </div>
                 
             )
