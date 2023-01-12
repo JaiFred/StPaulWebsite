@@ -14,7 +14,7 @@ function ChurchLanding({ currentUser, givingIsOpen, setGivingIsOpen}){
 
   return(<>
     <ParallaxBanner style={{ aspectRatio: 'auto' }}>
-      <ParallaxBannerLayer image={background} speed={-20} />
+      <ParallaxBannerLayer image={background} speed={-30} />
       <ParallaxBannerLayer className={'homepage-background'}>
         <HomepageBigButtons currentUser={currentUser} setGivingIsOpen={setGivingIsOpen} givingIsOpen={givingIsOpen}/>
         <div className="bible-dec-background">

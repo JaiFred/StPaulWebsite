@@ -5,6 +5,7 @@ import { Link, useNavigate } from "react-router-dom";
 import Navbar from "../Navbar";
 import EventCard from '../EventCard';
 import SubmitNewEventModal from "../SubmitNewEventModal";
+import { BackHomeButton } from "../BackHomeButton/BackHomeButton";
 
 //CSS
 import './EventsContainer.scss'
@@ -82,18 +83,14 @@ function EventsContainer({ currentUser, events, setEvents, handleAddNewEvent, ha
                     <SubmitNewEventModal events={events} setEvents={setEvents} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen} handleAddNewEvent={handleAddNewEvent}/>
                     {EventList}
                 </div>
-                <div className="bulletin-back-home">
-                    <Link to='/' className="bulletin-back-home-button">Back Home</Link>
-                </div>
+                <BackHomeButton/>
             </div> 
             ) : (
             <div className='events-container'>
                 <h1>Events</h1>
                 <EventsFilter setEvents={setEvents}/>
                 {EventList}
-                <div className="bulletin-back-home">
-                    <Link to='/' className="bulletin-back-home-button">Back Home</Link>
-                </div>
+                <BackHomeButton/>
             </div>
             )}
         </div>

@@ -8,7 +8,6 @@ import Login from './Login';
 import SignUp from './SignUp';
 import SignUpSuccessPage from './SignUpSuccessPage';
 import ChurchLandingAttributes from './ChurchLandingAttributes';
-import GivingModal from './GivingModal';
 import PasswordRecoveryRequestSuccess from './PasswordRecoveryRequestSuccess';
 import UpdateEmailSuccessPage from './UpdateEmailSuccessPage';
 import EventsContainer from './Events/EventsContainer';
@@ -318,7 +317,16 @@ function App() {
           }
           />
           <Route path='/edithonors/:id' element={<EditHonorsDocuments/>}/>
-          <Route path='/subscriptions_page' element={<SubscriptionCard currentUser={currentUser} cancelSubscriptionIsOpen={cancelSubscriptionIsOpen} setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen} cancelFutureSubscriptionIsOpen={cancelFutureSubscriptionIsOpen} setCancelFutureSubscriptionIsOpen={setCancelFutureSubscriptionIsOpen} />}/>
+          <Route path='/subscriptions_page' element={
+            <SubscriptionCard 
+              currentUser={currentUser} 
+              cancelSubscriptionIsOpen={cancelSubscriptionIsOpen} 
+              setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen} 
+              cancelFutureSubscriptionIsOpen={cancelFutureSubscriptionIsOpen} 
+              setCancelFutureSubscriptionIsOpen={setCancelFutureSubscriptionIsOpen} 
+              />
+            }
+            />
           <Route path='/password_recovery' element={<PasswordRecoveryPage/>}/>
           <Route path='/next_service' element={<NextServicePage/>}/>
           <Route path='/password_recovery_success' element={<PasswordRecoveryRequestSuccess/>}/>
@@ -326,8 +334,6 @@ function App() {
           <Route path='/youth_corner' element={<YouthCorner/>}/>
 
         </Routes>
-        {/* <button className='giving-modal-btn' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
-        <GivingModal givingIsOpen={givingIsOpen} setGivingIsOpen={setGivingIsOpen}/> */}
       <Footer 
         givingIsOpen={givingIsOpen} 
         setGivingIsOpen={setGivingIsOpen} 

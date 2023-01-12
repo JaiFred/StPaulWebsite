@@ -5,6 +5,7 @@
     background-color: white;
     border-radius: 40px;
     padding: 15px 15px 6px;
+    
 
     &-button {
         background-color: black;
@@ -15,5 +16,11 @@
         border: 0;
         padding: 5px 12px;
         text-transform: uppercase;
+        transition: all 0.3s ease-in-out; 
+
+        &:hover{
+            transform: translateY(-4px);
+            color: rgb(247, 255, 128);
+        }
     }
 }

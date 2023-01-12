@@ -2,6 +2,10 @@
 import React from "react";
 import emailjs from "@emailjs/browser"
 
+//Components
+import { BackHomeButton } from "./BackHomeButton/BackHomeButton";
+
+//CSS
 import prayerRequestBackground from "./images/Prayer-request-background.mp4"
 
 
@@ -103,6 +107,7 @@ function PrayerRequestsContainer(){
             <input type="text" name="email-from" id="email-from" className="email-form"></input>
             <button type="submit" className="submit-button">send</button>
         </form>
+            <BackHomeButton/>
         </div>
     )
 }
