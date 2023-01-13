@@ -1,0 +1,94 @@
+.honor-doc {
+    border-radius: 20px;
+    display: block;
+    overflow: hidden;
+    // background-size: cover;
+    // background-repeat: no-repeat;
+    // background-position: center;
+    margin-bottom: 30px;
+    color: #000;
+    text-decoration: none;
+    position: relative;
+
+    &-outer {
+        padding-top: 110%;
+        position: relative;
+    }
+
+    &-inner {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+    }
+
+    &-media {
+        width: 100%;
+        object-fit: cover;
+    }
+
+    &-infos {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1;
+
+        &:before {
+            content: '';
+            position: absolute;
+            top:50%;
+            left: 0;
+            width: 100%;
+            bottom: 0;
+            background-color: black;
+        }
+
+        &-inner {
+            position: relative;
+            border: 6px solid black;
+            background-color: white;
+            border-radius: 100px;
+            text-align: center;
+            position: relative;
+            border-bottom-width: 10px;
+        }
+
+    }
+
+    &-controls {
+        display:none;
+        position: absolute;
+        top:0;
+        left: 0;
+        width: 100%;
+        z-index: 2;
+
+        .honor-doc:hover & {
+            display:flex;
+            padding-top: 5px;
+            justify-content: space-between;
+        }
+    }
+
+    &-control {
+        border: 0;
+        background-color: transparent;
+        border-radius: 100px;
+        width: 50px;  
+        transition: all 0.3s ease-in-out; 
+        opacity: 50%;
+        
+        &:hover{
+            opacity: 100%;
+            transform: translateY(-2px);
+            transform: scale(1.2);
+        }
+
+        img {
+            max-width: 100%;
+        }
+        
+    }
+}

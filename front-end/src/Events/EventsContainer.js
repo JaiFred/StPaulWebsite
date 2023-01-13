@@ -3,7 +3,7 @@ import { Link, useNavigate } from "react-router-dom";
 
 //Components
 import Navbar from "../Navbar";
-import EventCard from '../EventCard';
+import EventCard from './EventCard';
 import SubmitNewEventModal from "../SubmitNewEventModal";
 import { BackHomeButton } from "../BackHomeButton/BackHomeButton";
 
@@ -20,9 +20,10 @@ import { EventsFilter } from "./EventsFilter";
 
 function EventsContainer({ currentUser, events, setEvents, handleAddNewEvent, handleEditEvent, handleDeleteEvent, addEventIsOpen, setAddEventIsOpen }){
     // debugger;
-    const EventList = events.map((event) =>( 
+    const EventList = events.map((event) => <div class="col-12 col-md-6 col-lg-4 col-xl-3">
         <EventCard key={event.id} event={event} events={events} setEvents={setEvents} currentUser={currentUser} handleEditEvent={handleEditEvent} handleDeleteEvent={handleDeleteEvent}/>
-    ))
+        </div>
+    )
 
    
 
@@ -57,9 +58,7 @@ function EventsContainer({ currentUser, events, setEvents, handleAddNewEvent, ha
     console.log(`In EventsContainer: currentUser?.admin: ${currentUser?.admin} | currentUser?.user?.admin: ${currentUser?.user?.admin}`)
 
     return(
-        <div className="container">
-            {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (
-            <div className='admin-events-container'>
+        <div className="events-container">
                 <div className="container">
                     <div class="row">
                         <div className="col-12 col-md-6">
@@ -77,23 +76,23 @@ function EventsContainer({ currentUser, events, setEvents, handleAddNewEvent, ha
                         </div>
                     </div>
                 </div>
-                <div className="events-content">
-                    <EventsFilter setEvents={setEvents}/>
-                    <button className='add-new-event-modal-btn' type='button' onClick={() => setAddEventIsOpen(true)}>Add New Event</button>
-                    <SubmitNewEventModal events={events} setEvents={setEvents} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen} handleAddNewEvent={handleAddNewEvent}/>
-                    {EventList}
+                <div className="container-fluid">
+                    <div className="events-content">
+                        <EventsFilter setEvents={setEvents}/>
+                    
+                        <div className={'events-content-scroll'}>
+                                <div className="row">{EventList}</div>
+                        </div>
+
+                        {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (<div className="events-actions">
+                            <button className='events-actions-button' type='button' onClick={() => setAddEventIsOpen(true)}>Add New Event</button>
+                            <SubmitNewEventModal events={events} setEvents={setEvents} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen} handleAddNewEvent={handleAddNewEvent}/>
+                        </div>
+                        ) : ''}
+                    </div>
+                <BackHomeButton/>
                 </div>
-                <BackHomeButton/>
             </div> 
-            ) : (
-            <div className='events-container'>
-                <h1>Events</h1>
-                <EventsFilter setEvents={setEvents}/>
-                {EventList}
-                <BackHomeButton/>
-            </div>
-            )}
-        </div>
     )
 }
 

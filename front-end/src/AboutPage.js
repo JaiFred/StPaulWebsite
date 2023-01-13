@@ -36,7 +36,6 @@ function AboutPage(){
                                         <h1>Rev. Robert D. Brown with Pastor Kim Bullock</h1>
                                         <img className="pastor-brown" src={PastorBrown}></img>
                                     </li>
-                                    
                                     <li>
                                         <h1>Pastor Kim Bullock</h1>
                                         <img className="pastor-bullock" src={PastorBullock}></img>

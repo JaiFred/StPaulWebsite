@@ -13,8 +13,8 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
         address_line_1, 
         address_line_2, 
         city, 
-        state_province_region, 
-        // zip_postalcode, 
+        state_province_region,
+        zip_postalcode, 
         country 
     } = formData;
 
@@ -42,7 +42,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
         formData.append("address_line_2", address_line_2);
         formData.append("city", city);
         formData.append("state_province_region", state_province_region);
-        // formData.append("zip_postalcode", zip_postalcode)
+        formData.append("zip_postalcode", zip_postalcode)
         formData.append("country", country)
 
         const configObj = {
@@ -96,7 +96,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 type="text"
                 id="title"
                 name="title"
-                value={title}
+                value={title || ''}
                 placeholder="title..."
                 onChange={handleChange}
             />
@@ -106,7 +106,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 type="datetime-local"
                 id="starts"
                 name="starts"
-                value={starts}
+                value={starts || ''}
                 onChange={handleChange}
             />
 
@@ -115,7 +115,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 type="datetime-local"
                 id="ends"
                 name="ends"
-                value={ends}
+                value={ends || ''}
                 onChange={handleChange}
             />
 
@@ -124,7 +124,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 className="details_input"
                 id="details_input"
                 name="details"
-                value={details}
+                value={details || ''}
                 onChange={handleChange}
             />
             <h3>Street address</h3>
@@ -132,7 +132,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 className="address_line_1_input"
                 id="address_line_1_input"
                 name="address_line_1"
-                value={address_line_1}
+                value={address_line_1 || ''}
                 onChange={handleChange}
             />
             <h3>Apt, Suite etc. (Optional)</h3>
@@ -140,7 +140,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 type="text"
                 id="address_line_2_input"
                 name="address_line_2"
-                value={address_line_2}
+                value={address_line_2 || ''}
                 onChange={handleChange}
             />
             <h3>Country</h3>
@@ -148,7 +148,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 type="text"
                 id="country_input"
                 name="country"
-                value={country}
+                value={country || ''}
                 onChange={handleChange}
             />
             <h3>city</h3>
@@ -156,25 +156,25 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 type="text"
                 id="city_input"
                 name="city"
-                value={city}
+                value={city || ''}
                 onChange={handleChange}
             />
             <h3>State/Province/Region</h3>
             <input
                 type="text"
                 id="state-province-region-input"
-                name="state-province-region"
-                value={state_province_region}
+                name="state_province_region"
+                value={state_province_region || ''}
                 onChange={handleChange}
             />
-            {/* <h3>ZIP/Postal code</h3>
+            <h3>ZIP/Postal code</h3>
             <input
                 type="text"
                 id="zip-postalcode-input"
-                name="zip-postalcode"
-                value={zip_postalcode}
+                name="zip_postalcode"
+                value={zip_postalcode || ''}
                 onChange={handleChange}
-            /> */}
+            />
 
             </ul>
             <button id='submitBtn' type="button" onClick={handleSubmit} method="post">Edit</button>

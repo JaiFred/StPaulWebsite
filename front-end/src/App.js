@@ -20,7 +20,7 @@ import SubscriptionCard from './SubscriptionCard';
 import Footer from './Footer';
 import PrayerRequestsContainer from './PrayerRequestsContainer';
 import ContactUsPage from './ContactUsPage';
-import HonorsPage from './HonorsPage';
+import HonorsPage from './Honors/HonorsPage';
 import EditHonorsDocuments from './EditHonorsItem';
 import PasswordRecoveryPage from './PasswordRecoveryPage';
 import YouthCorner from './YouthCorner';

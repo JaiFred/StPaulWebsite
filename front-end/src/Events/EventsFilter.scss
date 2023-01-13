@@ -1,10 +1,22 @@
+
+@import '../bootstrap-utils';
+
 .events-filters {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
     background-color: white;
     border-radius: 40px;
-    padding: 15px 15px 6px;
+    padding: 6px 2px 2px;
+
+    @include media-breakpoint-up(md) {
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        background-color: white;
+        border-radius: 40px;
+        padding: 15px 15px 6px;
+    }
     
 
     &-button {
@@ -12,11 +24,16 @@
         border-radius: 100px;
         color: white;
         margin-right: 10px;
-        margin-bottom: 9px;
+        margin-bottom: 18px;
         border: 0;
         padding: 5px 12px;
         text-transform: uppercase;
         transition: all 0.3s ease-in-out; 
+
+        @include media-breakpoint-up(md) {
+        margin-right: 10px;
+        margin-bottom: 9px;
+        }
 
         &:hover{
             transform: translateY(-4px);

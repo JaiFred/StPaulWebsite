@@ -2,6 +2,8 @@
 //Components
 import EventDeleteConfirmationModal from "./EventDeleteConfirmationModal"
 import EventEditModal from "./EventEditModal"
+import deleteIcon from './images/event-delete-icon.svg';
+import editIcon from './images/event-edit-icon.svg';
 
 export const EventCardControls = ({
     currentUser,
@@ -13,22 +15,24 @@ export const EventCardControls = ({
     setEditEventIsOpen,
     handleEditEvent, }) => {
 
-    return(
-        <div className="admin-bulletin-controls">
+    return(<div>
+        <div className="event-card-controls" >
             {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (
-            <div className="bulletin-controls">
-            <div>
-                <button className='delete-event-modal_btn' type='button' onClick={() => setDeleteIsOpen(true)}>Delete
+            <>
+                <button className='event-card-control' type='button' onClick={(e) => setDeleteIsOpen(true)}>
+                    <img src={deleteIcon} />
                 </button>
-                <EventDeleteConfirmationModal event={event} deleteIsOpen={deleteIsOpen} setDeleteIsOpen={setDeleteIsOpen} handleDeleteClick={handleDeleteClick}/>
-            </div>
-            <div>
-                <button className='edit-event-modal-btn' type='button' onClick={() => setEditEventIsOpen(true)}>Edit
+                
+                <button className='event-card-control' type='button' onClick={() => setEditEventIsOpen(true)}>
+                <img src={editIcon} />
                 </button>
-                <EventEditModal event={event} editEventIsOpen={editEventIsOpen} setEditEventIsOpen={setEditEventIsOpen} handleEditEvent={handleEditEvent} />
-            </div>
-            </div>
+                
+            </>
             ): ''}
+
+        </div>
+        <EventDeleteConfirmationModal event={event} deleteIsOpen={deleteIsOpen} setDeleteIsOpen={setDeleteIsOpen} handleDeleteClick={handleDeleteClick}/>
+        <EventEditModal event={event} editEventIsOpen={editEventIsOpen} setEditEventIsOpen={setEditEventIsOpen} handleEditEvent={handleEditEvent} />
         </div>
 
     )
