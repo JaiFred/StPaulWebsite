@@ -1,0 +1,20 @@
+.honors {
+    overflow: hidden;
+    position: relative;
+    padding-top: 100px;
+
+    &-background {
+        position: absolute;
+        height: 150%;
+        width: 100%;
+        // opacity: 0.45;
+ 
+         video {
+             height: 100%;
+             position: absolute;
+             left: 50%;
+             transform: translateX(-50%) translateY(-12%);
+         }
+        
+     }
+}

@@ -65,7 +65,7 @@ function EventInfoPage({ currentUser }){
                 <h3>{event?.address_line_2}</h3>
                 <h3>{event?.city}</h3>
                 <h3>{event?.state_province_region}</h3>
-                {/* <h3>{event?.zip_postalcode}</h3> */}
+                <h3>{event?.zip_postalcode}</h3>
                 <h3>{event?.country}</h3>
             </div>
             <div>

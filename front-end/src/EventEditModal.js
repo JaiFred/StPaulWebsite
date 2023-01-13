@@ -67,6 +67,7 @@ function EventEditModal({ event, editEventIsOpen, setEditEventIsOpen, handleEdit
         .then((res) => res.json())
         .then((event) => {            
             const updatedEvent = { ...event, starts: event.starts_raw, ends: event.ends_raw }
+            console.log('backend data', updatedEvent)
             setFormData(updatedEvent);
         });
     }, []);
