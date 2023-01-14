@@ -1,3 +1,5 @@
+@import '../bootstrap-utils';
+
 .honor-doc {
     border-radius: 20px;
     display: block;
@@ -9,9 +11,11 @@
     color: #000;
     text-decoration: none;
     position: relative;
+    background: black;
+    border-radius: 20px;
 
     &-outer {
-        padding-top: 110%;
+        padding-top: 150%;
         position: relative;
     }
 
@@ -25,7 +29,17 @@
 
     &-media {
         width: 100%;
+        margin-bottom: 0;
         object-fit: cover;
+        &-container {
+            height: 70%;
+            border-radius: 0 0 20px 20px;
+            overflow: hidden;
+
+            @include media-breakpoint-up(xl) {
+                height: 60%;
+            }
+        }
     }
 
     &-infos {
@@ -34,6 +48,12 @@
         left: 0;
         width: 100%;
         z-index: 1;
+        text-align: center;
+        height: 30%;
+
+        @include media-breakpoint-up(xl) {
+            height: 40%;
+        }
 
         &:before {
             content: '';
@@ -47,14 +67,29 @@
 
         &-inner {
             position: relative;
-            border: 6px solid black;
+            border: 10px solid black;
             background-color: white;
-            border-radius: 100px;
-            text-align: center;
-            position: relative;
-            border-bottom-width: 10px;
+            border-radius: 20px;
+            height: calc(100% - 25px);
+
+            > p {
+                height: 100%;
+                overflow: auto;
+                margin: 5px 0;
+            }
         }
 
+        &-click-to-open {
+            position: relative;
+            transform: translateY(-6px);
+            color: black;
+            background: white;
+            display: inline-block;
+            padding: 0 5px;
+            border-radius: 15px;
+            text-decoration: none;
+            line-height: 20px;
+        }
     }
 
     &-controls {

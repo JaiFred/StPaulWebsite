@@ -17,4 +17,59 @@
          }
         
      }
+
+     &-top-heading {
+        position: relative;
+        background: white;
+        text-align: center;
+        border-radius: 0 0 50% 50%;
+        aspect-ratio: 1/1;
+        display: flex;
+        flex-direction: column;
+        justify-content: flex-end;
+        margin: -340px auto 0;
+        width: 500px;
+        padding: 0 80px 100px;
+
+        h1 {
+            margin-bottom: 30px;
+            font-weight: bold;
+        }
+     }
+}
+
+.add-new-honor {
+    &-container {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        text-align: center;
+        margin: 80px 0 20px;
+        align-items: center;
+        
+        .column {
+            &:last-child {
+                text-align: right;
+            }
+        }
+        
+        h2 {
+            color: white;
+            font-weight: bold;
+            font-size: 2.5rem;
+        }
+
+        button {
+            color: white;
+            background: black;
+            border-radius: 20px;
+            border: 0;
+            font-weight: bold;
+            padding: 3px 8px;
+        }
+    }
+}
+
+// CKEDitor fixes
+.ck.ck-balloon-panel {
+    z-index: 9999 !important;
 }
