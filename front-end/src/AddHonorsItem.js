@@ -66,6 +66,7 @@ function AddHonorsItem({setDocuments}){
                 placeholder='type here --'
                 onChange={(e) => setDescription(e.target.value)}
             />*/}
+            <h3 className="document-add-text-box-">Information about this of document</h3>
             <Editor 
                 id='description'
                 value={description}
