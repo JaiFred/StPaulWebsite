@@ -69,18 +69,25 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
                             addHonorIsOpen={addHonorIsOpen} 
                             setAddHonorIsOpen={setAddHonorIsOpen}
                         />
-                        <div className="add-new-honor-container">  
-                            <div className="column">
-                            </div>
-                            <div className="column">
-                                <h2>Documents</h2>
-                            </div>
-                            <div className="column">
-                                <button className='add-new-honor-item-modal-btn' type='button' onClick={() => setAddHonorIsOpen(true)}>Add new document</button>
-                            </div>
+                    <div className="add-new-honor-container">  
+                        <div className="column">
+                            <button className='add-new-honor-item-modal-btn' type='button' onClick={() => setAddHonorIsOpen(true)}>Add new document</button>
                         </div>
+                    </div>
                     </>
                 }
+                <>
+                    <div className="add-new-honor-container">  
+                        <div className="column">
+                        </div>
+                        <div className="column">
+                            <h2>Documents</h2>
+                        </div>
+                        <div className="column">
+                        </div>
+                    </div>
+                </>
+               
 
                 {/* */}
                 <div class="row">

@@ -37,8 +37,8 @@ deleteHonorIsOpen, setDeleteHonorIsOpen}) => <div className={'honor-doc'}>
                         <button className='honor-doc-control' type='button' onClick={() => selectDeleteModal(doc)}>
                             <img src={deleteIcon} />
                         </button>
+
                         {/* This will edit a document in the Honors Page */}
-                        
                         <button className='honor-doc-control' type='button' onClick={() => selectEditModal(doc)}>
                             <img src={editIcon} />
                         </button>
