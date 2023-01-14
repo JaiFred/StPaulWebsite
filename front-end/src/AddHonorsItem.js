@@ -1,6 +1,6 @@
 //Hooks
 import React, { useState, useEffect } from "react";
-
+import Editor from './Editor/Editor';
 
 function AddHonorsItem({setDocuments}){
 
@@ -55,7 +55,7 @@ function AddHonorsItem({setDocuments}){
                 onChange={handleDocumentsChange}
                 multiple
             />
-             <textarea
+             {/*<textarea
                 className='description'
                 type='text'
                 id='description'
@@ -65,7 +65,19 @@ function AddHonorsItem({setDocuments}){
                 // value=
                 placeholder='type here --'
                 onChange={(e) => setDescription(e.target.value)}
+            />*/}
+            <Editor 
+                id='description'
+                value={description}
+                onChange={newValue => setDescription(newValue)}
+                placeholder="Type here..."
             />
+            {/* <Editor
+                id="description"
+                value={editedDescription}
+                onChange={newValue => setEditedDescription(newValue)}
+                placeholder="description..." 
+            /> */}
             <button id='submitBtn' type="button" onClick={handleSubmit} method="post">Submit</button>
             
             </form>

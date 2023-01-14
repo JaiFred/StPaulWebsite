@@ -4,6 +4,13 @@ import { Link, Navigate, Routes, Route } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
 
+//Components
+import Editor from './Editor/Editor';
+
+//CSS
+import './EditHonorsItem.scss'
+
+
 // send props into here to make this work again...
 
 function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen }){
@@ -54,12 +61,13 @@ function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen }){
     };
 
     return(
-        <form onSubmit={handleSubmit}>
-            <ul>
-            {
-                showExistingDocument && (isDocumentPdf ? <embed src={doc.file} target="_parent" width="500" height="600" /> 
-                    : 
-                <img src={doc.file} width="500" height="600"></img>)
+        <form className='honors-item-edit-form' onSubmit={handleSubmit}>
+            <ul className='text-center'>
+            {showExistingDocument && (
+                isDocumentPdf
+                    ? <embed className="text-center-image" src={doc.file} target="_parent" /> 
+                    : <img className="text-center-image" src={doc.file} />
+                )
             }
             <input 
                 type="file" 
@@ -67,8 +75,9 @@ function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen }){
                 accept="image/png, image/jpeg, application/pdf,application/vnd.ms-excel"
                 onChange={handleDocumentsChange}
                 multiple
+                className='my-3'
             />
-            <textarea
+            {/*<textarea
                 type="text"
                 id="description"
                 name="description"
@@ -77,6 +86,12 @@ function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen }){
                 value={editedDescription}
                 placeholder="description..."
                 onChange={(e) => { setEditedDescription(e.target.value)}}
+            />*/}
+            <Editor
+                id="description"
+                value={editedDescription}
+                onChange={newValue => setEditedDescription(newValue)}
+                placeholder="description..." 
             />
             </ul>
             <button id='submitBtn' type="button" onClick={handleSubmit} method="post">Edit</button>

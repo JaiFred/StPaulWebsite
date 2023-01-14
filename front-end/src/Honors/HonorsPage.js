@@ -7,7 +7,7 @@ import { useNavigate, Link } from "react-router-dom";
 import AddHonorsItemModal from "../AddHonorsItemModal";
 import { Parallax } from 'react-scroll-parallax'; 
 import { HonorDoc } from "./HonorDoc";
-
+import { BackHomeButton } from '../BackHomeButton/BackHomeButton';
 //CSS
 import honorPageVideo from '../images/honor-page-video.mp4'
 import './HonorsPage.scss'
@@ -55,38 +55,56 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
             <Parallax className={'honors-background'} speed={-50}>
                 <video muted loop autoPlay playsInline src={honorPageVideo}></video>
             </Parallax>
-            <div className="container">
-            {(currentUser?.admin === true || currentUser?.user?.admin === true) && 
-                <div>
-                    <button className='add-new-honor-item-modal-btn' type='button' onClick={() => setAddHonorIsOpen(true)}>add new item</button>
-                    <AddHonorsItemModal 
-                        setDocuments={setDocuments} 
-                        addHonorIsOpen={addHonorIsOpen} 
-                        setAddHonorIsOpen={setAddHonorIsOpen}
-                    />
+            <div className="container position-relative">
+                <div className="honors-top-heading">
+                    <h1>Honors</h1>
+                    <p>Learn more about our church and its members</p>
                 </div>
-            }
-            <div class="row">
-            {   
-                documents && documents.map(doc => 
-                    <div class="col-12 col-md-6"><HonorDoc currentUser={currentUser}
-                doc={doc}
-                fetchDocuments={fetchDocuments}
-                selectedDocument={selectedDocument}
-                editHonorIsOpen={editHonorIsOpen}
-                setEditHonorIsOpen={setEditHonorIsOpen}
-                selectEditModal={selectEditModal}
-                selectDeleteModal={selectDeleteModal}
-                documents={documents}
-                setDocuments={setDocuments}
-                deleteHonorIsOpen={deleteHonorIsOpen}
-                setDeleteHonorIsOpen={setDeleteHonorIsOpen} />
-                </div>
-                )
 
-            }
+                {/* */}
+                {(currentUser?.admin === true || currentUser?.user?.admin === true) && 
+                    <>
+                        <AddHonorsItemModal 
+                            setDocuments={setDocuments} 
+                            addHonorIsOpen={addHonorIsOpen} 
+                            setAddHonorIsOpen={setAddHonorIsOpen}
+                        />
+                        <div className="add-new-honor-container">  
+                            <div className="column">
+                            </div>
+                            <div className="column">
+                                <h2>Documents</h2>
+                            </div>
+                            <div className="column">
+                                <button className='add-new-honor-item-modal-btn' type='button' onClick={() => setAddHonorIsOpen(true)}>Add new document</button>
+                            </div>
+                        </div>
+                    </>
+                }
+
+                {/* */}
+                <div class="row">
+                {   
+                    documents && documents.map(doc => 
+                        
+                    <div class="col-12 col-md-6"><HonorDoc currentUser={currentUser}
+                        doc={doc}
+                        fetchDocuments={fetchDocuments}
+                        selectedDocument={selectedDocument}
+                        editHonorIsOpen={editHonorIsOpen}
+                        setEditHonorIsOpen={setEditHonorIsOpen}
+                        selectEditModal={selectEditModal}
+                        selectDeleteModal={selectDeleteModal}
+                        documents={documents}
+                        setDocuments={setDocuments}
+                        deleteHonorIsOpen={deleteHonorIsOpen}
+                        setDeleteHonorIsOpen={setDeleteHonorIsOpen} />
+                    </div>
+                    )
+                }
+                </div>
+                <BackHomeButton/>
             </div>
-        </div>
         </div>
            
     

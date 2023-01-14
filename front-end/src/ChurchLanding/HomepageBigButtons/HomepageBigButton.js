@@ -4,12 +4,14 @@ export const HomepageBigButton = ({identifier, icon, to, label, onClick, useDefa
     <div className='homepage-big-button-outer'>
     <div className="homepage-big-button-dim"></div>
         {useDefaultAnchor ? <a className="homepage-big-button-inner" href={to}>
+        <div className="homepage-big-button-animation">
             <img  className="homepage-big-button-icon" src={icon}/>
-            {label}</a>
+            {label}</div></a>
         :
         <Link className="homepage-big-button-inner" to={to} onClick={onClick}>
+            <div className="homepage-big-button-animation">
             <img  className="homepage-big-button-icon" src={icon}/>
-            {label}
+            {label}</div>
         </Link>
     }
     </div>
