@@ -30,6 +30,7 @@ import { Modals } from './Modals';
 // CSS
 import './App.css';
 import './YouthCorner.css';
+import './Modals.scss';
 
 //Goal:
 

@@ -122,6 +122,9 @@ a.dropdownitem:hover {
 }
 
 .navbar-banner-container {
+  position: absolute;
+  left: 50%;
+  transform: translate(-50%, -15px);
   background-color: black;
   padding-top: 0px;
   display: block;
@@ -129,8 +132,6 @@ a.dropdownitem:hover {
   border-radius: 20px;
   border: 1px solid white;
   width: 300px;
-  margin: -18px auto;
-  position: relative;
   z-index: 5;
 }
 
