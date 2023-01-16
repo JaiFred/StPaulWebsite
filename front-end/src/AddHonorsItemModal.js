@@ -1,29 +1,16 @@
-//Hooks
-import { Modal, ModalHeader, ModalBody, ModalTitle } from 'react-bootstrap'
-
 //components
 import AddHonorsItem from './AddHonorsItem'
 
-function AddHonorsItemModal({ setDocuments, addHonorIsOpen, setAddHonorIsOpen }){    
+import HonorsItemModal from './HonorsItemModal'
 
-    return (
-        <div className='overlay-add-honors-modal'>
-             <Modal className='modal'
-                show={addHonorIsOpen}
-             >
-                <ModalHeader >
-                    <ModalTitle>Saint Paul Baptist Church</ModalTitle>
-                    <ModalTitle><button type="button" onClick={() => {setAddHonorIsOpen(false)}}>X</button></ModalTitle> 
-                </ModalHeader>
-                <ModalHeader>
-                    <ModalTitle>New Document</ModalTitle>
-                </ModalHeader>
-                <ModalBody>
-                    <AddHonorsItem setDocuments={setDocuments} onCancel={() => setAddHonorIsOpen(false)} />
-                </ModalBody>
-             </Modal>
-        </div>
-    )
-}
+const AddHonorsItemModal = ({ setDocuments, addHonorIsOpen, setAddHonorIsOpen }) => (
+    <HonorsItemModal
+        className="overlay-add-honors-modal"
+        show={addHonorIsOpen}
+        onCancel={() => setAddHonorIsOpen(false)}
+        heading="New Document">
+        <AddHonorsItem setDocuments={setDocuments} onCancel={() => setAddHonorIsOpen(false)} />
+    </HonorsItemModal>
+)
 
 export default AddHonorsItemModal

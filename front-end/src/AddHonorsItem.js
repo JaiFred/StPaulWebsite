@@ -1,6 +1,8 @@
 //Hooks
 import React, { useState, useEffect } from "react";
 import Editor from './Editor/Editor';
+import ModalFooter from './Modal/Footer';
+import InputFile from './Inputs/File';
 
 function AddHonorsItem({ setDocuments, onCancel }){
     const [description, setDescription] = useState('')
@@ -25,7 +27,7 @@ function AddHonorsItem({ setDocuments, onCancel }){
         
         if (document) {
             formData.append("file", document);
-        } 
+        }
         formData.append("description", description);
 
         fetch("api/honor_pages", {
@@ -46,26 +48,20 @@ function AddHonorsItem({ setDocuments, onCancel }){
         <div>
             {error && <p>{error}</p>}
             <form className="text-center" method="post">
-                <label for="files">Select Documents:</label>            
-                <input 
-                    type="file" 
+                <InputFile
                     name="documents"
                     accept="image/png, image/jpeg, application/pdf,application/vnd.ms-excel"
                     onChange={handleDocumentsChange}
-                    multiple
                     className="mb-3"
-                />
-                {/*<h3 className="document-add-text-box-">Information about this of document</h3>*/}
+                /> 
+                <h6 className="document-content-title-box">Add information about this document</h6>
                 <Editor 
                     id='description'
                     value={description}
                     onChange={setDescription}
                     placeholder="Type here..."
                 />
-                <div className="modal-buttons-group">
-                    <button className="modal-button" id='submitBtn' type="button" onClick={handleSubmit}>Submit</button>
-                    <button className="modal-button" type="button" onClick={onCancel}>Cancel</button>
-                </div>
+                <ModalFooter onSubmit={handleSubmit} onCancel={onCancel} />
             </form>
         </div>
     )

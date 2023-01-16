@@ -6,6 +6,7 @@ import { Navigate, Routes, Route } from 'react-router-dom'
 import AboutPage from './AboutPage';
 import Login from './Login';
 import SignUp from './SignUp';
+import BibleStudyPage from './BibleStudyPage'
 import SignUpSuccessPage from './SignUpSuccessPage';
 import ChurchLandingAttributes from './ChurchLandingAttributes';
 import PasswordRecoveryRequestSuccess from './PasswordRecoveryRequestSuccess';
@@ -13,7 +14,6 @@ import UpdateEmailSuccessPage from './UpdateEmailSuccessPage';
 import EventsContainer from './Events/EventsContainer';
 import EventInfoPage from './EventInfoPage';
 import BroadcastsContainer from './Broadcasts/BroadcastsContainer';
-import NextServicePage from './NextServicePage';
 import Navbar from './Navbar';
 import ProfilePage from './ProfilePage';
 import SubscriptionCard from './SubscriptionCard';
@@ -21,6 +21,7 @@ import Footer from './Footer';
 import PrayerRequestsContainer from './PrayerRequestsContainer';
 import ContactUsPage from './ContactUsPage';
 import HonorsPage from './Honors/HonorsPage';
+import HonorViewItem from './HonorViewItem';
 import EditHonorsDocuments from './EditHonorsItem';
 import PasswordRecoveryPage from './PasswordRecoveryPage';
 import YouthCorner from './YouthCorner';
@@ -329,10 +330,11 @@ function App() {
             }
             />
           <Route path='/password_recovery' element={<PasswordRecoveryPage/>}/>
-          <Route path='/next_service' element={<NextServicePage/>}/>
           <Route path='/password_recovery_success' element={<PasswordRecoveryRequestSuccess/>}/>
           <Route path='/update_email_success' element={<UpdateEmailSuccessPage/>}/>
           <Route path='/youth_corner' element={<YouthCorner/>}/>
+          <Route path='/bible_study' element={<BibleStudyPage/>}/>
+          <Route path='/honor_view_item/:id' element={<HonorViewItem/>}/>
 
         </Routes>
       <Footer 

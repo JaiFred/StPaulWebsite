@@ -1,0 +1,17 @@
+.honor-view-item {
+    background: black;
+    color: white;
+    padding-bottom: 20px;
+
+    &__banner {
+        height: 50vh;
+        background-size: cover;
+        background-position: center;
+    }
+
+    &__content {
+        max-width: 1049px;
+        margin: 20px auto;
+        text-align: justify;
+    }
+}

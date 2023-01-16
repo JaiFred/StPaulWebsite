@@ -1,0 +1,42 @@
+.input {
+    &-file {
+        display: block;
+        margin-bottom: 1em;
+
+        &:hover {
+            .file-input__unchosen {
+                transform: scale(1.1);
+            }
+        }
+
+        .file {
+            &-input {
+                &__chosen {
+                    cursor: pointer;
+                }
+                &__unchosen {
+                    overflow: hidden;
+                    transition: .3s transform;
+                    cursor: pointer;
+                    
+                    span {
+                        padding: 3px 10px;
+                        border-radius: 25px;
+
+                        &:nth-child(1) {
+                            background: black;
+                            color: white;
+                            margin-right: -20px;
+                            position: relative;
+                        }
+                        &:nth-child(2) {
+                            background: white;
+                            color: black;
+                            padding-left: 25px;
+                        }
+                    }
+                }
+            }
+        }
+    }
+}

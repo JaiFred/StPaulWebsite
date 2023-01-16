@@ -3,6 +3,8 @@ import react, { useState, useEffect } from 'react';
 import { Link, Navigate, Routes, Route } from 'react-router-dom'
 import { useParams } from 'react-router-dom';
 import { useNavigate } from "react-router-dom";
+import ModalFooter from './Modal/Footer';
+import InputFile from './Inputs/File';
 
 //Components
 import Editor from './Editor/Editor';
@@ -13,7 +15,7 @@ import './EditHonorsItem.scss'
 
 // send props into here to make this work again...
 
-function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen }){
+function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen, onCancel }){
 
     const navigate = useNavigate();
 
@@ -62,40 +64,23 @@ function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen }){
 
     return(
         <form className='honors-item-edit-form' onSubmit={handleSubmit}>
-            <ul className='text-center'>
-            {showExistingDocument && (
-                isDocumentPdf
-                    ? <embed className="text-center-image" src={doc.file} target="_parent" /> 
-                    : <img className="text-center-image" src={doc.file} />
-                )
-            }
-            <input 
-                type="file" 
-                name="documents"
-                accept="image/png, image/jpeg, application/pdf,application/vnd.ms-excel"
-                onChange={handleDocumentsChange}
-                multiple
-                className='my-3'
-            />
-            {/*<textarea
-                type="text"
-                id="description"
-                name="description"
-                rows='5'
-                cols='30'
-                value={editedDescription}
-                placeholder="description..."
-                onChange={(e) => { setEditedDescription(e.target.value)}}
-            />*/}
-            <h3 className="document-add-text-box-">Information about this of document</h3>
-            <Editor
-                id="description"
-                value={editedDescription}
-                onChange={newValue => setEditedDescription(newValue)}
-                placeholder="description..." 
-            />
-            </ul>
-            <button id='submitBtn' type="button" onClick={handleSubmit} method="post">Edit</button>
+            <div className='text-center'>
+                <InputFile 
+                    name="documents"
+                    accept="image/png, image/jpeg, application/pdf, application/vnd.ms-excel"
+                    onChange={handleDocumentsChange}
+                    className='my-3'
+                    file={doc.file}
+                />
+                <h6 className="document-content-title-box">Edit information about this document</h6>
+                <Editor
+                    id="description"
+                    value={editedDescription}
+                    onChange={newValue => setEditedDescription(newValue)}
+                    placeholder="description..." 
+                />
+            </div>
+            <ModalFooter onSubmit={handleSubmit} onCancel={onCancel} submitLabel="Edit" />
         </form>
     )
 

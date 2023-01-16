@@ -72,7 +72,7 @@ function Navbar({givingIsOpen, signUpIsOpen, setSignUpIsOpen, loginIsOpen, setLo
               <Link to='/prayer_requests' className="nav-link">Prayer Requests</Link>
             </li>
             <li className="nav-item">
-              <Link to='/next_service' className="nav-link">Next Service</Link>
+              <Link to='/bible_study' className="nav-link">Bible Study</Link>
             </li>
             <li className="nav-item">
               <button className='navbar-giving-modal-btn nav-link' type='button' onClick={() => setGivingIsOpen(true)}>Giving</button>
