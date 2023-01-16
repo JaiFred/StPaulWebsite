@@ -8,6 +8,8 @@ import AddHonorsItemModal from "../AddHonorsItemModal";
 import { Parallax, ParallaxBannerLayer } from 'react-scroll-parallax'; 
 import { HonorDoc } from "./HonorDoc";
 import { BackHomeButton } from '../BackHomeButton/BackHomeButton';
+import { fetchDocuments } from './utils';
+
 //CSS
 import honorPageVideo from '../images/honor-page-video.mp4'
 import background from "../images/trees-wallpaper-green.jpeg"
@@ -19,22 +21,8 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
     const [ editHonorIsOpen , setEditHonorIsOpen ] = useState(false);
     const [ deleteHonorIsOpen, setDeleteHonorIsOpen ] = useState(false);
 
-    function fetchDocuments() {
-        console.log('Fetching documents from teh backend server !!!');
-        fetch('/api/honor_pages', {
-            credentials: 'include'
-          })
-            .then(res => {
-              if (res.ok) {
-                res.json().then(honorPages => {
-                  setDocuments(honorPages[0].documents)
-                })
-              }
-           })
-    }
-
     useEffect(() => {
-        fetchDocuments();
+        fetchDocuments(setDocuments);
       }, [])
 
     function selectEditModal(doc) {

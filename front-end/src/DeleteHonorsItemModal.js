@@ -1,6 +1,6 @@
 //Hooks
-import { Modal, ModalHeader, ModalFooter, ModalTitle, Button } from 'react-bootstrap'
-
+import { Modal, ModalHeader, ModalTitle, Button } from 'react-bootstrap'
+import ModalFooter from './Modal/Footer';
 
 function DeleteHonorsItemModal({ selectedDocument, doc, documents, setDocuments, deleteHonorIsOpen, setDeleteHonorIsOpen}){
 
@@ -20,28 +20,31 @@ function DeleteHonorsItemModal({ selectedDocument, doc, documents, setDocuments,
             method: "DELETE"
         }
         fetch(`/api/documents/${id}`, reqObj )
-        .then((res) => res.json())
-        .then(handleDocumentDelete(id))
-        .then(setDeleteHonorIsOpen(false));
+            .then((res) => res.json())
+            .then(handleDocumentDelete(id))
+            .then(setDeleteHonorIsOpen(false));
     }
 
     return(
-        <div>
-            <Modal className='modal'
-                show={ deleteHonorIsOpen && selectedDocument === doc }
-                // hide={() => {setIsOpen(false)}}
-            >
-            <ModalHeader >
-                <ModalTitle>Are you sure you want to delete #{doc.id}?</ModalTitle>
+        <Modal
+            className='modal modal-delete text-center'
+            show={deleteHonorIsOpen && selectedDocument === doc}
+        >
+            <ModalHeader className="justify-content-center">
+                <ModalTitle>
+                    <h2 className='bold'>
+                        Are you sure you want<br /> to delete Document #{doc.id}?
+                    </h2>
+                </ModalTitle>
             </ModalHeader>
-                <ModalFooter> 
-                    <button onClick={(e) => handleDocumentDeleteClick(e)}>Yes</button>
-                    
-                    <button type="button" onClick={() => {setDeleteHonorIsOpen(false)}}>No</button> 
-                </ModalFooter> 
-            </Modal>
-
-        </div>
+            <ModalFooter 
+                onSubmit={handleDocumentDeleteClick}
+                onCancel={() => setDeleteHonorIsOpen(false)}
+                submitLabel='Yes'
+                cancelLabel='No'
+                className="mb-4 mt-2"
+                theme='dark' />
+        </Modal>
     )
 }
 

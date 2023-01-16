@@ -74,13 +74,16 @@ export const HonorDoc = ({
               }}
             ></p>
           </div>
-          <a
-            href={doc.file}
-            target="_blank"
-            className="honor-doc-infos-click-to-open"
-          >
-            Click to Open
-          </a>
+          <div className="honor-doc-infos-click-to-open">
+            <a
+              href={doc.file}
+              target="_blank"
+              className="honor-doc-infos-click-to-open-image"
+              >
+              Click to view image
+            </a>
+            <Link className="honor-doc-infos-click-to-open-document" to={`/honor_view_item/${doc.id}`}>View full document in another page</Link>
+          </div>
         </div>
       </div>
     </div>
