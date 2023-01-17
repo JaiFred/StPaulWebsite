@@ -175,7 +175,6 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
 
     return(
         <div className='overlay_giving_modal'>
-            {( currentUser ) ? ( 
             <Modal className='modal'
                 show={ givingIsOpen }
             >
@@ -186,7 +185,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
             <ModalBody>
                 <div>
                     {error && <p>{error}</p>}
-                    <PaymentOptionDropdown />
+                    {currentUser && <PaymentOptionDropdown />}
                     { paymentOption == 'One Time Payment' && showAmountForm &&
                     <div>
                         <h3>One Time Offering</h3>
