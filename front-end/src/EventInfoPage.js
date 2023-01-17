@@ -1,7 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { Link } from "react-router-dom";
+import ChurchHours from "./components/ChurchHours";
 
+import './EventInfoPage.scss';
 
 // Goal:
 // Have each event display with only the day number, month and year on the EventCard page 
@@ -29,8 +31,8 @@ function EventInfoPage({ currentUser }){
 
     useEffect(() => {
         fetch(`/api/events/${id}`)
-        .then((res) => res.json())
-        .then((event) => setEvent(event));
+            .then((res) => res.json())
+            .then((event) => setEvent(event));
     }, []);
 
 
@@ -40,46 +42,50 @@ function EventInfoPage({ currentUser }){
     // ))
 
     //const { id, title, starts, ends } = event;
+    console.log({event})
 
-    return (
-        <div>
-            <h1>Church Hours</h1>
-            <p>Sunday School services:</p>
-            <p>9:30 AM.</p>
-            <p>Sunday Morning services:</p>
-            <p>11:00 AM.</p>
-            <p>Bible Study is every second and third Wednesday of each month at 7:00 PM.</p>
+    if (!event) return null;
 
-            <h1>{event?.title}</h1>
-            <div className="detailed-start-info">
-                <h3>Time</h3>
-                <h3>{event?.starts} - {event?.ends}</h3>
-            </div>
-            <div>
-                <h2>Details:</h2>
-                <h3>{event?.details}</h3>
-            </div>
-            <div>
-                <h2>Where:</h2>
-                <h3>{event?.address_line_1}</h3>
-                <h3>{event?.address_line_2}</h3>
-                <h3>{event?.city}</h3>
-                <h3>{event?.state_province_region}</h3>
-                <h3>{event?.zip_postalcode}</h3>
-                <h3>{event?.country}</h3>
-            </div>
-            <div>
-                
-            </div>
-            <div className="back-to-bulletin-page">
-                <Link to='/events' className="main">Back</Link>
-            </div>
-
-
-            
+    const BackButton = () => (
+        <div className="col-12 col-md-4 d-flex justify-content-center align-items-center">
+            <Link to='/events' className="main button-custom">Back</Link>
         </div>
     )
 
+    return (
+        <div className="info-page">
+            <ChurchHours className="justify-content-end my-5 text-center" after={<BackButton />} />
+            
+            <div className="row info-page__content mb-5">
+                <div className="col-12 col-md-6 info-page__image-wrapper">
+                    <div className="info-page__image" style={{ backgroundImage: `url(${event.image})` }}></div>
+                </div>
+                <div className="col-12 col-md-6">
+                    <h1>{event.title}</h1>
+                    
+                    {/* Time */}
+                    <h3>Time:</h3>
+                    <p>{event.starts} - {event.ends}</p>
+                    
+                    {/* Details */}
+                    <h3>Details:</h3>
+                    <p>{event.details}</p>
+                    
+                    {/* Where */}
+                    <h3>Where:</h3>
+                    <ul>
+                        {[
+                            ['address_line_1','address_line_2'],
+                            ['city','state_province_region','zip_postalcode'],
+                            ['country']
+                        ].map(group => (
+                            <li>{group.map(prop => event[prop]).join(' ')}</li>
+                        ))}
+                    </ul>
+                </div>
+            </div>
+        </div>
+    )
 }
 
 export default EventInfoPage
