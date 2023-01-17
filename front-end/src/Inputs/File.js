@@ -44,8 +44,12 @@ const FileInput = (props) => {
                     {isPDF
                         ? <embed className="text-center-image w-100" src={file} target="_parent" /> 
                         : <img className="text-center-image mw-100" src={file} />}
-
-                    <em className='d-block'>(click to change files)</em>
+                    
+                    <div>
+                        <button className="button-custom button-small mt-2 mb-4" type="button" onClick={e => e.target.parentNode.click()}>
+                            (click to change files)
+                        </button>
+                    </div>
                 </div>
             )}
         </label>

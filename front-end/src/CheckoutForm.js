@@ -9,7 +9,7 @@ const CheckoutForm = ({setGivingIsOpen, setAmount, setClientSecret, setShowAmoun
   const resetForm = () => {
     setAmount(null);
     setClientSecret(null);
-    setGivingIsOpen(false);
+    setGivingIsOpen(true);
     setShowAmountForm(true);
     setShowRecurringForm(true);
   }

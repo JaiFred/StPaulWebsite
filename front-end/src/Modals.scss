@@ -6,22 +6,41 @@
     gap: 10px;
     margin-top: 25px;
 
-    .modal-button {
-        background: black;
-        color: white;
-        border-radius: 50px;
-        padding: 5px 30px;
-        font-size: 2rem;
-        border: 0;
-    }
+}
 
-    &.dark {
-        gap: 30px;
-        .modal-button {
-            background: white;
-            color: black;
-            font-weight: 800;
-            padding: 5px 50px;
+.button-custom,
+.modal-button {
+    background: black;
+    color: white;
+    border-radius: 50px;
+    padding: 5px 30px;
+    font-size: 2rem;
+    border: 0;
+
+    &.button-small {
+        font-size: 1rem;
+        padding: 5px 10px;
+        text-decoration: none;
+    }
+}
+
+.button-center {
+    margin: 0 auto;
+}
+
+.dark,
+.dark-buttons {
+    gap: 30px;
+
+    .button-custom,
+    .modal-button {
+        background: white;
+        color: black;
+        font-weight: 800;
+        padding: 5px 50px;
+
+        &.button-small {
+            padding: 5px 20px;
         }
     }
 }
@@ -57,8 +76,12 @@
         border: 0;
     }
 
+    &-light &-content {
+        background: white;
+    }
+
     &-delete {
-        margin-top: 35%;
+        margin-top: 20%;
         
         .modal {
             &-dialog {

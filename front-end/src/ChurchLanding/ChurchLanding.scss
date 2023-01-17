@@ -2,7 +2,23 @@
 
 .homepage-background {
     position:static!important;
+
+    .bible-dec{
+        &-background{
+            margin-top: 100px;
+            margin-bottom: 80px;
+            background-color: white;
+            text-align: center;
+            padding: 100px 30px 30px;
+        }
+
+        &-title{
+            margin-bottom: 200px;
+        }
+    }
 }
+
+
 
 .homepage-big-buttons {
     padding-top: 50px;
