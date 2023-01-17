@@ -184,7 +184,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                 <ModalTitle>Saint Paul Baptist Church</ModalTitle>
                 <ModalTitle> <button type="button" onClick={() => {resetForm()}}>X</button></ModalTitle>
             </ModalHeader>
-            <form onSubmit={fetchClientSecret}></form>
+            <form onSubmit={fetchClientSecret}>
             <ModalBody>
                 <div>
                     {error && <p>{error}</p>}
@@ -192,7 +192,6 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                     { paymentOption == 'One Time Payment' && showAmountForm &&
                     <div>
                         <h3>One Time Offering</h3>
-                        <form onSubmit={fetchClientSecret}>
                             <Input
                                 label="Email"
                                 id="email"
@@ -222,7 +221,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                                 onChange={handleAmountChange}
                             />
                             <button id='submitBtn' type="button" onClick={fetchClientSecret}>Confirm Amount</button>
-                        </form>
+                       
                     </div>}
 
                     { paymentOption == 'One Time Payment' && clientSecret &&
@@ -253,6 +252,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                 }
                 <button type="button" onClick={() => {resetForm()}}>cancel</button>
                 </ModalBody>
+                </form>
             </Modal> 
         </div>
             
