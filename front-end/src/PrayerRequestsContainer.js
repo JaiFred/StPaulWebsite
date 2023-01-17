@@ -20,6 +20,10 @@ function PrayerRequestsContainer(){
 
     return(
         <div>
+            <h1>God's word has much to say on Prayer, and God's Desire to grant us our requests</h1>
+            <p>Matthew 18:19 : "Again I say unto you, that if two of you shall agree on earth as touching any thing that they shall ask, it shall be done for them of my Father which is in Heaven."</p>
+            <p> 1 John 5:14-15: "And this is the confidence ( the assurance, the privilege of boldness) which we have in Him: (we are sure) that if we ask anything according to His will, He listens to and hears us.  And if we know that we have the requests made of him.</p>
+
             <form className="prayer-request"  onSubmit={sendEmail}>
         <h1>
             Prayer Request Page 

@@ -182,3 +182,7 @@ h3.navbar-banner {
   background-color: white;
   height: 2800px;
 }
+
+.bolder {
+  font-weight: 800;
+}

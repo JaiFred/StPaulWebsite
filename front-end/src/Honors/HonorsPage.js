@@ -38,12 +38,12 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
         setSelectedDocument(doc);
         setDeleteHonorIsOpen(true);
     }
-
+// className="opacity-50"
     return(
         <div className="honors">
             <Parallax className={'honors-background'} speed={-50}>
                 {/*<video muted loop autoPlay playsInline src={honorPageVideo}></video>*/}
-                <ParallaxBannerLayer image={background} speed={-30} className="opacity-50" />
+                <ParallaxBannerLayer image={background} speed={-30} opacity={[0.1, 1]}  />
             </Parallax>
             <div className="position-relative px-5">
                 <div className="honors-top-heading">

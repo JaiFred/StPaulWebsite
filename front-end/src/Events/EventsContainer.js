@@ -6,6 +6,7 @@ import Navbar from "../Navbar";
 import EventCard from './EventCard';
 import SubmitNewEventModal from "../SubmitNewEventModal";
 import { BackHomeButton } from "../BackHomeButton/BackHomeButton";
+import ChurchHours from "../components/ChurchHours";
 
 //CSS
 import './EventsContainer.scss'
@@ -46,53 +47,39 @@ function EventsContainer({ currentUser, events, setEvents, handleAddNewEvent, ha
 
       // let monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
-      
-     
-      
-  
-
-    
-    
   
 
     console.log(`In EventsContainer: currentUser?.admin: ${currentUser?.admin} | currentUser?.user?.admin: ${currentUser?.user?.admin}`)
 
     return(
         <div className="events-container">
-                <div className="container">
-                    <div class="row">
-                        <div className="col-12 col-md-6">
-                            <h1>Events</h1>
-                            <h2>Upcoming Event</h2>
-                        </div>
-                        <div className="col-12 col-md-6">
-                        <h2>Church Hours</h2>
-                        <p>Sunday School services:<br/>
-                        <strong>9:30 AM.</strong>
-                        </p>
-                        <p>Sunday Morning services:<br/>
-                        <strong>11:00 AM.</strong></p>
-                        <p>Bible Study is every <strong>second</strong> and <strong>third Wednesday</strong>  of each month at <strong>7:00 PM.</strong></p>
-                        </div>
+            <div className="container">
+                <ChurchHours />
+                <div className="row upcoming-event">
+                    <div className="col text-center">
+                        <h2 className="bolder">Upcoming Event</h2>
                     </div>
                 </div>
-                <div className="container-fluid">
-                    <div className="events-content">
-                        <EventsFilter setEvents={setEvents}/>
-                    
-                        <div className={'events-content-scroll'}>
-                                <div className="row">{EventList}</div>
+            </div>
+            <div className="container-fluid">
+                <div className="events-content">
+                    <EventsFilter setEvents={setEvents}/>
+                
+                    <div className="events-content-scroll-wrapper">
+                        <div className="events-content-scroll">
+                            <div className="row">{EventList}</div>
                         </div>
+                    </div>
 
-                        {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (<div className="events-actions">
-                            <button className='events-actions-button' type='button' onClick={() => setAddEventIsOpen(true)}>Add New Event</button>
-                            <SubmitNewEventModal events={events} setEvents={setEvents} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen} handleAddNewEvent={handleAddNewEvent}/>
-                        </div>
-                        ) : ''}
+                    {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (<div className="events-actions">
+                        <button className='events-actions-button' type='button' onClick={() => setAddEventIsOpen(true)}>Add New Event</button>
+                        <SubmitNewEventModal events={events} setEvents={setEvents} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen} handleAddNewEvent={handleAddNewEvent}/>
                     </div>
-                <BackHomeButton/>
+                    ) : ''}
                 </div>
-            </div> 
+                <BackHomeButton/>
+            </div>
+        </div> 
     )
 }
 
