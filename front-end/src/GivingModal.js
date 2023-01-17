@@ -184,7 +184,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                 <ModalTitle>Saint Paul Baptist Church</ModalTitle>
                 <ModalTitle> <button type="button" onClick={() => {resetForm()}}>X</button></ModalTitle>
             </ModalHeader>
-            
+            <form onSubmit={fetchClientSecret}></form>
             <ModalBody>
                 <div>
                     {error && <p>{error}</p>}
