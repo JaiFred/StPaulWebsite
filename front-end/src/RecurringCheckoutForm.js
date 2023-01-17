@@ -276,13 +276,17 @@ const RecurringCheckoutForm = ({
       billing_details: billingDetails,
     });
 
-    console.log(`payload: ${payload}`);
+    console.log(`payload: ${JSON.stringify(payload)}`);
 
+    console.log('setProcessing 1')
     setProcessing(false);
+    console.log('setProcessing 2')
+    console.log(`payload.error: ${payload.error}`)
 
     if (payload.error) {
       setError(payload.error);
     } else {
+      console.log(`setting paymentMethod....${payload.paymentMethod}`)
       setPaymentMethod(payload.paymentMethod);
     }
   };
@@ -304,34 +308,36 @@ const RecurringCheckoutForm = ({
 
   console.log(`paymentStartDate 2: ${paymentStartDate}`);
 
-  // const submitPaymentSubscription = () => {
-  //   console.log("checking paymentStartdate inside submitPaymentSubscription");
-  //   console.log(new Date(paymentStartDate) < new Date());
+  const submitPaymentSubscription = () => {
+    console.log("checking paymentStartdate inside submitPaymentSubscription");
+    console.log(new Date(paymentStartDate) < new Date());
 
-  //   // if (new Date(paymentStartDate) < new Date()) {
-  //   //   console.log("setting error:  Please choose a future date!");
-  //   //   setError("Please choose a future date!");
-  //   //   return;
-  //   // }
+    // if (new Date(paymentStartDate) < new Date()) {
+    //   console.log("setting error:  Please choose a future date!");
+    //   setError("Please choose a future date!");
+    //   return;
+    // }
 
-  //   fetch("/api/payment_subscription", {
-  //     method: "POST",
-  //     headers: {
-  //       "content-Type": "application/json",
-  //     },
-  //     body: JSON.stringify({
-  //       billing_details: billingDetails,
-  //       amount: amount,
-  //       frequency: frequency,
-  //       payment_date: paymentDate,
-  //       weekday: weekday,
-  //       biweekly_payment_date: biWeeklyPaymentDate,
-  //       payment_method_id: paymentMethod.id,
-  //       payment_start_date: paymentStartDate,
-  //       user_id: currentUser?.id || currentUser?.user?.id,
-  //     }),
-  //   }).then((res) => console.log(JSON.stringify(res)));
-  // };
+    console.log(`frequency: ${frequency} | amount: ${amount} | biWeeklyPaymentDate: ${biWeeklyPaymentDate}`)
+
+    fetch("/api/payment_subscription", {
+      method: "POST",
+      headers: {
+        "content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        billing_details: billingDetails,
+        amount: amount,
+        frequency: frequency,
+        payment_date: paymentDate,
+        weekday: weekday,
+        biweekly_payment_date: biWeeklyPaymentDate,
+        payment_method_id: paymentMethod.id,
+        payment_start_date: paymentStartDate,
+        user_id: currentUser?.id || currentUser?.user?.id,
+      }),
+    }).then((res) => console.log(JSON.stringify(res)));
+  };
 
   function handlePaymentStartDateChange(e) {
     setPaymentStartDate(e.target.value);
@@ -350,7 +356,7 @@ const RecurringCheckoutForm = ({
         <div className="Result">
           <div className="ResultTitle" role="alert">
             Payment successful
-            {/* {submitPaymentSubscription()} */}
+            {submitPaymentSubscription()}
           </div>
           <div className="ResultMessage">
             Thanks for trying Stripe Elements. No money was charged, but we
