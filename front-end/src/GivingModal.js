@@ -8,6 +8,8 @@ import {loadStripe} from '@stripe/stripe-js';
 import CheckoutForm from './CheckoutForm';
 import RecurringCheckoutForm from "./RecurringCheckoutForm";
 import useDropdown from "./useDropdown";
+import { Input } from './Forms/Input';
+ 
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
@@ -182,6 +184,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                 <ModalTitle>Saint Paul Baptist Church</ModalTitle>
                 <ModalTitle> <button type="button" onClick={() => {resetForm()}}>X</button></ModalTitle>
             </ModalHeader>
+            
             <ModalBody>
                 <div>
                     {error && <p>{error}</p>}
@@ -190,7 +193,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                     <div>
                         <h3>One Time Offering</h3>
                         <form onSubmit={fetchClientSecret}>
-                            <input
+                            <Input
                                 label="Email"
                                 id="email"
                                 type="text"
@@ -200,7 +203,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                                 value={billingDetails.email}
                                 onChange={handleEmailChange}
                             />
-                            <input
+                            <Input
                                 label="Name"
                                 id="name"
                                 type="text"
@@ -210,7 +213,8 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                                 value={billingDetails.name}
                                 onChange={handleNameChange}
                             />
-                            <input
+                            <Input
+                                label="Amount"
                                 type="text"
                                 id="amount"
                                 name="amount"
@@ -236,8 +240,8 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                 </div>
 
 
-                <div className="AppWrapper">
-                    { paymentOption == 'Regularly' && clientSecretRecurring && showRecurringForm && currentUser &&
+                { currentUser && <div className="AppWrapper">
+                    { paymentOption == 'Regularly' && clientSecretRecurring && showRecurringForm &&
                     <div>
                         <h3>Recurring Offering </h3>
                         <Elements stripe={stripePromise} options={optionsRecurring}>
@@ -246,10 +250,9 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                     </div>
                     }
                 </div>
+                }
+                <button type="button" onClick={() => {resetForm()}}>cancel</button>
                 </ModalBody>
-                <ModalFooter>
-                    <button type="button" onClick={() => {resetForm()}}>cancel</button>
-                </ModalFooter>
             </Modal> 
         </div>
             
