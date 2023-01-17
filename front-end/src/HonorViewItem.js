@@ -8,6 +8,17 @@ import './HonorViewItem.scss';
 
 const isSafeHTML = html => html.replaceAll('<script', '');
 
+const File = ({ file }) => {
+    const isPDF = file.endsWith('.pdf');
+    
+    if (isPDF) {
+        return <embed className="honor-view-item__banner text-center-image" src={file} target="_parent" />
+    }
+    else {
+        return <div className="honor-view-item__banner" style={{ backgroundImage: `url(${file})`  }} />
+    }
+}
+
 function HonorViewItem(props) {
     const { id } = useParams();
     const [document, setDocument] = useState(null);
@@ -22,13 +33,15 @@ function HonorViewItem(props) {
 
     if (!document) return null;
 
+    console.log({document})
+
     return (
         <div className="honor-view-item">
-            <div className="honor-view-item__banner" style={{ backgroundImage: `url(${document.file})`  }} />
-            <div className="honor-view-item__content" dangerouslySetInnerHTML={{ __html: isSafeHTML(document.description) }} />
-
-            <Link className="back-to-honor-page" to={`/honors`}>Back</Link>
-            
+            <File file={document.file} />
+            <main className="dark-buttons">
+                <div className="honor-view-item__content" dangerouslySetInnerHTML={{ __html: isSafeHTML(document.description) }} />
+                <Link className="back-to-honor-page button-small button-custom mx-auto" to={`/honors`}>Back</Link>
+            </main>
         </div>
     )
 }

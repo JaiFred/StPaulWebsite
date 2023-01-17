@@ -34,7 +34,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
         name: '',
     });
     const [paymentMethod, setPaymentMethod] = useState(null);
-    const [paymentOption, PaymentOptionDropdown, setPaymentOption] = useDropdown("Choose a Payment option", "One Time Payment", "", ["One Time Payment", "Regularly"]);
+    const [paymentOption, PaymentOptionDropdown, setPaymentOption] = useDropdown("Choose a Payment option", "One Time Payment", "", ["One Time Payment", "Regularly"], true, 'giving-dropdown');
 
     console.log(`paymentOption: ${paymentOption}`);
     console.log(`clientSecretRecurring: ${clientSecretRecurring}`);
@@ -77,9 +77,8 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
 
     const fetchClientSecret = (e) => {
         e.preventDefault();
-
+        
         console.log(`amount: ${amount}`)
-
 
         if (!billingDetails.name && billingDetails.email ) {
             setError('please fill out your full name before proceeding')
@@ -181,98 +180,110 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
           ],
       };
 
+    const _ModalBody = () => (
+        <ModalBody>
+            <div>
+                {showAmountForm && (
+                    !error ? (
+                        <h1 className="give-title text-center">
+                            {paymentOption === 'One Time Payment' && 'One Time Offering'}
+                            {paymentOption === 'Regularly' && 'Recurring Offering'}
+                        </h1>
+                    ) : (
+                        paymentOption == 'One Time Payment' && <ErrorMessage message={error}/>
+                    )
+                )}
+            
+                { currentUser  && <PaymentOptionDropdown />}
+                { paymentOption == 'One Time Payment' && showAmountForm &&
+                <div>
+                    <h3 className="give-subtitle text-center text-bold">Give</h3>
+                    <div className="amount-input-container">
+                        <Input
+                            label="Amount"
+                            type="text"
+                            id="amount"
+                            name="amount"
+                            value={amount}
+                            onChange={handleAmountChange}
+                            placeholder="Type your amount here"
+                        >
+                            <div className="currency-display">$ USD</div>
+                        </Input>
+                    </div>
+                    <Input
+                        label="Email"
+                        id="email"
+                        name="email"
+                        type="text"
+                        placeholder="Email..."
+                        required
+                        autoComplete="email"
+                        value={billingDetails.email}
+                        onChange={handleEmailChange}
+                    />
+                    <Input
+                        label="Name"
+                        id="name"
+                        type="text"
+                        name="name"
+                        placeholder="Full name on card"
+                        required
+                        autoComplete="name"
+                        value={billingDetails.name}
+                        onChange={handleNameChange}
+                    />
+                </div>}
+
+                { paymentOption == 'One Time Payment' && clientSecret &&
+                    <Elements stripe={stripePromise} options={options}>
+                        <CheckoutForm
+                            setGivingIsOpen={setGivingIsOpen}
+                            setAmount={setAmount}
+                            setClientSecret={setClientSecret}
+                            setShowAmountForm={setShowAmountForm}
+                            setShowRecurringForm={setShowRecurringForm}
+                        />
+                    </Elements>
+                }
+                {paymentOption == 'One Time Payment' && showAmountForm === false && amount && parseFloat(amount) > 0 && <div>{billingDetails.name}, you are paying: ${amount}</div>}
+            </div>
+
+            { currentUser && <div className="AppWrapper">
+                { paymentOption == 'Regularly' && clientSecretRecurring && showRecurringForm &&
+                <div>
+                    <h3 className="give-subtitle text-center">Give</h3>
+                    <Elements stripe={stripePromise} options={optionsRecurring}>
+                        <RecurringCheckoutForm currentUser={currentUser} resetForm={resetForm} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod}/>
+                    </Elements>
+                </div>
+                }
+            </div>}
+
+                <div className="giving-buttons d-flex justify-content-end gap-2">
+                    {paymentOption == 'One Time Payment' && showAmountForm &&
+                        <button id='submitBtn' className="btn btn-primary" type="button" onClick={fetchClientSecret}>Confirm Amount</button>
+                    }
+                    <button type="button" className="btn btn-secondary" onClick={resetForm}>Cancel</button>
+                </div>
+            </ModalBody>
+    )
+
+    console.log('One form?', paymentOption == 'One Time Payment' && clientSecret )
+
     return(
         <div className='overlay_giving_modal'>
-            <Modal className='modal giving-modal'
+            <Modal className='modal modal-light giving-modal'
                 show={ givingIsOpen }
             >
                 <DarkHeader onCancel={resetForm} />
-                <form onSubmit={fetchClientSecret}>
-                <ModalBody>
-                    <div>
-                    { paymentOption == 'One Time Payment' && showAmountForm &&
-                        <h1 className="give-title">One Time Offering</h1>
-                    }
-                    { paymentOption == 'Regularly' && showAmountForm &&
-                        <h1 className="give-title">Recurring Offering </h1>
-                    }
-                    { paymentOption == 'One Time Payment' && showAmountForm && error &&
-                    <ErrorMessage message={error}/>
-                    }
-                        
-                        { currentUser  && <PaymentOptionDropdown />}
-                        { paymentOption == 'One Time Payment' && showAmountForm &&
-                        <div>
-                            <h3 className="give-subtitle">Give</h3>
-                            <div className="currency-display"><h3>$ USD</h3></div>
-                            <div className="amount-input-container">
-                                <Input
-                                    label="Amount"
-                                    type="text"
-                                    id="amount"
-                                    name="amount"
-                                    value={amount}
-                                    onChange={handleAmountChange}
-                                />
-                            </div>
-                            <Input
-                                label="Email"
-                                id="email"
-                                name="email"
-                                type="text"
-                                placeholder="Email..."
-                                required
-                                autoComplete="email"
-                                value={billingDetails.email}
-                                onChange={handleEmailChange}
-                            />
-                            <Input
-                                label="Name"
-                                id="name"
-                                type="text"
-                                name="name"
-                                placeholder="Full name on card"
-                                required
-                                autoComplete="name"
-                                value={billingDetails.name}
-                                onChange={handleNameChange}
-                            />
-                        </div>}
-
-                        { paymentOption == 'One Time Payment' && clientSecret &&
-                            <Elements stripe={stripePromise} options={options}>
-                                <CheckoutForm
-                                    setGivingIsOpen={setGivingIsOpen}
-                                    setAmount={setAmount}
-                                    setClientSecret={setClientSecret}
-                                    setShowAmountForm={setShowAmountForm}
-                                    setShowRecurringForm={setShowRecurringForm}
-                                />
-                            </Elements>
-                        }
-                        {paymentOption == 'One Time Payment' && showAmountForm === false && amount && parseFloat(amount) > 0 && <div>{billingDetails.name}, you are paying: ${amount}</div>}
-                    </div>
-
-                    { currentUser && <div className="AppWrapper">
-                        { paymentOption == 'Regularly' && clientSecretRecurring && showRecurringForm && currentUser &&
-                        <div>
-                            <h3 className="give-subtitle">Give</h3>
-                            <div className="currency-display"><h3>$ USD</h3></div>
-                            <Elements stripe={stripePromise} options={optionsRecurring}>
-                                <RecurringCheckoutForm currentUser={currentUser} resetForm={resetForm} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod}/>
-                            </Elements>
-                        </div>
-                        }
-                    </div>
-                    }
-                    </ModalBody>
-                    <ModalFooter>
-                        { paymentOption == 'One Time Payment' && showAmountForm &&
-                            <button id='submitBtn' className="btn btn-primary" type="button" onClick={fetchClientSecret}>Confirm Amount</button>
-                        }
-                        <button type="button" className="btn btn-secondary" onClick={() => {resetForm()}}>Cancel</button>
-                    </ModalFooter>
-                </form>
+                {(paymentOption == 'One Time Payment' && clientSecret) || (paymentOption == 'Regularly' && clientSecretRecurring && showRecurringForm && currentUser) ? (
+                    <_ModalBody />
+                ) : (
+                    <form onSubmit={fetchClientSecret}>
+                        <_ModalBody />
+                    </form>
+                )}
             </Modal> 
         </div>
     )

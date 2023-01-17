@@ -1,7 +1,7 @@
 @import './bootstrap-utils';
 
 .giving-modal {
-    .modal{
+    .modal {
         &-dialog {
             width: 1000px;
             max-width: 90%;
@@ -29,23 +29,13 @@
                 }
             }
             
-
-            .submitBtn{
-            
-                    
+            .submitBtn{   
                 &:hover{
                     transition: all 0.3s ease-in-out; 
                     transform: translateY(-3px);
                 }
-    
-
             }
 
-            // .currency-display {
-            //         background-color: grey;
-            //         text-align: center;
-            // }
-            
         }
 
         &-body, &-footer {
@@ -58,5 +48,36 @@
         &-footer {
             padding-bottom: 50px;
         }
+    }
+
+    .currency-display {
+        background-color: #D9D9D9;
+        text-align: center;
+        padding: 5px 10px;
+        font-weight: normal;
+        font-size: 16px;
+        border-radius: 3px;
+    }
+
+    .giving-buttons {
+        button {
+            border: 0;
+            transition: .3s;
+            &:hover {
+                opacity: .7;
+                transform: scale(1.1);
+            }
+        }
+        .btn-primary {
+            background: #4E372B;
+        }
+        .btn-secondary {
+            background: #929292;
+        }
+    }
+
+    .giving-dropdown {
+        background-color: #929292;
+        color: white;
     }
 }
