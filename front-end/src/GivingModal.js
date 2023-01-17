@@ -251,86 +251,8 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                     <button type="button" onClick={() => {resetForm()}}>cancel</button>
                 </ModalFooter>
             </Modal> 
-            
-            ):( 
-
-                <Modal className='modal'
-                show={ givingIsOpen }
-                >
-                <ModalHeader >
-                <ModalTitle>Saint Paul Baptist Church</ModalTitle>
-                <ModalTitle> <button type="button" onClick={() => {resetForm()}}>X</button></ModalTitle>
-                </ModalHeader>
-                <ModalBody>
-                <div>
-                    {error && <p>{error}</p>}
-                    { showAmountForm &&
-                    <div>
-                        <h3>One Time Offering</h3>
-                        <form onSubmit={fetchClientSecret}>
-                            <input
-                                label="Email"
-                                id="email"
-                                type="text"
-                                placeholder="email..."
-                                required
-                                autoComplete="email"
-                                value={billingDetails.email}
-                                onChange={handleEmailChange}
-                            />
-                            <input
-                                label="Name"
-                                id="name"
-                                type="text"
-                                placeholder="full name on card"
-                                required
-                                autoComplete="name"
-                                value={billingDetails.name}
-                                onChange={handleNameChange}
-                            />
-                            <input
-                                type="text"
-                                id="amount"
-                                name="amount"
-                                value={amount}
-                                onChange={handleAmountChange}
-                            />
-                            <button id='submitBtn' type="button" onClick={fetchClientSecret}>Confirm Amount</button>
-                        </form>
-                    </div>}
-
-                    { clientSecret &&
-                        <Elements stripe={stripePromise} options={options}>
-                            <CheckoutForm
-                                setGivingIsOpen={setGivingIsOpen}
-                                setAmount={setAmount}
-                                setClientSecret={setClientSecret}
-                                setShowAmountForm={setShowAmountForm}
-                                setShowRecurringForm={setShowRecurringForm}
-                            />
-                        </Elements>
-                    }
-                    {showAmountForm === false && amount && parseFloat(amount) > 0 && <div>{billingDetails.name}, you are paying: ${amount}</div>}
-                </div>
-
-{/* 
-                <div className="AppWrapper">
-                    { paymentOption == 'Regularly' && clientSecretRecurring && showRecurringForm && currentUser &&
-                    <div>
-                        <h3>Recurring Offering </h3>
-                        <Elements stripe={stripePromise} options={optionsRecurring}>
-                            <RecurringCheckoutForm currentUser={currentUser} resetForm={resetForm} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod}/>
-                        </Elements>
-                    </div>
-                    }
-                </div> */}
-                </ModalBody>
-                <ModalFooter>
-                    <button type="button" onClick={() => {resetForm()}}>cancel</button>
-                </ModalFooter>
-                </Modal>
-             )}
         </div>
+            
     )
 }
 
