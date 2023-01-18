@@ -333,7 +333,7 @@ function App() {
           <Route path='/password_recovery_success' element={<PasswordRecoveryRequestSuccess/>}/>
           <Route path='/update_email_success' element={<UpdateEmailSuccessPage/>}/>
           <Route path='/youth_corner' element={<YouthCorner/>}/>
-          <Route path='/bible_study' element={<BibleStudyPage/>}/>
+          <Route path='/bible_study' element={<BibleStudyPage currentUser={currentUser}/>}/>
           <Route path='/honor_view_item/:id' element={<HonorViewItem/>}/>
 
         </Routes>
