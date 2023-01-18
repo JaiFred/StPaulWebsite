@@ -14,12 +14,12 @@ import Church from "./images/StPaulBaptistChurch.JPG"
 // Child Component of App.js
 
 function AboutPage(){
-
+    console.log({PastorBrown})
     return(
         <ParallaxBanner style={{ aspectRatio: 'auto' }}>
             <ParallaxBannerLayer image={Church} speed={-30} />
                 <ParallaxBannerLayer className={'about-page-background'} >
-                    <div className='about-page'>
+                    <div className='about-page text-center'>
                         <h3 className='about'>About</h3>
                         <h1 className='about-page-title'>St Paul Baptist Church</h1>
                         <div className="welcome-container">
@@ -29,18 +29,21 @@ function AboutPage(){
                         </p>
                         <p>Welcome, Welcome, Welcome!</p>
                         </div>
+                        
+                        {/* Pastors */}
                         <div className="pastor-info-container">
                             <ul className="pastor-pictures">
                                 <li>
-                                    <h1>Rev. Robert D. Brown with Pastor Kim Bullock</h1>
-                                    <img className="pastor-brown" src={PastorBrown}></img>
+                                    <div className="pastor-picture pastor-brown" style={{ backgroundImage: `url(${PastorBrown})` }}></div>
+                                    <h5>Rev. Robert D. Brown<br /> with<br /> Pastor Kim Bullock</h5>
                                 </li>
                                 <li>
-                                    <h1>Pastor Kim Bullock</h1>
-                                    <img className="pastor-bullock" src={PastorBullock}></img>
+                                    <div className="pastor-picture pastor-bullock" style={{ backgroundImage: `url(${PastorBullock})` }}></div>
+                                    <h5>Pastor Kim Bullock</h5>
                                 </li>
                             </ul>
                         </div>
+
                         <h2 className='our-mission-title'>Our Mission</h2>
                         <p className='our-mission-message'>We believe that the door to salvation is always open and so are the doors to our church. Our mission is to be fully devoted to Jesus by opening our arms to those in search of the truth. We show God’s love and concern for our fellow man at every opportunity. Through works of charity and opening our doors to listen and love, we feel that we are walking in the footsteps of Jesus Christ.</p>
                         <h2 className='prayer-request-title'>Prayer Request</h2>
@@ -53,7 +56,7 @@ function AboutPage(){
                         </Link>
                         </div>
                         
-                        <BackHomeButton/>
+                        <BackHomeButton className="mb-0"/>
                     </div>
             </ParallaxBannerLayer>
         </ParallaxBanner>
