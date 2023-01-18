@@ -33,7 +33,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
         phone: '',
         name: '',
     });
-    const [paymentMethod, setPaymentMethod] = useState(null);
+    
     const [paymentOption, PaymentOptionDropdown, setPaymentOption] = useDropdown("Choose a Payment option", "One Time Payment", "", ["One Time Payment", "Regularly"], true, 'giving-dropdown');
 
     console.log(`paymentOption: ${paymentOption}`);
@@ -41,8 +41,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
     console.log(`showRecurringForm: ${showRecurringForm}`);
 
     const resetForm = () => {
-        setPaymentOption("One Time Payment")
-        setPaymentMethod(null);
+        setPaymentOption("One Time Payment")        
         setAmount(null);
         setClientSecret(null);
         setGivingIsOpen(false);
@@ -196,6 +195,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
             
                 { currentUser  && <PaymentOptionDropdown />}
                 { paymentOption == 'One Time Payment' && showAmountForm &&
+                <form onSubmit={fetchClientSecret}>                
                 <div>
                     <h3 className="give-subtitle text-center text-bold">Give</h3>
                     <div className="amount-input-container">
@@ -233,7 +233,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                         value={billingDetails.name}
                         onChange={handleNameChange}
                     />
-                </div>}
+                </div></form>}
 
                 { paymentOption == 'One Time Payment' && clientSecret &&
                     <Elements stripe={stripePromise} options={options}>
@@ -254,7 +254,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                 <div>
                     <h3 className="give-subtitle text-center">Give</h3>
                     <Elements stripe={stripePromise} options={optionsRecurring}>
-                        <RecurringCheckoutForm currentUser={currentUser} resetForm={resetForm} paymentMethod={paymentMethod} setPaymentMethod={setPaymentMethod}/>
+                        <RecurringCheckoutForm currentUser={currentUser} resetForm={resetForm} />
                     </Elements>
                 </div>
                 }
@@ -279,10 +279,8 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                 <DarkHeader onCancel={resetForm} />
                 {(paymentOption == 'One Time Payment' && clientSecret) || (paymentOption == 'Regularly' && clientSecretRecurring && showRecurringForm && currentUser) ? (
                     <_ModalBody />
-                ) : (
-                    <form onSubmit={fetchClientSecret}>
-                        <_ModalBody />
-                    </form>
+                ) : (                    
+                    <_ModalBody />                  
                 )}
             </Modal> 
         </div>

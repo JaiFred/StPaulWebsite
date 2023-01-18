@@ -115,9 +115,7 @@ const ELEMENTS_OPTIONS = {
 };
 
 const RecurringCheckoutForm = ({
-  currentUser,
-  paymentMethod,
-  setPaymentMethod,
+  currentUser  
 }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -130,6 +128,7 @@ const RecurringCheckoutForm = ({
     phone: "",
     name: "",
   });
+  const [paymentMethod, setPaymentMethod] = useState(null);
 
   const [frequency, FrequencyDropDown] = useDropdown(
     "Choose a Frequency",
