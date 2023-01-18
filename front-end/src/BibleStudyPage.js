@@ -2,7 +2,7 @@
 import React, {useState, useEffect} from "react";
 import ReactPlayer, { controls } from "react-player";
 
-function BibleStudyPage(){
+function BibleStudyPage({ currentUser }){
 
     const API = process.env.REACT_APP_MY_GOOGLE_API_KEY
     const channelID = process.env.REACT_APP_YOUTUBE_CHANNEL_ID
@@ -27,6 +27,11 @@ function BibleStudyPage(){
             <div className="Bible-study-overlay">
                 <h1>Bible Study</h1>
                 <div className="Bible-study-info-container">
+                {/* {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (<div className="events-actions">
+                        <button className='events-actions-button' type='button' onClick={() => setAddEventIsOpen(true)}>Add New Event</button>
+                        <SubmitNewEventModal events={events} setEvents={setEvents} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen} handleAddNewEvent={handleAddNewEvent}/>
+                    </div>
+                    ) : ''} */}
                     <h2>Church Hours</h2>
                     <p>Sunday School services:<br/>
                     <strong>9:30 AM.</strong>
