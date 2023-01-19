@@ -3,19 +3,20 @@
 
     &__image {
         background: white no-repeat center;
-        background-size: contain;
+        background-size: cover;
         border-radius: 10px;
         height: 100%;
         min-height: 300px;
+        border: 10px solid #CAF9FF;
+        aspect-ratio: 1/1;
+    }
 
-        &-wrapper {
-            background: #CAF9FF;
-            padding: 10px;
-        }
+    &-container {
+        width: 37%;
     }
 
     &__content {
-        padding: 0 40px;
+        padding: 20px;
         background: #D9D9D9;
 
         h3 {

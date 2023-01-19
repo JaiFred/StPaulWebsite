@@ -57,10 +57,10 @@ function EventInfoPage({ currentUser }){
             <ChurchHours className="justify-content-end my-5 text-center" after={<BackButton />} />
             
             <div className="row info-page__content mb-5">
-                <div className="col-12 col-md-6 info-page__image-wrapper">
+                <div className="col-12 col-lg-6 info-page__image-wrapper">
                     <div className="info-page__image" style={{ backgroundImage: `url(${event.image})` }}></div>
                 </div>
-                <div className="col-12 col-md-6">
+                <div className="info-page-container col-12 col-lg-6 ">
                     <h1>{event.title}</h1>
                     
                     {/* Time */}
