@@ -19,6 +19,7 @@ a = Time.now
 
 puts "Time a strftime form : #{Time.now.strftime("at %I:%M %p")}\n\n"
 
+DashboardDocument.create(description: 'Hello world!')
 
 Event.destroy_all
 

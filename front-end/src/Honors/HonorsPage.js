@@ -8,7 +8,7 @@ import AddHonorsItemModal from "../AddHonorsItemModal";
 import { Parallax, ParallaxBannerLayer } from 'react-scroll-parallax'; 
 import { HonorDoc } from "./HonorDoc";
 import { BackHomeButton } from '../BackHomeButton/BackHomeButton';
-import { fetchDocuments } from './utils';
+import { fetchDocuments } from '../utils';
 
 //CSS
 import honorPageVideo from '../images/honor-page-video.mp4'

@@ -12,6 +12,11 @@ function BibleStudyPage({ currentUser }){
     console.log(`finalURL: ${finalURL}`);
 
     const [videos, setVideos] = useState([]);
+    const [document, setDocument] = useState([]);
+    const blankLinks = (html) => html?.replaceAll("<a ", '<a target="_blank" ');
+    const parseDescription = (html) => {
+        return blankLinks(html);
+      };
 
     useEffect(() => {
         fetch(finalURL)
@@ -19,80 +24,36 @@ function BibleStudyPage({ currentUser }){
             .then((response) => {
             setVideos(response.items.map((item) => `https://www.youtube.com/watch?v=${item.id.videoId}`));
             })
-        },[])
+
+        fetch(`/api/dashboard_documents`)
+            .then((r) => r.json())
+            .then(document => setDocument(document))
+    },[])
                 
-    console.log(`videos: ${JSON.stringify(videos)}`);
+    console.log(`videos: ${JSON.stringify(videos)}`);     
 
         return(
             <div className="Bible-study-overlay">
                 <h1>Bible Study</h1>
                 <div className="Bible-study-info-container">
-                {/* {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (<div className="events-actions">
-                        <button className='events-actions-button' type='button' onClick={() => setAddEventIsOpen(true)}>Add New Event</button>
-                        <SubmitNewEventModal events={events} setEvents={setEvents} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen} handleAddNewEvent={handleAddNewEvent}/>
+                    {/* {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (<div className="events-actions">
+                            <button className='events-actions-button' type='button' onClick={() => setAddEventIsOpen(true)}>Add New Event</button>
+                            <SubmitNewEventModal events={events} setEvents={setEvents} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen} handleAddNewEvent={handleAddNewEvent}/>
+                        </div>
+                        ) : ''} */}
+
+                    <div class="honor-doc-infos-inner">
+                        <p
+                        dangerouslySetInnerHTML={{
+                            __html: parseDescription(document?.description),
+                        }}
+                        ></p>
                     </div>
-                    ) : ''} */}
-                    <h2>Church Hours</h2>
-                    <p>Sunday School services:<br/>
-                    <strong>9:30 AM.</strong>
-                    </p>
-                    <p>Sunday Morning services:<br/>
-                    <strong>11:00 AM.</strong></p>
-                    <p>Bible Study is every <strong>second</strong> and <strong>third Wednesday</strong>  of each month at <strong>7:00 PM.</strong></p>
-
-                    <p>*This page will be updated periodically with the dates church service shall take place</p>
-
-                    <p>
-                        Topic: Prayer Night and Bible Study for Jan-Dec 2023
-                        Time: Jan 4, 2023 07:00 PM Eastern Time (US and Canada)
-
-                        Every week on Wed, until Dec 13, 2023, 49 occurrence(s)
-                    </p>
-
-                    <p>
-                        Jan 4, 2023 07:00 PM
-                        Jan 11, 2023 07:00 PM
-                        Jan 18, 2023 07:00 PM
-                        Feb 1, 2023 07:00 PM
-                        Feb 8, 2023 07:00 PM
-                        Feb 15, 2023 07:00 PM
-                        Mar 1, 2023 07:00 PM
-                        Mar 8, 2023 07:00 PM
-                        Mar 15, 2023 07:00 PM
-                        Apr 5, 2023 07:00 PM
-                        Apr 12, 2023 07:00 PM
-                        Apr 19, 2023 07:00 PM
-                        May 3, 2023 07:00 PM
-                        May 10, 2023 07:00 PM
-                        May 17, 2023 07:00 PM
-                        Jun 7, 2023 07:00 PM
-                        Jun 14, 2023 07:00 PM
-                        Jun 21, 2023 07:00 PM
-                        Jul 5, 2023 07:00 PM
-                        Jul 12, 2023 07:00 PM
-                        Jul 19, 2023 07:00 PM
-                        Aug 2, 2023 07:00 PM
-                        Aug 9, 2023 07:00 PM
-                        Aug 16, 2023 07:00 PM
-                        Sep 6, 2023 07:00 PM
-                        Sep 13, 2023 07:00 PM
-                        Sep 20, 2023 07:00 PM
-                        Oct 4, 2023 07:00 PM
-                        Oct 11, 2023 07:00 PM
-                        Oct 18, 2023 07:00 PM
-                        Nov 1, 2023 07:00 PM
-                        Nov 8, 2023 07:00 PM
-                        Nov 15, 2023 07:00 PM
-                        Dec 6, 2023 07:00 PM
-                        Dec 13, 2023 07:00 PM
-                        Dec 20, 2023 07:00 PM
-
-                    </p>
                 </div>
 
-            <div>
-                {videos.map(url => <div><ReactPlayer url={url} controls/></div>)}
-            </div>
+                <div>
+                    {videos.map(url => <div><ReactPlayer url={url} controls/></div>)}
+                </div>
             </div>
         )
     

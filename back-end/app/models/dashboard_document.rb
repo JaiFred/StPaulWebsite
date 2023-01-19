@@ -1,0 +1,2 @@
+class DashboardDocument < ApplicationRecord
+end

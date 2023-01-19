@@ -1,4 +1,4 @@
-Rails.application.routes.draw do
+Rails.application.routes.draw do  
   
   devise_for :users, path: '', path_names: {
     sign_in: 'login',
@@ -20,7 +20,8 @@ Rails.application.routes.draw do
       resources :events
       resources :subscriptions
       resources :future_subscriptions
-      resources :users      
+      resources :users
+      resources :dashboard_documents
       
       post '/client_secret', to: "payments#client_secret"
       get '/client_secret_recurring', to: "payments#client_secret_recurring"
