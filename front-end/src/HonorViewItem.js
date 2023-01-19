@@ -1,12 +1,11 @@
 import React, { useState, useEffect } from "react";
 import { useParams } from 'react-router-dom';
 import { BackHomeButton } from "./BackHomeButton/BackHomeButton";
-import { fetchDocuments } from './Honors/utils';
+import { fetchDocuments } from './utils';
+import { isSafeHTML } from "./utils";
 import { Link } from "react-router-dom";
 
 import './HonorViewItem.scss';
-
-const isSafeHTML = html => html.replaceAll('<script', '');
 
 const File = ({ file }) => {
     const isPDF = file.endsWith('.pdf');
