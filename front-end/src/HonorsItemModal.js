@@ -3,9 +3,10 @@ import { Modal, ModalHeader, ModalBody, ModalFooter, ModalTitle, Button } from '
 
 //components
 import EditHonorsItem from "./EditHonorsItem"
+import EditDashboardDocument from './EditDashboardDocumentModal'
 import { DarkHeader } from './Modal/Header'
 
-const HonorsItemModal = ({ show, onSubmit, onCancel, heading, className, children }) => (
+const HonorsItemModal = ({ show, onCancel, heading, className, children }) => (
     <div className={className}>
         <Modal
             className='modal'

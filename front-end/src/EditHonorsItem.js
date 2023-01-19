@@ -1,7 +1,5 @@
 
-import react, { useState, useEffect } from 'react';
-import { Link, Navigate, Routes, Route } from 'react-router-dom'
-import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 import ModalFooter from './Modal/Footer';
 import InputFile from './Inputs/File';
@@ -31,7 +29,7 @@ function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen, onCancel }){
 
 
     console.log(`editedDescription: ${editedDescription}`);
-    
+
     function handleSubmit(e) {
         e.preventDefault();
         console.log(`handleSubmit updating document: ${doc.id}`);
