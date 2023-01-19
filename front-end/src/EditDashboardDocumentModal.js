@@ -10,15 +10,22 @@ import className from 'classnames'
 import { DarkHeader } from './Modal/Header'
 import Editor from './Editor/Editor';
 
+
+
+
 const EditDashboardDocumentModal = ({ document, initDescription, fetchDashboardDocuments, editDashboardDocumentModalIsOpen, setEditDashboardDocumentModalIsOpen }) => {    
     console.log(`document inside EditDashboardDocumentModal: ${JSON.stringify(document)}`)
-    // const description = document.description;
+    const description = document.description;
     console.log(`document inside EditDashboardDocumentModal initDescription: ${initDescription}`)
-    const [editedDescription, setEditedDescription] = useState('');
+    const [editedDescription, setEditedDescription] = useState(description);
+    if (editedDescription !== description) {
+        setEditedDescription(description)
+    }
+    // useEffect(() => {setEditedDescription(description), [description]})
 
-    useEffect(() => {
-        setEditedDescription(initDescription);
-    },[])
+    // useEffect(() => {
+    //     setEditedDescription(initDescription);
+    // },[])
     
     console.log(`editedDescription: ${editedDescription}`)
 
