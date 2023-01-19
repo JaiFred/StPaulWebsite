@@ -19,7 +19,7 @@ export const EventCardControls = ({
         <div className="event-card-controls" >
             {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (
             <>
-                <button className='event-card-control' type='button' onClick={(e) => setDeleteIsOpen(true)}>
+                <button className='event-card-control' type='button' onClick={() => setDeleteIsOpen(true)}>
                     <img src={deleteIcon} />
                 </button>
                 
@@ -31,8 +31,18 @@ export const EventCardControls = ({
             ): ''}
 
         </div>
-        <EventDeleteConfirmationModal event={event} deleteIsOpen={deleteIsOpen} setDeleteIsOpen={setDeleteIsOpen} handleDeleteClick={handleDeleteClick}/>
-        <EventEditModal event={event} editEventIsOpen={editEventIsOpen} setEditEventIsOpen={setEditEventIsOpen} handleEditEvent={handleEditEvent} />
+            <EventDeleteConfirmationModal 
+                event={event} 
+                deleteIsOpen={deleteIsOpen} 
+                setDeleteIsOpen={setDeleteIsOpen} 
+                handleDeleteClick={handleDeleteClick}
+            />
+            <EventEditModal 
+                event={event} 
+                editEventIsOpen={editEventIsOpen} 
+                setEditEventIsOpen={setEditEventIsOpen} 
+                handleEditEvent={handleEditEvent}
+            />
         </div>
 
     )

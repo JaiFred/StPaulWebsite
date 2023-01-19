@@ -57,10 +57,7 @@ export const HonorDoc = ({
             <button
               className="honor-doc-control"
               type="button"
-              onClick={() => selectEditModal(doc)}
-            >
-              <img src={editIcon} />
-            </button>
+              onClick={() => selectEditModal(doc)}><img src={editIcon} /></button>
           </div>
         )}
 

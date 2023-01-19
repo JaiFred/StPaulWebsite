@@ -1,5 +1,5 @@
 export function fetchDocuments(onFetch, id) {
-    console.log('Fetching documents from teh backend server !!!');
+    console.log('Fetching documents from the backend server !!!');
     fetch('/api/honor_pages', {
         id,
         credentials: 'include',

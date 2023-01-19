@@ -53,7 +53,6 @@ export const MoreOptionsMenu = ({currentUser, signUpIsOpen, setSignUpIsOpen, log
       }              
       <Link to="/broadcasts" class="dropdown-item">Broadcasts</Link>
       <Link to="/youth_corner" class="dropdown-item">Youth Corner</Link>
-      <Link to="/bible_study" class="dropdown-item">Bible Study</Link>
       <Link to="/honors" class="dropdown-item">Honors</Link>
       { 
         currentUser &&
