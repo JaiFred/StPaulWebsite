@@ -30,7 +30,7 @@ module Api
     # PATCH/PUT /dashboard_documents/1.json
     def update
       if @dashboard_document.update(dashboard_document_params)
-        render :show, status: :ok, location: @dashboard_document
+        render json: @dashboard_document, status: :ok
       else
         render json: @dashboard_document.errors, status: :unprocessable_entity
       end
@@ -44,7 +44,7 @@ module Api
   
       # Only allow a list of trusted parameters through.
       def dashboard_document_params
-        params.require(:dashboard_document).permit(:description)
+        params.permit(:description)
       end
   end
 end

@@ -1,6 +1,9 @@
 //Hooks
 import React, {useState, useEffect} from "react";
 import ReactPlayer, { controls } from "react-player";
+import { DarkHeader } from './Modal/Header'
+
+import EditDashboardDocumentModal from "./EditDashboardDocumentModal"
 
 function BibleStudyPage({ currentUser }){
 
@@ -17,20 +20,30 @@ function BibleStudyPage({ currentUser }){
     const parseDescription = (html) => {
         return blankLinks(html);
       };
+    const [editDashboardDocumentModalIsOpen, setEditDashboardDocumentModalIsOpen] = useState(false)
+
+    function fetchDashboardDocuments(){
+        fetch(`/api/dashboard_documents`)
+            .then((r) => r.json())
+            .then(document => setDocument(document))
+    }
 
     useEffect(() => {
+        fetchDashboardDocuments();
+
         fetch(finalURL)
             .then((r) => r.json())
             .then((response) => {
             setVideos(response.items.map((item) => `https://www.youtube.com/watch?v=${item.id.videoId}`));
-            })
-
-        fetch(`/api/dashboard_documents`)
-            .then((r) => r.json())
-            .then(document => setDocument(document))
+            })                    
     },[])
                 
-    console.log(`videos: ${JSON.stringify(videos)}`);     
+    console.log(`videos: ${JSON.stringify(videos)}`);    
+    console.log(`document inside BibleStudyPage: ${JSON.stringify(document)}`)
+
+    if (!document) {
+        return <div>Loading!</div>
+    }
 
         return(
             <div className="Bible-study-overlay">
@@ -41,6 +54,15 @@ function BibleStudyPage({ currentUser }){
                             <SubmitNewEventModal events={events} setEvents={setEvents} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen} handleAddNewEvent={handleAddNewEvent}/>
                         </div>
                         ) : ''} */}
+
+                                <button
+                                        className="honor-doc-control"
+                                        type="button"
+                                        onClick={() => setEditDashboardDocumentModalIsOpen(true)}
+                                    >X
+                                </button>
+
+                        
 
                     <div class="honor-doc-infos-inner">
                         <p
@@ -54,6 +76,17 @@ function BibleStudyPage({ currentUser }){
                 <div>
                     {videos.map(url => <div><ReactPlayer url={url} controls/></div>)}
                 </div>
+                {(currentUser?.admin === true || currentUser?.user?.admin === true) && (
+                        <>
+                            <EditDashboardDocumentModal
+                            document={document}
+                            initDescription={document.description}
+                            fetchDashboardDocuments={fetchDashboardDocuments}
+                            editDashboardDocumentModalIsOpen={editDashboardDocumentModalIsOpen}
+                            setEditDashboardDocumentModalIsOpen={setEditDashboardDocumentModalIsOpen}
+                            />
+                        </>
+                )}
             </div>
         )
     
