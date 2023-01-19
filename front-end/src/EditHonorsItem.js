@@ -29,6 +29,9 @@ function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen, onCancel }){
     const [isDocumentPdf, setIsDocumentPdf] = useState(doc.file.endsWith(".pdf"));
     const [showExistingDocument, setShowExistingDocument] = useState(true);
 
+
+    console.log(`editedDescription: ${editedDescription}`);
+    
     function handleSubmit(e) {
         e.preventDefault();
         console.log(`handleSubmit updating document: ${doc.id}`);

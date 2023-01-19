@@ -157,6 +157,7 @@ function App() {
 
   const [ authChecked, setAuthChecked ] = useState(false)
   const [ currentUser, setCurrentUser ] = useState(null)
+  // const [ dashboardDocument, setDashboardDocument ] = useState([])
   const [ events, setEvents ] = useState([]);
   const [ showEvents, setShowEvents ] = useState([]);
   const [ givingIsOpen, setGivingIsOpen ] = useState(false);
@@ -171,6 +172,13 @@ function App() {
   const [ cancelFutureSubscriptionIsOpen, setCancelFutureSubscriptionIsOpen ] = useState(false);
   
   // const [home, setHome] = useState ([])
+
+  // function fetchDashboardDocuments(){
+  //       fetch(`/api/dashboard_documents`)
+  //         .then((r) => r.json())
+  //         .then(dashboardDocument => setDashboardDocument(dashboardDocument))
+  // }
+  // console.log(`fetchDashboardDocuments ${JSON.stringify(dashboardDocument)}`)
 
   useEffect(() => {
     fetch(`/api/events`)
@@ -191,7 +199,6 @@ function App() {
         } else {
           setAuthChecked(true)
         }
-        console.log(authChecked)
      })
   }, [])
 

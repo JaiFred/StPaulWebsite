@@ -5,7 +5,15 @@ import { DarkHeader } from './Modal/Header'
 
 import EditDashboardDocumentModal from "./EditDashboardDocumentModal"
 
-function BibleStudyPage({ currentUser }){
+
+
+
+
+
+
+
+
+function BibleStudyPage({ currentUser, fetchDashboardDocuments }){
 
     const API = process.env.REACT_APP_MY_GOOGLE_API_KEY
     const channelID = process.env.REACT_APP_YOUTUBE_CHANNEL_ID
