@@ -3,6 +3,8 @@ import { useState } from "react";
 import { Button, Popover } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
+import VideoContainer from './VideoContainer';
+
 //CSS
 import SignUpPage from "./images/Sign-up-page.mp4"
 
@@ -90,11 +92,10 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
       )
     }
     return(
-        <div>
-          <video muted loop autoPlay playsInline src={SignUpPage}></video>
+        <VideoContainer video={SignUpPage}>
             <div className="form-container">
-            <h3>Sign Up</h3>
-            <form className="register-form" onSubmit={handleSubmit}>
+            <form className="register-form form-default" onSubmit={handleSubmit}>
+              <h3>Sign Up</h3>
               <input
                 className="first-name-input"
                 type="text"
@@ -145,7 +146,7 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
           <Link to='/login'>Back to Login</Link>
         </div>
       
-    </div>
+    </VideoContainer>
   )
 }
 
