@@ -42,15 +42,15 @@ function ContactUsPage(){
 
                                 {/* */}
                                 <label htmlFor="sender-name">Your Name:</label>
-                                <input type="text" name="sender-name" id="sender-name" className="sender-name"></input>
+                                <input type="text" name="sender-name" id="sender-name" placeholder="Your Name" className="sender-name"></input>
                                 
                                 {/* */}
                                 <label htmlFor="email-from">Your Email:</label>
-                                <input type="text" name="email-from" id="email-from" className="email-form"></input>
+                                <input type="text" name="email-from" id="email-from" placeholder="Your Email" className="email-form"></input>
                                 
                                 {/* */}
                                 <label htmlFor="message">Message:</label>
-                                <textarea name="message" id="message" className="message-box" rows="10"></textarea>
+                                <textarea name="message" id="message" placeholder='type here --' className="message-box" rows="10"></textarea>
 
                                 <div className="text-center">
                                     <button type="submit" className="submit-button button-custom">Send</button>
