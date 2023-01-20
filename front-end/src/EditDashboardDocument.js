@@ -1,12 +1,9 @@
-//Hooks
-import { ModalFooter } from 'react-bootstrap'
 import React, {useState, useEffect} from "react"; 
 import className from 'classnames'
-
+import ModalFooter from "./Modal/Footer";
 
 //Components
 import Editor from './Editor/Editor';
-
 
 const EditDashboardDocument = ({ document, fetchDashboardDocuments, editDashboardDocumentModalIsOpen, setEditDashboardDocumentModalIsOpen, onCancel }) => {    
     console.log(`document inside EditDashboardDocumentModal: ${JSON.stringify(document)}`)
@@ -33,16 +30,16 @@ const EditDashboardDocument = ({ document, fetchDashboardDocuments, editDashboar
         const configObj = {
             method: "PATCH",
             body: formData
-        }
+        };
 
         fetch(`api/dashboard_documents/${document.id}`, configObj)
-        .then((response) => {
-            console.log('dashoard document updated successfully');
-            console.log('fetching latest documents 1')
-            setEditDashboardDocumentModalIsOpen(false);
-            console.log('fetching latest documents 2')
-            fetchDashboardDocuments();
-          })      
+            .then((response) => {
+                console.log('dashoard document updated successfully');
+                console.log('fetching latest documents 1')
+                setEditDashboardDocumentModalIsOpen(false);
+                console.log('fetching latest documents 2')
+                fetchDashboardDocuments();
+            })     
     };
     // <button type="button" onClick={() => {setEditDashboardDocumentModalIsOpen(false)}}>No</button>  
 

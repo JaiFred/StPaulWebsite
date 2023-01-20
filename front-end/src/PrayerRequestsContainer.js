@@ -21,7 +21,7 @@ function PrayerRequestsContainer(){
             process.env.REACT_APP_EMAILJS_PUBLIC_KEY
         );
     
-        window.location.reload();
+        // window.location.reload();
     }
 
     return (
@@ -33,7 +33,7 @@ function PrayerRequestsContainer(){
                 <p>Matthew 18:19 : "Again I say unto you, that if two of you shall agree on earth as touching any thing that they shall ask, it shall be done for them of my Father which is in Heaven."</p>
                 <p>1 John 5:14-15: "And this is the confidence ( the assurance, the privilege of boldness) which we have in Him: (we are sure) that if we ask anything according to His will, He listens to and hears us.  And if we know that we have the requests made of him.</p>
 
-                <form className="prayer-request"  onSubmit={sendEmail}>
+                <form className="prayer-request form-default" onSubmit={sendEmail}>
                     <h1>
                         Prayer Request Page 
                     </h1>
@@ -45,7 +45,7 @@ function PrayerRequestsContainer(){
                         id="who"
                         name="who-input"
                         // value=
-                        placeholder="Type name... "
+                        placeholder="Type name "
                     />
 
                     <label htmlFor="what-input">What is their relationship to you?</label>
@@ -55,10 +55,10 @@ function PrayerRequestsContainer(){
                         id="what"
                         name="what-input"
                         // value=
-                        placeholder="(optional: friend, mom, dad, spouse, me, etc...) or leave blank if request is for you..."
+                        placeholder="(Optional: Friend, mom, dad, spouse, you etc.) "
                     />
 
-                    <h2>Prayer Details</h2>
+                    <label htmlFor="prayer-input">Prayer Details</label>
                     <textarea
                         className='prayer-details-input'
                         type='text'
@@ -99,7 +99,7 @@ function PrayerRequestsContainer(){
                 
                     {/* Options */}
                     <fieldset>
-                        <legend>Would you like us to pray for your intention during the morning announcments?</legend>
+                        <legend className="prayer-radio-button-title">Would you like us to pray for your intention during the morning announcments?</legend>
                     
                         <label>
                             <input type='radio' id='Yes' name="drone1" value='Yes' checked/> 
@@ -111,7 +111,7 @@ function PrayerRequestsContainer(){
                         </label>
                     </fieldset>
                     <fieldset className="mb-5">
-                        <legend>Is it OK to post your request in Church?</legend>
+                        <legend className="prayer-radio-button-title">Is it OK to post your request in Church?</legend>
                         <label>
                             <input type='radio' id='Yes' name="drone2" value='Yes' checked/>
                             Yes

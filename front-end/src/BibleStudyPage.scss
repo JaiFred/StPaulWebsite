@@ -1,0 +1,70 @@
+.dashboard-document-control {
+    position: absolute;
+    top: 20px;
+    right: 20px;
+    background: none;
+    border: 0;
+}
+
+.bible-study {
+    max-width: 700px;
+    margin: 0 auto 50px;
+    padding: 0 30px;
+
+    &-background{
+        position: absolute;
+        height: 85%;
+        width: 100%;
+
+     video {
+         height: 100%;
+         position: absolute;
+         left: 50%;
+         transform: translateX(-50%) translateY(-12%);
+    }
+    }
+
+    &__bottom-image {
+        background: #D9D9D9;
+        padding: 30px;
+
+        img {
+            width: 100%;
+            max-width: 960px;
+            border-radius: 5px;
+        }
+
+        &-wrapper {
+            position: relative;
+            text-align: center;
+            background: white;
+            
+            h3 {
+                padding: 30px 0 20px;
+                font-weight: 800;
+            }
+        }
+    }
+}
+
+.bible-study-overlay {
+    .honor-doc-infos-inner{
+        background: rgba(0,0,0,.7);
+        color: white;
+        border: 0;
+        padding: 110px 46px 110px 100px;
+
+        > p {
+            max-height: 900px;
+            overflow: auto;
+            padding-right: 70px;
+        }
+    }
+
+    h1 {
+        margin: 65px 0 60px;
+        font-weight: 800;
+        color: white;
+        font-size: 2em;
+    }
+}

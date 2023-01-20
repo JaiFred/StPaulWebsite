@@ -59,7 +59,7 @@ import moment from 'moment';
                     </div>
                     <div className="subheader-banner">Previous messages</div>
                     <div className='broadcasts-videos'>
-                        <div class="container">
+                        <div class="broadcasts-videos-previous container">
                             <div className={'row'}>
                                 <div className="col-12 col-md-6">
                                     <VideoItem video={videos[1]} />
