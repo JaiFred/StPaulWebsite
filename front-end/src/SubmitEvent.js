@@ -26,8 +26,11 @@ function SubmitEvent({ handleAddNewEvent }){
     const [ addressLine1, setaddressLine1 ] = useState("")
     const [ addressLine2, setaddressLine2 ] = useState("")
     const [ city, setCity ] = useState("")
+    const [ stateProvinceRegion, setStateProvinceRegion ] = useState("")
+    const [ zipPostalcode, setZipPostalcode ] = useState("")
     const [ image, setImage ] = useState("")
-    const [errors, setErrors] = useState([]);
+    const [ country, setCountry ] = useState("")
+    const [ errors, setErrors ] = useState([]);
 
     function handleSubmit(e){
         console.log("submitted")
@@ -43,6 +46,9 @@ function SubmitEvent({ handleAddNewEvent }){
         formData.append("address_line_1", addressLine1);
         formData.append("address_line_2", addressLine2);
         formData.append("city", city);
+        formData.append("state_province_region", stateProvinceRegion);
+        formData.append("zipPostalcode", zipPostalcode);
+        formData.append("country", country);
 
 
         fetch("api/events", {
@@ -75,7 +81,7 @@ function SubmitEvent({ handleAddNewEvent }){
              {errors.map((error) => <p>{error}</p>)}
             <input 
                 type="file" 
-                name="image"
+                name="image_input"
                 accept="image/png, image/jpeg"
                 onChange={handleImageChange} 
             />
@@ -83,26 +89,30 @@ function SubmitEvent({ handleAddNewEvent }){
                 <input 
                 type='text'
                 className='title-input'
-                id='title'
+                id='title_input'
+                name='title_input'
                 placeholder='title' 
                 onChange={(e) => setTitle(e.target.value)}
                 />
                 <input
                 type='datetime-local'
                 className='starts-input'
-                id='starts'
+                id='starts_input'
+                name='starts_input'
                 onChange={(e) => setStarts(e.target.value)}
                 />
                 <input
                 type='datetime-local'
                 className='ends-input'
-                id='ends'
+                id='ends_input'
+                name='ends_input'
                 onChange={(e) => setEnds(e.target.value)}
                 />
                 <input
                 type='text'
                 className='details-input'
-                id='details'
+                id='details_input'
+                name='details_input'
                 placeholder='details'
                 onChange={(e) => setDetails(e.target.value)}
                 />
@@ -110,6 +120,7 @@ function SubmitEvent({ handleAddNewEvent }){
                 type='text'
                 className='address_line_1_input'
                 id='address_line_1_input'
+                name='address_line_1_input'
                 placeholder='address line 1'
                 onChange={(e) => setaddressLine1(e.target.value)}
                 />
@@ -119,6 +130,7 @@ function SubmitEvent({ handleAddNewEvent }){
                     type='text'
                     className='address_line_2_input'
                     id='address_line_2_input'
+                    name='address_line_2_input'
                     placeholder='address line 2'
                     onChange={(e) => setaddressLine2(e.target.value)}
                 /><label htmlFor="address_line_2_input">Apartment, suite, unit, building, floor</label>
@@ -127,7 +139,24 @@ function SubmitEvent({ handleAddNewEvent }){
                     type='text'
                     className='city_input'
                     id='city_input'
+                    name='city_input'
                     placeholder='city'
+                    onChange={(e) => setCity(e.target.value)}
+                />
+                <input
+                    type='text'
+                    className='state_province_region_input'
+                    id='state_province_region_input'
+                    name='state_province_region_input'
+                    placeholder='state/province/region'
+                    onChange={(e) => setCity(e.target.value)}
+                />
+                <input
+                    type='text'
+                    className='zip_postalcode_input'
+                    id='zip_postalcode_input'
+                    name='zip_postalcode_input'
+                    placeholder='ZIP/Postalcode'
                     onChange={(e) => setCity(e.target.value)}
                 />
                 {/* I want a city dropdown*/}

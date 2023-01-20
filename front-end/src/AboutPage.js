@@ -38,7 +38,7 @@ function AboutPage(){
                             <ul className="pastor-pictures">
                                 <li>
                                     <div className="pastor-picture pastor-brown" style={{ backgroundImage: `url(${PastorBrown})` }}></div>
-                                    <h5>Rev. Robert D. Brown<br /> with<br /> Pastor Kim Bullock</h5>
+                                    <h5>Rev. Robert D. Brown<br />&<br /> Pastor Kim Bullock</h5>
                                 </li>
                                 <li>
                                     <div className="pastor-picture pastor-bullock" style={{ backgroundImage: `url(${PastorBullock})` }}></div>
