@@ -1,0 +1,15 @@
+.video-container {
+    position: relative;
+    padding: 80px 0;
+    overflow: hidden;
+    
+    video {
+        height: 100%;
+        position: absolute;
+        top: 0;
+    }
+    
+    main {
+        position: relative;
+    }
+}

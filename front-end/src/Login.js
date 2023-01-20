@@ -2,6 +2,7 @@
 import { Link, Navigate, Routes, Route } from 'react-router-dom'
 import { useState } from "react";
 import { Button } from "react-bootstrap";
+
 import { useNavigate } from "react-router-dom";
 
 
@@ -9,6 +10,7 @@ import { useNavigate } from "react-router-dom";
 import PasswordRecoveryPage from './PasswordRecoveryPage';
 
 //CSS
+import LoginBackground from './images/tree-background-red.jpeg'
 
 
 function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
