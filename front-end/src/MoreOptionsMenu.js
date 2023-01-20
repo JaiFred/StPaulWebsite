@@ -60,6 +60,7 @@ export const MoreOptionsMenu = ({currentUser, signUpIsOpen, setSignUpIsOpen, log
           <Link to="/profile" class="dropdown-item">Profile</Link>
         </div>                    
       } 
+      <Link to="/contact_us" class="dropdown-item">Contact Us</Link>
 </DropdownMenu>
 </Dropdown>
 </div>

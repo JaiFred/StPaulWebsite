@@ -18,6 +18,7 @@ const CheckoutForm = ({setGivingIsOpen, setAmount, setClientSecret, setShowAmoun
     // We don't want to let default form submission happen here,
     // which would refresh the page.
     event.preventDefault();
+    
 
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
@@ -37,10 +38,12 @@ const CheckoutForm = ({setGivingIsOpen, setAmount, setClientSecret, setShowAmoun
       // Show error to your customer (for example, payment details incomplete)
       console.log(result.error.message);
     } else {
+      alert("Thank you! We appreciate your offering.");
       // Your customer will be redirected to your `return_url`. For some payment
       // methods like iDEAL, your customer will be redirected to an intermediate
       // site first to authorize the payment, then redirected to the `return_url`.
     }
+    
     resetForm();
   };
 

@@ -335,7 +335,10 @@ const RecurringCheckoutForm = ({
         payment_start_date: paymentStartDate,
         user_id: currentUser?.id || currentUser?.user?.id,
       }),
-    }).then((res) => console.log(JSON.stringify(res)));
+    }).then((res) => console.log(JSON.stringify(res)))
+    .then(alert("Thank you! We have recieved your recurring offering request. You can find and manage your reccuring offerings in your profile.")
+    );
+
   };
 
   function handlePaymentStartDateChange(e) {

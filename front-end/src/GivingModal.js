@@ -205,6 +205,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                             id="amount"
                             name="amount"
                             value={amount}
+                            required
                             onChange={handleAmountChange}
                             placeholder="Type your amount here"
                         >

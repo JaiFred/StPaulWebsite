@@ -60,7 +60,7 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
             
                 <div className="add-new-honor-container">
                     <div className="column"></div>
-                    <div className="column"><h2>Documents</h2></div>
+                    <div className="column document-page-title"><h2>Documents</h2></div>
                     {(currentUser?.admin || currentUser?.user?.admin) && (
                         <div className="column">
                             <button
