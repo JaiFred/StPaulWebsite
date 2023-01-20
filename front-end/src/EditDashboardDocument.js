@@ -54,7 +54,7 @@ const EditDashboardDocument = ({ document, fetchDashboardDocuments, editDashboar
                         placeholder="description..." 
                 />
             </div>                    
-            <ModalFooter onSubmit={handleSubmit} onCancel={onCancel} submitLabel="Edit Me" />                
+            <ModalFooter onSubmit={handleSubmit} onCancel={onCancel} submitLabel="Edit" />                
         </form>
     )
 }

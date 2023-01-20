@@ -19,5 +19,12 @@
 
     &__content {
         text-align: justify;
+        padding: 10px 40px;
+        max-width: 1200px;
+        margin: 0 auto;
+        
+        div {
+            max-width: none !important;
+        }
     }
 }

@@ -197,7 +197,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                 { paymentOption == 'One Time Payment' && showAmountForm &&
                 <form onSubmit={fetchClientSecret}>                
                 <div>
-                    <h3 className="give-subtitle text-center text-bold">Give</h3>
+                    <h3 className="give-subtitle text-center text-bold">Give Box</h3>
                     <div className="amount-input-container">
                         <Input
                             label="Amount"
@@ -253,7 +253,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
             { currentUser && <div className="AppWrapper">
                 { paymentOption == 'Regularly' && clientSecretRecurring && showRecurringForm &&
                 <div>
-                    <h3 className="give-subtitle text-center">Give</h3>
+                    <h3 className="give-subtitle text-center">Give Box</h3>
                     <Elements stripe={stripePromise} options={optionsRecurring}>
                         <RecurringCheckoutForm currentUser={currentUser} resetForm={resetForm} />
                     </Elements>

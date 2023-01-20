@@ -70,7 +70,7 @@ function PrayerRequestsContainer(){
                     />
                     
                     {/* Name and Date */}
-                    <ul className="name-date-list d-flex gap-3">
+                    <ul className="name-date-list gap-3">
                         <li className="name-cell">
                             <label>
                                 Your Name

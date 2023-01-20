@@ -63,8 +63,8 @@ function ContactUsPage(){
                                 <Map
                                     mapboxAccessToken = {process.env.REACT_APP_MAPBOX_TOKEN}
                                     style={{
-                                        width: "500px",
-                                        height: "500px",
+                                        width: "100%",
+                                        aspectRatio: "1/1",
                                         borderRadius: "15px",
                                         border: "2px solid red",
                                         center: [12.550343, 55.665957],
@@ -90,15 +90,17 @@ function ContactUsPage(){
                                 </Map>
                                 
                                 <div className="map-details">
-                                    <p>
-                                        1995 Globe Road <br />
-                                        Aylett, VA 23009
-                                    </p>
-                                    <p>
-                                        Tel: 804-769-4430 <br />
-                                        Fax: 804-769-4430 <br />
-                                        email: stpaul23009@gmail.com
-                                    </p>
+                                    <div>
+                                        <p>
+                                            1995 Globe Road <br />
+                                            Aylett, VA 23009
+                                        </p>
+                                        <p>
+                                            Tel: 804-769-4430 <br />
+                                            Fax: 804-769-4430 <br />
+                                            email: stpaul23009@gmail.com
+                                        </p>
+                                    </div>
                                     <a className="directions" href="https://www.google.com/maps/place/1995+Globe+Rd,+Aylett,+VA+23009/@37.8135257,-77.2050461,17z/data=!3m1!4b1!4m5!3m4!1s0x89b128245469bbb9:0x54383625ecd83599!8m2!3d37.8135215!4d-77.2028574" target='_blank'>
                                         <p className="directions-button-title">
                                         Directions
