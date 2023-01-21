@@ -1,3 +1,5 @@
+@import './bootstrap-utils';
+
 .info-page {
     padding: 40px 0;
 
@@ -12,7 +14,20 @@
     }
 
     &-container {
-        width: 37%;
+        width: 50%;
+        margin-top: 50px;
+        padding-left: 100px;
+
+        @include media-breakpoint-down(lg) {
+            width: 60%;
+            margin-top: 50px;
+            padding-left: 30px;
+
+        }
+    }
+    
+    .time-info {
+        font-weight: 400;
     }
 
     &__content {
@@ -32,7 +47,9 @@
         h1, p, ul {
             font-weight: 800;
             font-size: 1.6em;
-            margin-bottom: 20px;
+            margin-bottom: 60px;
+
+            
 
             &:last-child {
                 margin-bottom: 0;

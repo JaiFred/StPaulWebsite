@@ -1,8 +1,13 @@
 //Hooks
 import React, { useState, useEffect } from "react";
+
+//Components
 import Editor from './Editor/Editor';
 import ModalFooter from './Modal/Footer';
 import InputFile from './Inputs/File';
+import { OpaqueErrorMessage } from "./Forms/OpaqueErrorMessage";
+
+
 
 function AddHonorsItem({ setDocuments, onCancel }){
     const [description, setDescription] = useState('')
@@ -46,7 +51,7 @@ function AddHonorsItem({ setDocuments, onCancel }){
 
     return(
         <div>
-            {error && <p>{error}</p>}
+            {error && <OpaqueErrorMessage message={error.message || error} />}
             <form className="text-center" method="post">
                 <InputFile
                     name="documents"

@@ -17,7 +17,7 @@ function AboutPage(){
     console.log({PastorBrown})
     return(
         <ParallaxBanner style={{ aspectRatio: 'auto' }}>
-            <ParallaxBannerLayer image={Church} speed={-30} className="about-page-background-container" />
+            <ParallaxBannerLayer image={Church} speed={30} className="about-page-background-container" />
                 <ParallaxBannerLayer className={'about-page-background'} >
                     <div className='about-page text-center'>
                         <h3 className='about'>About</h3>

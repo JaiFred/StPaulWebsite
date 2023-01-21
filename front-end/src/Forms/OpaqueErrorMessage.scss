@@ -1,0 +1,13 @@
+.opaque-error-message {
+    background-color: white;
+    padding: 10px;
+    display:flex;
+    align-items: center;
+    margin-bottom: 24px;
+    border-radius: 30px;
+
+
+    &-message {
+        margin-left: 10px;
+    }
+}
