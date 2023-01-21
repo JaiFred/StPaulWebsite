@@ -85,7 +85,6 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
                   <Link to='/prayer_requests' className='footer-menu-item'>Prayer Request</Link>
                   <Link to='/bible_study' className='footer-menu-item'>Bible Study</Link>
                   <Link to='/youth_corner' className='footer-menu-item'>Youth Corner</Link>
-                  <Link to='/next_service' className='footer-menu-item'>Next Service</Link>
                   <Link to='/honors' className='footer-menu-item'>Honors</Link>
                     <div>
                       <FooterAccountOptions 
@@ -104,8 +103,29 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
                           configId={configId}
                       />
                     </div>
+                    <Link to='/contact_us' className='footer-menu-item' type='button'>Contact Us</Link>
                 </div>
-                    
+                
+                {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (
+                  <div classname="admin-facbook-controller">
+
+                  {facebook === true &&
+                    <div>
+                        <button className='btn btn-primary' variant="primary" type="submit" onClick={() => {updateFacebookLink(false)}}>
+                            Turn link off
+                        </button>
+                    </div> }
+
+                  {facebook === false &&
+                    <div>
+                        <button className='btn btn-primary' variant="primary" type="submit" onClick={() => {updateFacebookLink(true)}}>
+                            Turn link on
+                        </button>
+                    </div>}
+                  </div> 
+
+                ): ''}
+                
                 </div>
                 <div className='footer-bottom'>
                 <p className='website-watermark'>@ 2022 St Paul Baptist Church</p>
@@ -114,8 +134,8 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
                 rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
                 </link>
                 <a href="https://www.facebook.com/" target="_blank" class="fa fa-facebook"></a></div>}
-            </div>  
-                </div>
+                </div>  
+              </div>
             </div>
             )}
           
