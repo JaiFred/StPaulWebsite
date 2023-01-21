@@ -4,9 +4,11 @@ import { Button, Popover } from "react-bootstrap";
 import { useNavigate } from "react-router-dom";
 
 import VideoContainer from './VideoContainer';
+import { BackHomeButtonBordered } from "./BackHomeButton/BackHomeButtonBordered";
 
 //CSS
 import SignUpPage from "./images/Sign-up-page.mp4"
+import "./SignUp.scss"
 
 function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
 
@@ -139,11 +141,11 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
                 <button className="signup-btn" type="submit">SignUp</button>
               </div>
               <div className="back-to-home-from-signup">
-              <Link to='/'>Back Home</Link>
+              <Link to='/login'>Back to Login</Link>
               </div>
           </form>
           {errors.map((error) => <p>{error}</p>)}
-          <Link to='/login'>Back to Login</Link>
+          <BackHomeButtonBordered/>
         </div>
       
     </VideoContainer>

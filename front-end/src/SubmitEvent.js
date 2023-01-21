@@ -2,6 +2,8 @@
 import React, { useState, useEffect } from "react";
 
 
+import { OpaqueErrorMessage } from "./Forms/OpaqueErrorMessage";
+
 
 
 function SubmitEvent({ handleAddNewEvent }){
@@ -72,13 +74,11 @@ function SubmitEvent({ handleAddNewEvent }){
 
     console.log(`image: ${image}`);
 
-
-
     return(
         <div>
             <h1>Submit New Event</h1>
             <ul>
-             {errors.map((error) => <p>{error}</p>)}
+             {errors.map((error) => <OpaqueErrorMessage message={error.message || error} />)}
             <input 
                 type="file" 
                 name="image_input"
