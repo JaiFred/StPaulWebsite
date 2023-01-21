@@ -9,6 +9,9 @@ import LoginModal from "./LoginModal";
 import SignUpModal from "./SignUpModal";
 import LogoutProcedureModal from "./LogoutProcedureModal";
 
+//CSS 
+import "./Footer.scss"
+
 export const FooterAccountOptions = ({
     currentUser, 
     setCurrentUser, 
@@ -31,46 +34,26 @@ export const FooterAccountOptions = ({
         <div className="footer-account-options-wrapper">
             
         {
+        !currentUser &&
+        <>
+            <button className='footer-menu-item' type='button' onClick={() => setLoginIsOpen(true)}>Login</button>
+            <LoginModal loginIsOpen={loginIsOpen} setLoginIsOpen={setLoginIsOpen}/>
+        </>
+        }     
+        { 
             !currentUser &&
-            <div>
-              <button className='footer-menu-item' type='button' onClick={() => setLoginIsOpen(true)}>Login</button>
-              <LoginModal loginIsOpen={loginIsOpen} setLoginIsOpen={setLoginIsOpen}/>
-            </div>
-            }     
-            { 
-                !currentUser &&
-                <div> 
+            <>
                 <button className='footer-menu-item' type='button' onClick={() => setSignUpIsOpen(true)}>Sign Up</button>
                 <SignUpModal signUpIsOpen={signUpIsOpen} setSignUpIsOpen={setSignUpIsOpen}/>
-                </div>
-            }
-            {
-            currentUser &&
-            <div>
-              <button className='footer-menu-item' type='button' onClick={() => setLogoutIsOpen(true)}>Logout 1</button>
-              <LogoutProcedureModal logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
-            </div>                    
-            }
-            <Link to='/contact_us' className='footer-menu-item'>Contact Us</Link>
-
-            {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (
-                <div classname="admin-facbook-controller">
-
-                {facebook === true &&
-                    <div>
-                        <button className='btn btn-primary' variant="primary" type="submit" onClick={() => {updateFacebookLink(false)}}>
-                            Turn link off
-                        </button>
-                    </div> }
-
-                {facebook === false &&
-                    <div>
-                        <button className='btn btn-primary' variant="primary" type="submit" onClick={() => {updateFacebookLink(true)}}>
-                            Turn link on
-                        </button>
-                    </div>}
-                </div>  
-            ): ''}
+            </>
+        }
+        {
+        currentUser && 
+            <>
+                <button className='footer-menu-item' type='button' onClick={() => setLogoutIsOpen(true)}>Logout 1</button>
+                <LogoutProcedureModal logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser}/> 
+            </>
+        }
         </div>
     )
 }

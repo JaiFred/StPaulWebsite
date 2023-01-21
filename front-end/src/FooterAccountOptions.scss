@@ -6,19 +6,8 @@
     background-color: #1A1919;
     padding-top: 40px;
 
-    &-top {
-        display: flex;
-        justify-content: space-between;
-        flex-direction: column;
+    
 
-        @include media-breakpoint-up(md) {
-            flex-direction: row;
-        }
-    }
-
-    &-contact-info {
-        max-width: 250px;
-    }
 
     &-menu {
         display:flex;
@@ -36,15 +25,8 @@
 
             &:hover {
                 color: grey;
-                transform: translateX(5px) !important;
+                transform: translateX(5px);
             }
         }
     }
-
-    &-bottom {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-    }
-
 }
