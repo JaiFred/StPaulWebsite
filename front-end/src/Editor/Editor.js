@@ -63,12 +63,31 @@ const Editor = ({ id, value, onChange, placeholder = "", heading }) => {
 
   console.log(`process.env.REACT_APP_TINY_KEY: ${process.env.REACT_APP_TINY_KEY}`);
 
+  const modules = {
+    toolbar: [
+      [{ 'header': [1, 2, false] }],
+      ['bold', 'italic', 'underline','strike', 'blockquote'],
+      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      ['link', 'image'],
+      ['clean']
+    ],
+  }
+  
+  const formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent',
+    'link', 'image'
+  ]
+
   return (
     <div className="editor-wrapper">
       {heading && <h2>{heading}</h2>}
 
       <ReactQuill 
-        theme="snow" 
+        theme="snow"
+        modules={modules}
+        formats={formats}
         value={value} 
         onChange={onChange}
       />;
