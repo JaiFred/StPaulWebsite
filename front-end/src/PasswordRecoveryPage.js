@@ -3,11 +3,15 @@ import { Button } from "react-bootstrap";
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import PasswordRecoveryBackground from './images/tree-background-red.jpeg'
+import { BackHomeButtonBordered } from './BackHomeButton/BackHomeButtonBordered'
+
+import './PasswordRecoveryPage.scss';
+
 function PasswordRecoveryPage(){
   
   const navigate = useNavigate();
-
-    const [email, setEmail] = useState("");    
+  const [email, setEmail] = useState("");    
 
     function handleSubmit (event) {
         event.preventDefault();
@@ -28,29 +32,29 @@ function PasswordRecoveryPage(){
       };
 
     return(
-        <div className="password-recovery-overlay">
-            <form className="register-form" onSubmit={handleSubmit}>
-            <input
-              className="email-input"
-              type="email"
-              placeholder="email..."
-              onChange={(event) => setEmail(event.target.value)}
-            />
+        <div className="password-recovery-overlay" style={{ backgroundImage: `url(${PasswordRecoveryBackground})`, backgroundSize: 'cover' }}>
+            <form className="recover-password-form" onSubmit={handleSubmit}>
+              <h1>Reset Password</h1>
+              <div className="rounded-input__button">
+                <input
+                  className="email-input"
+                  type="email"
+                  placeholder="email..."
+                  onChange={(event) => setEmail(event.target.value)}
+                  />
 
-            <Button variant="primary" type="submit">Send Reset Password Info</Button>
+                <Button variant="primary" type="submit">
+                  Reset Password
+                </Button>
+                </div>
             </form>
 
-            <div>
-            <Link to='/login' className="main">back to login</Link>
+            <div className='d-flex justify-content-center gap-2'>
+              <Link to='/login' className="main button-custom d-flex align-items-center">Back to login</Link>
+              <BackHomeButtonBordered noContainer />        
             </div>
-
-            <div>
-            <Link to='/' className="main">back to home</Link>
-            </div>            
         </div>
-       
     )
-
 }
 
 export default PasswordRecoveryPage

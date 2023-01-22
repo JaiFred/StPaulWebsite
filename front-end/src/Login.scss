@@ -1,4 +1,72 @@
 .form-container {
     max-width: 600px;
     margin: 0 auto;
+    padding: 150px 0 140px;
+
+    .login-form {
+        max-width: 400px;
+        margin: 0 auto;
+
+        .email-input, .password-input{
+            box-shadow: none;
+        }
+    }
+
+    .login-back-buttons {
+        gap: 10px;
+        
+        > * {
+            flex-grow: 1;
+            justify-content: center;
+        }
+    }
+
+    &.login-form-container {
+
+        
+        .login-btn, .back-home-btn{
+            box-shadow: 0 5px 10px rgb(0, 0, 0);
+        }
+
+        footer {
+            background: rgba(0,0,0,.7);
+            color: white;
+            padding: 30px 50px;
+            max-width: 600px;
+            margin: 30px auto;
+            font-weight: bold;
+            border-radius: 10px;
+           
+            
+
+            a {
+                color: #7DB9FF;
+                text-decoration: none;
+            }
+
+            .forgot-password {
+                background: white;
+                display: inline-block;
+                padding: 5px 10px;
+                border-radius: 20px;
+                margin-top: 20px;
+            }
+        }
+    }
+
+    input {
+        width: 100%;
+
+        &[type=email],
+        &[type=password] {
+            background: #CCC;
+            color: white;
+            margin-bottom: 20px;
+            text-align: left;
+            
+            &::placeholder {
+                color: white;
+            }
+        }
+    }
 }

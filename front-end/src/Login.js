@@ -68,11 +68,11 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
       )
     }
     return(
-    <div style={{ backgroundImage: `url(${LoginBackground})` }} className="py-5">
-      <div className="form-container">
+    <div style={{ backgroundImage: `url(${LoginBackground})`, backgroundSize: 'cover' }}>
+      <div className="form-container login-form-container text-white text-center">
           <h1>Login</h1>         
 
-          <form onSubmit={handleSubmit}>
+          <form onSubmit={handleSubmit} className="login-form">
             {/* <input
               className="username-input"
               type="text"
@@ -80,43 +80,43 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
               onChange={(event) => setUsername(event.target.value)}
             /> */}
              <input
-              className="email-input"
-              type="E-mail"
+              className="email-input button-custom"
+              type="email"
               name="email"
               placeholder="email..."
               onChange={(event) => setEmail(event.target.value)}
             />
             <input
-              className="password-input"
+              className="password-input button-custom"
               type="password"
               placeholder="Password..."
               onChange={(event) => setPassword(event.target.value)}
             />
 
-          <div className="login-button-container">
-           <button className="login-btn" type="submit">Login</button>
-          </div>
-
-          <div className="back-to-home-from-login">
-            <Link to='/' >back to home</Link>
-          </div>
-
-          {error && <OpaqueErrorMessage message={error}/>}
-          
-          <div>
-            <label>Don't have an account?</label>
-            <Link to='/signup' className="main">Signup</Link>
-          </div>
-
-          <div>
-            <label>Forgot your password?</label>
-            <Link to='/password_recovery' className="main">forgot your password</Link>
+          <div className='login-back-buttons d-flex justify-content-between my-3'>
+            <button className="login-btn button-custom" type="submit">Login</button>
+            <Link to='/' className='back-home-btn button-custom'>Back</Link>
           </div>
           
+          {error && (
+            <div className="error mt-4 mb-5">
+              <OpaqueErrorMessage message={error}/>
+            </div>
+          )}
+  
           <Routes>
             <Route path='/password_recovery' element={<PasswordRecoveryPage/>}/>
           </Routes>
         </form>
+
+        <footer>
+          <div>
+            Don't have an account? <Link to='/signup' className="main">Signup</Link>
+          </div>
+          <Link to='/password_recovery' className="forgot-password">
+            Forgot your password
+          </Link>
+        </footer>
       </div>
     </div>
   )
