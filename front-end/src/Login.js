@@ -4,10 +4,11 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 
 import { useNavigate } from "react-router-dom";
-
+import './Login.scss';
 
 //Components
 import PasswordRecoveryPage from './PasswordRecoveryPage';
+import { OpaqueErrorMessage } from './Forms/OpaqueErrorMessage'
 
 //CSS
 import LoginBackground from './images/tree-background-red.jpeg'
@@ -67,11 +68,11 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
       )
     }
     return(
-    <div>
-      <h1>Login</h1>
+    <div style={{ backgroundImage: `url(${LoginBackground})` }} className="py-5">
       <div className="form-container">
-          {error}
-          <form className="register-form" onSubmit={handleSubmit}>
+          <h1>Login</h1>         
+
+          <form onSubmit={handleSubmit}>
             {/* <input
               className="username-input"
               type="text"
@@ -91,21 +92,25 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
               placeholder="Password..."
               onChange={(event) => setPassword(event.target.value)}
             />
+
           <div className="login-button-container">
-          <button className="login-btn" type="submit">Login</button>
+           <button className="login-btn" type="submit">Login</button>
           </div>
+
           <div className="back-to-home-from-login">
             <Link to='/' >back to home</Link>
           </div>
+
+          {error && <OpaqueErrorMessage message={error}/>}
           
           <div>
-          <label>Don't have an account?</label>
-          <Link to='/signup' className="main">Signup</Link>
+            <label>Don't have an account?</label>
+            <Link to='/signup' className="main">Signup</Link>
           </div>
 
           <div>
-          <label>Forgot your password?</label>
-          <Link to='/password_recovery' className="main">forgot your password</Link>
+            <label>Forgot your password?</label>
+            <Link to='/password_recovery' className="main">forgot your password</Link>
           </div>
           
           <Routes>
