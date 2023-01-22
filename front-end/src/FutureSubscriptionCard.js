@@ -1,6 +1,8 @@
-
+//Hooks
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+
+//Components
 import FutureSubscriptionCancelModal from "./FutureSubscriptionCancelModal";
 
 
