@@ -83,13 +83,13 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
               className="email-input button-custom"
               type="email"
               name="email"
-              placeholder="email..."
+              placeholder="Email"
               onChange={(event) => setEmail(event.target.value)}
             />
             <input
               className="password-input button-custom"
               type="password"
-              placeholder="Password..."
+              placeholder="Password"
               onChange={(event) => setPassword(event.target.value)}
             />
 

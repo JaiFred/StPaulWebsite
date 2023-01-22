@@ -24,8 +24,15 @@ form.form-default {
   color: black;
   box-shadow: 0 20px 40px rgb(69 100 115);
   
+  
   ::placeholder {
     color: #D9D9D9;
+  }
+
+  input[type=password]{
+    &::placeholder{
+      color: #D9D9D9;
+    }
   }
 
   h1 {

@@ -6,7 +6,7 @@ import { OpaqueErrorMessage } from "./Forms/OpaqueErrorMessage";
 
 
 
-function SubmitEvent({ handleAddNewEvent }){
+function SubmitEvent({ handleAddNewEvent, setAddEventIsOpen }){
 
     // t.string :title
     // t.datetime :starts
@@ -59,7 +59,9 @@ function SubmitEvent({ handleAddNewEvent }){
         })        
         .then((response) => { 
             if (response.ok) {
-                response.json().then((newEvent) => handleAddNewEvent(newEvent));
+                response.json()
+                .then((newEvent) => handleAddNewEvent(newEvent))
+                .then(() => {setAddEventIsOpen(false)});
               } else {
                     response.json().then((response) => setErrors(response.errors))                  ;
               }

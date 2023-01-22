@@ -165,11 +165,6 @@ h3.navbar-banner {
 /* Would like to set up parallax for the backgrounds */
 
 
-.password-recovery-overlay {
-  background-color: white;
-  height: 900px;
-}
-
 .subscriptions-page-overlay {
   background-color: white;
   height: 2800px;

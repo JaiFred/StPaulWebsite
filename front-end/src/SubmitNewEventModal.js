@@ -15,10 +15,10 @@ function SubmitNewEventModal({ events, setEvents, addEventIsOpen, setAddEventIsO
                     </ModalTitle>
                 </ModalHeader>
                 <ModalFooter>
-                    <SubmitEvent events={events} setEvents={setEvents} handleAddNewEvent={handleAddNewEvent}/>
+                    <SubmitEvent events={events} setEvents={setEvents} handleAddNewEvent={handleAddNewEvent} setAddEventIsOpen={setAddEventIsOpen}/>
                     <button type="button" onClick={() => {setAddEventIsOpen(false)}}>Cancel</button>
                 </ModalFooter>
-
+                
             </Modal>
         </div>
     )
