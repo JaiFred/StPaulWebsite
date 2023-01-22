@@ -9,6 +9,8 @@ import { BackHomeButtonBordered } from "./BackHomeButton/BackHomeButtonBordered"
 //CSS
 import SignUpPage from "./images/Sign-up-page.mp4"
 import "./SignUp.scss"
+import "./Forms/ErrorMessage"
+import { ErrorMessage } from "./Forms/ErrorMessage";
 
 function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
 
@@ -98,53 +100,86 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
             <div className="form-container">
             <form className="register-form form-default" onSubmit={handleSubmit}>
               <h3>Sign Up</h3>
-              <input
-                className="first-name-input"
-                type="text"
-                placeholder="first name..."
-                onChange={(event) => setFirstName(event.target.value)}
-              />
-              <input
-                className="last-name-input"
-                type="text"
-                placeholder="last name..."
-                onChange={(event) => setLastName(event.target.value)}
-              />
-              <input
-                className="email-input"
-                type="text"
-                placeholder="E-mail..."
-                onChange={(event) => setEmail(event.target.value)}
-              />
+              <div className="row">
+                <div className="col-6">
+                  <label>
+                    First name
+                    <input
+                      required
+                      className="first-name-input"
+                      type="text"
+                      placeholder="first name..."
+                      onChange={(event) => setFirstName(event.target.value)}
+                      />
+                  </label>
+                </div>
+                <div className="col-6">
+                  <label>
+                    Last name
+                    <input
+                      required
+                      className="last-name-input"
+                      type="text"
+                      placeholder="last name..."
+                      onChange={(event) => setLastName(event.target.value)}
+                      />
+                  </label>
+                </div>
+              </div>
+              <label>
+                Email
+                <input
+                  required
+                  className="email-input"
+                  type="text"
+                  placeholder="E-mail..."
+                  onChange={(event) => setEmail(event.target.value)}
+                />
+              </label>
               {/* <input
                 className="username-input"
                 type="text"
                 placeholder="username..."
                 onChange={(event) => setUsername(event.target.value)}
               /> */}
-              <input
-                className="password-input"
-                type="password"
-                placeholder="password..."
-                onChange={(event) => setPassword(event.target.value)}
-                // data-toggle="popover" 
-                // data-trigger="hover" 
-                // data-content="My popover content.My popover content.My popover content.My popover content."
-              />
-              <input
-                className="password-confirmation-input"
-                type="password-confirmation"
-                placeholder="password confirmation..."
-                onChange={(event) => setPasswordConfirmation(event.target.value)}
-              />
-              <div className="signup-button-container">
-                <button className="signup-btn" type="submit">SignUp</button>
-              </div>
-              <div className="back-to-home-from-signup">
-              <Link to='/login'>Back to Login</Link>
+              <label>
+                Password
+                <input
+                  required
+                  className="password-input"
+                  type="password"
+                  placeholder="password..."
+                  onChange={(event) => setPassword(event.target.value)}
+                  // data-toggle="popover" 
+                  // data-trigger="hover" 
+                  // data-content="My popover content.My popover content.My popover content.My popover content."
+                />
+              </label>
+              <label>
+                Repeat password
+                <input
+                  required
+                  className="password-confirmation-input"
+                  type="password"
+                  placeholder="password confirmation..."
+                  onChange={(event) => setPasswordConfirmation(event.target.value)}
+                  />
+              </label>
+
+              {/* Errors */}
+              {!!errors.length && (
+                <div className="mt-4">
+                  {errors.map((error) => <ErrorMessage message={error} />)}
+                </div>
+              )}
+
+              {/* Buttons */}
+              <div className="sign-up-buttons d-flex justify-content-between mt-5">
+                <button className="signup-btn button-custom" type="submit">SignUp</button>
+                <Link to='/login' className="button-custom">Back to Login</Link>
               </div>
           </form>
-          {errors.map((error) => <p>{error}</p>)}
+          
           <BackHomeButtonBordered/>
         </div>
       
