@@ -108,7 +108,7 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
                       required
                       className="first-name-input"
                       type="text"
-                      placeholder="first name..."
+                      placeholder="First Name"
                       onChange={(event) => setFirstName(event.target.value)}
                       />
                   </label>
@@ -120,7 +120,7 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
                       required
                       className="last-name-input"
                       type="text"
-                      placeholder="last name..."
+                      placeholder="Last Name"
                       onChange={(event) => setLastName(event.target.value)}
                       />
                   </label>
@@ -132,7 +132,7 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
                   required
                   className="email-input"
                   type="text"
-                  placeholder="E-mail..."
+                  placeholder="Email"
                   onChange={(event) => setEmail(event.target.value)}
                 />
               </label>
@@ -148,7 +148,7 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
                   required
                   className="password-input"
                   type="password"
-                  placeholder="password..."
+                  placeholder="Password"
                   onChange={(event) => setPassword(event.target.value)}
                   // data-toggle="popover" 
                   // data-trigger="hover" 
@@ -161,7 +161,7 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
                   required
                   className="password-confirmation-input"
                   type="password"
-                  placeholder="password confirmation..."
+                  placeholder="Password Confirmation"
                   onChange={(event) => setPasswordConfirmation(event.target.value)}
                   />
               </label>

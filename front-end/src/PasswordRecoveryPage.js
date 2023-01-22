@@ -39,7 +39,7 @@ function PasswordRecoveryPage(){
                 <input
                   className="email-input"
                   type="email"
-                  placeholder="email..."
+                  placeholder="Email"
                   onChange={(event) => setEmail(event.target.value)}
                   />
 
@@ -50,7 +50,7 @@ function PasswordRecoveryPage(){
             </form>
 
             <div className='d-flex justify-content-center gap-2'>
-              <Link to='/login' className="main button-custom d-flex align-items-center">Back to login</Link>
+              <Link to='/login' className="back-from-password-recovery button-custom d-flex align-items-center">Back to login</Link>
               <BackHomeButtonBordered noContainer />        
             </div>
         </div>
