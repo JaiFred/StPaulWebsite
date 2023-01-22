@@ -1,5 +1,7 @@
 //Hooks
 import { Modal, ModalHeader, ModalTitle, Button } from 'react-bootstrap'
+
+//Components
 import ModalFooter from './Modal/Footer';
 
 function DeleteHonorsItemModal({ selectedDocument, doc, documents, setDocuments, deleteHonorIsOpen, setDeleteHonorIsOpen}){
@@ -31,10 +33,8 @@ function DeleteHonorsItemModal({ selectedDocument, doc, documents, setDocuments,
             show={deleteHonorIsOpen && selectedDocument === doc}
         >
             <ModalHeader className="justify-content-center">
-                <ModalTitle>
-                    <h2 className='bold'>
+                <ModalTitle className='bold'>
                         Are you sure you want<br /> to delete Document #{doc.id}?
-                    </h2>
                 </ModalTitle>
             </ModalHeader>
             <ModalFooter 

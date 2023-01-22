@@ -1,6 +1,13 @@
+//Hooks
 import { Link } from 'react-router-dom'
-import { Modal, ModalHeader, ModalFooter, ModalTitle, Button } from 'react-bootstrap'
+import { Modal, ModalHeader, ModalTitle, Button } from 'react-bootstrap'
 import { useNavigate } from "react-router-dom";
+
+//Components
+import ModalFooter from './Modal/Footer';
+
+//CSS
+
 
 function LogoutProcedureModal({ logoutIsOpen, setLogoutIsOpen, currentUser, setCurrentUser }){
 
@@ -25,20 +32,27 @@ function LogoutProcedureModal({ logoutIsOpen, setLogoutIsOpen, currentUser, setC
 
     return(
         <div>
-            <Modal className='modal'
+            <Modal className='modal modal-delete text-center'
                 show={ logoutIsOpen }
                 // hide={() => {setLogoutIsOpen(false)}}
             >
-                <ModalHeader >
-                    <ModalTitle>Are you Sure You want to Logout</ModalTitle>
+                <ModalHeader className="justify-content-center">
+                    <ModalTitle className='bold'>Are you Sure You want to Logout</ModalTitle>
                 </ModalHeader>
-                    <ModalFooter> 
+                <ModalFooter 
+                onSubmit={handleLogout}
+                onCancel={() => {setLogoutIsOpen(false)}}
+                submitLabel='Logout'
+                cancelLabel='No'
+                className="mb-4 mt-2"
+                theme='dark' />
+                    {/* <ModalFooter> 
                         <Link to='/logout'>
                         <button type="button" onClick={handleLogout}>Logout</button>
                         </Link>
                         
                         <button type="button" onClick={() => {setLogoutIsOpen(false)}}>No</button> 
-                    </ModalFooter> 
+                    </ModalFooter>  */}
             </Modal>
             <h1></h1>
         </div>
