@@ -1,7 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Editor as TinyMCE } from "@tinymce/tinymce-react";
 import "./Editor.scss";
-// import '@tinymce/tinymce-react/plugins/link';
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
