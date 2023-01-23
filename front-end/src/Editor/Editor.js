@@ -68,7 +68,7 @@ const Editor = ({ id, value, onChange, placeholder = "", heading }) => {
       [{ 'header': [1, 2, false] }],
       ['bold', 'italic', 'underline','strike', 'blockquote'],
       [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
-      ['link', 'image'],
+      ['link', 'image', 'video'],
       ['clean']
     ],
   }
@@ -77,7 +77,7 @@ const Editor = ({ id, value, onChange, placeholder = "", heading }) => {
     'header',
     'bold', 'italic', 'underline', 'strike', 'blockquote',
     'list', 'bullet', 'indent',
-    'link', 'image'
+    'link', 'image', 'video'
   ]
 
   return (
