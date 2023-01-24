@@ -80,3 +80,12 @@
     }
     
 }
+
+.react-player-container {
+    background: black;
+    border-radius: 10px;
+
+    > div {
+        margin: 0 auto;
+    }
+}
