@@ -145,23 +145,6 @@ h3.navbar-banner {
 }
 
 
-
-
-/* Profile Page background */
-.profile-page-background {
-  background-image: url(images/tree-background-red.jpeg);
-  background-position: center center;
-  height: 800px;
-
-}
-
-.profile-info-square {
-  background-color: white;
-  width: 20%;
-  padding-bottom: 20%;
-  border-radius: 20px;
-}
-
 /* Would like to set up parallax for the backgrounds */
 
 
