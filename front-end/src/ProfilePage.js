@@ -8,6 +8,7 @@ import { useNavigate } from "react-router-dom";
 import SubscriptionCard from "./SubscriptionCard";
 import EditProfileModal from "./EditProfileModal";
 import AccountDeleteConfirmationModal from "./AccountDeleteConfirmationModal";
+import { BackHomeButton } from "./BackHomeButton/BackHomeButton";
 
 import './ProfilePage.scss'
 
@@ -110,51 +111,43 @@ function ProfilePage({
       <div className="profile-info-square">
         <h3 className="profile-info-name">{profileFirstName} {profileLastName}</h3>
         
+        {/* Heading */}
         <h1 className="profile-page-title">Your Profile</h1>
         
         {/* Buttons */}
-        <button
-            className="account-delete-modal-btn"
+        <div className="profile-info-action-buttons mb-5">
+          <button
+            className="profile-info-edit"
             type="button"
-            onClick={() => setAccountDeleteIsOpen(true)}
+            onClick={() => setEditProfileIsOpen(true)}
           >
-            Delete account
-        </button>
-        <button
-          className="change-account-info-modal-btn"
-          type="button"
-          onClick={() => setEditProfileIsOpen(true)}
-        >
-          Edit account info
-        </button>
+            Edit account info
+          </button>
+          <button
+              className="profile-info-delete"
+              type="button"
+              onClick={() => setAccountDeleteIsOpen(true)}
+            >
+              Delete account
+          </button>
+        </div>
 
-      {/* Email */}
-        <div>
+        {/* Email */}
+        <div className="mt-3 mb-5">
           <strong>Your email:</strong><br />
           {profileEmail}
         </div>
 
-        <EditProfileModal
-          currentUser={currentUser}
-          editProfileIsOpen={editProfileIsOpen}
-          setEditProfileIsOpen={setEditProfileIsOpen}
-          handleUserEdit={handleUserEdit}
-          firstName={firstName}
-          setFirstName={setFirstName}
-          lastName={lastName}
-          setLastName={setLastName}
-          email={email}
-          setEmail={setEmail}
-          errors={errors}
-        />
+        {/* Subscription */}
+        <div className="pb-5">
+          <h3>Subscriptions</h3>
+          <div className="profile-info-action-buttons mb-5">
+            <Link to="/subscriptions_page">See your offering subscriptions</Link>
+          </div>
+        </div>
 
-        <h3>Subscriptions</h3>
-        <div>
-          <Link to="/subscriptions_page">See your offering subscriptions</Link>
-        </div>
-        <div>
-          <Link to="/">Back Home</Link>
-        </div>
+        {/* Home button */}
+        <BackHomeButton className="mb-0" />
 
         <div>
           <AccountDeleteConfirmationModal
@@ -170,6 +163,20 @@ function ProfilePage({
           />
         </div>
       </div>
+
+      <EditProfileModal
+          currentUser={currentUser}
+          editProfileIsOpen={editProfileIsOpen}
+          setEditProfileIsOpen={setEditProfileIsOpen}
+          handleUserEdit={handleUserEdit}
+          firstName={firstName}
+          setFirstName={setFirstName}
+          lastName={lastName}
+          setLastName={setLastName}
+          email={email}
+          setEmail={setEmail}
+          errors={errors}
+        />
     </div>
   );
 }
