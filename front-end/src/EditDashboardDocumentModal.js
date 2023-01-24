@@ -18,7 +18,7 @@ const EditDashboardDocumentModal = ({
         className="overlay-edit-dashboard-document-modal"
         show={editDashboardDocumentModalIsOpen}
         onCancel={() => setEditDashboardDocumentModalIsOpen(false)}
-        heading="Edit"
+        heading="Update"
     >
         <EditDashboardDocument
             document={document}
