@@ -46,7 +46,7 @@ const EditDashboardDocument = ({ document, fetchDashboardDocuments, editDashboar
     return(
         <form className='dashboard-document-edit-form' onSubmit={handleSubmit}>
             <div  className="text-center">
-                <h6 className="document-content-title-box">Edit Dashboard</h6>
+                <h6 className="document-content-title-box">Update Dashboard</h6>
                 <Editor
                         id="description"
                         value={editedDescription}
@@ -54,7 +54,7 @@ const EditDashboardDocument = ({ document, fetchDashboardDocuments, editDashboar
                         placeholder="description..." 
                 />
             </div>                    
-            <ModalFooter onSubmit={handleSubmit} onCancel={onCancel} submitLabel="Edit" />                
+            <ModalFooter onSubmit={handleSubmit} onCancel={onCancel} submitLabel="Update" />                
         </form>
     )
 }

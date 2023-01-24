@@ -1,7 +1,7 @@
 import React, { useEffect, useRef } from "react";
-import { Editor as TinyMCE } from "@tinymce/tinymce-react";
 import "./Editor.scss";
-// import '@tinymce/tinymce-react/plugins/link';
+import ReactQuill from 'react-quill';
+import 'react-quill/dist/quill.snow.css';
 
 const Editor = ({ id, value, onChange, placeholder = "", heading }) => {
   const editorRef = useRef(null);
@@ -61,11 +61,36 @@ const Editor = ({ id, value, onChange, placeholder = "", heading }) => {
 
   console.log(`process.env.REACT_APP_TINY_KEY: ${process.env.REACT_APP_TINY_KEY}`);
 
+  const modules = {
+    toolbar: [
+      [{ 'header': [1, 2, false] }],
+      ['bold', 'italic', 'underline','strike', 'blockquote'],
+      [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+      ['link', 'image', 'video'],
+      ['clean']
+    ],
+  }
+  
+  const formats = [
+    'header',
+    'bold', 'italic', 'underline', 'strike', 'blockquote',
+    'list', 'bullet', 'indent',
+    'link', 'image', 'video'
+  ]
+
   return (
     <div className="editor-wrapper">
       {heading && <h2>{heading}</h2>}
 
-      <TinyMCE
+      <ReactQuill 
+        theme="snow"
+        modules={modules}
+        formats={formats}
+        value={value} 
+        onChange={onChange}
+      />;
+
+      {/* <TinyMCE
         id={id}
         apiKey={process.env.REACT_APP_TINY_KEY}
         onEditorChange={onChange}
@@ -83,7 +108,7 @@ const Editor = ({ id, value, onChange, placeholder = "", heading }) => {
           toolbar: 'undo redo | bold italic underline strikethrough | fontselect fontsizeselect formatselect | alignleft aligncenter alignright alignjustify | outdent indent |  numlist bullist checklist | forecolor backcolor casechange permanentpen formatpainter removeformat | pagebreak | charmap emoticons | fullscreen  preview save print | insertfile image media pageembed template link anchor codesample | a11ycheck ltr rtl | showcomments addcomment',
           content_style: 'body { font-family:Helvetica,Arial,sans-serif; font-size:14px }'
         }}
-      />
+      {/* /> */}
     </div>
   );
 };
