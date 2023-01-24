@@ -95,59 +95,59 @@ function handleUserDelete (event) {
     });
   };
 
-if (!authChecked){
-    return(
-      <div></div>
-    )
-}
-    return(
-        <div className='profile-page-background'>
-            <div className='profile-info-square'>
-                <h1 className='profile-page-title'>Your Profile</h1>
-                <h3>Name: {profileFirstName} {profileLastName}</h3>
-                
-                <h3>email: {profileEmail}</h3>
-                        
-                <button className='change-account-info-modal-btn' type='button' onClick={() => setEditProfileIsOpen(true)}>Edit account info</button>
-                    <EditProfileModal 
-                      currentUser={currentUser} 
-                      editProfileIsOpen={editProfileIsOpen} 
-                      setEditProfileIsOpen={setEditProfileIsOpen}
-                      handleUserEdit={handleUserEdit}
-                      firstName={firstName}
-                      setFirstName={setFirstName}
-                      lastName={lastName}
-                      setLastName={setLastName}
-                      email={email}
-                      setEmail={setEmail}
-                      errors={errors}
-                    />
+  if (!authChecked){
+      return(
+        <div></div>
+      )
+  }
+    
+  return(
+    <div className='profile-page-background'>
+        <div className='profile-info-square'>
+            <h1 className='profile-page-title'>Your Profile</h1>
+            <h3>Name: {profileFirstName} {profileLastName}</h3>
+            <h3>email: {profileEmail}</h3>
+                    
+            <button className='change-account-info-modal-btn' type='button' onClick={() => setEditProfileIsOpen(true)}>Edit account info</button>
+                <EditProfileModal 
+                  currentUser={currentUser} 
+                  editProfileIsOpen={editProfileIsOpen} 
+                  setEditProfileIsOpen={setEditProfileIsOpen}
+                  handleUserEdit={handleUserEdit}
+                  firstName={firstName}
+                  setFirstName={setFirstName}
+                  lastName={lastName}
+                  setLastName={setLastName}
+                  email={email}
+                  setEmail={setEmail}
+                  errors={errors}
+                />
 
-                <h3>Subscriptions</h3>
-                <div>
-                    <Link to='/subscriptions_page'>See your offering subscriptions</Link>
-                </div>
-                <div>
-                    <Link to='/'>Back Home</Link>
-                </div>
+            <h3>Subscriptions</h3>
+            <div>
+                <Link to='/subscriptions_page'>See your offering subscriptions</Link>
+            </div>
+            <div>
+                <Link to='/'>Back Home</Link>
+            </div>
 
-                <div>
-                <button className='account-delete-modal-btn' type='button' onClick={() => setAccountDeleteIsOpen(true)}>Delete account</button>
-                    <AccountDeleteConfirmationModal 
-                        currentUser={currentUser} 
-                        accountDeleteIsOpen={accountDeleteIsOpen} 
-                        setAccountDeleteIsOpen={setAccountDeleteIsOpen} 
-                        handleUserDelete={handleUserDelete}
-                        email={email}
-                        setEmail={setEmail}
-                        password={password}
-                        setPassword={setPassword}
-                        error={error}
-                    />
-                </div>
+            <div>
+            <button className='account-delete-modal-btn' type='button' onClick={() => setAccountDeleteIsOpen(true)}>Delete account</button>
+                <AccountDeleteConfirmationModal 
+                    currentUser={currentUser} 
+                    accountDeleteIsOpen={accountDeleteIsOpen} 
+                    setAccountDeleteIsOpen={setAccountDeleteIsOpen} 
+                    handleUserDelete={handleUserDelete}
+                    email={email}
+                    setEmail={setEmail}
+                    password={password}
+                    setPassword={setPassword}
+                    error={error}
+                />
             </div>
         </div>
-    )
+    </div>
+  )
 }
 
 export default ProfilePage

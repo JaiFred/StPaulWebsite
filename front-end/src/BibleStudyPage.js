@@ -5,6 +5,7 @@ import ReactPlayer, { controls } from "react-player";
 import EditDashboardDocumentModal from "./EditDashboardDocumentModal";
 import { ReactPlayerWrapper } from "./ReactPlayerWrapper/ReactPlayerWrapper";
 import { Parallax } from 'react-scroll-parallax'; 
+import useWindowSize from "./hooks/useWindowSize";
 
 //Component
 import editIcon from "./images/event-edit-icon.svg";
@@ -15,9 +16,13 @@ import YellowTrees from "./images/honor-page-video.mp4"
 import './BibleStudyPage.scss';
 import placholderImage from './images/Giving.jpeg'
 
-
+const getVideoSize = (isMobile) => ({
+  width: isMobile ? '95%' : '80%',
+  height: isMobile ? '200px' : '70vh'
+})
 
 function BibleStudyPage({ currentUser }) {
+  const { width } = useWindowSize()
   const API = process.env.REACT_APP_MY_GOOGLE_API_KEY;
   const channelID = process.env.REACT_APP_YOUTUBE_CHANNEL_ID;
   const result = 1;
@@ -58,6 +63,10 @@ function BibleStudyPage({ currentUser }) {
       });
   }, []);
 
+  /*useEffect(() => {
+
+  }, [windowSize.width])*/
+
   console.log(`videos: ${JSON.stringify(videos)}`);
   console.log(`document inside BibleStudyPage: ${JSON.stringify(document)}`);
   console.log('currentUser?.admin', currentUser?.admin)
@@ -66,13 +75,14 @@ function BibleStudyPage({ currentUser }) {
     return <div>Loading!</div>;
   }
 
-  // if (!currentUser) return null;
+  const video = getVideoSize(width < 720)
 
   return (
     <div className="bible-study-overlay overflow-hidden position-relative">
         <Parallax className={'bible-study-background'} speed={-50}>
             <video muted loop autoPlay playsInline src={YellowTrees}></video>
         </Parallax>
+
         <div className="bible-study position-relative text-center">
             <h1>Bible Study</h1>
             <div className="Bible-study-info-container text-start">
@@ -111,16 +121,16 @@ function BibleStudyPage({ currentUser }) {
                 />
             )}
         </div>
+
         <div className="bible-study__bottom-image-wrapper">
             {/* <ReactPlayerWrapper url={videos[0]?.url}/> */}
-            {/* {videos.map((url) => (
-                <div>
-                    <ReactPlayer url={url} controls />
-                </div>
-            ))} */}
             <h3>Livestream of the latest service</h3>
             <div className="bible-study__bottom-image">
-                <img src={placholderImage}></img>
+              {videos.map((url) => (
+                  <div className="react-player-container">
+                      <ReactPlayer url={url} controls width={video.width} height={video.height} />
+                  </div>
+              ))}
             </div>
             <BackHomeButton className="py-5 mb-0" />
         </div>
