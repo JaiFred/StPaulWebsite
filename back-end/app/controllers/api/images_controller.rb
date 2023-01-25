@@ -4,23 +4,22 @@ module Api
         # before_action :set_document
 
         def create
-            if image_params[:file].present?
+            if image_params[:image].present?
                 image = Image.create!
-                image.file.attach(image_params[:file])
+                image.file.attach(image_params[:image])
 
                 render json: { 
-                    location: Rails.application.routes.default_url_options[:host] + rails_blob_path(image.file) 
+                    image_url: Rails.application.routes.default_url_options[:host] + rails_blob_path(image.file)
                 }, status: :ok
             else
                 render json: { message: 'No image uploaded!' }, status: :ok
             end
         end
 
-
         private
 
         def image_params
-            params.permit(:file)
+            params.permit(:image)
         end
 
     end
