@@ -68,7 +68,7 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
                   <div class="footer-contact-info">
                       <p className='fw-bold'>1995 Globe Road Aylett, VA 23009</p>
                       <p>Sunday School services:<br/>
-                          <strong>9:30 AM.</strong>
+                          <strong>9:45 AM.</strong>
                       </p>
                       <p>Sunday Morning services:<br/>
                       <strong>11:00 AM.</strong></p>
