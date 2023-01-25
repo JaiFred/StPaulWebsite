@@ -8,6 +8,8 @@ module Api
                 image = Image.create!
                 image.file.attach(image_params[:image])
 
+                # TOOD: image processing and resize
+
                 render json: { 
                     image_url: Rails.application.routes.default_url_options[:host] + rails_blob_path(image.file)
                 }, status: :ok
