@@ -38,6 +38,7 @@ function PasswordRecoveryPage(){
               <div className="rounded-input__button">
                 <input
                   className="email-input"
+                  required
                   type="email"
                   placeholder="Email"
                   onChange={(event) => setEmail(event.target.value)}

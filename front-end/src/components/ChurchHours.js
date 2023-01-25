@@ -8,7 +8,7 @@ const ChurchHours = ({ children, className, before, after }) => (
       <p>
         Sunday School services:
         <br />
-        <strong>9:30 AM.</strong>
+        <strong>9:45 AM.</strong>
       </p>
       <p>
         Sunday Morning services:
