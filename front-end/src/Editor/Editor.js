@@ -76,10 +76,26 @@ const Editor = ({ id, value, onChange, placeholder = "", heading }) => {
   // }
 
   const formats = [
+    'background',
+    'bold',
+    'color',
+    'font',
+    'code',
+    'italic',
+    'link',
+    'size',
+    'strike',
+    'script',
+    'underline',
+    'blockquote',
     'header',
-    'bold', 'italic', 'underline', 'strike', 'blockquote',
-    'list', 'bullet', 'indent',
-    'link', 'image', 'video'
+    'indent',
+    'list',
+    'align',
+    'direction',
+    'code-block',
+    'image',
+    'video',
   ]
 
   const quillRef = useRef();
@@ -125,10 +141,14 @@ const Editor = ({ id, value, onChange, placeholder = "", heading }) => {
   const modules = useMemo(() => ({
     toolbar: {
       container: [
-        [{ header: [1, 2, false] }],
-        ['bold', 'italic', 'underline'],
-        [{ list: 'ordered' }, { list: 'bullet' }],
-        ['image', 'code-block', 'video']
+        [{ header: [1, 2, 3, 4, 5, false] }],
+        [{ size: ['small', false, 'large', 'huge'] }],  // custom dropdown
+        ['bold', 'italic', 'underline', 'strike', 'blockquote', 'code-block' ],
+        [{'list': 'ordered'}, {'list': 'bullet'}, {'indent': '-1'}, {'indent': '+1'}],
+
+        [{ color: [] }, { background: [] }],
+        [{ align: [] }],
+        ['link', 'image', 'video']
       ],
       handlers: {
         image: imageHandler
