@@ -12,22 +12,6 @@ function FutureSubscriptionCard({currentUser, cancelFutureSubscriptionIsOpen, se
     const [ subscriptions, setSubscriptions] = useState([]);
     const [ selectedFutureSubscription, setSelectedFutureSubscription ] = useState(null)
 
-    const SubscriptionsList = subscriptions.map((subscription) =>( 
-        <div>                
-            <p>Name: {subscription.title}</p>
-            <p>Payment begins on {subscription.next_payment_date}</p>
-            <button className='Subscription-cancel-modal-btn' type='button' onClick={() => selectCancelFutureSubscriptionModal(subscription)}>Cancel Future Subscription</button>
-            <FutureSubscriptionCancelModal 
-                subscription={subscription} 
-                selectedFutureSubscription={selectedFutureSubscription} 
-                setSubscriptions={setSubscriptions} 
-                cancelSubscription={cancelSubscription} 
-                cancelFutureSubscriptionIsOpen={cancelFutureSubscriptionIsOpen} 
-                setCancelFutureSubscriptionIsOpen={setCancelFutureSubscriptionIsOpen}
-            />
-        </div>    
-    ))
-
     useEffect(() => {
         if (userId) {
             fetch(`/api/future_subscriptions?user_id=${userId}`)
@@ -53,7 +37,6 @@ function FutureSubscriptionCard({currentUser, cancelFutureSubscriptionIsOpen, se
         });
     }
 
-
     function selectCancelFutureSubscriptionModal(subscription) {
         console.log('inside selectCancelFutureSubscriptionModal')
         console.log(`selected future subscription: ${subscription.id}`)
@@ -64,9 +47,23 @@ function FutureSubscriptionCard({currentUser, cancelFutureSubscriptionIsOpen, se
     console.log(`subscriptions: ${JSON.stringify(subscriptions)}`);
 
     return (
-        <div>
-            { SubscriptionsList }
-        </div>            
+        <>
+            {subscriptions.map((subscription) =>( 
+                <div className="subscription-card future-subscription">                
+                    <p>Name: {subscription.title}</p>
+                    <p>Payment begins on {subscription.next_payment_date}</p>
+                    <button className='Subscription-cancel-modal-btn' type='button' onClick={() => selectCancelFutureSubscriptionModal(subscription)}>Cancel Future Subscription</button>
+                    <FutureSubscriptionCancelModal 
+                        subscription={subscription} 
+                        selectedFutureSubscription={selectedFutureSubscription} 
+                        setSubscriptions={setSubscriptions} 
+                        cancelSubscription={cancelSubscription} 
+                        cancelFutureSubscriptionIsOpen={cancelFutureSubscriptionIsOpen} 
+                        setCancelFutureSubscriptionIsOpen={setCancelFutureSubscriptionIsOpen}
+                    />
+                </div>    
+            ))}
+        </>
     )
 }
 
