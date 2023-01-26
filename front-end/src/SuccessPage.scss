@@ -1,0 +1,26 @@
+.success-page-wrapper {
+    padding: 100px 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.success-page-message {
+    padding: 60px;
+    background: #7DB9FF;
+    color: white;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 800px;
+    width: 90%;
+    border-radius: 20px;
+    
+    h1 {
+        font-weight: 800;
+    }
+    
+    p {
+        font-weight: 700;
+        font-size: 1.33em;
+        margin-bottom: 0;
+    }
+}
