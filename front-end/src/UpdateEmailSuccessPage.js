@@ -1,13 +1,18 @@
 //Hooks
 import { Link } from 'react-router-dom';
 
+//Components
+
+//CSS
+import Church from './images/StPaulBaptistChurch.JPG'
+
 function UpdateEmailSuccessPage(){
 
     return(
         <div>
             <h1>You have successfully changed your email address</h1>
-            <h2>Please check your email to confirm this change. Your password is the same.</h2>
-            <h2>You have been automatically logged out to complete this change</h2>
+            <p>Please check your email to confirm this change. Your password is the same.</p>
+            <p>You have been automatically logged out to complete this change</p>
         </div>
     )
 }

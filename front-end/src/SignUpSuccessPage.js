@@ -1,4 +1,9 @@
+//Hooks
 
+//Components
+
+
+//CSS
 import Church from './images/StPaulBaptistChurch.JPG'
 
 import { BackHomeButton } from "./BackHomeButton/BackHomeButton";
