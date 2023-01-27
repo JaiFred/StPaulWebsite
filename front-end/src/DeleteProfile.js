@@ -5,26 +5,34 @@ import { navigate} from 'react-router-dom'
 function DeleteProfile({handleUserDelete, email, setEmail, password, setPassword, error, setAccountDeleteIsOpen }){
 // onSubmit={handleUserDelete} ------- this was in the first <div> 
     return(
-        <div className="form-container" onSubmit={handleUserDelete}>
-          <h3>Delete User Form</h3>
-          { error }
-          <form className="register-form" >
-            <input
-              className="email-input"
-              type="text"
-              placeholder="E-mail..."
-              onChange={(event) => setEmail(event.target.value)}
-            />
-            <input
-              className="password-input"
-              type="password"
-              placeholder="password..."
-              onChange={(event) => setPassword(event.target.value)}
-            />
-          <Button variant="primary" type="submit" onClick={() => {handleUserDelete()}}>Delete My Profile</Button>
-        </form>
-        </div>
+      <form className="register-form form-default form-simple" onSubmit={handleUserDelete}>
+        <h3 className="text-white text-center font-weight-bold">Delete your account</h3>
+        <label>
+          Email
+          <input
+            className="email-input mb-2"
+            type="text"
+            placeholder="E-mail..."
+            onChange={(event) => setEmail(event.target.value)}
+          />
+        </label>
+        <label>
+          Password
+          <input
+            className="password-input"
+            type="password"
+            placeholder="Password..."
+            onChange={(event) => setPassword(event.target.value)}
+          />
+        </label>
 
+        <span className="error">{error}</span>
+        
+        <div className="modal-footer-buttons">
+          <Button variant="primary" className="submit" type="submit" onClick={handleUserDelete}>Delete My Profile</Button>
+          <button type="button" className="cancel" onClick={() => setAccountDeleteIsOpen(false)}>Cancel</button> 
+        </div>
+      </form>
     )
 }
 

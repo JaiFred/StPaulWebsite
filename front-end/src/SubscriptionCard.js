@@ -18,7 +18,10 @@ function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubsc
         <div className="subscription-card">
             <p>Name: {subscription.title}</p>
             <p>Payment on {subscription.next_payment_date}</p>
-            <button className='Subscription-cancel-modal-btn' type='button' onClick={() => selectCancelSubscriptionModal(subscription)}>Cancel Subscription</button>
+            <button
+                className='Subscription-cancel-modal-btn'
+                type='button'
+                onClick={() => selectCancelSubscriptionModal(subscription)}>Cancel Subscription</button>
             <SubscriptionCancelModal
                 subscription={subscription}
                 selectedSubscription={selectedSubscription}

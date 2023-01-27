@@ -20,10 +20,8 @@ export const Modals = ({
    setCancelSubscriptionIsOpen,
    editProfileIsOpen,
    setEditProfileIsOpen}) => 
-   <>
       <GivingModal 
          currentUser={currentUser} 
          givingIsOpen={givingIsOpen} 
          setGivingIsOpen={setGivingIsOpen}
       />
-   </>

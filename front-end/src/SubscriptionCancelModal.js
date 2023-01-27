@@ -9,7 +9,7 @@ import ModalFooter from './Modal/Footer';
 function SubscriptionCancelModal({ subscription, selectedSubscription, setSubscription, cancelSubscription, cancelSubscriptionIsOpen, setCancelSubscriptionIsOpen }){
 
     return(
-            <Modal className='modal modal-delete text-center d-none'              
+        <Modal className='modal modal-delete text-center'              
                 show={ cancelSubscriptionIsOpen && selectedSubscription === subscription }
                 // hide={() => {setIsOpen(false)}}
             >
@@ -29,7 +29,7 @@ function SubscriptionCancelModal({ subscription, selectedSubscription, setSubscr
                     
                     <button type="button" onClick={() => {setCancelSubscriptionIsOpen(false)}}>No</button> 
                 </ModalFooter>  */}
-            </Modal>
+        </Modal>
     )
 
 }
