@@ -91,7 +91,9 @@ function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubsc
                 currentUser={currentUser}
                 cancelFutureSubscriptionIsOpen={cancelFutureSubscriptionIsOpen}
                 setCancelFutureSubscriptionIsOpen={setCancelFutureSubscriptionIsOpen} />
-            
+
+
+             <Link to='/profile' className="back-home-button">Back</Link>
             <BackHomeButton/>
         </div>
     )
