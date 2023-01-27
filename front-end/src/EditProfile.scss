@@ -24,25 +24,3 @@ form.modal-form {
         margin-bottom: 20px;
     }
 }
-
-.modal-footer-buttons {
-
-    button {
-        border-radius: 30px;
-        padding: 10px;
-        border: none;
-        font-weight: bold;
-        font-size: 22px;
-        box-shadow: 0 5px 5px #999;
-    }
-
-    button.cancel {
-        background: #BBB;
-        color: white;
-    }
-
-    button.submit {
-        background: white;
-        color: #48E;
-    }
-}

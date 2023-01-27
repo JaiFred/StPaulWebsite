@@ -84,3 +84,36 @@ form.form-default {
   }
     
 }
+
+.modal-footer-buttons {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
+
+  button {
+    border-radius: 30px;
+    padding: 10px;
+    border: none;
+    font-weight: bold;
+    font-size: 22px;
+    box-shadow: 0 5px 5px #999;
+    flex-grow: 1;
+  }
+
+  button.cancel {
+    background: #BBB;
+    color: white;
+  }
+
+  button.submit {
+    background: white;
+    color: #48E;
+  }
+}
+
+form.form-simple {
+  box-shadow: none;
+  padding: 0;
+  background: none;
+  margin: 0;
+}

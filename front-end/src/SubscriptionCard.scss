@@ -1,3 +1,5 @@
+@import './bootstrap-utils';
+
 .subscriptions-page-overlay {
     padding: 50px;
 
@@ -19,6 +21,14 @@
     h2 {
         background: white;
         color: black;
+    }
+    
+    @include media-breakpoint-down(md) {
+        padding: 20px;
+
+        h1, h2 {
+            padding: 10px 20px
+        }
     }
 }
 
@@ -60,6 +70,29 @@
     &.future-subscription {
         :nth-child(1) {
             background: #39E;
+        }
+    }
+
+    @include media-breakpoint-down(md) {
+        grid-template-columns: 1fr;
+        box-shadow: 0 0 10px #CCC;
+        border: 1px solid white;
+
+        > * {
+            margin: 0;
+            box-shadow: none;
+            height: auto;
+            padding: 30px !important;
+        }
+        
+        :nth-child(1) {
+            border-radius: 25px 25px 0 0;
+        }
+        :nth-child(2) {
+            border-radius: 0;
+        }
+        :nth-child(3) {
+            border-radius: 0 0 25px 25px;
         }
     }
 }
