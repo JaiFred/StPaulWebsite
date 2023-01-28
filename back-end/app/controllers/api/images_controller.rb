@@ -1,15 +1,12 @@
 module Api
     class ImagesController < ApplicationController
-        # before_action :authenticate_user!, only: [ :create, :update, :destroy]
-        # before_action :set_document
-
         def create
             if image_params[:image].present?
                 image = Image.create!
-                image.file.attach(image_params[:image])                
+                image.file.attach(image_params[:image])
 
                 render json: {
-                    image_url: Rails.application.routes.default_url_options[:host] + Rails.application.routes.url_helpers.rails_representation_url(image.file.variant(resize: "100x100").processed, only_path: true)
+                    image_url: Rails.application.routes.default_url_options[:host] + Rails.application.routes.url_helpers.rails_representation_url(image.file.variant(resize: "969x969").processed, only_path: true)
                 }, status: :ok
             else
                 render json: { message: 'No image uploaded!' }, status: :ok
