@@ -1,17 +1,14 @@
 //Hooks
-import { Link, useNavigate } from "react-router-dom";
 
 //Components
-import Navbar from "../Navbar";
 import EventCard from './EventCard';
-import SubmitNewEventModal from "../SubmitNewEventModal";
 import { BackHomeButton } from "../BackHomeButton/BackHomeButton";
 import ChurchHours from "../components/ChurchHours";
+import EventAddEditModal from "../EventAddEditModal"
 
 //CSS
 import './EventsContainer.scss'
 import { EventsFilter } from "./EventsFilter";
-
 
 // Goal:
 // Get the Add new event to work properly
@@ -19,14 +16,29 @@ import { EventsFilter } from "./EventsFilter";
 
 // Child Component of App.js
 
-function EventsContainer({ currentUser, events, setEvents, handleAddNewEvent, handleEditEvent, handleDeleteEvent, addEventIsOpen, setAddEventIsOpen }){
+function EventsContainer({
+    currentUser,
+    events,
+    setEvents,
+    
+    handleAddNewEvent,
+    handleEditEvent,
+    handleDeleteEvent,
+    
+    addEventIsOpen,
+    setAddEventIsOpen
+}){
     // debugger;
-    const EventList = events.map((event) => <div class="col-12 col-md-6 col-lg-4 col-xl-3">
-        <EventCard key={event.id} event={event} events={events} setEvents={setEvents} currentUser={currentUser} handleEditEvent={handleEditEvent} handleDeleteEvent={handleDeleteEvent}/>
+    const EventList = events.map((event) => (
+        <div class="col-12 col-md-6 col-lg-4 col-xl-3">
+            <EventCard
+                key={event.id}
+                event={event}
+                currentUser={currentUser}
+                handleEditEvent={handleEditEvent}
+                handleDeleteEvent={handleDeleteEvent}/>
         </div>
-    )
-
-   
+    ))
 
     // const months = {
     //     "January": "01",
@@ -50,6 +62,7 @@ function EventsContainer({ currentUser, events, setEvents, handleAddNewEvent, ha
   
 
     console.log(`In EventsContainer: currentUser?.admin: ${currentUser?.admin} | currentUser?.user?.admin: ${currentUser?.user?.admin}`)
+    console.log({addEventIsOpen})
 
     return(
         <div className="events-container">
@@ -71,10 +84,28 @@ function EventsContainer({ currentUser, events, setEvents, handleAddNewEvent, ha
                         </div>
                     </div>
 
-                    {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (<div className="events-actions">
-                        <button className='events-actions-button' type='button' onClick={() => setAddEventIsOpen(true)}>Add New Event</button>
-                        <SubmitNewEventModal events={events} setEvents={setEvents} addEventIsOpen={addEventIsOpen} setAddEventIsOpen={setAddEventIsOpen} handleAddNewEvent={handleAddNewEvent}/>
-                    </div>
+                    {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (
+                        <div className="events-actions">
+                            <button
+                                className='events-actions-button'
+                                type='button'
+                                onClick={() => setAddEventIsOpen(true)}>
+                                Add New Event
+                            </button>
+                            {addEventIsOpen && (
+                                <EventAddEditModal 
+                                    addEditEventIsOpen={true}
+                                    setAddEditEventIsOpen={setAddEventIsOpen}
+                                    handleAddEditEvent={handleAddNewEvent}
+                                />
+                            )}
+                            {/*<SubmitNewEventModal
+                                events={events}
+                                setEvents={setEvents}
+                                addEventIsOpen={addEventIsOpen}
+                                setAddEventIsOpen={setAddEventIsOpen}
+                                handleAddNewEvent={handleAddNewEvent} />*/}
+                        </div>
                     ) : ''}
                 </div>
                 <BackHomeButton/>
