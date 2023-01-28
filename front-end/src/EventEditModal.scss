@@ -1,0 +1,18 @@
+.edit_modal {
+    .modal-dialog {
+        max-width: 700px;
+    }
+}
+
+.event-edit-modal-body {
+    padding: 50px;
+
+    form {
+        h3 {
+            text-transform: capitalize;
+        }
+        textarea {
+            text-indent: 0;
+        }
+    }
+}
