@@ -19,6 +19,8 @@ module BackEnd
 
     config.api_only = true
 
+    config.active_storage.variant_processor = :mini_magick
+
     # Configuration for the application, engines, and railties goes here.
     #
     # These settings can be overridden in specific environments using the files

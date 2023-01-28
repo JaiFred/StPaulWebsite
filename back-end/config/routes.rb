@@ -22,7 +22,7 @@ Rails.application.routes.draw do
       resources :future_subscriptions
       resources :users
       resources :dashboard_documents
-      resources :images, only: %i[create]
+      resources :images, only: %i[create index]
       
       post '/client_secret', to: "payments#client_secret"
       get '/client_secret_recurring', to: "payments#client_secret_recurring"
