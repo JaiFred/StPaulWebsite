@@ -1,7 +1,7 @@
 
 //Components
 import EventDeleteConfirmationModal from "./EventDeleteConfirmationModal"
-import EventEditModal from "./EventEditModal"
+import EventAddEditModal from "./EventAddEditModal"
 import deleteIcon from './images/event-delete-icon.svg';
 import editIcon from './images/event-edit-icon.svg';
 
@@ -37,11 +37,11 @@ export const EventCardControls = ({
                 setDeleteIsOpen={setDeleteIsOpen} 
                 handleDeleteClick={handleDeleteClick}
             />
-            <EventEditModal 
-                event={event} 
-                editEventIsOpen={editEventIsOpen} 
-                setEditEventIsOpen={setEditEventIsOpen} 
-                handleEditEvent={handleEditEvent}
+            <EventAddEditModal 
+                id={event.id} 
+                addEditEventIsOpen={editEventIsOpen} 
+                setAddEditEventIsOpen={setEditEventIsOpen} 
+                handleAddEditEvent={handleEditEvent}
             />
         </div>
 

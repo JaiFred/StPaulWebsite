@@ -3,13 +3,17 @@ import react, { useEffect, useState } from 'react';
 import { Modal, ModalFooter, ModalTitle, ModalBody } from 'react-bootstrap'
 
 //Components
-import EditEvent from './EditEvent';
+import AddEditEvent from './AddEditEvent';
 import { DarkHeader } from './Modal/Header';
 
-import './EventEditModal.scss';
+import './EventAddEditModal.scss';
 
-function EventEditModal({ event, editEventIsOpen, setEditEventIsOpen, handleEditEvent }){
-
+function EventAddEditModal({
+    id,
+    addEditEventIsOpen,
+    setAddEditEventIsOpen,
+    handleAddEditEvent
+}){
     // t.string :title
     // t.datetime :starts
     // t.datetime :ends
@@ -64,34 +68,32 @@ function EventEditModal({ event, editEventIsOpen, setEditEventIsOpen, handleEdit
     });
 
     console.log(`formData in EventEditModal: ${JSON.stringify(formData)}`);
-    console.log(`Date.parse(event.starts_raw): ${new Date(event.starts_raw)}`)
 
     useEffect(() => {
+        if (!id) return;
+
         fetch(`/api/events/${id}`)
-        .then((res) => res.json())
-        .then((event) => {            
-            const updatedEvent = { ...event, starts: event.starts_raw, ends: event.ends_raw }
-            console.log('backend data', updatedEvent)
-            setFormData(updatedEvent);
-        });
+            .then((res) => res.json())
+            .then((event) => {            
+                const updatedEvent = { ...event, starts: event.starts_raw, ends: event.ends_raw }
+                console.log('backend data', updatedEvent)
+                setFormData(updatedEvent);
+            });
     }, []);
-
-    const { id, title, starts_raw, starts_short, ends_short, details, address_line_1, address_line_2, city, state_province_region, zip_postalcode, country, image = "" } = event;
-
 
     return(
         <div className='overlay_edit_modal'>
             <Modal
                 className='edit_modal'
-                show={ editEventIsOpen }
+                show={addEditEventIsOpen}
             >
-                <DarkHeader onCancel={() => setEditEventIsOpen(false)} />   
+                <DarkHeader onCancel={() => setAddEditEventIsOpen(false)} />   
                 <ModalBody className="event-edit-modal-body">
-                    <EditEvent 
+                    <AddEditEvent 
                         formData={formData}
                         setFormData={setFormData} 
-                        handleEditEvent={handleEditEvent} 
-                        setEditEventIsOpen={setEditEventIsOpen}
+                        handleAddEditEvent={handleAddEditEvent} 
+                        setAddEditEventIsOpen={setAddEditEventIsOpen}
                     />
                 </ModalBody>
             </Modal>
@@ -99,7 +101,7 @@ function EventEditModal({ event, editEventIsOpen, setEditEventIsOpen, handleEdit
     )
 }
 
-export default EventEditModal
+export default EventAddEditModal
 
 {/* <ModalHeader>
     <ModalTitle>

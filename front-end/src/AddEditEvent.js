@@ -1,11 +1,20 @@
 // Hooks
 import react, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from "react-router-dom";
+
+//Components 
 import InputFile from './Inputs/File';
 import { OpaqueErrorMessage } from './Forms/OpaqueErrorMessage';
 
-function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpen, setEditEventIsOpen }){
+//CSS
+import './AddEditEvent.scss'
 
+function AddEditEvent({
+    formData,
+    setFormData,
+    handleAddEditEvent,
+    setAddEditEventIsOpen
+}){
     const { 
         id,
         title, 
@@ -19,6 +28,10 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
         zip_postalcode, 
         country 
     } = formData;
+
+    const isEdit = Boolean(id);
+
+    console.log({formData})
 
     console.log(`formData in EditEvent: ${JSON.stringify(formData)}`);
     console.log(`starts: ${starts}`);
@@ -47,23 +60,23 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
         formData.append("country", country)
 
         const configObj = {
-            method: "PATCH",
+            method: isEdit ? "PATCH" : "POST",
             body: formData
         }
+        const url = isEdit ? `/api/events/${id}` : "api/events"
 
-        fetch(`/api/events/${id}`, configObj)
-        .then((response) => { 
-            if (response.ok) {
-                response.json().then((editedEvent) => {
-                    handleEditEvent(editedEvent);
-                    setEditEventIsOpen(false);
-                    navigate(`/events`)
-                });
-              } else {
+        fetch(url, configObj)
+            .then((response) => { 
+                if (response.ok) {
+                    response.json().then((editedEvent) => {
+                        handleAddEditEvent(editedEvent);
+                        setAddEditEventIsOpen(false);
+                        navigate(`/events`)
+                    });
+                } else {
                     response.json().then((response) => setErrors(response.errors));
-              }
-        })         
-        
+                }
+            })         
     };
 
     const handleChange = (e) => {
@@ -84,27 +97,32 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
 
     return (
         <form onSubmit={handleSubmit} className="form-default form-simple">
-            <h1 className="text-center">Update event</h1>
-            {errors.map((error) => <OpaqueErrorMessage message={error.message || error} />)}
+            <div className="text-center">
+                <h1 className="text-center">
+                    {isEdit ? 'Update' : 'Create'} event
+                </h1>
+                
 
-            <h3>Title {title}</h3>
-            <InputFile
-               name="image"
-               accept="image/png, image/jpeg"
-               onChange={handleImageChange}
-               className="mb-3"
-           />
+                <h3>Title: {title || 'Choose your title!'}</h3>
+                <InputFile
+                    name="image"
+                    accept="image/png, image/jpeg"
+                    onChange={handleImageChange}
+                    className="mb-3"
+                />
+            </div>
+
            <label>Title</label>
             <input
                 type="text"
                 id="title"
                 name="title"
                 value={title || ''}
-                placeholder="title..."
+                placeholder="Title"
                 onChange={handleChange}
             />
 
-            <div className="two-column-grid">
+            <div className="two-column-grid md-one-column-grid">
                 <label>
                     Starts
                     <input
@@ -125,6 +143,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                         onChange={handleChange} />
                 </label>
             </div>
+
             <label>
                 Details
              <textarea
@@ -132,12 +151,13 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 id="details_input"
                 rows="8"
                 name="details"
+                placeholder="Describe your event"
                 value={details || ''}
                 onChange={handleChange}
             />
             </label>
 
-            <h2 className="font-weight-bold">Where</h2>
+            <h2 className="address-area font-weight-bold">Where</h2>
             <label>
                 Street Address
              <input
@@ -145,6 +165,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 type="text"
                 id="address_line_1_input"
                 name="address_line_1"
+                placeholder='address line 1'
                 value={address_line_1 || ''}
                 onChange={handleChange}
             />
@@ -156,6 +177,7 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 type="text"
                 id="address_line_2_input"
                 name="address_line_2"
+                placeholder="Apt, Suite etc."
                 value={address_line_2 || ''}
                 onChange={handleChange}
             />
@@ -200,12 +222,27 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 onChange={handleChange}
             />
             </label>
+
+            {errors.map((error) => <OpaqueErrorMessage message={error.message || error} />)}
             <div className="two-column-grid">
-                <button id="submitBtn" className="button-custom submit" type="button" onClick={handleSubmit} method="post">Edit</button>
-                <button type="button" className="button-custom cancel" onClick={() => {setEditEventIsOpen(false)}}>Cancel</button>
+                <button
+                    id="submitBtn"
+                    className="button-custom submit"
+                    type="button"
+                    onClick={handleSubmit}
+                    method="post">
+                        {isEdit ? 'Edit' : 'Add'}
+                    </button>
+                <button
+                    id="cancelBtn"
+                    className="button-custom cancel"
+                    type="button"
+                    onClick={() => setAddEditEventIsOpen(false)}>
+                        Cancel
+                    </button>
             </div>
         </form>
     )
 }
 
-export default EditEvent
+export default AddEditEvent

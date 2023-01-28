@@ -158,7 +158,6 @@ function App() {
   const [ authChecked, setAuthChecked ] = useState(false)
   const [ currentUser, setCurrentUser ] = useState(null)
   const [ events, setEvents ] = useState([]);
-  const [ showEvents, setShowEvents ] = useState([]);
   const [ givingIsOpen, setGivingIsOpen ] = useState(false);
   const [ loginIsOpen, setLoginIsOpen ] = useState(false);
   const [ signUpIsOpen, setSignUpIsOpen ] = useState(false);
@@ -196,7 +195,7 @@ function App() {
   }, [])
 
   function handleAddNewEvent(newEvent){
-    const newEvents = [...events, newEvent]
+    const newEvents = [...events, newEvent];
     setEvents(newEvents);
   }
 
@@ -254,13 +253,17 @@ function App() {
           <Route path='/events' element={
             <EventsContainer 
               currentUser={currentUser} 
+              
+              // Events lists and local events state setter
               events={events}
-              setEvents={setEvents} 
-              showEvents={showEvents} 
-              setShowEvents={setShowEvents} 
+              setEvents={setEvents}
+
+              // Handles add, edit and delete events callbacks
               handleAddNewEvent={handleAddNewEvent} 
-              handleDeleteEvent={handleDeleteEvent} 
               handleEditEvent={handleEditEvent} 
+              handleDeleteEvent={handleDeleteEvent} 
+
+              // Handles opening of add and edit modals
               addEventIsOpen={addEventIsOpen} 
               setAddEventIsOpen={setAddEventIsOpen}
             />

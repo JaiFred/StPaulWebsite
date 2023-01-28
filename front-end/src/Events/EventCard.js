@@ -5,9 +5,6 @@ import { Link } from "react-router-dom";
 // import { useParams } from 'react-router-dom';
 
 //Components
-import EventInfoPage from "../EventInfoPage";
-import EventEditModal from "../EventEditModal";
-import EventDeleteConfirmationModal from "../EventDeleteConfirmationModal";
 import { EventCardControls } from "../EventCardControls";
 
 import './EventCard.scss'
@@ -19,7 +16,7 @@ import './EventCard.scss'
 // Have a months filter bar that appears when an event within that month is made - you can click on months to show events that take place during the month 
 
 
-function EventCard({event, events, setEvents, currentUser, handleDeleteEvent, handleEditEvent}){
+function EventCard({event, currentUser, handleDeleteEvent, handleEditEvent}){
     
     const [ deleteIsOpen , setDeleteIsOpen ] = useState(false);
     const [ editEventIsOpen , setEditEventIsOpen ] = useState(false);

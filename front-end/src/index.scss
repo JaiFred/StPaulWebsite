@@ -90,6 +90,12 @@ form.form-default {
   grid-template-columns: 1fr 1fr;
 }
 
+@include media-breakpoint-down(md) {
+  .md-one-column-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 .modal-footer-buttons {
   display: grid;
   gap: 10px;
