@@ -11,6 +11,9 @@
 # It's strongly recommended that you check this file into your version control system.
 
 ActiveRecord::Schema[7.0].define(version: 2023_01_20_020916) do
+  # These are extensions that must be enabled in order to support this database
+  enable_extension "plpgsql"
+
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
     t.string "record_type", null: false
@@ -53,7 +56,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_20_020916) do
 
   create_table "documents", force: :cascade do |t|
     t.text "description"
-    t.integer "honor_page_id", null: false
+    t.bigint "honor_page_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["honor_page_id"], name: "index_documents_on_honor_page_id"
@@ -77,7 +80,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_20_020916) do
   create_table "future_subscriptions", force: :cascade do |t|
     t.bigint "billing_cycle_anchor"
     t.date "payment_start_date"
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "plan"
     t.string "title"
     t.integer "frequency"
@@ -98,7 +101,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_20_020916) do
   end
 
   create_table "subscriptions", force: :cascade do |t|
-    t.integer "user_id", null: false
+    t.bigint "user_id", null: false
     t.string "stripe_subscription_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
