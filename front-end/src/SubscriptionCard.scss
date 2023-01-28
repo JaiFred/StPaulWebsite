@@ -23,7 +23,7 @@
         color: black;
     }
     
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(lg) {
         padding: 20px;
 
         h1, h2 {
@@ -43,12 +43,19 @@
     > * {
         padding: 30px;
         box-sizing: content-box;
-        font-size: 21px;
+        font-size: 15px;
         line-height: 32px;
         height: 32px;
         border-radius: 25px;
         margin-left: -50px;
         margin-bottom: 0;
+
+        @include media-breakpoint-up(xl) {
+            font-size: 19px;
+        }
+        @include media-breakpoint-down(md) {
+            font-size: 21px;
+        }
     }
 
     :nth-child(1) {
@@ -73,7 +80,7 @@
         }
     }
 
-    @include media-breakpoint-down(md) {
+    @include media-breakpoint-down(lg) {
         grid-template-columns: 1fr;
         box-shadow: 0 0 10px #CCC;
         border: 1px solid white;

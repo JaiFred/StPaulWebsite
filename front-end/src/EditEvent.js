@@ -1,6 +1,8 @@
 // Hooks
 import react, { useState, useEffect } from 'react';
 import { Link, useNavigate, useParams } from "react-router-dom";
+import InputFile from './Inputs/File';
+import { OpaqueErrorMessage } from './Forms/OpaqueErrorMessage';
 
 function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpen, setEditEventIsOpen }){
 
@@ -20,7 +22,6 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
 
     console.log(`formData in EditEvent: ${JSON.stringify(formData)}`);
     console.log(`starts: ${starts}`);
-
 
     const [image, setImage] = useState("");
     const [errors, setErrors] = useState([]);
@@ -81,17 +82,19 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
         
     };
 
-    return(
-        <form onSubmit={handleSubmit}>
-            {errors.map((error) => <p>{error}</p>)}
-            <ul>
-            <input 
-                type="file" 
-                name="image"
-                accept="image/png, image/jpeg"
-                onChange={handleImageChange} 
-            />
-            <h3>title</h3>
+    return (
+        <form onSubmit={handleSubmit} className="form-default form-simple">
+            <h1 className="text-center">Update event</h1>
+            {errors.map((error) => <OpaqueErrorMessage message={error.message || error} />)}
+
+            <h3>Title {title}</h3>
+            <InputFile
+               name="image"
+               accept="image/png, image/jpeg"
+               onChange={handleImageChange}
+               className="mb-3"
+           />
+           <label>Title</label>
             <input
                 type="text"
                 id="title"
@@ -101,41 +104,54 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 onChange={handleChange}
             />
 
-            <h3>starts on</h3>
-            <input
-                type="datetime-local"
-                id="starts"
-                name="starts"
-                value={starts || ''}
-                onChange={handleChange}
-            />
+            <div className="two-column-grid">
+                <label>
+                    Starts
+                    <input
+                        type="datetime-local"
+                        id="starts"
+                        name="starts"
+                        value={starts || ''}
+                        onChange={handleChange} />
+                </label>
 
-            <h3>ends on</h3>
-            <input
-                type="datetime-local"
-                id="ends"
-                name="ends"
-                value={ends || ''}
-                onChange={handleChange}
-            />
-
-            <h3>details</h3>
+                <label>
+                    Ends
+                    <input
+                        type="datetime-local"
+                        id="ends"
+                        name="ends"
+                        value={ends || ''}
+                        onChange={handleChange} />
+                </label>
+            </div>
+            <label>
+                Details
              <textarea
                 className="details_input"
                 id="details_input"
+                rows="8"
                 name="details"
                 value={details || ''}
                 onChange={handleChange}
             />
-            <h3>Street address</h3>
+            </label>
+
+            <h2 className="font-weight-bold">Where</h2>
+            <label>
+                Street Address
              <input
                 className="address_line_1_input"
+                type="text"
                 id="address_line_1_input"
                 name="address_line_1"
                 value={address_line_1 || ''}
                 onChange={handleChange}
             />
-            <h3>Apt, Suite etc. (Optional)</h3>
+            </label>
+
+            <label>
+                Apt, Suite etc.
             <input
                 type="text"
                 id="address_line_2_input"
@@ -143,7 +159,9 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 value={address_line_2 || ''}
                 onChange={handleChange}
             />
-            <h3>Country</h3>
+            </label>
+            <label>
+                Country
             <input
                 type="text"
                 id="country_input"
@@ -151,7 +169,9 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 value={country || ''}
                 onChange={handleChange}
             />
-            <h3>city</h3>
+            </label>
+            <label>
+                City
             <input
                 type="text"
                 id="city_input"
@@ -159,7 +179,9 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 value={city || ''}
                 onChange={handleChange}
             />
-            <h3>State/Province/Region</h3>
+            </label>
+            <label>
+                State/Province/Region
             <input
                 type="text"
                 id="state-province-region-input"
@@ -167,7 +189,9 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 value={state_province_region || ''}
                 onChange={handleChange}
             />
-            <h3>ZIP/Postal code</h3>
+            </label>
+            <label>
+                ZIP/Postal code
             <input
                 type="text"
                 id="zip-postalcode-input"
@@ -175,13 +199,13 @@ function EditEvent({ formData, setFormData, event, handleEditEvent, setEditIsOpe
                 value={zip_postalcode || ''}
                 onChange={handleChange}
             />
-
-            </ul>
-            <button id='submitBtn' type="button" onClick={handleSubmit} method="post">Edit</button>
-            <button type="button" onClick={() => {setEditEventIsOpen(false)}}>Cancel</button>
+            </label>
+            <div className="two-column-grid">
+                <button id="submitBtn" className="button-custom submit" type="button" onClick={handleSubmit} method="post">Edit</button>
+                <button type="button" className="button-custom cancel" onClick={() => {setEditEventIsOpen(false)}}>Cancel</button>
+            </div>
         </form>
     )
-
 }
 
 export default EditEvent

@@ -1,8 +1,12 @@
 // Hooks
 import react, { useEffect, useState } from 'react';
-import { Modal, ModalHeader, ModalFooter, ModalTitle, ModalBody } from 'react-bootstrap'
+import { Modal, ModalFooter, ModalTitle, ModalBody } from 'react-bootstrap'
 
+//Components
 import EditEvent from './EditEvent';
+import { DarkHeader } from './Modal/Header';
+
+import './EventEditModal.scss';
 
 function EventEditModal({ event, editEventIsOpen, setEditEventIsOpen, handleEditEvent }){
 
@@ -45,7 +49,7 @@ function EventEditModal({ event, editEventIsOpen, setEditEventIsOpen, handleEdit
         //   });
       }    
 
-    const[formData, setFormData] = useState({
+    const [formData, setFormData] = useState({
         title: "",
         starts: "",
         ends: "",  
@@ -77,29 +81,29 @@ function EventEditModal({ event, editEventIsOpen, setEditEventIsOpen, handleEdit
 
     return(
         <div className='overlay_edit_modal'>
-            <Modal className='edit_modal'
-            show={ editEventIsOpen }
+            <Modal
+                className='edit_modal'
+                show={ editEventIsOpen }
             >
-                <ModalHeader>
-                
-                    <ModalTitle>
-                        Edit: <h1>{title}</h1>
-                        <button type="button" onClick={() => {setEditEventIsOpen(false)}}>X</button>
-                    </ModalTitle>
-                    <ModalBody>
-                    </ModalBody>
-                </ModalHeader>
-                <ModalFooter>
+                <DarkHeader onCancel={() => setEditEventIsOpen(false)} />   
+                <ModalBody className="event-edit-modal-body">
                     <EditEvent 
-                        formData={formData} 
+                        formData={formData}
                         setFormData={setFormData} 
                         handleEditEvent={handleEditEvent} 
                         setEditEventIsOpen={setEditEventIsOpen}
                     />
-                </ModalFooter>
+                </ModalBody>
             </Modal>
         </div>
     )
 }
 
 export default EventEditModal
+
+{/* <ModalHeader>
+    <ModalTitle>
+        Edit: <h1>{title}</h1>
+        <button type="button" onClick={() => {setEditEventIsOpen(false)}}>X</button>
+    </ModalTitle>
+</ModalHeader> */}

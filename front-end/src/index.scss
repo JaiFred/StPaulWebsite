@@ -81,8 +81,13 @@ form.form-default {
     text-indent: 20px;
     padding: 3px 15px;
     border-radius: 20px;
-  }
-    
+  }   
+}
+
+.two-column-grid {
+  display: grid;
+  gap: 10px;
+  grid-template-columns: 1fr 1fr;
 }
 
 .modal-footer-buttons {
@@ -116,4 +121,8 @@ form.form-simple {
   padding: 0;
   background: none;
   margin: 0;
+
+  input {
+    margin-bottom: 15px !important;
+  }
 }
