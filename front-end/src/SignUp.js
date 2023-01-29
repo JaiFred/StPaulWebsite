@@ -97,7 +97,7 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
     }
     return(
         <VideoContainer video={SignUpPage}>
-            <div className="form-container">
+          <div className="form-container">
             <form className="register-form form-default" onSubmit={handleSubmit}>
               <h3>Sign Up</h3>
               <div className="row">

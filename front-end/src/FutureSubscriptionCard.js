@@ -46,6 +46,8 @@ function FutureSubscriptionCard({currentUser, cancelFutureSubscriptionIsOpen, se
 
     console.log(`subscriptions: ${JSON.stringify(subscriptions)}`);
 
+    if (!subscriptions.length) return <div>You have no subscriptions yet! Add one!</div>
+
     return (
         <>
             {subscriptions.map((subscription) =>( 

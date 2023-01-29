@@ -81,3 +81,40 @@
         color: white;
     }
 }
+
+.giving-modal-one-time-pay-page {
+    .StripeElement {
+        margin-bottom: 30px;
+    }
+
+    .checkout-form-buttons button {
+        padding: 10px 20px;
+        border: 0;
+        box-shadow: 0 10px 5px #999;
+        color: white;
+        border-radius: 5px;
+        font-size: 22px;
+        font-weight: bold;
+        
+        &.checkout-confirm {
+            background: #FFC9F6;
+            
+        }
+        &.checkout-cancel {
+            background: #87E0FC;
+            margin-left: 10px;
+        }
+    }
+
+    .billing-details-paying {
+        padding: 10px 20px;
+        box-shadow: 0 10px 5px #999;
+        color: white;
+        border-radius: 5px;
+        font-weight: bold;
+        background: #868686;
+        margin-bottom: 30px;
+        display: inline-block;
+        width: 435px;
+    }
+}

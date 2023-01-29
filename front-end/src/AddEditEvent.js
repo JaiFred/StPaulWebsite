@@ -26,7 +26,7 @@ function AddEditEvent({
         city, 
         state_province_region,
         zip_postalcode, 
-        country 
+        country
     } = formData;
 
     const isEdit = Boolean(id);
@@ -36,7 +36,7 @@ function AddEditEvent({
     console.log(`formData in EditEvent: ${JSON.stringify(formData)}`);
     console.log(`starts: ${starts}`);
 
-    const [image, setImage] = useState("");
+    const [image, setImage] = useState(formData.image);
     const [errors, setErrors] = useState([]);
 
     const navigate = useNavigate()
@@ -92,7 +92,6 @@ function AddEditEvent({
         const { name, value } = e.target;
         // if (e.target.files[0]) setFormData({...formData, [name]: e.target.files[0] });
         if (e.target.files[0]) setImage(e.target.files[0]);
-        
     };
 
     return (
@@ -109,6 +108,7 @@ function AddEditEvent({
                     accept="image/png, image/jpeg"
                     onChange={handleImageChange}
                     className="mb-3"
+                    file={image}
                 />
             </div>
 
