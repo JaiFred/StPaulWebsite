@@ -15,8 +15,6 @@ import LoginBackground from './images/tree-background-red.jpeg'
 
 
 function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
-
-
     // const [username, setUsername] = useState("");
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");

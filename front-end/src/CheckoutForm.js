@@ -2,7 +2,14 @@
 import {CardElement} from '@stripe/react-stripe-js';
 import {useStripe, useElements, PaymentElement} from '@stripe/react-stripe-js';
 
-const CheckoutForm = ({setGivingIsOpen, setAmount, setClientSecret, setShowAmountForm, setShowRecurringForm}) => {
+const CheckoutForm = ({
+  setGivingIsOpen, 
+  setAmount, 
+  setClientSecret, 
+  setShowAmountForm, 
+  setShowRecurringForm, 
+  children
+}) => {
   const stripe = useStripe();
   const elements = useElements();
 
@@ -50,8 +57,11 @@ const CheckoutForm = ({setGivingIsOpen, setAmount, setClientSecret, setShowAmoun
   return (
     <form onSubmit={handleSubmit}>
       <PaymentElement />
-      <button disabled={!stripe}>Confirm Payment</button>      
-      <button type="button" onClick={() => {resetForm()}}>Cancel Payment</button>
+      {children}
+      <div className="checkout-form-buttons">
+        <button disabled={!stripe} className="checkout-confirm">Confirm Payment</button>      
+        <button type="button" onClick={() => resetForm()} className="checkout-cancel">Cancel Payment</button>
+      </div>
     </form>
   )
 };

@@ -8,13 +8,18 @@ import { BackHomeButton } from "./BackHomeButton/BackHomeButton";
 
 import './SubscriptionCard.scss';
 
-function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubscriptionIsOpen, cancelFutureSubscriptionIsOpen, setCancelFutureSubscriptionIsOpen}) {
-    const userId = currentUser?.id || currentUser?.user?.id;
+const SubscriptionsList = ({
+    subscriptions,
+    selectCancelSubscriptionModal,
+    selectedSubscription,
+    setSubscriptions,
+    cancelSubscription,
+    cancelSubscriptionIsOpen,
+    setCancelSubscriptionIsOpen
+}) => {
+    if (!subscriptions.length) return <div>You have no subscriptions yet! Add one!</div>
 
-    const [ subscriptions, setSubscriptions] = useState([]);
-    const [ selectedSubscription, setSelectedSubscription ] = useState(null)
-
-    const SubscriptionsList = () => subscriptions.map((subscription) =>(
+    return subscriptions.map((subscription) => (
         <div className="subscription-card">
             <p>Name: {subscription.title}</p>
             <p>Payment on {subscription.next_payment_date}</p>
@@ -33,6 +38,13 @@ function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubsc
             {/* <button onClick={() => cancelSubscription(subscription.id)}>Cancel Subscription</button> */}
         </div>
     ))
+}
+
+function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubscriptionIsOpen, cancelFutureSubscriptionIsOpen, setCancelFutureSubscriptionIsOpen}) {
+    const userId = currentUser?.id || currentUser?.user?.id;
+
+    const [ subscriptions, setSubscriptions] = useState([]);
+    const [ selectedSubscription, setSelectedSubscription ] = useState(null)
 
 
     useEffect(() => {
@@ -41,7 +53,7 @@ function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubsc
             .then((r) => r.json())
             .then(subscriptions => setSubscriptions(subscriptions))
         }
-    },[])
+    }, [])
 
     function cancelSubscription(subscriptionId) {
         console.log(`cancelling...! ${subscriptionId}`);
@@ -75,7 +87,15 @@ function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubsc
     return (
         <div className="subscriptions-page-overlay text-center">
             <h1>Current Subscriptions</h1>
-            <SubscriptionsList />
+            <SubscriptionsList
+                subscriptions={subscriptions}
+                selectCancelSubscriptionModal={selectCancelSubscriptionModal}
+                selectedSubscription={selectedSubscription}
+                setSubscriptions={setSubscriptions}
+                cancelSubscription={cancelSubscription}
+                cancelSubscriptionIsOpen={cancelSubscriptionIsOpen}
+                setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen}
+            />
             {
                 // subscriptions.map((subscription) =>(
                 //     <div>
@@ -95,9 +115,7 @@ function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubsc
                 cancelFutureSubscriptionIsOpen={cancelFutureSubscriptionIsOpen}
                 setCancelFutureSubscriptionIsOpen={setCancelFutureSubscriptionIsOpen} />
 
-
              <Link to='/profile' className="back-home-button">Back</Link>
-            <BackHomeButton/>
         </div>
     )
 }
