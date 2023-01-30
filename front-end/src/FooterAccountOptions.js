@@ -31,29 +31,31 @@ export const FooterAccountOptions = ({
       console.log(`facebook: ${facebook}`);
 
     return(
-        <div className="footer-account-options-wrapper">
-            
-        {
-        !currentUser &&
-        <>
-            <button className='footer-menu-item' type='button' onClick={() => setLoginIsOpen(true)}>Login</button>
-            <LoginModal loginIsOpen={loginIsOpen} setLoginIsOpen={setLoginIsOpen}/>
-        </>
-        }     
-        { 
+        <div className="footer-account-options-wrapper"> 
+            {
             !currentUser &&
             <>
+                <button className='footer-menu-item' type='button' onClick={() => setLoginIsOpen(true)}>Login</button>
                 <button className='footer-menu-item' type='button' onClick={() => setSignUpIsOpen(true)}>Sign Up</button>
-                <SignUpModal signUpIsOpen={signUpIsOpen} setSignUpIsOpen={setSignUpIsOpen}/>
+                <LoginModal
+                    loginIsOpen={loginIsOpen}
+                    setLoginIsOpen={setLoginIsOpen}/>
+                <SignUpModal
+                    signUpIsOpen={signUpIsOpen}
+                    setSignUpIsOpen={setSignUpIsOpen}/>
             </>
-        }
-        {
-        currentUser && 
-            <>
-                <button className='footer-menu-item' type='button' onClick={() => setLogoutIsOpen(true)}>Logout 1</button>
-                <LogoutProcedureModal logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser}/> 
-            </>
-        }
+            }
+
+            {currentUser && 
+                <>
+                    <button className='footer-menu-item' type='button' onClick={() => setLogoutIsOpen(true)}>Logout 1</button>
+                    <LogoutProcedureModal
+                        logoutIsOpen={logoutIsOpen}
+                        setLogoutIsOpen={setLogoutIsOpen}
+                        currentUser={currentUser}
+                        setCurrentUser={setCurrentUser}/> 
+                </>
+            }
         </div>
     )
 }

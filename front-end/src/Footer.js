@@ -19,28 +19,22 @@ const useFetchConfig = () => {
 }
 
 function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, signUpIsOpen, setSignUpIsOpen, loginIsOpen, setLoginIsOpen, logoutIsOpen, setLogoutIsOpen}){
-
     const [facebook, setFacebook] = useState(null);
+    const [configId, setConfigId] = useState(null);
 
-    function fetchConfig() {
+    function fetchConfig() {  
         fetch(`/api/button_visible_configs`)
           .then((r) => r.json())
           .then(config => {
+            if (!config) return;
+            console.log( {config})
             setFacebook(config.facebook)
             setConfigId(config.id)
           })
     }
-
-    useEffect(() => {
-        fetchConfig();
-    },[])
-
-    const [configId,  setConfigId] = useState(null);
-
-    
-   
-
-    function updateFacebookLink(facebookVal) {        
+  
+    function updateFacebookLink(facebookVal) { 
+      if (!configId) return alert('No config ID for Facebook link')
       fetch(`/api/button_visible_configs/${configId}`, {
         method: "PATCH",
         headers: {
@@ -54,10 +48,10 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
           console.log('config updated successfully!');
           fetchConfig();
         }
-
       });
-
     }
+
+    useEffect(fetchConfig, [])
 
     return(
         <div className="footer">
@@ -86,55 +80,48 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
                   <Link to='/bible_study' className='footer-menu-item'>Bible Study</Link>
                   <Link to='/youth_corner' className='footer-menu-item'>Youth Corner</Link>
                   <Link to='/honors' className='footer-menu-item'>Honors</Link>
-                    <div>
-                      <FooterAccountOptions 
-                          currentUser={currentUser} 
-                          setCurrentUser={setCurrentUser} 
-                          givingIsOpen={givingIsOpen} 
-                          setGivingIsOpen={setGivingIsOpen}
-                          signUpIsOpen={signUpIsOpen}
-                          setSignUpIsOpen={setSignUpIsOpen}
-                          loginIsOpen={loginIsOpen}
-                          setLoginIsOpen={setLoginIsOpen}
-                          logoutIsOpen={logoutIsOpen}
-                          setLogoutIsOpen={setLogoutIsOpen}
-                          updateFacebookLink={updateFacebookLink}
-                          facebook={facebook}
-                          configId={configId}
-                      />
-                    </div>
+                  <FooterAccountOptions 
+                      currentUser={currentUser} 
+                      setCurrentUser={setCurrentUser} 
+                      givingIsOpen={givingIsOpen} 
+                      setGivingIsOpen={setGivingIsOpen}
+                      signUpIsOpen={signUpIsOpen}
+                      setSignUpIsOpen={setSignUpIsOpen}
+                      loginIsOpen={loginIsOpen}
+                      setLoginIsOpen={setLoginIsOpen}
+                      logoutIsOpen={logoutIsOpen}
+                      setLogoutIsOpen={setLogoutIsOpen}
+                      updateFacebookLink={updateFacebookLink}
+                      facebook={facebook}
+                      configId={configId}
+                    />
                     <Link to='/contact_us' className='footer-menu-item' type='button'>Contact Us</Link>
                     <Link to='/profile' className='footer-menu-item'>Profile</Link>
                 </div>
                 
-                {(currentUser?.admin === true || currentUser?.user?.admin === true) ? (
-                  <div classname="admin-facbook-controller">
-
-                  {facebook === true &&
+                {(currentUser?.admin || currentUser?.user?.admin) && (
+                  <div classname="admin-facebook-controller">
                     <div>
-                        <button className='btn btn-primary' variant="primary" type="submit" onClick={() => {updateFacebookLink(false)}}>
-                            Turn link off
+                        <button
+                          className='btn btn-primary'
+                          variant="primary"
+                          type="submit" onClick={() => updateFacebookLink(!facebook)}>
+                            Turn link {facebook ? 'off' : 'on'}
                         </button>
-                    </div> }
-
-                  {facebook === false &&
-                    <div>
-                        <button className='btn btn-primary' variant="primary" type="submit" onClick={() => {updateFacebookLink(true)}}>
-                            Turn link on
-                        </button>
-                    </div>}
+                    </div>
                   </div> 
-
-                ): ''}
-                
+                )}
                 </div>
+
                 <div className='footer-bottom'>
                 <p className='website-watermark'>@ 2022 St Paul Baptist Church</p>
 
-                {facebook === true && <div><link
-                rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-                </link>
-                <a href="https://www.facebook.com/" target="_blank" class="fa fa-facebook"></a></div>}
+                {facebook && (
+                  <div>
+                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
+                    <a href="https://www.facebook.com/" target="_blank" class="fa fa-facebook"></a>
+                  </div>
+                )}
                 </div>  
               </div>
             </div>
