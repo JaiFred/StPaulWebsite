@@ -53,7 +53,7 @@ function EditProfile({ errors, currentUser, editProfileIsOpen, setEditProfileIsO
               {errors.map((error) => <OpaqueErrorMessage message={error.message || error}/>)}
             </div>
       
-    </form>            
+    </form>
   )
 }
 
