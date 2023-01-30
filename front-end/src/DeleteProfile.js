@@ -2,6 +2,11 @@
 import { Button } from 'react-bootstrap'
 import { navigate} from 'react-router-dom'
 
+//Components
+import { OpaqueErrorMessage } from './Forms/OpaqueErrorMessage'
+
+//CSS
+
 function DeleteProfile({handleUserDelete, email, setEmail, password, setPassword, error, setAccountDeleteIsOpen }){
 // onSubmit={handleUserDelete} ------- this was in the first <div> 
     return(
@@ -25,8 +30,12 @@ function DeleteProfile({handleUserDelete, email, setEmail, password, setPassword
             onChange={(event) => setPassword(event.target.value)}
           />
         </label>
-
-        <span className="error">{error}</span>
+        
+        {error && (
+            <div className="error mt-4 mb-5">
+              <OpaqueErrorMessage message={error}/>
+            </div>
+        )}
         
         <div className="modal-footer-buttons">
           <Button variant="primary" className="submit" type="submit" onClick={handleUserDelete}>Delete My Profile</Button>

@@ -336,7 +336,7 @@ const RecurringCheckoutForm = ({
         user_id: currentUser?.id || currentUser?.user?.id,
       }),
     }).then((res) => console.log(JSON.stringify(res)))
-    .then(alert("Thank you! We have recieved your recurring offering request. You can find and manage your reccuring offerings in your profile.")
+    .then(alert("Subscription successfully made!")
     );
 
   };
@@ -361,8 +361,9 @@ const RecurringCheckoutForm = ({
             {submitPaymentSubscription()}
           </div>
           <div className="ResultMessage">
-            Thanks for trying Stripe Elements. No money was charged, but we
-            generated a PaymentMethod: {paymentMethod.id}
+          Thank you! We have recieved your recurring offering request. 
+          You can find and manage your reccuring offerings in your profile. 
+          <br/>{paymentMethod.id}
           </div>
           <ResetButton onClick={reset} />
         </div>

@@ -3,6 +3,10 @@ import { useState } from "react";
 import { Button } from "react-bootstrap";
 import { Input } from './Forms/Input';
 
+//Components
+import { OpaqueErrorMessage } from "./Forms/OpaqueErrorMessage";
+
+//CSS
 import './EditProfile.scss'
 
 function EditProfile({ errors, currentUser, editProfileIsOpen, setEditProfileIsOpen, handleUserEdit, firstName, setFirstName, lastName, setLastName, email, setEmail }){  
@@ -45,7 +49,10 @@ function EditProfile({ errors, currentUser, editProfileIsOpen, setEditProfileIsO
         />
       </label>
     
-      {errors.map((error) => <p>{error}</p>)}
+            <div className="error mt-4 mb-5">
+              {errors.map((error) => <OpaqueErrorMessage message={error.message || error}/>)}
+            </div>
+      
     </form>            
   )
 }
