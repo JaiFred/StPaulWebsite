@@ -3,7 +3,7 @@ import './File.scss'
 
 const FileInput = (props) => {
     const [file, setFile] = useState(props.file);
-    const [isPDF, setIsPDF] = useState(props.file?.endsWith('pdf'));
+    const [isPDF, setIsPDF] = useState(typeof props.file === 'string' && props.file.endsWith('pdf'));
 
     const handleChange = (onChange, event) => {
         // When user cancels selection
@@ -43,7 +43,7 @@ const FileInput = (props) => {
                     {/* Display file */}
                     {isPDF
                         ? <embed className="text-center-image w-100" src={file} target="_parent" /> 
-                        : <img className="text-center-image mw-100" src={file} />}
+                        : <img className="text-center-image mw-100" src={typeof file === 'string' ? file : URL.createObjectURL(file)} />}
                     
                     <div>
                         <button className="button-custom button-small mt-2 mb-4" type="button" onClick={e => e.target.parentNode.click()}>

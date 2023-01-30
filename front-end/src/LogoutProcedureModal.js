@@ -8,7 +8,6 @@ import ModalFooter from './Modal/Footer';
 
 //CSS
 
-
 function LogoutProcedureModal({ logoutIsOpen, setLogoutIsOpen, currentUser, setCurrentUser }){
 
     let navigate = useNavigate();
@@ -31,31 +30,28 @@ function LogoutProcedureModal({ logoutIsOpen, setLogoutIsOpen, currentUser, setC
       }
 
     return(
-        <div>
-            <Modal className='modal modal-delete text-center'
-                show={ logoutIsOpen }
-                // hide={() => {setLogoutIsOpen(false)}}
-            >
-                <ModalHeader className="justify-content-center">
-                    <ModalTitle className='bold'>Are you Sure You want to Logout</ModalTitle>
-                </ModalHeader>
-                <ModalFooter 
-                onSubmit={handleLogout}
-                onCancel={() => {setLogoutIsOpen(false)}}
-                submitLabel='Logout'
-                cancelLabel='No'
-                className="mb-4 mt-2"
-                theme='dark' />
-                    {/* <ModalFooter> 
-                        <Link to='/logout'>
-                        <button type="button" onClick={handleLogout}>Logout</button>
-                        </Link>
-                        
-                        <button type="button" onClick={() => {setLogoutIsOpen(false)}}>No</button> 
-                    </ModalFooter>  */}
-            </Modal>
-            <h1></h1>
-        </div>
+        <Modal className='modal modal-delete text-center'
+            show={ logoutIsOpen }
+            // hide={() => {setLogoutIsOpen(false)}}
+        >
+            <ModalHeader className="justify-content-center">
+                <ModalTitle className='bold'>Are you Sure You want to Logout</ModalTitle>
+            </ModalHeader>
+            <ModalFooter 
+            onSubmit={handleLogout}
+            onCancel={() => {setLogoutIsOpen(false)}}
+            submitLabel='Logout'
+            cancelLabel='No'
+            className="mb-4 mt-2"
+            theme='dark' />
+                {/* <ModalFooter> 
+                    <Link to='/logout'>
+                    <button type="button" onClick={handleLogout}>Logout</button>
+                    </Link>
+                    
+                    <button type="button" onClick={() => {setLogoutIsOpen(false)}}>No</button> 
+                </ModalFooter>  */}
+        </Modal>
     )
 }
 

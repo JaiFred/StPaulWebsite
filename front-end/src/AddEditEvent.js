@@ -1,6 +1,6 @@
 // Hooks
-import react, { useState, useEffect } from 'react';
-import { Link, useNavigate, useParams } from "react-router-dom";
+import react, { useState } from 'react';
+import { useNavigate } from "react-router-dom";
 
 //Components 
 import InputFile from './Inputs/File';
@@ -30,12 +30,6 @@ function AddEditEvent({
     } = formData;
 
     const isEdit = Boolean(id);
-
-    console.log({formData})
-
-    console.log(`formData in EditEvent: ${JSON.stringify(formData)}`);
-    console.log(`starts: ${starts}`);
-
     const [image, setImage] = useState(formData.image);
     const [errors, setErrors] = useState([]);
 
@@ -44,10 +38,11 @@ function AddEditEvent({
     function handleSubmit(e) {
         e.preventDefault();
         console.log("handleSubmit updating event");
-
         const formData = new FormData();
 
-        formData.append("image", image);
+        if (typeof image === 'object') {
+            formData.append("image", image);
+        }
         formData.append("title", title);
         formData.append("starts", starts);
         formData.append("ends", ends);
@@ -67,13 +62,14 @@ function AddEditEvent({
 
         fetch(url, configObj)
             .then((response) => { 
+                console.log({response})
                 if (response.ok) {
                     response.json().then((editedEvent) => {
                         handleAddEditEvent(editedEvent);
                         setAddEditEventIsOpen(false);
                         navigate(`/events`)
                     });
-                } else {
+                } else if (response.errors) {
                     response.json().then((response) => setErrors(response.errors));
                 }
             })         
@@ -90,8 +86,11 @@ function AddEditEvent({
         console.log(`handleImageChange....`)
         console.log(`e.target.files[0]: ${e.target.files[0]}`)
         const { name, value } = e.target;
-        // if (e.target.files[0]) setFormData({...formData, [name]: e.target.files[0] });
-        if (e.target.files[0]) setImage(e.target.files[0]);
+        if (e.target.files[0]) {
+            const [file] = e.target.files;
+            setFormData({ ...formData, image: file });
+            setImage(file);
+        }
     };
 
     return (
@@ -101,7 +100,6 @@ function AddEditEvent({
                     {isEdit ? 'Update' : 'Create'} event
                 </h1>
                 
-
                 <h3>Title: {title || 'Choose your title!'}</h3>
                 <InputFile
                     name="image"
@@ -224,6 +222,7 @@ function AddEditEvent({
             </label>
 
             {errors.map((error) => <OpaqueErrorMessage message={error.message || error} />)}
+
             <div className="two-column-grid">
                 <button
                     id="submitBtn"
