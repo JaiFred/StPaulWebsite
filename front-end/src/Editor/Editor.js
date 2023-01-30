@@ -3,12 +3,13 @@ import "./Editor.scss";
 import ReactQuill from 'react-quill';
 import 'react-quill/dist/quill.snow.css';
 
-const Editor = ({ id, value, onChange, placeholder = "", heading }) => {
+const Editor = ({ id, value, onChange, placeholder = "", heading, aspectRatio }) => {
   function uploadFiles(uploadedFile) {
     var apiUrl = `http://localhost:3000/api/images`; // TODO: make it work for production URL too when we deploy to heroku.
 
     var formData = new FormData();
     formData.append('image', uploadedFile);
+    formData.append('aspect_ratio', aspectRatio);
 
     // get editor
     const editor = quillRef.current.getEditor();

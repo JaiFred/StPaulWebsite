@@ -5,8 +5,14 @@ module Api
                 image = Image.create!
                 image.file.attach(image_params[:image])
 
+                image_url = if image_params[:aspect_ratio] == 'small'
+                    Rails.application.routes.default_url_options[:host] + Rails.application.routes.url_helpers.rails_representation_url(image.file.variant(resize: "100x100").processed, only_path: true)
+                else
+                    Rails.application.routes.default_url_options[:host] + Rails.application.routes.url_helpers.rails_representation_url(image.file.variant(resize: "969x969").processed, only_path: true)
+                end
+
                 render json: {
-                    image_url: Rails.application.routes.default_url_options[:host] + Rails.application.routes.url_helpers.rails_representation_url(image.file.variant(resize: "969x969").processed, only_path: true)
+                    image_url: image_url
                 }, status: :ok
             else
                 render json: { message: 'No image uploaded!' }, status: :ok
@@ -21,7 +27,7 @@ module Api
         private
 
         def image_params
-            params.permit(:image)
+            params.permit(:image, :aspect_ratio)
         end
 
     end
