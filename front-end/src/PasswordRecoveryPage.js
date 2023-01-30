@@ -26,8 +26,12 @@ function PasswordRecoveryPage(){
             }
           }),
         }).then((response) => {
-          console.log(`Please check your email inbox and follow instructions!`);
-          navigate("/password_recovery_success");
+          if(response.ok) {            
+            navigate("/password_recovery_success");
+          }
+          else {
+            navigate("/password_recovery_failiure")
+          }
         });
       };
 

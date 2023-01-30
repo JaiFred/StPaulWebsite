@@ -1,6 +1,24 @@
 # frozen_string_literal: true
 
 class Users::PasswordsController < Devise::PasswordsController
+
+  # POST /resource/password
+  def create    
+    if resource_class.find_by(email: resource_params[:email]).blank?
+      render json: { message: 'Email Not Found' }, status: 422
+      return
+    end
+    
+    self.resource = resource_class.send_reset_password_instructions(resource_params)
+    yield resource if block_given?
+
+    if successfully_sent?(resource)
+      respond_with({ message: 'successfully sent password reset email'}, location: after_sending_reset_password_instructions_path_for(resource_name))
+    else
+      respond_with(resource)
+    end
+  end
+
   # PUT /resource/password
   def update
     self.resource = resource_class.reset_password_by_token(resource_params)
@@ -11,8 +29,7 @@ class Users::PasswordsController < Devise::PasswordsController
       if Devise.sign_in_after_reset_password
         flash_message = resource.active_for_authentication? ? :updated : :updated_not_active
         set_flash_message!(:notice, flash_message)
-        resource.after_database_authentication
-        # sign_in(resource_name, resource)
+        resource.after_database_authentication        
       else
         set_flash_message!(:notice, :updated_not_active)
       end

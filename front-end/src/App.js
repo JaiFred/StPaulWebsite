@@ -32,6 +32,7 @@ import { Modals } from './Modals';
 import './App.css';
 import './YouthCorner.css';
 import './Modals.scss';
+import PasswordRecoveryRequestFailiure from './PasswordRecoveryRequestFailiure';
 
 //Goal:
 
@@ -334,6 +335,7 @@ function App() {
             />
           <Route path='/password_recovery' element={<PasswordRecoveryPage/>}/>
           <Route path='/password_recovery_success' element={<PasswordRecoveryRequestSuccess/>}/>
+          <Route path='/password_recovery_failiure' element={<PasswordRecoveryRequestFailiure/>}/>
           <Route path='/update_email_success' element={<UpdateEmailSuccessPage/>}/>
           <Route path='/youth_corner' element={<YouthCorner/>}/>
           <Route path='/bible_study' element={<BibleStudyPage currentUser={currentUser}/>}/>
