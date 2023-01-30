@@ -1,17 +1,43 @@
-<h2>Forgot your password?</h2>
+<!DOCTYPE html />
+<html>
+    <head>
+        <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css">
+        <link rel="stylesheet" href="/assets/css/main.css">
+    </head>
+    <body>
+        <main class="container edit-container forgot-container">
+          <header>
+            <h2 class="fade">
+              Forgot your password?
+            </h2>
+          </header>
 
-<%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+          <div class="main-content fade">
+            <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+              <%= render "devise/shared/error_messages", resource: resource %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
-  </div>
+              <div class="field">
+                <%= f.label :email %><br />
+                <%= f.email_field :email, autofocus: true, autocomplete: "email" %>
+              </div>
 
-  <div class="actions">
-    <%= f.submit "Resend me password instructions" %><br />
-    <em>Password reset will be sent to your email</em><br />
-  </div>
-<% end %>
+              <div class="actions">
+                <%= f.submit "Resend me password instructions" %><br />
+                <small><em>Password reset will be sent to your email</em></small>
+              </div>
+            <% end %>
+            <%= render "devise/shared/links" %>
+          </div>
+        </main>
 
-<%= render "devise/shared/links" %>
+        <script>
+          function animate (selector, className, delay) {
+            setTimeout(() => document.querySelector(selector).classList.add(className), delay)
+          }
+
+          animate('.edit-container', 'animated', 500);
+          animate('header h2', 'slide-up-fade-in', 800);
+          animate('.main-content', 'slide-up-fade-in', 1000);
+        </script>
+    </body>
+</html>
