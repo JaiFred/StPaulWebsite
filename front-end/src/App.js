@@ -1,6 +1,6 @@
 // Hooks
 import {useState, useEffect} from 'react'
-import { Navigate, Routes, Route } from 'react-router-dom'
+import { Routes, Route } from 'react-router-dom'
 
 // Components
 import AboutPage from './AboutPage';
@@ -20,6 +20,7 @@ import SubscriptionCard from './SubscriptionCard';
 import Footer from './Footer';
 import PrayerRequestsContainer from './PrayerRequestsContainer';
 import ContactUsPage from './ContactUsPage';
+import ContactUsSuccess from './ContactUsSuccess';
 import HonorsPage from './Honors/HonorsPage';
 import HonorViewItem from './HonorViewItem';
 import EditHonorsDocuments from './EditHonorsItem';
@@ -314,6 +315,7 @@ function App() {
           <Route path='/prayer_requests' element={<PrayerRequestsContainer/>}/>
           <Route path='/about' element={<AboutPage/>}/>
           <Route path='/contact_us' element={<ContactUsPage/>}/>
+          <Route path='/contact_us_success' element={<ContactUsSuccess/>}/>
           <Route path='/honors' element={
             <HonorsPage 
               currentUser={currentUser} 

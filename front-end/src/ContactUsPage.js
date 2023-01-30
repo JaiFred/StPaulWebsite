@@ -1,11 +1,13 @@
 //Hooks
 import React from "react";
 import { useState, useEffect, useRef } from 'react';
+import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser"
 import mapboxgl from 'mapbox-gl'
 import Map, { Marker, NavigationControl, GeolocateControl, Directions } from 'react-map-gl';
 import { ParallaxBanner, ParallaxBannerLayer } from 'react-scroll-parallax';
 
+//Components
 import Church from "./images/StPaulBaptistChurch.JPG"
 
 // CSS
@@ -15,12 +17,15 @@ import { BackHomeButtonBordered } from "./BackHomeButton/BackHomeButtonBordered"
 
 function ContactUsPage(){
 
+    const navigate = useNavigate();
+
     //Email sender 
     const sendEmail = (e) => {
         e.preventDefault();
-        alert("submitted")
+        alert("Message Submitted! Thank you!")
 
         emailjs.sendForm(process.env.REACT_APP_EMAILJS_SERVICE_KEY, process.env.REACT_APP_EMAILJS_CONTACT_US_TEMPLATE_KEY, e.target, process.env.REACT_APP_EMAILJS_PUBLIC_KEY)
+        navigate(`/contact_us_success`)
     }
 
     //States for map to generate with
@@ -42,18 +47,41 @@ function ContactUsPage(){
 
                                 {/* */}
                                 <label htmlFor="sender-name">Your Name:</label>
-                                <input type="text" name="sender-name" id="sender-name" placeholder="Your Name" className="sender-name"></input>
+                                <input 
+                                    type="text" 
+                                    name="sender-name" 
+                                    id="sender-name" 
+                                    required
+                                    placeholder="Your Name" 
+                                    className="sender-name">
+                                </input>
                                 
                                 {/* */}
                                 <label htmlFor="email-from">Your Email:</label>
-                                <input type="text" name="email-from" id="email-from" placeholder="Your Email" className="email-form"></input>
-                                
+                                <input 
+                                    type="text" 
+                                    name="email-from" 
+                                    id="email-from" 
+                                    required
+                                    placeholder="Your Email" 
+                                    className="email-form">
+                                </input>
+
                                 {/* */}
                                 <label htmlFor="message">Message:</label>
-                                <textarea name="message" id="message" placeholder='type here --' className="message-box" rows="10"></textarea>
-
+                                <textarea 
+                                    name="message" 
+                                    id="message" 
+                                    placeholder="Leave your message here --" 
+                                    className="message-box" 
+                                    rows="10">
+                                </textarea>
                                 <div className="text-center">
-                                    <button type="submit" className="submit-button button-custom">Send</button>
+                                    <button 
+                                        type="submit" 
+                                        className="submit-button button-custom">
+                                        Send
+                                    </button>
                                 </div>
                             </form>
                         </div>
@@ -113,7 +141,6 @@ function ContactUsPage(){
                             <BackHomeButtonBordered className="back-home-from-contact-us" />
                         </div>
                     </div>
-
             </ParallaxBannerLayer>
         </ParallaxBanner>
     )

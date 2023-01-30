@@ -1,23 +1,22 @@
 //Hooks
+import { Link } from "react-router-dom";
 
 //Components
-import { BackHomeButton } from "./BackHomeButton/BackHomeButton";
 
 //CSS
 import Church from './images/StPaulBaptistChurch.JPG'
 import './SuccessPage.scss';
 
-function SignUpSuccessPage() {
+function ContactUsSuccess() {
     return(
         <div className="success-page-wrapper" style={{ backgroundImage: `url(${Church})` }}>
             <div className="success-page-message">
-                <h1>Thanks for signing up</h1>
-                <p>please check your email to confirm your account</p>
+                <p>We have recieved your inquiry and will respond at our earliest convenience. Thank You!</p>
             </div>
 
-            <BackHomeButton className="mt-5" />
+            <Link to='/contact_us' className="back-home-button">Back</Link>
         </div>
     )
 }
 
-export default SignUpSuccessPage
+export default ContactUsSuccess

@@ -78,6 +78,7 @@ function PrayerRequestsContainer(){
                                     className='name'
                                     type='text'
                                     id='name'
+                                    required
                                     name='name-cell'
                                     placeholder='Name'
                                 />
@@ -124,7 +125,14 @@ function PrayerRequestsContainer(){
 
                     {/* Email */}
                     <label htmlFor="email-from">Your Email:</label>
-                    <input type="text" name="email-from" id="email-from" className="email-form" placeholder="Your Email" />
+                    <input 
+                        type="text" 
+                        name="email-from" 
+                        id="email-from" 
+                        required
+                        className="email-form" 
+                        placeholder="Your Email" 
+                    />
 
                     {/* Submit */}
                     <fieldset className="text-center">

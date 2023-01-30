@@ -97,7 +97,8 @@ const Editor = ({ id, value, onChange, placeholder = "", heading, aspectRatio })
           formats={formats}
           defaultValue={value}
           onChange={onChange}
-        />;
+          placeholder="Type your statement"
+        />
     </div>
   );
 };

@@ -42,6 +42,7 @@ function AddHonorsItem({ setDocuments, onCancel }){
         .then((res) => res.json())
         .then((honorPage) => setDocuments(honorPage.documents))
         .then(alert("New Document Created!"))
+        .then(onCancel)
     }
 
     function handleDocumentsChange (e) {
