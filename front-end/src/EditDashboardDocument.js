@@ -51,6 +51,7 @@ const EditDashboardDocument = ({ document, fetchDashboardDocuments, editDashboar
                         id="description"
                         value={editedDescription}
                         onChange={newValue => setEditedDescription(newValue)}
+                        aspectRatio={'small'}
                         placeholder="description..." 
                 />
             </div>                    
