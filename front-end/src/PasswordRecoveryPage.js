@@ -27,7 +27,6 @@ function PasswordRecoveryPage(){
           }),
         }).then((response) => {
           if(response.ok) {            
-            console.log(`Please check your email inbox and follow instructions!`);
             navigate("/password_recovery_success");
           }
           else {
