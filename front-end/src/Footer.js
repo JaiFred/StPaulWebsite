@@ -22,7 +22,7 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
     const [facebook, setFacebook] = useState(null);
     const [configId, setConfigId] = useState(null);
 
-    function fetchConfig() {  
+    function fetchConfig() {
         fetch(`/api/button_visible_configs`)
           .then((r) => r.json())
           .then(config => {
