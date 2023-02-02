@@ -34,7 +34,7 @@ export const FooterAccountOptions = ({
         <div className="footer-account-options-wrapper"> 
             {
             !currentUser &&
-            <>
+            <div className="footer-menu">
                 <button className='footer-menu-item' type='button' onClick={() => setLoginIsOpen(true)}>Login</button>
                 <button className='footer-menu-item' type='button' onClick={() => setSignUpIsOpen(true)}>Sign Up</button>
                 <LoginModal
@@ -43,18 +43,19 @@ export const FooterAccountOptions = ({
                 <SignUpModal
                     signUpIsOpen={signUpIsOpen}
                     setSignUpIsOpen={setSignUpIsOpen}/>
-            </>
+            </div>
             }
 
             {currentUser && 
-                <>
+                <div className="footer-menu">
                     <button className='footer-menu-item' type='button' onClick={() => setLogoutIsOpen(true)}>Logout 1</button>
+                    <Link to='/profile' className='footer-menu-item'>Profile</Link>
                     <LogoutProcedureModal
                         logoutIsOpen={logoutIsOpen}
                         setLogoutIsOpen={setLogoutIsOpen}
                         currentUser={currentUser}
                         setCurrentUser={setCurrentUser}/> 
-                </>
+                </div>
             }
         </div>
     )

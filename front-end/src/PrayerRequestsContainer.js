@@ -90,6 +90,7 @@ function PrayerRequestsContainer(){
                                 <input
                                     className='date'
                                     type='datetime-local'
+                                    required
                                     id='date'
                                     name='date-cell'
                                     placeholder='Date'
