@@ -2,7 +2,7 @@
 import react, { useState } from 'react';
 import { useNavigate } from "react-router-dom";
 
-//Components 
+//Components
 import InputFile from './Inputs/File';
 import { OpaqueErrorMessage } from './Forms/OpaqueErrorMessage';
 
@@ -15,17 +15,17 @@ function AddEditEvent({
     handleAddEditEvent,
     setAddEditEventIsOpen
 }){
-    const { 
+    const {
         id,
-        title, 
-        starts, 
-        ends, 
-        details, 
-        address_line_1, 
-        address_line_2, 
-        city, 
+        title,
+        starts,
+        ends,
+        details,
+        address_line_1,
+        address_line_2,
+        city,
         state_province_region,
-        zip_postalcode, 
+        zip_postalcode,
         country
     } = formData;
 
@@ -40,7 +40,7 @@ function AddEditEvent({
         console.log("handleSubmit updating event");
         const formData = new FormData();
 
-        if (typeof image === 'object') {
+        if (image) {
             formData.append("image", image);
         }
         formData.append("title", title);
@@ -61,7 +61,7 @@ function AddEditEvent({
         const url = isEdit ? `/api/events/${id}` : "api/events"
 
         fetch(url, configObj)
-            .then((response) => { 
+            .then((response) => {
                 console.log({response})
                 if (response.ok) {
                     response.json().then((editedEvent) => {
@@ -72,7 +72,7 @@ function AddEditEvent({
                 } else if (response.errors) {
                     response.json().then((response) => setErrors(response.errors));
                 }
-            })         
+            })
     };
 
     const handleChange = (e) => {
@@ -99,7 +99,7 @@ function AddEditEvent({
                 <h1 className="text-center">
                     {isEdit ? 'Update' : 'Create'} event
                 </h1>
-                
+
                 <h3>Title: {title || 'Choose your title!'}</h3>
                 <InputFile
                     name="image"
