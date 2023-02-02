@@ -96,7 +96,6 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
                       configId={configId}
                     />
                     <Link to='/contact_us' className='footer-menu-item' type='button'>Contact Us</Link>
-                    <Link to='/profile' className='footer-menu-item'>Profile</Link>
                 </div>
                 
                 {(currentUser?.admin || currentUser?.user?.admin) && (
