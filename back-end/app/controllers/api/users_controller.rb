@@ -9,14 +9,26 @@ module Api
       render json: current_user, status: :ok
     end
 
+    def update
+      @user = User.find(params[:id])
+
+      if @user.update(user_params)
+        render json: { user: @user, message: 'User Updated Successfully' }, status: :ok
+      else
+        render json: { message: @user.errors.full_messages }, status: :unprocessable_entity
+      end
+    end
+
     # DELETE '/users/:id'
     def destroy
       @user = User.find_by(email: params[:email])
 
       if @user && @user.id == params[:id].to_i && @user.valid_password?(params[:password])
-        puts 'correct password given!'
+        Rails.logger.debug 'correct password given!'
         @user.subscriptions.active.each do |subscription|
-          puts "cancelling subscription: stripe_subscription_id = #{subscription.stripe_subscription_id}"
+          Rails.logger.debug do
+            "cancelling subscription: stripe_subscription_id = #{subscription.stripe_subscription_id}"
+          end
           Stripe::Subscription.update(
             subscription.stripe_subscription_id,
             {
@@ -30,17 +42,7 @@ module Api
 
         render json: { message: 'User Deleted Successfully' }, status: :ok
       else
-        render json: { errors: 'Invalid username or password' }, status: 422
-      end
-    end
-
-    def update
-      @user = User.find(params[:id])
-
-      if @user.update(user_params)
-        render json: { user: @user, message: 'User Updated Successfully' }, status: :ok
-      else
-        render json: { message: @user.errors.full_messages }, status: 422
+        render json: { errors: 'Invalid username or password' }, status: :unprocessable_entity
       end
     end
 

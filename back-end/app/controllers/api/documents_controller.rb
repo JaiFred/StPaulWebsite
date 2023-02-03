@@ -5,15 +5,15 @@ module Api
     before_action :authenticate_user!, only: %i[create update destroy]
     before_action :set_document
 
+    def show
+      render json: @document, status: :ok
+    end
+
     def update
       @document.update!(description: document_params[:description])
 
       @document.file.attach(document_params[:file]) if document_params[:file].present?
 
-      render json: @document, status: :ok
-    end
-
-    def show
       render json: @document, status: :ok
     end
 

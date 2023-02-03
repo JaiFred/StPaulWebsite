@@ -16,7 +16,7 @@ class ApplicationController < ActionController::API
   end
 
   def after_confirmation_path_for(resource_name, resource)
-    puts 'INSIDE after_confirmation_path_for !!!'
+    Rails.logger.debug 'INSIDE after_confirmation_path_for !!!'
     sign_out(resource) if signed_in?(resource_name)
 
     if signed_in?(resource_name)

@@ -10,23 +10,23 @@ module Api
 
     PLANS = {
       # monthly rates
-      '5_dollars_Monthly' => ENV['DOLLARS_MONTHLY_5'],
-      '10_dollars_Monthly' => ENV['DOLLARS_MONTHLY_10'],
-      '15_dollars_Monthly' => ENV['DOLLARS_MONTHLY_15'],
-      '20_dollars_Monthly' => ENV['DOLLARS_MONTHLY_20'],
-      '100_dollars_Monthly' => ENV['DOLLARS_MONTHLY_100'],
+      '5_dollars_Monthly' => ENV.fetch('DOLLARS_MONTHLY_5', nil),
+      '10_dollars_Monthly' => ENV.fetch('DOLLARS_MONTHLY_10', nil),
+      '15_dollars_Monthly' => ENV.fetch('DOLLARS_MONTHLY_15', nil),
+      '20_dollars_Monthly' => ENV.fetch('DOLLARS_MONTHLY_20', nil),
+      '100_dollars_Monthly' => ENV.fetch('DOLLARS_MONTHLY_100', nil),
       # weekly rates
-      '5_dollars_Weekly' => ENV['DOLLARS_WEEKLY_5'],
-      '10_dollars_Weekly' => ENV['DOLLARS_WEEKLY_10'],
-      '15_dollars_Weekly' => ENV['DOLLARS_WEEKLY_15'],
-      '20_dollars_Weekly' => ENV['DOLLARS_WEEKLY_20'],
-      '100_dollars_Weekly' => ENV['DOLLARS_WEEKLY_100'],
+      '5_dollars_Weekly' => ENV.fetch('DOLLARS_WEEKLY_5', nil),
+      '10_dollars_Weekly' => ENV.fetch('DOLLARS_WEEKLY_10', nil),
+      '15_dollars_Weekly' => ENV.fetch('DOLLARS_WEEKLY_15', nil),
+      '20_dollars_Weekly' => ENV.fetch('DOLLARS_WEEKLY_20', nil),
+      '100_dollars_Weekly' => ENV.fetch('DOLLARS_WEEKLY_100', nil),
       # biweekly rates
-      '5_dollars_BiWeekly' => ENV['DOLLARS_BIWEEKLY_5'],
-      '10_dollars_BiWeekly' => ENV['DOLLARS_BIWEEKLY_10'],
-      '15_dollars_BiWeekly' => ENV['DOLLARS_BIWEEKLY_15'],
-      '20_dollars_BiWeekly' => ENV['DOLLARS_BIWEEKLY_20'],
-      '100_dollars_BiWeekly' => ENV['DOLLARS_BIWEEKLY_100']
+      '5_dollars_BiWeekly' => ENV.fetch('DOLLARS_BIWEEKLY_5', nil),
+      '10_dollars_BiWeekly' => ENV.fetch('DOLLARS_BIWEEKLY_10', nil),
+      '15_dollars_BiWeekly' => ENV.fetch('DOLLARS_BIWEEKLY_15', nil),
+      '20_dollars_BiWeekly' => ENV.fetch('DOLLARS_BIWEEKLY_20', nil),
+      '100_dollars_BiWeekly' => ENV.fetch('DOLLARS_BIWEEKLY_100', nil)
     }.freeze
 
     FREQUENCY_HASH = {
@@ -39,17 +39,17 @@ module Api
       # TODO:  move secret keys to ENV variable
       # TODO: think about proper authentication
 
-      puts "PARAMS: #{params.inspect}"
-      puts "params[:amount]: #{params[:amount]}"
+      Rails.logger.debug { "PARAMS: #{params.inspect}" }
+      Rails.logger.debug { "params[:amount]: #{params[:amount]}" }
 
       if params[:amount].blank? || params[:amount] == 'null'
-        render json: { error: 'Amount cant be blank' }, status: 422
+        render json: { error: 'Amount cant be blank' }, status: :unprocessable_entity
         return
       end
 
       amount = params[:amount].to_i * 100
 
-      puts "amount: #{amount}"
+      Rails.logger.debug { "amount: #{amount}" }
 
       intent = Stripe::PaymentIntent.create(
         {
@@ -59,7 +59,7 @@ module Api
         }
       )
 
-      puts "intent.client_secret: #{intent.client_secret.inspect}"
+      Rails.logger.debug { "intent.client_secret: #{intent.client_secret.inspect}" }
 
       render json: { client_secret: intent.client_secret }.to_json
     end
@@ -67,17 +67,17 @@ module Api
     def client_secret
       # TODO: think about proper authentication
 
-      puts "PARAMS: #{params.inspect}"
-      puts "params[:amount]: #{params[:amount]}"
+      Rails.logger.debug { "PARAMS: #{params.inspect}" }
+      Rails.logger.debug { "params[:amount]: #{params[:amount]}" }
 
       if params[:amount].blank? || params[:amount] == 'null'
-        render json: { error: 'Amount cant be blank' }, status: 422
+        render json: { error: 'Amount cant be blank' }, status: :unprocessable_entity
         return
       end
 
       amount = (params[:amount].to_f * 100).to_i
 
-      puts "amount: #{amount}"
+      Rails.logger.debug { "amount: #{amount}" }
 
       customer = Stripe::Customer.create(
         email: params[:billing_details][:email],
@@ -93,7 +93,7 @@ module Api
         }
       )
 
-      puts "intent.client_secret: #{intent.client_secret.inspect}"
+      Rails.logger.debug { "intent.client_secret: #{intent.client_secret.inspect}" }
 
       render json: { client_secret: intent.client_secret }.to_json
     end
@@ -104,7 +104,7 @@ module Api
       # billing date every month from the front end: params[:day_of_month_to_charge]
       # params[:billing_details]
 
-      puts "PARAMS: #{params.inspect}"
+      Rails.logger.debug { "PARAMS: #{params.inspect}" }
 
       # user has_name :subscription
       # Subscription: belongs_to :user
@@ -122,10 +122,10 @@ module Api
       user.update_column(:stripe_customer_id, customer.id)
 
       plan_id_key = "#{params[:amount].gsub('$', '')}_dollars_#{params[:frequency]}"
-      puts "plan_id_key: #{plan_id_key.inspect}"
+      Rails.logger.debug { "plan_id_key: #{plan_id_key.inspect}" }
 
       plan = PLANS[plan_id_key]
-      puts "plan: #{plan.inspect}"
+      Rails.logger.debug { "plan: #{plan.inspect}" }
 
       payment_start_date = Date.parse(params[:payment_start_date])
 
@@ -179,10 +179,10 @@ module Api
                                end
                              end
 
-      puts "billing_cycle_anchor #{Time.at billing_cycle_anchor}"
-      puts "natural_billing_date: #{natural_billing_date}"
+      Rails.logger.debug { "billing_cycle_anchor #{Time.zone.at billing_cycle_anchor}" }
+      Rails.logger.debug { "natural_billing_date: #{natural_billing_date}" }
 
-      if Time.at(billing_cycle_anchor) <= natural_billing_date
+      if Time.zone.at(billing_cycle_anchor) <= natural_billing_date
         response = Stripe::Subscription.create({ customer: customer.id,
                                                  items: [
                                                    { price: plan }
@@ -200,7 +200,7 @@ module Api
 
         FutureSubscription.create!(
           user_id: user.id,
-          payment_start_date: Time.at(billing_cycle_anchor).to_date,
+          payment_start_date: Time.zone.at(billing_cycle_anchor).to_date,
           billing_cycle_anchor: billing_cycle_anchor,
           plan: plan,
           title: plan_id_key.gsub('_', ' '),

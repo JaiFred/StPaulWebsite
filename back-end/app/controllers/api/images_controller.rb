@@ -2,6 +2,11 @@
 
 module Api
   class ImagesController < ApplicationController
+    def index
+      @images = Image.all
+      render json: @images, status: :ok # 200
+    end
+
     def create
       if image_params[:image].present?
         image = Image.create!
@@ -23,11 +28,6 @@ module Api
       else
         render json: { message: 'No image uploaded!' }, status: :ok
       end
-    end
-
-    def index
-      @images = Image.all
-      render json: @images, status: :ok # 200
     end
 
     private

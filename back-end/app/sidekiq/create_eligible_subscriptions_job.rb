@@ -9,8 +9,10 @@ class CreateEligibleSubscriptionsJob
 
   def perform
     FutureSubscription.eligible.each do |future_sub|
-      puts "processing future_sub: #{future_sub.id}"
-      puts "(future_sub.payment_start_date - Date.today).to_i > future_sub.frequency #{(future_sub.payment_start_date - Date.today).to_i > future_sub.frequency}"
+      Rails.logger.debug { "processing future_sub: #{future_sub.id}" }
+      Rails.logger.debug do
+        "(future_sub.payment_start_date - Date.today).to_i > future_sub.frequency #{(future_sub.payment_start_date - Date.today).to_i > future_sub.frequency}"
+      end
 
       next if (future_sub.payment_start_date - Date.today).to_i > future_sub.frequency
 

@@ -18,8 +18,8 @@ module Api
       @events = if params[:starts_time].present? && params[:ends_time].present?
                   Event.between(params[:starts_time], params[:ends_time])
                 elsif (month = params[:month]).present?
-                  year = params[:month].split(' ').last
-                  month = params[:month].split(' ').first
+                  year = params[:month].split.last
+                  month = params[:month].split.first
                   month_number = Date::MONTHNAMES.index(month)
 
                   starts_time = "#{year}-#{month_number}-01"
@@ -54,7 +54,7 @@ module Api
       event = Event.new(event_params.except(:image))
 
       unless event.save
-        render json: { errors: event.errors.full_messages }, status: 422
+        render json: { errors: event.errors.full_messages }, status: :unprocessable_entity
         return
       end
 
@@ -67,7 +67,7 @@ module Api
       @event = Event.find(params[:id])
 
       unless @event.update(event_params.except(:image))
-        render json: { errors: @event.errors.full_messages }, status: 422
+        render json: { errors: @event.errors.full_messages }, status: :unprocessable_entity
         return
       end
 

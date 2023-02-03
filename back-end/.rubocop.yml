@@ -1,0 +1,15 @@
+# .rubocop.yml
+require:  
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "db/schema.rb"    
+    - "bin/*"
+    - "config/puma.rb"
+    - "config/spring.rb"
+    - "config/environments/development.rb"
+    - "config/environments/production.rb"    
+Style/Documentation:
+  Enabled: false
