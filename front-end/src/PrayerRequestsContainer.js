@@ -14,7 +14,13 @@ function PrayerRequestsContainer(){
     const sendEmail = (e) => {
         e.preventDefault();
         alert("submitted")
+
+        console.log(`e.target: ${e.target}`)
     
+
+        // how sendForm works
+        // how to customize sendForm arguments
+        // we have to modify the selecteed date format and then send it to emailjs API
         emailjs.sendForm(
             process.env.REACT_APP_EMAILJS_SERVICE_KEY,
             process.env.REACT_APP_EMAILJS_PRAYER_REQUEST_TEMPLATE_KEY, e.target,
