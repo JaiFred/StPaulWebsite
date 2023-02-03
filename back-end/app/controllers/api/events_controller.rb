@@ -71,7 +71,7 @@ module Api
         return
       end
 
-      @event.image.attach(event_params[:image]) if event_params[:image].present?
+      @event.image.attach(event_params[:image]) if event_params[:image].present? && event_params[:image] != 'null'
 
       render json: @event, status: :ok
     end
