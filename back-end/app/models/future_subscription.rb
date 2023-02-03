@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class FutureSubscription < ApplicationRecord
   belongs_to :user
 

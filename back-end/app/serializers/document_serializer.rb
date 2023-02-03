@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: events
@@ -17,8 +19,7 @@ class DocumentSerializer < ActiveModel::Serializer
 
   attributes :id, :description, :file
 
-  def file 
+  def file
     Rails.application.routes.default_url_options[:host] + rails_blob_path(object.file) if object.file.present?
   end
-
 end
