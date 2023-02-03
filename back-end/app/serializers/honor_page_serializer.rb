@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: events
@@ -16,5 +18,4 @@ class HonorPageSerializer < ActiveModel::Serializer
   include Rails.application.routes.url_helpers
 
   has_many :documents
-
 end

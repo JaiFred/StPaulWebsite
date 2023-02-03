@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 # == Schema Information
 #
 # Table name: users
@@ -14,4 +16,3 @@
 class UserSerializer < ActiveModel::Serializer
   attributes :id, :first_name, :last_name, :email, :admin
 end
-  

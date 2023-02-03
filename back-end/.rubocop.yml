@@ -1,0 +1,21 @@
+# .rubocop.yml
+require:  
+  - rubocop-rails
+
+AllCops:
+  NewCops: enable
+  Exclude:
+    - "db/schema.rb"    
+    - "bin/*"
+    - "config/puma.rb"
+    - "config/spring.rb"
+    - "config/environments/development.rb"
+    - "config/environments/production.rb"    
+Style/Documentation:
+  Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false  
