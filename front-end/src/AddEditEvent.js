@@ -69,7 +69,7 @@ function AddEditEvent({
                         setAddEditEventIsOpen(false);
                         navigate(`/events`)
                     });
-                } else if (response.errors) {
+                } else {
                     response.json().then((response) => setErrors(response.errors));
                 }
             })
