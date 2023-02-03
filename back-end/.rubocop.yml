@@ -13,3 +13,9 @@ AllCops:
     - "config/environments/production.rb"    
 Style/Documentation:
   Enabled: false
+
+Naming/VariableNumber:
+  Enabled: false
+
+Rails/I18nLocaleTexts:
+  Enabled: false  

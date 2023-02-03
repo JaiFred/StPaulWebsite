@@ -24,15 +24,19 @@ class Event < ApplicationRecord
   end
 
   validates :title, :starts, :ends, presence: true
-  # :starts, :ends, :details, :address_line_1, :address_line_2, :city, :state_province_region, :zip_postalcode, :country,
+  # :starts, :ends, :details, :address_line_1, :address_line_2, :city,
+  # :state_province_region, :zip_postalcode, :country,
   # validates :title, uniqueness: {
   #     scope: [:location, :starts],
   #     message: ' is already used for an event at this location starting at the same time'
   # }, on: :create
+
   validates :title, uniqueness: {
     message: 'That title is already used for an event'
   }, on: :create
-  # validates :starts, :ends, :details, :address_line_1, :address_line_2, :city, :state_province_region, :zip_postalcode, :country, allow_blank: true
+
+  # validates :starts, :ends, :details, :address_line_1, :address_line_2, :city,
+  # :state_province_region, :zip_postalcode, :country, allow_blank: true
   validates :details, length: { maximum: 8000 }, allow_blank: true
   validates :address_line_1, length: { in: 1..300 }, allow_blank: true
   validates :address_line_2, length: { in: 1..300 }, allow_blank: true
