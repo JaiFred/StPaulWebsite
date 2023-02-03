@@ -61,7 +61,7 @@ function EventInfoPage({ currentUser }){
                     <div className="info-page__image" style={{ backgroundImage: `url(${event.image})` }}></div>
                 </div>
                 <div className="info-page-container col-12 col-lg-6 col-xl-12 ">
-                    <h1>{event.title}</h1>
+                    <h1 className="event-title">{event.title}</h1>
                     
                     {/* Time */}
                     <h3>Time:</h3>
