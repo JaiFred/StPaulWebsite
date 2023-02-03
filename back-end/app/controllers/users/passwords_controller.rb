@@ -4,13 +4,14 @@ module Users
   class PasswordsController < Devise::PasswordsController
     # POST /resource/password
     def create
-      # TODO: refactor this in such a way that both pages work as expected.
-      # Email reset password...
 
-      # if resource_class.find_by(email: resource_params[:email]).blank?
-      #   render json: { message: 'Email Not Found' }, status: 422
-      #   return
-      # end
+      # Reset Password Page (front-end)
+      if params[:request_source] == 'front-end'
+        if resource_class.find_by(email: resource_params[:email]).blank?
+          render json: { message: 'Email Not Found' }, status: 422
+          return
+        end
+      end
 
       self.resource = resource_class.send_reset_password_instructions(resource_params)
       yield resource if block_given?

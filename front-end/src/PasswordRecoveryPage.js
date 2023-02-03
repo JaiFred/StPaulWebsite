@@ -15,7 +15,7 @@ function PasswordRecoveryPage(){
 
     function handleSubmit (event) {
         event.preventDefault();
-        fetch("/password", {
+        fetch("/password?request_source=front-end", {
           method: "POST",
           headers: {
             "Content-Type": "application/json",
