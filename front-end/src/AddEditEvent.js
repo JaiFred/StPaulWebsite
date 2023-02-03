@@ -40,7 +40,7 @@ function AddEditEvent({
         console.log("handleSubmit updating event");
         const formData = new FormData();
 
-        if (image) {
+        if (typeof image === 'object') {
             formData.append("image", image);
         }
         formData.append("title", title);

@@ -22,7 +22,7 @@ function EventAddEditModal({
 
     function handleUpdateEvent(e) {
         e.preventDefault();
-    
+
         // const data = {
         //   review: {
         //     text: editedText,
@@ -31,7 +31,7 @@ function EventAddEditModal({
         //     restaurant_id: 20,
         //   },
         // };
-    
+
         // fetch(`http://localhost:4000/api/v1/reviews/${id}`, {
         //   method: "PUT",
         //   headers: {
@@ -51,20 +51,20 @@ function EventAddEditModal({
         //     setReviews(updatedReviews);
         //     setEditReviewForm(!showEditReviewForm);
         //   });
-      }    
+      }
 
     const [formData, setFormData] = useState({
         title: "",
         starts: "",
-        ends: "",  
+        ends: "",
         details: "",
-        address_line_1: "", 
+        address_line_1: "",
         address_line_2: "",
-        city: "", 
-        state_province_region: "", 
-        zip_postalcode: "", 
-        country: "", 
-        image: "",       
+        city: "",
+        state_province_region: "",
+        zip_postalcode: "",
+        country: "",
+        image: "",
     });
 
     console.log(`formData in EventEditModal: ${JSON.stringify(formData)}`);
@@ -74,7 +74,7 @@ function EventAddEditModal({
 
         fetch(`/api/events/${id}`)
             .then((res) => res.json())
-            .then((event) => {            
+            .then((event) => {
                 const updatedEvent = { ...event, starts: event.starts_raw, ends: event.ends_raw }
                 console.log('backend data', updatedEvent)
                 setFormData(updatedEvent);
@@ -87,12 +87,12 @@ function EventAddEditModal({
                 className='edit_modal'
                 show={addEditEventIsOpen}
             >
-                <DarkHeader onCancel={() => setAddEditEventIsOpen(false)} />   
+                <DarkHeader onCancel={() => setAddEditEventIsOpen(false)} />
                 <ModalBody className="event-edit-modal-body">
-                    <AddEditEvent 
+                    <AddEditEvent
                         formData={formData}
-                        setFormData={setFormData} 
-                        handleAddEditEvent={handleAddEditEvent} 
+                        setFormData={setFormData}
+                        handleAddEditEvent={handleAddEditEvent}
                         setAddEditEventIsOpen={setAddEditEventIsOpen}
                     />
                 </ModalBody>
