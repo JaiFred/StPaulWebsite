@@ -14,6 +14,12 @@ function PrayerRequestsContainer(){
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [date, setDate] = useState('');
+    const [prayerDetails, setPrayerDetails] = useState('');
+    const [whatDetails, setWhatDetails] = useState('');
+    const [whoDetails, setWhoDetails] = useState('');
+    const [drone1, setDrone1] = useState(false);
+    const [drone2, setDrone2] = useState(false);
+ 
 
     const sendEmail = (e) => {
         e.preventDefault();
@@ -23,7 +29,16 @@ function PrayerRequestsContainer(){
             service_id: process.env.REACT_APP_EMAILJS_SERVICE_KEY,
             template_id: process.env.REACT_APP_EMAILJS_PRAYER_REQUEST_TEMPLATE_KEY,
             user_id: process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
-            template_params: { "name-cell": name,  "date-cell": moment(date).format("lll"), 'email-from': email },
+            template_params: { 
+                'name-cell': name,
+                'date-cell': moment(date).format("lll"),
+                'email-from': email,
+                'who-input': whoDetails,
+                'what-input': whatDetails,
+                'prayer-details-input': prayerDetails,
+                'drone1': drone1,
+                'drone2': drone2,
+            },
             accessToken: process.env.REACT_APP_EMAILJS_PRIVATE_KEY
         }
 
@@ -59,6 +74,8 @@ function PrayerRequestsContainer(){
                         name="who-input"
                         // value=
                         placeholder="Type name"
+                        value={whoDetails}
+                        onChange={(e) => setWhoDetails(e.target.value)}
                     />
 
                     <label htmlFor="what-input">What is their relationship to you?</label>
@@ -69,6 +86,8 @@ function PrayerRequestsContainer(){
                         name="what-input"
                         // value=
                         placeholder="(Optional: Friend, mom, dad, spouse, you etc.) "
+                        value={whatDetails}
+                        onChange={(e) => setWhatDetails(e.target.value)}
                     />
 
                     <label htmlFor="prayer-input">Prayer Details</label>
@@ -80,6 +99,8 @@ function PrayerRequestsContainer(){
                         rows='10'
                         cols='30'
                         placeholder='type here --'
+                        value={prayerDetails}
+                        onChange={(e) => setPrayerDetails(e.target.value)}
                     />
 
                     {/* Name and Date */}
@@ -93,8 +114,8 @@ function PrayerRequestsContainer(){
                                     id='name'
                                     required
                                     name='name-cell'
-                                    value={name}
                                     placeholder='Name'
+                                    value={name}
                                     onChange={(e) => setName(e.target.value)}
                                 />
                             </label>
@@ -108,8 +129,8 @@ function PrayerRequestsContainer(){
                                     required
                                     id='date'
                                     name='date-cell'
-                                    value={date}
                                     placeholder='Date'
+                                    value={date}
                                     onChange={(e) => setDate(e.target.value)}
                                 />
                             </label>
@@ -121,23 +142,49 @@ function PrayerRequestsContainer(){
                         <legend className="prayer-radio-button-title">Would you like us to pray for your intention during the morning announcments?</legend>
 
                         <label>
-                            <input type='radio' id='Yes' name="drone1" value='Yes' checked/>
-                            Yes
+                            <input
+                                type='radio'
+                                id='Yes'
+                                name="drone1"
+                                checked
+                                value={false}
+                                onChange={(e) => setDrone1(e.target.value)}
+                                />
+                                Yes
                         </label>
                         <label>
-                            <input type='radio' id='No' name="drone1" value='No'/>
-                            No
+                            <input
+                                type='radio'
+                                id='No'
+                                name="drone1"
+                                value={true}
+                                onChange={(e) => setDrone1(e.target.value)}
+                                />
+                                No
                         </label>
                     </fieldset>
                     <fieldset className="mb-5">
                         <legend className="prayer-radio-button-title">Is it OK to post your request in Church?</legend>
                         <label>
-                            <input type='radio' id='Yes' name="drone2" value='Yes' checked/>
-                            Yes
+                            <input 
+                                type='radio' 
+                                id='Yes' 
+                                name="drone2" 
+                                checked
+                                value={false} 
+                                onChange={(e) => setDrone2(e.target.value)}
+                                />
+                                Yes
                         </label>
                         <label>
-                            <input type='radio' id='No' name="drone2" value='No'/>
-                            No
+                            <input 
+                                type='radio' 
+                                id='No' 
+                                name="drone2" 
+                                value={true}
+                                onChange={(e) => setDrone2(e.target.value)}
+                                />
+                                No
                         </label>
                     </fieldset>
 
@@ -147,13 +194,12 @@ function PrayerRequestsContainer(){
                         type="text"
                         name="email-from"
                         id="email-from"
-                        value={email}
                         required
                         className="email-form"
                         placeholder="Your Email"
+                        value={email}
                         onChange={(e) => setEmail(e.target.value)}
                     />
-
                     {/* Submit */}
                     <fieldset className="text-center">
                         <button type="submit" className="submit-button button-custom">Send</button>

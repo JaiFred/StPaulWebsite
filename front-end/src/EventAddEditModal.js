@@ -14,11 +14,6 @@ function EventAddEditModal({
     setAddEditEventIsOpen,
     handleAddEditEvent
 }){
-    // t.string :title
-    // t.datetime :starts
-    // t.datetime :ends
-    // t.string :details
-    // t.string :location
 
     function handleUpdateEvent(e) {
         e.preventDefault();
