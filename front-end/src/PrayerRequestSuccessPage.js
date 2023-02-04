@@ -7,7 +7,7 @@ import { Link } from "react-router-dom";
 import Church from './images/StPaulBaptistChurch.JPG'
 import './SuccessPage.scss';
 
-function PrayerRequestSuccess() {
+function PrayerRequestSuccessPage() {
     return(
         <div className="success-page-wrapper" style={{ backgroundImage: `url(${Church})` }}>
             <div className="success-page-message">
@@ -22,4 +22,4 @@ function PrayerRequestSuccess() {
     )
 }
 
-export default PrayerRequestSuccess
+export default PrayerRequestSuccessPage
