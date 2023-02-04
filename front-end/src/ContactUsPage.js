@@ -129,7 +129,7 @@ function ContactUsPage(){
                                             email: stpaul23009@gmail.com
                                         </p>
                                     </div>
-                                    <a className="directions" href="https://www.google.com/maps/place/1995+Globe+Rd,+Aylett,+VA+23009/@37.8135257,-77.2050461,17z/data=!3m1!4b1!4m5!3m4!1s0x89b128245469bbb9:0x54383625ecd83599!8m2!3d37.8135215!4d-77.2028574" target='_blank'>
+                                    <a className="directions" href="https://www.google.com/maps/dir//1995+Globe+Rd,+Aylett,+VA+23009/@37.8135257,-77.2050461,915m/data=!3m1!1e3!4m8!4m7!1m0!1m5!1m1!1s0x89b128245469bbb9:0x54383625ecd83599!2m2!1d-77.2028574!2d37.8135215" target='_blank'>
                                         <p className="directions-button-title">
                                         Directions
                                         </p>
