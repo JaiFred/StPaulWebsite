@@ -26,6 +26,7 @@ const EditDashboardDocument = ({ document, fetchDashboardDocuments, editDashboar
 
         const formData = new FormData();       
         formData.append("description", editedDescription);
+        formData.append("id", document.id)
 
         const configObj = {
             method: "PATCH",

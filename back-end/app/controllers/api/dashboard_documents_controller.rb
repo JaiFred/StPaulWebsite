@@ -46,7 +46,7 @@ module Api
 
     # Only allow a list of trusted parameters through.
     def dashboard_document_params
-      params.permit(:description)
+      params.permit(:id, :description)
     end
   end
 end
