@@ -19,7 +19,7 @@ function PrayerRequestsContainer(){
     const [whoDetails, setWhoDetails] = useState('');
     const [drone1, setDrone1] = useState(false);
     const [drone2, setDrone2] = useState(false);
- 
+
 
     const sendEmail = (e) => {
         e.preventDefault();
@@ -29,7 +29,7 @@ function PrayerRequestsContainer(){
             service_id: process.env.REACT_APP_EMAILJS_SERVICE_KEY,
             template_id: process.env.REACT_APP_EMAILJS_PRAYER_REQUEST_TEMPLATE_KEY,
             user_id: process.env.REACT_APP_EMAILJS_PUBLIC_KEY,
-            template_params: { 
+            template_params: {
                 'name-cell': name,
                 'date-cell': moment(date).format("lll"),
                 'email-from': email,
@@ -146,9 +146,9 @@ function PrayerRequestsContainer(){
                                 type='radio'
                                 id='Yes'
                                 name="drone1"
-                                checked
-                                value={false}
-                                onChange={(e) => setDrone1(e.target.value)}
+                                checked={drone1 === 'Yes'}
+                                value='Yes'
+                                onClick={(e) => setDrone1('Yes')}
                                 />
                                 Yes
                         </label>
@@ -156,9 +156,9 @@ function PrayerRequestsContainer(){
                             <input
                                 type='radio'
                                 id='No'
-                                name="drone1"
-                                value={true}
-                                onChange={(e) => setDrone1(e.target.value)}
+                                checked={drone1 === 'No'}
+                                value='No'
+                                onClick={(e) => setDrone1('No')}
                                 />
                                 No
                         </label>
@@ -166,21 +166,21 @@ function PrayerRequestsContainer(){
                     <fieldset className="mb-5">
                         <legend className="prayer-radio-button-title">Is it OK to post your request in Church?</legend>
                         <label>
-                            <input 
-                                type='radio' 
-                                id='Yes' 
-                                name="drone2" 
+                            <input
+                                type='radio'
+                                id='Yes'
+                                name="drone2"
                                 checked
-                                value={false} 
+                                value={false}
                                 onChange={(e) => setDrone2(e.target.value)}
                                 />
                                 Yes
                         </label>
                         <label>
-                            <input 
-                                type='radio' 
-                                id='No' 
-                                name="drone2" 
+                            <input
+                                type='radio'
+                                id='No'
+                                name="drone2"
                                 value={true}
                                 onChange={(e) => setDrone2(e.target.value)}
                                 />
