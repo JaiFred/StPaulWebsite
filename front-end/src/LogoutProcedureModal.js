@@ -10,7 +10,7 @@ import ModalFooter from './Modal/Footer';
 
 function LogoutProcedureModal({ logoutIsOpen, setLogoutIsOpen, currentUser, setCurrentUser }){
 
-    let navigate = useNavigate();
+    const navigate = useNavigate();
 
     console.log('Rendered LogoutProcedureModal');
     console.log(`logoutIsOpen: ${logoutIsOpen}`);

@@ -1,0 +1,25 @@
+//Hooks
+import { Link } from "react-router-dom";
+
+//Components
+
+//CSS
+import Church from './images/StPaulBaptistChurch.JPG'
+import './SuccessPage.scss';
+
+function PrayerRequestSuccess() {
+    return(
+        <div className="success-page-wrapper" style={{ backgroundImage: `url(${Church})` }}>
+            <div className="success-page-message">
+                <h1>We have recieved your prayer and will honor your request.</h1>
+                <p>
+                    Rest assured you are our priority. Stay safe and healthy. <br/> God bless!
+                </p>
+            </div>
+
+            <Link to='/prayer_requests' className="back-home-button">Back</Link>
+        </div>
+    )
+}
+
+export default PrayerRequestSuccess

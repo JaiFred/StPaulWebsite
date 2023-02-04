@@ -23,7 +23,7 @@ function ProfilePage({
 }) {
   // const lastName = currentUser?.user?.last_name || currentUser?.last_name;
 
-  let navigate = useNavigate();
+  const navigate = useNavigate();
 
   console.log(`currentUser: ${JSON.stringify(currentUser)}`);
   console.log(`currentUser?.user: ${JSON.stringify(currentUser?.user)}`);
@@ -58,7 +58,7 @@ function ProfilePage({
         response.json().then(() => {
           setCurrentUser(null);
           localStorage.setItem("currentUserId", null);
-          navigate("/login");
+          navigate("/profile_deleted_success");
           setAccountDeleteIsOpen(false); //new
         });
       } else {

@@ -16,9 +16,11 @@ import EventInfoPage from './EventInfoPage';
 import BroadcastsContainer from './Broadcasts/BroadcastsContainer';
 import Navbar from './Navbar';
 import ProfilePage from './ProfilePage';
+import ProfileDeleteSuccessPage from './ProfileDeleteSuccessPage';
 import SubscriptionCard from './SubscriptionCard';
 import Footer from './Footer';
 import PrayerRequestsContainer from './PrayerRequestsContainer';
+import PrayerRequestSuccess from './PrayerRequestSuccess';
 import ContactUsPage from './ContactUsPage';
 import ContactUsSuccess from './ContactUsSuccess';
 import HonorsPage from './Honors/HonorsPage';
@@ -312,8 +314,10 @@ function App() {
             />
           }
           />
+          <Route path='/profile_deleted_success' element={<ProfileDeleteSuccessPage/>}/>
           <Route path='/broadcasts' element={<BroadcastsContainer/>}/>
           <Route path='/prayer_requests' element={<PrayerRequestsContainer/>}/>
+          <Route path='/prayer_request_success' element={<PrayerRequestSuccess/>}/>
           <Route path='/about' element={<AboutPage/>}/>
           <Route path='/contact_us' element={<ContactUsPage/>}/>
           <Route path='/contact_us_success' element={<ContactUsSuccess/>}/>

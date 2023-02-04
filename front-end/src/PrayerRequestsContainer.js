@@ -1,7 +1,9 @@
 //Hooks
 import React, { useState } from "react";
+import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser"
 import moment from "moment";
+
 
 //Components
 import { BackHomeButton } from "./BackHomeButton/BackHomeButton";
@@ -17,13 +19,14 @@ function PrayerRequestsContainer(){
     const [prayerDetails, setPrayerDetails] = useState('');
     const [whatDetails, setWhatDetails] = useState('');
     const [whoDetails, setWhoDetails] = useState('');
-    const [drone1, setDrone1] = useState(false);
-    const [drone2, setDrone2] = useState(false);
+    const [drone1, setDrone1] = useState('yes');
+    const [drone2, setDrone2] = useState('yes');
+    const navigate = useNavigate();
 
 
     const sendEmail = (e) => {
         e.preventDefault();
-        alert("submitted");
+        alert("Thank you for your prayer request!");
 
         const reqBody = {
             service_id: process.env.REACT_APP_EMAILJS_SERVICE_KEY,
@@ -49,7 +52,10 @@ function PrayerRequestsContainer(){
               },
             body: JSON.stringify(reqBody)
         })
-        .then((_res) => window.location.reload(false));
+        .then((_res) => {
+            // window.location.reload(false);
+            navigate('/prayer_request_success')
+        });
     }
 
     return (
@@ -170,9 +176,9 @@ function PrayerRequestsContainer(){
                                 type='radio'
                                 id='Yes'
                                 name="drone2"
-                                checked
-                                value={false}
-                                onChange={(e) => setDrone2(e.target.value)}
+                                checked={drone2 === 'Yes'}
+                                value='Yes'
+                                onClick={(e) => setDrone2('Yes')}
                                 />
                                 Yes
                         </label>
@@ -181,8 +187,9 @@ function PrayerRequestsContainer(){
                                 type='radio'
                                 id='No'
                                 name="drone2"
-                                value={true}
-                                onChange={(e) => setDrone2(e.target.value)}
+                                checked={drone2 === 'No'}
+                                value='No'
+                                onClick={(e) => setDrone2('No')}
                                 />
                                 No
                         </label>
