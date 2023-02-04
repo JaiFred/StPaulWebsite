@@ -26,6 +26,7 @@ import HonorViewItem from './HonorViewItem';
 import EditHonorsDocuments from './EditHonorsItem';
 import PasswordRecoveryPage from './PasswordRecoveryPage';
 import YouthCorner from './YouthCorner';
+import { CrossIcon } from './CrossIcon';
 import { Modals } from './Modals';
 
 

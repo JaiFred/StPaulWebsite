@@ -14,11 +14,11 @@ module Api
 
         image_url = if image_params[:aspect_ratio] == 'small'
                       Rails.application.routes.default_url_options[:host] + Rails.application.routes.url_helpers.rails_representation_url(
-                        image.file.variant(resize: '100x100').processed, only_path: true
+                        image.file.variant(resize: '485x485').processed, only_path: true
                       )
                     else
                       Rails.application.routes.default_url_options[:host] + Rails.application.routes.url_helpers.rails_representation_url(
-                        image.file.variant(resize: '969x969').processed, only_path: true
+                        image.file.variant(resize: '700x700').processed, only_path: true
                       )
                     end
 

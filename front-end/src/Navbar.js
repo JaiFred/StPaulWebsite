@@ -1,16 +1,11 @@
 //Hooks
 import React from "react";
 import { Link } from "react-router-dom";
-import {useEffect} from 'react'
-import { Container } from "react-bootstrap";
-
 
 //components
-import GivingModal from "./GivingModal";
 
 //CSS
-import Hamburger from "./images/Hamburger Button.png"
-import Cross from "./images/Cross.webp"
+import { CrossIcon } from "./CrossIcon";
 import "./Navbar.scss"
 import { MoreOptionsMenu } from "./MoreOptionsMenu";
 
@@ -44,7 +39,7 @@ function Navbar({givingIsOpen, signUpIsOpen, setSignUpIsOpen, loginIsOpen, setLo
 
       <nav className="navbar navbar-expand-md navbar-dark">
         <Link to='/' className="navbar-brand" title="home" alt="home" >
-        <img src={Cross} className="cross"></img>
+        <CrossIcon/>
         <h1 className="title">St Paul Baptist Church</h1>
         </Link>
         <div class="navbar-outer">

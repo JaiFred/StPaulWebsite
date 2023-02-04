@@ -13,7 +13,7 @@ import { DarkHeader } from './Modal/Header'
 
 // styles
 import './GivingModal.scss'
-import Cross from "./images/Cross.webp"
+import Cross from "./images/Cross.png"
 import { ErrorMessage } from "./Forms/ErrorMessage";
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid

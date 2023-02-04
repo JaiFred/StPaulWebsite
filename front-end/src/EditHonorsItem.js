@@ -78,7 +78,6 @@ function EditHonorsItem({ fetchDocuments, setDocuments, doc, setEditHonorIsOpen,
                     id="description"
                     value={editedDescription}
                     onChange={newValue => setEditedDescription(newValue)}
-                    aspectRatio={'small'}
                     placeholder="description..." 
                 />
 

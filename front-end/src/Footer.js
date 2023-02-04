@@ -3,15 +3,9 @@ import {useState, useEffect} from 'react'
 import { Link } from "react-router-dom";
 
 //Components
-import ContactUsPage from "./ContactUsPage"
-import GivingModal from './GivingModal';
-import LoginModal from "./LoginModal";
-import SignUpModal from "./SignUpModal";
-import LogoutProcedureModal from "./LogoutProcedureModal";
 import { FooterAccountOptions } from './FooterAccountOptions';
 
 //CSS
-import Cross from "./images/Cross.webp"
 import './Footer.scss';
 
 const useFetchConfig = () => {
