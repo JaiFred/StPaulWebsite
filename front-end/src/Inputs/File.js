@@ -16,9 +16,7 @@ const FileInput = (props) => {
 
         // Handles file
         onChange(event);
-    }
-
-    console.log({file})
+    }    
 
     return (
         <label className="input-file">

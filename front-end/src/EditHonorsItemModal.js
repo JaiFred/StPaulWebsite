@@ -3,7 +3,7 @@ import EditHonorsItem from "./EditHonorsItem"
 
 import HonorsItemModal from './HonorsItemModal'
 
-const EditHonorsItemModal = ({ fetchDocuments, selectedDocument, doc, editHonorIsOpen, setEditHonorIsOpen }) => (
+const EditHonorsItemModal = ({ fetchDocuments, setDocuments, selectedDocument, doc, editHonorIsOpen, setEditHonorIsOpen }) => (
     <HonorsItemModal
         className="overlay-edit-honors-modal"
         show={editHonorIsOpen && selectedDocument === doc}
@@ -12,6 +12,7 @@ const EditHonorsItemModal = ({ fetchDocuments, selectedDocument, doc, editHonorI
     >
         <EditHonorsItem 
             fetchDocuments={fetchDocuments}
+            setDocuments={setDocuments}
             doc={doc}                        
             setEditHonorIsOpen={setEditHonorIsOpen}
             onCancel={() => setEditHonorIsOpen(false)}

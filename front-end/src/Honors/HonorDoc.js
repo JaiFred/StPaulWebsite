@@ -88,6 +88,7 @@ export const HonorDoc = ({
       <>
         <EditHonorsItemModal
           fetchDocuments={fetchDocuments}
+          setDocuments={setDocuments}
           selectedDocument={selectedDocument}
           doc={doc}
           editHonorIsOpen={editHonorIsOpen}

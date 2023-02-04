@@ -13,7 +13,7 @@ import './EditHonorsItem.scss'
 
 // send props into here to make this work again...
 
-function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen, onCancel }){
+function EditHonorsItem({ fetchDocuments, setDocuments, doc, setEditHonorIsOpen, onCancel }){
 
     const navigate = useNavigate();
 
@@ -51,7 +51,7 @@ function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen, onCancel }){
             console.log('fetching latest documents 1')
             setEditHonorIsOpen(false);
             console.log('fetching latest documents 2')
-            fetchDocuments();
+            fetchDocuments(setDocuments);
           })      
     };
 
@@ -78,8 +78,10 @@ function EditHonorsItem({ fetchDocuments, doc, setEditHonorIsOpen, onCancel }){
                     id="description"
                     value={editedDescription}
                     onChange={newValue => setEditedDescription(newValue)}
+                    aspectRatio={'small'}
                     placeholder="description..." 
                 />
+
             </div>
             <ModalFooter onSubmit={handleSubmit} onCancel={onCancel} submitLabel="Edit" />
         </form>
