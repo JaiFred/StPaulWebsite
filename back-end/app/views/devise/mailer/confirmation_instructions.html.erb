@@ -1,5 +1,87 @@
-<p>Welcome <%= @email %>!</p>
+<!DOCTYPE html />
+<html>
+    <head>
+      <style>
+        .email-body a {
+            color: #62ECFF;
+        }
+      </style>
+    </head>
+    <body style="margin: 0;">
+      <!-- body -->
+      <table class="email-body" cellpadding="100" style="width: 100%;text-align: center;min-height: 100vh;font-family: Helvetica, Arial;background-image: linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,.4), black);">
+        <tbody>
+          <tr>
+            <td>
+              <!-- Main container -->
+              <table class="wrapper" cellpadding="0" cellspacing="0" style="width: 800px;text-align: center;margin: 0 auto;">
+                <thead>
+                  <tr>
+                    <td>
 
-<p>You can confirm your account email through the link below:</p>
+                      <!-- Header -->
+                      <table class="header" style="width: 100%;text-align: center;background: #957869;padding: 20px 0;">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <img src="http://localhost:3000/assets/img/EmailBanner.png" style="max-width: 350px;">
+                            </td>
+                          </tr>
+                        </tbody>
+                      </table>
+                    </td>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td class="main-content-background" style="background-color: #543;background-image: url(http://localhost:3000/assets/img/Cross.png);background-size: 75%;background-repeat: no-repeat;background-position: center -170px;">
 
-<p><%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %></p>
+                      <!-- Main content -->
+                      <table class="main-content" style="width: 100%;text-align: center;background: rgba(78, 55, 43, .7);color: white;padding: 50px;">
+                        <tbody>
+                          <tr>
+                            <td>
+                              <table class="main-content-box" style="width: 100%;text-align: center;background: rgba(0,0,0,0.45);color: white;border-radius: 10px;padding: 50px;margin-top: 80px;text-shadow: 1px 1px 1px black;font-size: 25px;">
+                                <tbody>
+                                  <tr>
+                                    <td class="text-left" style="text-align: left;">
+                                      <h3>Welcome <%= @email %>!</h3>
+                                      <p style="margin: 0 0 10px;">You can confirm your account email through the link below:</p>
+                                    </td>
+                                  </tr>
+                                  <tr>
+                                    <td class="main-link" style="padding: 30px 0;color: #62ECFF;">
+                                      <%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %>
+                                    </td>
+                                  </tr>
+                                </tbody>
+                              </table>
+                            </td>
+                          </tr>
+                        </tbody>
+
+                        <!-- Footer -->
+                        <tfoot style="padding-top: 50px;">
+                          <tr>
+                            <td>
+                              <p class="footer-text" style="margin: 0 0 10px;text-align: left;margin-top: 100px;">
+                                Copyright © 2022, All rights reserved. <br>
+                                St. Paul Baptist Church<br>
+
+                                1995 Globe Road<br>
+                                Aylett, VA 23009     
+                              </p><p style="margin: 0 0 10px;">
+                            </p></td>
+                          </tr>
+                        </tfoot>
+                      </table>
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </body>
+</html>

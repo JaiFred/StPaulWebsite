@@ -72,11 +72,12 @@
             border-radius: 20px;
             flex-grow: 1;
             overflow: hidden;
+            padding: 15px 20px;
 
             > p {
                 height: 100%;
                 overflow: auto;
-                margin: 5px 0;
+                margin: 0 0 5px;
             }
         }
 

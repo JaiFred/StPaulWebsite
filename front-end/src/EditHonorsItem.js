@@ -77,7 +77,10 @@ function EditHonorsItem({ fetchDocuments, setDocuments, doc, setEditHonorIsOpen,
                 <Editor
                     id="description"
                     value={editedDescription}
-                    onChange={newValue => setEditedDescription(newValue)}
+                    onChange={newValue => {
+                        setEditedDescription(newValue)
+                        console.log({newValue})
+                    }}
                     placeholder="description..." 
                 />
 

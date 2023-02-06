@@ -10,6 +10,10 @@
         font-size: 30px;
         font-family: 'Inter', sans-serif;
         font-variant: small-caps;
+        
+        @include media-breakpoint-down(md) {
+            font-size: 26px;
+        }
     }
 
         .admin-name{
