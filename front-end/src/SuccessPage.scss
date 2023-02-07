@@ -18,10 +18,23 @@
         font-weight: 800;
         margin-bottom: 40px;
     }
+
+    .contact-us-text{
+        font-weight: 800;
+        margin-bottom: 0px;
+    }
     
     p {
         font-weight: 700;
         font-size: 1.33em;
         margin-bottom: 0;
+    }
+}
+
+.button-text{
+    margin: 0;
+
+    &:hover{
+        color: rgb(255, 250, 195);
     }
 }

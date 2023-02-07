@@ -41,7 +41,7 @@ function EditProfile({ errors, currentUser, editProfileIsOpen, setEditProfileIsO
       <label>
         Email
         <input
-          className="email-input mb-0"
+          className="email-input"
           type="text"
           value={email}
           placeholder="E-mail..."
@@ -49,10 +49,10 @@ function EditProfile({ errors, currentUser, editProfileIsOpen, setEditProfileIsO
         />
       </label>
     
-            <div className="error mt-4 mb-5">
-              {errors.map((error) => <OpaqueErrorMessage message={error.message || error}/>)}
-            </div>
-      
+        <div className="error">
+          {errors.map((error) => <OpaqueErrorMessage message={error.message || error} className="mb-0 mt-3" />)}
+        </div>
+  
     </form>
   )
 }

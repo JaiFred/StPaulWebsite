@@ -24,7 +24,7 @@ function EditProfileModal({ errors, currentUser, editProfileIsOpen, setEditProfi
             <DarkHeader onCancel={onCancel} />
             {/* <ModalTitle> <button type="button" onClick={() => {resetForm()}}>X</button></ModalTitle> */}
             
-            <ModalBody className="text-center ">
+            <ModalBody className="text-center pb-0">
                 <h2 className="modal-body-heading">Edit Account Info</h2>
                 <EditProfile 
                     currentUser={currentUser} 

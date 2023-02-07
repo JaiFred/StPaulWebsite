@@ -15,12 +15,15 @@
         margin-bottom: 16px;
         margin-top: 16px;
         text-align: center;
-
     }
 
     video {
-        position: absolute;
+        position: fixed;
         top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
     }
 
     .name-date-list {

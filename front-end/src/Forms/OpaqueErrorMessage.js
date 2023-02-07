@@ -1,7 +1,8 @@
+import classNames from 'classnames';
 import './OpaqueErrorMessage.scss';
 
-export const OpaqueErrorMessage = ({message}) => (
-    <div className="opaque-error-message" role="alert">
+export const OpaqueErrorMessage = ({ message, className }) => (
+    <div className={classNames("opaque-error-message", className)} role="alert">
       <svg width="16" height="16" viewBox="0 0 17 17">
         <path
           fill="#dc3545"

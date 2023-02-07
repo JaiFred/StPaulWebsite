@@ -14,7 +14,7 @@ function PasswordRecoveryRequestSuccess(){
             <h1>We have recieved your request to change your password</h1>
             <p>please check your email and follow the links to change your password</p>
             </div>
-            <Link to='/login' className="back-home-button">back to login</Link>
+            <Link to='/login' className="back-home-success">back to login</Link>
         </div>
     )
 }

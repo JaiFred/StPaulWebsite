@@ -1,5 +1,7 @@
 
 //Hooks
+import { Link } from "react-router-dom";
+
 
 //Components
 import { BackHomeButton } from "./BackHomeButton/BackHomeButton";
@@ -16,7 +18,9 @@ function ProfileDeleteSuccessPage() {
                 <p>We're sorry to see you go.</p>
             </div>
 
-            <BackHomeButton className="mt-5" />
+            <div className="back-home mt-5">
+                <Link to='/' className="back-home-success"><h3 className="button-text">Back Home</h3></Link>
+            </div>
         </div>
     )
 }

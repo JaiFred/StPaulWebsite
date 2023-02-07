@@ -94,7 +94,7 @@ function ContactUsPage(){
                                         width: "100%",
                                         aspectRatio: "1/1",
                                         borderRadius: "15px",
-                                        border: "2px solid red",
+                                        border: "2px solid white",
                                         center: [12.550343, 55.665957],
                                     }}
                                     initialViewState={{

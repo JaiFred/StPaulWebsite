@@ -156,3 +156,23 @@ h3.navbar-banner {
 .bolder {
   font-weight: 800;
 }
+
+.header, .footer {
+  position: relative;
+  z-index: 1;
+}
+
+html, body {
+  overflow: hidden;
+  height: 100%;
+}
+
+#root {
+  overflow: auto;
+  height: 100%;
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+}

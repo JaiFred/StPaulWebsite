@@ -190,14 +190,15 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                 <ModalBody>
                     <div className="giving-modal-one-time-pay-page">
                         {showAmountForm && (
-                            !error ? (
+                            <>
                                 <h1 className="give-title text-center">
                                     {paymentOption === 'One Time Payment' && 'One Time Offering'}
                                     {paymentOption === 'Regularly' && 'Recurring Offering'}
                                 </h1>
-                            ) : (
-                                paymentOption == 'One Time Payment' && <ErrorMessage message={error}/>
-                            )
+                                {error && paymentOption == 'One Time Payment' &&
+                                    <ErrorMessage message={error}/>
+                                }
+                            </>
                         )}
                     
                         { currentUser  && <PaymentOptionDropdown />}

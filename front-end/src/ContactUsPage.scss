@@ -34,6 +34,8 @@ form.contact-form {
     color: white;
 
     @include media-breakpoint-down(md) {
+        padding-top: 40px;
+        margin: 40px;
         display: block;
     }
 }

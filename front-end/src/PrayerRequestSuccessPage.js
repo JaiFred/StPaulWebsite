@@ -16,8 +16,9 @@ function PrayerRequestSuccessPage() {
                     Rest assured you are our priority. Stay safe and healthy. <br/> God bless!
                 </p>
             </div>
-
-            <Link to='/prayer_requests' className="back-home-button">Back</Link>
+            <div className="back-home mt-5">
+                <Link to='/prayer_requests' className="back-home-success"><h3 className="button-text">Back</h3></Link>
+            </div>
         </div>
     )
 }

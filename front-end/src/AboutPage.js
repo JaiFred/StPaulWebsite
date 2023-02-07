@@ -27,7 +27,7 @@ function AboutPage(){
                             <div className="welcome-container">
                                 <h2 className='welcome'>Welcome</h2>
                                 <p className='welcome-message'>
-                                    The Pastor Rev. Brown and Assistant Pastor Rev Kim Bullock welcome you to St. Paul Baptist Church. We invite you to come and share in worship with us in the scripture of 1 Peter 2:9 "A people of praise and service".
+                                    The Pastor Rev. Robert Brown and Assistant Pastor Rev Kim Bullock welcome you to St. Paul Baptist Church. We invite you to come and share in worship with us in the scripture of 1 Peter 2:9 "A people of praise and service".
                                 </p>
                                 <p>Welcome, Welcome, Welcome!</p>
                             </div>
