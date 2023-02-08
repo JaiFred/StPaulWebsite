@@ -32,19 +32,20 @@ export const FooterAccountOptions = ({
 
     return(
         <div className="footer-account-options-wrapper"> 
-            {
-            !currentUser &&
-            <div className="footer-menu">
-                <button className='footer-menu-item' type='button' onClick={() => setLoginIsOpen(true)}>Login</button>
-                <button className='footer-menu-item' type='button' onClick={() => setSignUpIsOpen(true)}>Sign Up</button>
-                <LoginModal
-                    loginIsOpen={loginIsOpen}
-                    setLoginIsOpen={setLoginIsOpen}/>
-                <SignUpModal
-                    signUpIsOpen={signUpIsOpen}
-                    setSignUpIsOpen={setSignUpIsOpen}/>
-            </div>
-            }
+            {!currentUser && (
+                <>
+                    <div className="footer-menu">
+                        <button className='footer-menu-item' type='button' onClick={() => setLoginIsOpen(true)}>Login</button>
+                        <button className='footer-menu-item' type='button' onClick={() => setSignUpIsOpen(true)}>Sign Up</button>
+                    </div>
+                    <LoginModal
+                        loginIsOpen={loginIsOpen}
+                        setLoginIsOpen={setLoginIsOpen}/>
+                    <SignUpModal
+                        signUpIsOpen={signUpIsOpen}
+                        setSignUpIsOpen={setSignUpIsOpen}/>
+                </>
+            )}
 
             {currentUser && 
                 <div className="footer-menu">

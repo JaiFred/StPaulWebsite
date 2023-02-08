@@ -4,7 +4,8 @@ import ReactPlayer, { controls } from "react-player";
 
 import EditDashboardDocumentModal from "./EditDashboardDocumentModal";
 import { ReactPlayerWrapper } from "./ReactPlayerWrapper/ReactPlayerWrapper";
-import { Parallax } from 'react-scroll-parallax'; 
+// import Parallax from './components/Parallax'; 
+import { Parallax } from 'react-scroll-parallax';
 import useWindowSize from "./hooks/useWindowSize";
 
 //Component
@@ -15,6 +16,7 @@ import { BackHomeButton } from "./BackHomeButton/BackHomeButton";
 import YellowTrees from "./images/honor-page-video.mp4"
 import './BibleStudyPage.scss';
 import placholderImage from './images/Giving.jpeg'
+import useAvoidBounce from "./hooks/useAvoidBounce";
 
 const getVideoSize = (isMobile) => ({
   width: isMobile ? '95%' : '80%',
@@ -26,6 +28,7 @@ function BibleStudyPage({ currentUser }) {
   const API = process.env.REACT_APP_MY_GOOGLE_API_KEY;
   const channelID = process.env.REACT_APP_YOUTUBE_CHANNEL_ID;
   const result = 1;
+  useAvoidBounce('mobile');
 
   var finalURL = `https://www.googleapis.com/youtube/v3/search?key=${API}&channelId=${channelID}&part=snippet,id&order=date&maxResults=${result}`;
   console.log(`finalURL: ${finalURL}`);
@@ -79,7 +82,7 @@ function BibleStudyPage({ currentUser }) {
 
   return (
     <div className="bible-study-overlay overflow-hidden position-relative">
-        <Parallax className={'bible-study-background'} speed={-50}>
+        <Parallax className={'parallax-container bible-study-background'} speed={-50}>
             <video muted loop autoPlay playsInline src={YellowTrees}></video>
         </Parallax>
 

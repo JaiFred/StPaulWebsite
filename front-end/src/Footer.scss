@@ -4,7 +4,7 @@
     color: #fff;
     text-align: left;
     background-color: #1A1919;
-    padding-top: 40px;
+    padding: 40px 0 20px;
 
     &-top {
         display: flex;
@@ -21,7 +21,7 @@
     }
 
     &-menu {
-        display:flex;
+        display: flex;
         flex-direction: column;
         align-items: flex-start;
         
@@ -39,12 +39,66 @@
                 transform: translateX(5px) !important;
             }
         }
+
+        @include media-breakpoint-down(md) {
+            align-items: center;
+            gap: 15px;
+        }
     }
 
     &-bottom {
         display: flex;
         align-items: center;
         justify-content: center;
+        gap: 20px;
+        height: 40px;
+        
+        p {
+            margin: 0;
+        }
     }
 
+    .admin-facebook-controller {
+        display: flex;
+        flex-direction: column;
+        gap: 30px;
+        justify-content: space-between;
+
+        .btn-primary {
+
+            @include media-breakpoint-down(md) {
+                width: 250px;
+            }
+        }
+
+        @include media-breakpoint-down(md) {
+            display: block;
+            margin: 20px 0;
+            text-align: center;
+
+        }
+    }
+
+    .fa-facebook {
+        font-size: 16px;
+        text-align: center;
+        text-decoration: none;
+        background: #3B5998;
+        color: white;
+        width: 40px;
+        height: 40px;
+        padding: 12px;
+        display: block;
+        transform: translateY(40px);
+
+        &:hover {
+            opacity: 0.7;
+            color: white;
+        }
+
+        @include media-breakpoint-down(md) {
+            transform: initial;
+            margin: 20px auto;
+        }
+    }
 }

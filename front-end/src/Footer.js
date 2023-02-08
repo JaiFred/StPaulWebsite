@@ -63,58 +63,54 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
                       <p>Bible Study is every <strong>second</strong> and <strong>third Wednesday</strong>  of each month at <strong>7:00 PM.</strong></p>
 
                   </div>
+
                   <div className="footer-menu">
-                  <Link to='/about' className='footer-menu-item'>About</Link>
-                  <Link to='/broadcasts' className='footer-menu-item'>Broadcasts</Link>
+                    <Link to='/about' className='footer-menu-item'>About</Link>
+                    <Link to='/broadcasts' className='footer-menu-item'>Broadcasts</Link>
                     <div>
                       <button className='footer-menu-item' type="button" onClick={() => setGivingIsOpen(true)}>Giving</button>
                     </div>
-                  <a href='/events' className='footer-menu-item'>Bulletin</a>
-                  <Link to='/prayer_requests' className='footer-menu-item'>Prayer Request</Link>
-                  <Link to='/bible_study' className='footer-menu-item'>Bible Study</Link>
-                  <Link to='/youth_corner' className='footer-menu-item'>Youth Corner</Link>
-                  <Link to='/honors' className='footer-menu-item'>Honors</Link>
-                  <FooterAccountOptions 
-                      currentUser={currentUser} 
-                      setCurrentUser={setCurrentUser} 
-                      givingIsOpen={givingIsOpen} 
-                      setGivingIsOpen={setGivingIsOpen}
-                      signUpIsOpen={signUpIsOpen}
-                      setSignUpIsOpen={setSignUpIsOpen}
-                      loginIsOpen={loginIsOpen}
-                      setLoginIsOpen={setLoginIsOpen}
-                      logoutIsOpen={logoutIsOpen}
-                      setLogoutIsOpen={setLogoutIsOpen}
-                      updateFacebookLink={updateFacebookLink}
-                      facebook={facebook}
-                      configId={configId}
-                    />
-                    <Link to='/contact_us' className='footer-menu-item' type='button'>Contact Us</Link>
-                </div>
+                    <a href='/events' className='footer-menu-item'>Bulletin</a>
+                    <Link to='/prayer_requests' className='footer-menu-item'>Prayer Request</Link>
+                    <Link to='/bible_study' className='footer-menu-item'>Bible Study</Link>
+                    <Link to='/youth_corner' className='footer-menu-item'>Youth Corner</Link>
+                    <Link to='/honors' className='footer-menu-item'>Honors</Link>
+                    <FooterAccountOptions 
+                        currentUser={currentUser} 
+                        setCurrentUser={setCurrentUser} 
+                        givingIsOpen={givingIsOpen} 
+                        setGivingIsOpen={setGivingIsOpen}
+                        signUpIsOpen={signUpIsOpen}
+                        setSignUpIsOpen={setSignUpIsOpen}
+                        loginIsOpen={loginIsOpen}
+                        setLoginIsOpen={setLoginIsOpen}
+                        logoutIsOpen={logoutIsOpen}
+                        setLogoutIsOpen={setLogoutIsOpen}
+                        updateFacebookLink={updateFacebookLink}
+                        facebook={facebook}
+                        configId={configId}
+                      />
+                      <Link to='/contact_us' className='footer-menu-item' type='button'>Contact Us</Link>
+                    </div>
                 
                 {(currentUser?.admin || currentUser?.user?.admin) && (
-                  <div classname="admin-facebook-controller">
-                    <div>
-                        <button
-                          className='btn btn-primary'
-                          variant="primary"
-                          type="submit" onClick={() => updateFacebookLink(!facebook)}>
-                            Turn link {facebook ? 'off' : 'on'}
-                        </button>
-                    </div>
+                  <div className="admin-facebook-controller">
+                      <button
+                        className='btn btn-primary'
+                        variant="primary"
+                        type="submit" onClick={() => updateFacebookLink(!facebook)}>
+                          Turn link {facebook ? 'off' : 'on'}
+                      </button>
+
+                      {facebook && (
+                        <a href="https://www.facebook.com/" target="_blank" class="fa fa-facebook"></a>
+                      )}
                   </div> 
                 )}
                 </div>
 
                 <div className='footer-bottom'>
-                <p className='website-watermark'>@ 2022 St Paul Baptist Church</p>
-
-                {facebook && (
-                  <div>
-                    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css" />
-                    <a href="https://www.facebook.com/" target="_blank" class="fa fa-facebook"></a>
-                  </div>
-                )}
+                  <p className='website-watermark'>@ 2022 St Paul Baptist Church</p>
                 </div>  
               </div>
             </div>

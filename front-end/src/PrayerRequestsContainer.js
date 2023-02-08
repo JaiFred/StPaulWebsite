@@ -3,7 +3,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser"
 import moment from "moment";
-
+import useAvoidBounce from "./hooks/useAvoidBounce";
 
 //Components
 import { BackHomeButton } from "./BackHomeButton/BackHomeButton";
@@ -13,6 +13,8 @@ import prayerRequestBackground from "./images/Prayer-request-background.mp4"
 import './PrayerRequests.scss';
 
 function PrayerRequestsContainer(){
+    useAvoidBounce();
+    
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [date, setDate] = useState('');
@@ -22,7 +24,6 @@ function PrayerRequestsContainer(){
     const [drone1, setDrone1] = useState('yes');
     const [drone2, setDrone2] = useState('yes');
     const navigate = useNavigate();
-
 
     const sendEmail = (e) => {
         e.preventDefault();

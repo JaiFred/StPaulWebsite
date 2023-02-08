@@ -2,25 +2,6 @@ html{
   background-color: rgb(60, 43, 35);
 }
 
-.fa {
-  padding: 20px;
-  font-size: 30px;
-  width: 50px;
-  text-align: center;
-  text-decoration: none;
-  margin: 5px 2px;
-}
-
-.fa-facebook {
-  background: #3B5998;
-  color: white;
-}
-
-.fa:hover {
-  opacity: 0.7;
-}
-
-
 ul {
   padding-left: 0;
 }
@@ -162,17 +143,9 @@ h3.navbar-banner {
   z-index: 1;
 }
 
-html, body {
-  overflow: hidden;
-  height: 100%;
-}
-
-#root {
-  overflow: auto;
-  height: 100%;
-  position: absolute;
-  left: 0;
-  top: 0;
-  bottom: 0;
-  right: 0;
+@media (max-width: 767px) {
+  .parallax-container {
+    will-change: initial !important;
+    transform: none !important;
+  }
 }

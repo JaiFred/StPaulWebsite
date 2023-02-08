@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 
 import VideoContainer from './VideoContainer';
 import { BackHomeButtonBordered } from "./BackHomeButton/BackHomeButtonBordered";
+import useAvoidBounce from "./hooks/useAvoidBounce";
 
 //CSS
 import SignUpPage from "./images/Sign-up-page.mp4"
@@ -13,7 +14,8 @@ import "./Forms/ErrorMessage"
 import { ErrorMessage } from "./Forms/ErrorMessage";
 
 function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
-
+    useAvoidBounce();
+    
     const [ firstName, setFirstName ] = useState("")
     const [ lastName, setLastName ] = useState("")
     const [ email, setEmail ] = useState ("")
