@@ -6,7 +6,7 @@ function createVideo (src) {
     return videoContainer.querySelector('video');
 }
 
-const video = createVideo('/assets/videos/backend-pages.mp4');
+const video = createVideo('https://st-paul-baptist-website-uploads.s3.amazonaws.com/backend-pages.mp4');
 let styleTag;
 
 function fitVideo() {

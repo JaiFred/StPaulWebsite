@@ -9,11 +9,13 @@ import useAvoidBounce from "./hooks/useAvoidBounce";
 import { BackHomeButton } from "./BackHomeButton/BackHomeButton";
 
 //CSS
-import prayerRequestBackground from "./images/Prayer-request-background.mp4"
+
 import './PrayerRequests.scss';
 
 function PrayerRequestsContainer(){
     useAvoidBounce();
+
+    const prayerRequestBackground = "https://st-paul-baptist-website-uploads.s3.amazonaws.com/Prayer-request-background.mp4"
     
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
