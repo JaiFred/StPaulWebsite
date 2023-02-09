@@ -9,7 +9,6 @@ import { BackHomeButton } from '../BackHomeButton/BackHomeButton';
 
 //CSS
 import background from '../images/trees-wallpaper-green.jpeg'
-import BroadcastPageVideo from '../images/Broadcast-page.mp4'
 import { Parallax } from 'react-scroll-parallax'; 
 import './BroadcastsContainer.scss'
 import moment from 'moment';
@@ -27,6 +26,7 @@ import moment from 'moment';
 // `https://www.youtube.com/watch?v=El_U51WIgAo`
    
     function BroadcastsContainer () {
+        const BroadcastPageVideo = 'https://st-paul-baptist-website-uploads.s3.amazonaws.com/Broadcast-page.mp4'
         var finalURL = `https://www.googleapis.com/youtube/v3/search?key=${API}&channelId=${channelID}&part=snippet,id&order=date&maxResults=${result}`
         console.log(`finalURL: ${finalURL}`);
 

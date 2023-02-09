@@ -8,13 +8,13 @@ import { BackHomeButton } from './BackHomeButton/BackHomeButton'
 // CSS
 import './AboutPage.scss'
 import PastorBrown from "./images/Pastor.webp"
-import PastorBullock from "./images/Pastorpic.JPG"
 import Church from "./images/StPaulBaptistChurch.JPG"
 
 // Child Component of App.js
 
 function AboutPage(){
-    console.log({PastorBrown})
+    const PastorBullock = "https://st-paul-baptist-website-uploads.s3.amazonaws.com/Pastorpic.JPG"
+    // console.log({PastorBrown})
     return(
         <ParallaxBanner style={{ aspectRatio: 'auto' }}>
             <ParallaxBannerLayer image={Church} speed={45} className="about-page-background-container" />
