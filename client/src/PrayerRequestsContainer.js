@@ -201,7 +201,7 @@ function PrayerRequestsContainer(){
                     {/* Email */}
                     <label htmlFor="email-from">Your Email:</label>
                     <input
-                        type="text"
+                        type="email"
                         name="email-from"
                         id="email-from"
                         required
