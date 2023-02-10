@@ -1,6 +1,10 @@
 export function fetchDocuments(onFetch, id) {
     console.log('Fetching documents from the backend server !!!');
-    fetch('/api/honor_pages', {
+
+    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+
+    
+    fetch(`${API_ENDPOINT}/api/honor_pages`, {
         id,
         credentials: 'include',
     })

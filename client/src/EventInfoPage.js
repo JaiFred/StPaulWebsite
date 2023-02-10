@@ -12,6 +12,9 @@ import './EventInfoPage.scss';
 
 function EventInfoPage({ currentUser }){
 
+    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+
+
     // t.string "title"
     // t.datetime "starts"
     // t.datetime "ends"
@@ -30,7 +33,7 @@ function EventInfoPage({ currentUser }){
     const [event, setEvent] = useState(null);
 
     useEffect(() => {
-        fetch(`/api/events/${id}`)
+        fetch(`${API_ENDPOINT}/api/events/${id}`)
             .then((res) => res.json())
             .then((event) => setEvent(event));
     }, []);

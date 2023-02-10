@@ -29,6 +29,8 @@ function AddEditEvent({
         country
     } = formData;
 
+    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+
     const isEdit = Boolean(id);
     const [image, setImage] = useState(formData.image);
     const [errors, setErrors] = useState([]);
@@ -58,7 +60,7 @@ function AddEditEvent({
             method: isEdit ? "PATCH" : "POST",
             body: formData
         }
-        const url = isEdit ? `/api/events/${id}` : "api/events"
+        const url = isEdit ? `${API_ENDPOINT}/api/events/${id}` : `${API_ENDPOINT}/api/events`
 
         fetch(url, configObj)
             .then((response) => {

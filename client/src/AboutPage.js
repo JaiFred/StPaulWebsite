@@ -13,6 +13,7 @@ import Church from "./images/StPaulBaptistChurch.JPG"
 // Child Component of App.js
 
 function AboutPage(){
+
     const PastorBullock = "https://st-paul-baptist-website-uploads.s3.amazonaws.com/Pastorpic.JPG"
     // console.log({PastorBrown})
     return(

@@ -13,6 +13,8 @@ import { BackHomeButton } from "./BackHomeButton/BackHomeButton";
 import './PrayerRequests.scss';
 
 function PrayerRequestsContainer(){
+    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+
     useAvoidBounce();
 
     const prayerRequestBackground = "https://st-paul-baptist-website-uploads.s3.amazonaws.com/Prayer-request-background.mp4"

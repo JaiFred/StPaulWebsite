@@ -15,38 +15,7 @@ function EventAddEditModal({
     handleAddEditEvent
 }){
 
-    function handleUpdateEvent(e) {
-        e.preventDefault();
-
-        // const data = {
-        //   review: {
-        //     text: editedText,
-        //     rating: editedRating,
-        //     user_id: 7,
-        //     restaurant_id: 20,
-        //   },
-        // };
-
-        // fetch(`http://localhost:4000/api/v1/reviews/${id}`, {
-        //   method: "PUT",
-        //   headers: {
-        //     "Content-Type": "application/json",
-        //   },
-        //   body: JSON.stringify(data),
-        // })
-        //   .then((response) => response.json())
-        //   .then((updatedReview) => {
-        //     const updatedReviews = reviews.map((review) => {
-        //       if (review.id === updatedReview.id) {
-        //         return updatedReview;
-        //       } else {
-        //         return review;
-        //       }
-        //     });
-        //     setReviews(updatedReviews);
-        //     setEditReviewForm(!showEditReviewForm);
-        //   });
-      }
+    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
 
     const [formData, setFormData] = useState({
         title: "",
@@ -67,7 +36,7 @@ function EventAddEditModal({
     useEffect(() => {
         if (!id) return;
 
-        fetch(`/api/events/${id}`)
+        fetch(`${API_ENDPOINT}/api/events/${id}`)
             .then((res) => res.json())
             .then((event) => {
                 const updatedEvent = { ...event, starts: event.starts_raw, ends: event.ends_raw }
@@ -97,10 +66,3 @@ function EventAddEditModal({
 }
 
 export default EventAddEditModal
-
-{/* <ModalHeader>
-    <ModalTitle>
-        Edit: <h1>{title}</h1>
-        <button type="button" onClick={() => {setEditEventIsOpen(false)}}>X</button>
-    </ModalTitle>
-</ModalHeader> */}

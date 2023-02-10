@@ -22,6 +22,9 @@ const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
 
 function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
 
+    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+
+
     const [ clientSecret, setClientSecret] = useState(null);
     const [ clientSecretRecurring, setClientSecretRecurring] = useState(null);
     const [ amount, setAmount ] = useState(null);
@@ -69,7 +72,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
     };
 
     useEffect(() => {
-        fetch(`/api/client_secret_recurring?amount=1`)
+        fetch(`${API_ENDPOINT}/api/client_secret_recurring?amount=1`)
         .then((r) => r.json())
         .then(res => setClientSecretRecurring(res.client_secret))
       }, [])
@@ -129,25 +132,12 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
 
         setShowAmountForm(false);
 
-        // setShowRecurringForm(false);
-
-        // fetch(`/api/client_secret?amount=${amount}`)
-        // .then((r) => r.json())
-        // .then(res => setClientSecret(res.client_secret))
-        // .catch(function(error) {
-        //     console.log(error);
-        // });
-
-        // const formData = new FormData();
-        // formData.append("amount", amount);
-        // formData.append("billing_details", billingDetails);
-
         const reqBody = {
             amount: amount,
             billing_details: billingDetails
         }
 
-        fetch("api/client_secret", {
+        fetch(`${API_ENDPOINT}/api/client_secret`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",
