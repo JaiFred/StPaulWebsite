@@ -6,7 +6,7 @@ import './OverwrittenQuillStyles.scss';
 
 const Editor = ({ id, value, onChange, placeholder = "", heading, aspectRatio }) => {
   function uploadFiles(uploadedFile) {
-    var apiUrl = `http://localhost:3000/api/images`; // TODO: make it work for production URL too when we deploy to heroku.
+    var apiUrl = `/api/images`;
 
     var formData = new FormData();
     formData.append('image', uploadedFile);
