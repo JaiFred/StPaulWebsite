@@ -20,6 +20,8 @@ function EventCard({event, currentUser, handleDeleteEvent, handleEditEvent}){
     
     const [ deleteIsOpen , setDeleteIsOpen ] = useState(false);
     const [ editEventIsOpen , setEditEventIsOpen ] = useState(false);
+    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+
 
     //edit
 
@@ -35,7 +37,7 @@ function EventCard({event, currentUser, handleDeleteEvent, handleEditEvent}){
         const reqObj = {
             method: "DELETE"
         }
-        fetch(`/api/events/${id}`, reqObj )
+        fetch(`${API_ENDPOINT}/api/events/${id}`, reqObj )
         .then((res) => res.json())
         .then(handleDeleteEvent(id))
     }

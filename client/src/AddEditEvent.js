@@ -60,11 +60,12 @@ function AddEditEvent({
             method: isEdit ? "PATCH" : "POST",
             body: formData
         }
-        const url = isEdit ? `${API_ENDPOINT}/api/events/${id}` : `${API_ENDPOINT}/api/events`
+        const url = isEdit ? `/api/events/${id}` : `/api/events`
 
         fetch(url, configObj)
             .then((response) => {
-                console.log({response})
+                console.log('event created successfully!')
+                console.log(response)
                 if (response.ok) {
                     response.json().then((editedEvent) => {
                         handleAddEditEvent(editedEvent);

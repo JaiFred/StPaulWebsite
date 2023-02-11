@@ -6,6 +6,8 @@ import './EventsFilter.scss';
 
 export const EventsFilter = ({setEvents}) => {
     const navigate = useNavigate()
+    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+
 
     function handleButtonClick(e) {
         e.preventDefault()
@@ -15,7 +17,7 @@ export const EventsFilter = ({setEvents}) => {
         // console.log(`clicked button: ${month} | ${monthNumber}`);
         
     
-        fetch(`/api/events?month=${month}`)
+        fetch(`${API_ENDPOINT}/api/events?month=${month}`)
             .then((res) => res.json())
             .then(events => setEvents(events))
             .then(navigate(`/events`))

@@ -176,15 +176,16 @@ function App() {
   
   console.log(`process.env.NODE_ENV: ${process.env.NODE_ENV}`);
   const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+  console.log(`API_ENDPOINT: ${API_ENDPOINT}`);
 
   useEffect(() => {
-    fetch(`${API_ENDPOINT}/api/events`)
+    fetch(`/api/events`)
       .then((r) => r.json())
       .then(events => setEvents(events))
   },[])
 
   useEffect(() => {
-    fetch(`${API_ENDPOINT}/api/me`, {
+    fetch(`/api/me`, {
       credentials: 'include'
     })
       .then(res => {
