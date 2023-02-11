@@ -16,8 +16,11 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
     const [facebook, setFacebook] = useState(null);
     const [configId, setConfigId] = useState(null);
 
+    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+
+
     function fetchConfig() {
-        fetch(`/api/button_visible_configs`)
+        fetch(`${API_ENDPOINT}/api/button_visible_configs`)
           .then((r) => r.json())
           .then(config => {
             if (!config) return;
@@ -29,7 +32,7 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
   
     function updateFacebookLink(facebookVal) { 
       if (!configId) return alert('No config ID for Facebook link')
-      fetch(`/api/button_visible_configs/${configId}`, {
+      fetch(`${API_ENDPOINT}/api/button_visible_configs/${configId}`, {
         method: "PATCH",
         headers: {
           "Content-Type": "application/json",

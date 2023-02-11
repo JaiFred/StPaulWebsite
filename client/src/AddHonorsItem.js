@@ -14,6 +14,9 @@ function AddHonorsItem({ setDocuments, onCancel }){
     const [document, setDocument] = useState(null)
     const [error, setError] = useState(null);
 
+    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+
+
     function handleSubmit(e) {
         console.log("submitted!")
         e.preventDefault();
@@ -35,7 +38,7 @@ function AddHonorsItem({ setDocuments, onCancel }){
         }
         formData.append("description", description);
 
-        fetch("api/honor_pages", {
+        fetch(`${API_ENDPOINT}/api/honor_pages`, {
             method: "POST",
             body: formData
         })

@@ -174,8 +174,9 @@ function App() {
   const [ cancelSubscriptionIsOpen, setCancelSubscriptionIsOpen ] = useState(false);
   const [ cancelFutureSubscriptionIsOpen, setCancelFutureSubscriptionIsOpen ] = useState(false);
   
-  // const [home, setHome] = useState ([])
-
+  console.log(`process.env.NODE_ENV: ${process.env.NODE_ENV}`);
+  const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+  console.log(`API_ENDPOINT: ${API_ENDPOINT}`);
 
   useEffect(() => {
     fetch(`/api/events`)
@@ -184,7 +185,7 @@ function App() {
   },[])
 
   useEffect(() => {
-    fetch('/api/me', {
+    fetch(`/api/me`, {
       credentials: 'include'
     })
       .then(res => {

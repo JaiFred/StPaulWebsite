@@ -9,6 +9,7 @@ import ModalFooter from './Modal/Footer';
 //CSS
 
 function LogoutProcedureModal({ logoutIsOpen, setLogoutIsOpen, currentUser, setCurrentUser }){
+    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
 
     const navigate = useNavigate();
 
@@ -18,7 +19,7 @@ function LogoutProcedureModal({ logoutIsOpen, setLogoutIsOpen, currentUser, setC
     const handleLogout = (e) => {
       console.log('inside handleLogout');
         e.preventDefault()
-        fetch(`/logout`, {
+        fetch(`${API_ENDPOINT}/logout`, {
           method: 'DELETE',
           credentials: 'include'
         })

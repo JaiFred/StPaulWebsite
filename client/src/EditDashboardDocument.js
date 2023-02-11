@@ -6,17 +6,11 @@ import ModalFooter from "./Modal/Footer";
 import Editor from './Editor/Editor';
 
 const EditDashboardDocument = ({ document, fetchDashboardDocuments, editDashboardDocumentModalIsOpen, setEditDashboardDocumentModalIsOpen, onCancel }) => {    
-    console.log(`document inside EditDashboardDocumentModal: ${JSON.stringify(document)}`)
-    const description = document.description;
-    // console.log(`document inside EditDashboardDocumentModal initDescription: ${initDescription}`)
-    const [editedDescription, setEditedDescription] = useState(description);
-    // if (editedDescription !== description) {
-    //     setEditedDescription(description)
-    // }
+    
+    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
 
-    // useEffect(() => {
-    //     setEditedDescription(initDescription);
-    // },[])
+    const description = document.description;
+    const [editedDescription, setEditedDescription] = useState(description);
     
     console.log(`editedDescription: ${editedDescription}`)
 
@@ -33,7 +27,7 @@ const EditDashboardDocument = ({ document, fetchDashboardDocuments, editDashboar
             body: formData
         };
 
-        fetch(`api/dashboard_documents/${document.id}`, configObj)
+        fetch(`${API_ENDPOINT}/api/dashboard_documents/${document.id}`, configObj)
             .then((response) => {
                 console.log('dashoard document updated successfully');
                 console.log('fetching latest documents 1')
