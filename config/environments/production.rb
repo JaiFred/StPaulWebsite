@@ -97,6 +97,8 @@ Rails.application.configure do
   host = 'https://st-paul-baptist-church.herokuapp.com'
   config.action_mailer.default_url_options = { host: host }
 
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.default_url_options = { host: host }
   # SMTP settings for gmail
   config.action_mailer.smtp_settings = {
     address: 'smtp.gmail.com',
