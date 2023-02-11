@@ -18,7 +18,8 @@ import { ErrorMessage } from "./Forms/ErrorMessage";
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
-const stripePromise = loadStripe(process.env.REACT_APP_STRIPE_PUBLIC_KEY);
+console.log(`process.env.REACT_APP_STRIPE_PUBLIC_KEY: ${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`)
+const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`);
 
 function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
 
@@ -72,7 +73,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
     };
 
     useEffect(() => {
-        fetch(`${API_ENDPOINT}/api/client_secret_recurring?amount=1`)
+        fetch(`/api/client_secret_recurring?amount=1`)
         .then((r) => r.json())
         .then(res => setClientSecretRecurring(res.client_secret))
       }, [])

@@ -40,7 +40,7 @@ const CheckoutForm = ({
       //`Elements` instance that was used to create the Payment Element
       elements,
       confirmParams: {
-        return_url: "http://localhost:3001/",
+        return_url: "http://localhost:3001/", // TODO: fix URL based on node.env
       },
     });
 
