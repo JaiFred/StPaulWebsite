@@ -5,7 +5,7 @@ import { Modal, ModalHeader, ModalTitle, Button } from 'react-bootstrap'
 import ModalFooter from './Modal/Footer';
 
 function DeleteHonorsItemModal({ selectedDocument, doc, documents, setDocuments, deleteHonorIsOpen, setDeleteHonorIsOpen}){
-    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+    // const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
     const { id } = doc;
 
     function handleDocumentDelete(deletedDocument) {
@@ -21,7 +21,7 @@ function DeleteHonorsItemModal({ selectedDocument, doc, documents, setDocuments,
         const reqObj = {
             method: "DELETE"
         }
-        fetch(`${API_ENDPOINT}/api/documents/${id}`, reqObj )
+        fetch(`/api/documents/${id}`, reqObj )
             .then((res) => res.json())
             .then(handleDocumentDelete(id))
             .then(setDeleteHonorIsOpen(false));

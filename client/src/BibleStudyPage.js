@@ -30,7 +30,6 @@ function BibleStudyPage({ currentUser }) {
   const result = 1;
   useAvoidBounce('mobile');
 
-  const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
 
 
   var finalURL = `https://www.googleapis.com/youtube/v3/search?key=${API}&channelId=${channelID}&part=snippet,id&order=date&maxResults=${result}`;
@@ -50,7 +49,7 @@ function BibleStudyPage({ currentUser }) {
   console.log({ currentUser, editDashboardDocumentModalIsOpen });
 
   function fetchDashboardDocuments() {
-    fetch(`${API_ENDPOINT}/api/dashboard_documents`)
+    fetch(`/api/dashboard_documents`)
       .then((r) => r.json())
       .then((document) => setDocument(document));
   }

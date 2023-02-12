@@ -9,14 +9,14 @@ import { BackHomeButtonBordered } from './BackHomeButton/BackHomeButtonBordered'
 import './PasswordRecoveryPage.scss';
 
 function PasswordRecoveryPage(){
-  const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+  // const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
 
   const navigate = useNavigate();
   const [email, setEmail] = useState("");    
 
     function handleSubmit (event) {
         event.preventDefault();
-        fetch(`${API_ENDPOINT}/password?request_source=front-end`, {
+        fetch(`/password?request_source=front-end`, {
           method: "POST",
           headers: {
             "Content-Type": "application/json",

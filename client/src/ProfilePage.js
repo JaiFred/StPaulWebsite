@@ -21,7 +21,7 @@ function ProfilePage({
   accountDeleteIsOpen,
   setAccountDeleteIsOpen,
 }) {
-  const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+  // const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
 
 
   const navigate = useNavigate();
@@ -45,7 +45,7 @@ function ProfilePage({
 
   function handleUserDelete(event) {
     event.preventDefault();
-    fetch(`${API_ENDPOINT}/api/users/${userId}`, {
+    fetch(`/api/users/${userId}`, {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",
@@ -71,7 +71,7 @@ function ProfilePage({
 
   function handleUserEdit(event) {
     event.preventDefault();
-    fetch(`${API_ENDPOINT}/api/users/${userId}`, {
+    fetch(`/api/users/${userId}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",

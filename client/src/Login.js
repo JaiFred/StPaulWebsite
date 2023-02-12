@@ -16,7 +16,7 @@ import LoginBackground from './images/tree-background-red.jpeg'
 
 function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
     // const [username, setUsername] = useState("");
-    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+    // const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
 
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
@@ -28,7 +28,7 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
 
     function handleSubmit (event) {
       event.preventDefault();
-      fetch(`${API_ENDPOINT}/login`, {
+      fetch(`/login`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",

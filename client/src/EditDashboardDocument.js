@@ -7,7 +7,7 @@ import Editor from './Editor/Editor';
 
 const EditDashboardDocument = ({ document, fetchDashboardDocuments, editDashboardDocumentModalIsOpen, setEditDashboardDocumentModalIsOpen, onCancel }) => {    
     
-    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+    // const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
 
     const description = document.description;
     const [editedDescription, setEditedDescription] = useState(description);
@@ -27,7 +27,7 @@ const EditDashboardDocument = ({ document, fetchDashboardDocuments, editDashboar
             body: formData
         };
 
-        fetch(`${API_ENDPOINT}/api/dashboard_documents/${document.id}`, configObj)
+        fetch(`/api/dashboard_documents/${document.id}`, configObj)
             .then((response) => {
                 console.log('dashoard document updated successfully');
                 console.log('fetching latest documents 1')

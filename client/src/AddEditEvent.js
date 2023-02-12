@@ -29,8 +29,6 @@ function AddEditEvent({
         country
     } = formData;
 
-    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
-
     const isEdit = Boolean(id);
     const [image, setImage] = useState(formData.image);
     const [errors, setErrors] = useState([]);
