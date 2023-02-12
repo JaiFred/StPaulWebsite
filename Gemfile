@@ -94,3 +94,5 @@ gem 'sidekiq', '~> 7.0'
 
 gem 'rubocop', require: false
 gem 'rubocop-rails', require: false
+
+gem "aws-sdk-s3", require: false
