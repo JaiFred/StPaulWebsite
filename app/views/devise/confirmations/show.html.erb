@@ -10,7 +10,11 @@
             <h1>Welcome, <%= resource.email %></h1>
             <p>
                 Thanks for confirming your email.
-                Please visit: <%= link_to 'here', 'http://localhost:3001/login' %> to access the app!
+                <% if Rails.env.production? %>
+                    Please visit: <%= link_to 'here', "#{Rails.application.routes.default_url_options[:host]}/login" %> to access the app!
+                <% else %>
+                    Please visit: <%= link_to 'here', 'http://localhost:3001/login' %> to access the app!
+                <% end %>
             </p>
         </main>
 
