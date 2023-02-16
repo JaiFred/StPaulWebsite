@@ -1,3 +1,20 @@
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
+// import "@hotwired/turbo-rails"
+// import "controllers"
+
+console.log('i am worried 1')
+// import "main.js";
+// import "background-video.js"
+console.log('i am worried 2')
+
+const crossSvg = document.querySelector('#svg-cross');
+
+document.querySelectorAll('#error_explanation li').forEach(function (error) {
+    error.prepend(crossSvg.cloneNode());
+});
+
+console.log(document.querySelectorAll('#error_explanation li'))
+
 function createVideo (src) {
     const videoContainer = document.createElement('div');
     videoContainer.innerHTML = `<video class="background-video" muted loop autoPlay playsInline src="${src}"></video>`;
@@ -56,7 +73,9 @@ const interval = setInterval(() => {
     }
 }, 333);
 
-
-window.addEventListener('resize', function () {
-    setTimeout(fitVideo);
-})
+$( document ).on('turbolinks:load', function() {
+    console.log("I am in video background js file")
+    window.addEventListener('resize', function () {
+        setTimeout(fitVideo);
+    })
+});
