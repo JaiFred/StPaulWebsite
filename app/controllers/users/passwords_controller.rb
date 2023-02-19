@@ -17,8 +17,13 @@ module Users
       yield resource if block_given?
 
       if successfully_sent?(resource)
-        respond_with({ message: 'successfully sent password reset email' },
-                     location: after_sending_reset_password_instructions_path_for(resource_name))
+        if params[:request_source] == 'front-end'
+          render json: { message: 'Password Reset Was Succesfull' }, status: 200
+          return
+        else
+          respond_with({ message: 'successfully sent password reset email' },
+          location: after_sending_reset_password_instructions_path_for(resource_name))
+        end
       else
         respond_with(resource)
       end
@@ -47,7 +52,7 @@ module Users
 
     protected
 
-    def after_resetting_password_path_for(_resource)
+    def after_resetting_password_path_for(_resource)    
       if Rails.env.production?
         "#{Rails.application.routes.default_url_options[:host]}/login"
       else
@@ -56,11 +61,11 @@ module Users
     end
 
     # The path used after sending reset password instructions
-    def after_sending_reset_password_instructions_path_for(_resource_name)      
+    def after_sending_reset_password_instructions_path_for(_resource_name)
       if Rails.env.production?
         "#{Rails.application.routes.default_url_options[:host]}/login"
       else
-        'http://localhost:3001/login'
+        '/login'
       end
     end
   end

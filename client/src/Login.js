@@ -28,7 +28,7 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
 
     function handleSubmit (event) {
       event.preventDefault();
-      fetch(`/login`, {
+      fetch(`/signin`, {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
