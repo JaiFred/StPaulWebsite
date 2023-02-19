@@ -48,12 +48,20 @@ module Users
     protected
 
     def after_resetting_password_path_for(_resource)
-      'http://localhost:3001/login'
+      if Rails.env.production?
+        "#{Rails.application.routes.default_url_options[:host]}/login"
+      else
+        'http://localhost:3001/login'
+      end
     end
 
     # The path used after sending reset password instructions
-    def after_sending_reset_password_instructions_path_for(_resource_name)
-      'http://localhost:3001/login'
+    def after_sending_reset_password_instructions_path_for(_resource_name)      
+      if Rails.env.production?
+        "#{Rails.application.routes.default_url_options[:host]}/login"
+      else
+        'http://localhost:3001/login'
+      end
     end
   end
 end
