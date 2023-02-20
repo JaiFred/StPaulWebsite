@@ -2,8 +2,8 @@
   "name": "front-end",
   "version": "0.1.0",
   "private": true,
-  "//proxy": "http://localhost:3000",
-  "proxy": "https://st-paul-baptist-church.herokuapp.com",
+  "proxy": "http://localhost:3000",
+  "//proxy": "https://st-paul-baptist-church.herokuapp.com",
   "dependencies": {
     "@emailjs/browser": "^3.9.1",
     "@stripe/react-stripe-js": "^1.14.2",

@@ -35,30 +35,30 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="main-content-background" style="background-color: #543;background-image: url(http://localhost:3000/assets/img/Cross.png);background-size: 75%;background-repeat: no-repeat;background-position: center -170px;">
-
-                      <!-- Main content -->
-                      <table class="main-content" style="width: 100%;text-align: center;background: rgba(78, 55, 43, .7);color: white;padding: 50px;">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <table class="main-content-box" style="width: 100%;text-align: center;background: rgba(0,0,0,0.45);color: white;border-radius: 10px;padding: 50px;margin-top: 80px;text-shadow: 1px 1px 1px black;font-size: 25px;">
-                                <tbody>
-                                  <tr>
-                                    <td class="text-left" style="text-align: left;">
-                                      <h3>Welcome <%= @email %>!</h3>
-                                      <p style="margin: 0 0 10px;">You can confirm your account email through the link below:</p>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td class="main-link" style="padding: 30px 0;color: #62ECFF;">
-                                      <%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
+                    <td class="main-content-background" style="background-color: #543;background-image: url(http://localhost:3000/assets/images/Cross.png);background-size: 75%;background-repeat: no-repeat;background-position: center -170px;">
+                      <%= image_tag("Cross.png", height: '350', width: '350')%>
+                        <!-- Main content -->
+                        <table class="main-content" style="width: 100%;text-align: center;background: rgba(78, 55, 43, .7);color: white;padding: 50px;">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <table class="main-content-box" style="width: 100%;text-align: center;background: rgba(0,0,0,0.45);color: white;border-radius: 10px;padding: 50px;margin-top: 80px;text-shadow: 1px 1px 1px black;font-size: 25px;">
+                                  <tbody>
+                                    <tr>
+                                      <td class="text-left" style="text-align: left;">
+                                        <h3>Welcome <%= @email %>!</h3>
+                                        <p style="margin: 0 0 10px;">You can confirm your account email through the link below:</p>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="main-link" style="padding: 30px 0;color: #62ECFF;">
+                                        <%= link_to 'Confirm my account', confirmation_url(@resource, confirmation_token: @token) %>
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
                         </tbody>
 
                         <!-- Footer -->
