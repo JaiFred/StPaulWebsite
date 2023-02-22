@@ -24,6 +24,7 @@
                         <tbody>
                           <tr>
                             <td>
+                              <%# <img src="http://localhost:3000/assets/img/EmailBanner.png" style="max-width: 350px;"> %>
                               <%= image_tag("EmailBanner.png", width: 350)%>
                             </td>
                           </tr>
@@ -35,47 +36,39 @@
                 <tbody>
                   <tr>
                     <td class="main-content-background" style="background-color: #543;background-image: url('<%= image_url('Cross.png') %>');background-size: 75%;background-repeat: no-repeat;background-position: center -170px;">
-
-                      <!-- Main content -->
-                      <table class="main-content" style="width: 100%;text-align: center;background: rgba(78, 55, 43, .7);color: white;padding: 50px;">
-                        <tbody>
-                          <tr>
-                            <td>
-                              <table class="main-content-box" style="width: 100%;text-align: center;background: rgba(0,0,0,0.45);color: white;border-radius: 10px;padding: 50px;margin-top: 80px;font-size: 25px;">
-                                <tbody>
-                                  <tr>
-                                    <td class="text-left" style="text-align: left;">
-                                      <p style="margin: 0 0 10px;">Hello <%= @resource.email %></p>
-                                      <p style="margin: 0 0 10px;">Someone has requested a link to change your password. You can do this through the link below.</p>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td class="main-link" style="padding: 30px 0;color: #62ECFF;">
-                                      <%= link_to 'Change my password', edit_password_url(@resource, reset_password_token: @token) %>
-                                    </td>
-                                  </tr>
-                                  <tr>
-                                    <td class="text-left small-text" style="text-align: left;font-weight: 300;font-size: 16px;">
-                                      <p style="margin: 0 0 10px;">*If you didn't request this, please ignore this email.</p>
-                                      <p style="margin: 0 0 10px;">Your password won't change until you access the link above and create a new one.</p>
-                                    </td>
-                                  </tr>
-                                </tbody>
-                              </table>
-                            </td>
-                          </tr>
+                        <!-- Main content -->
+                        <table class="main-content" style="width: 100%;text-align: center;background: rgba(78, 55, 43, .7);color: white;padding: 50px;">
+                          <tbody>
+                            <tr>
+                              <td>
+                                <table class="main-content-box" style="width: 100%;text-align: center;background: rgba(0,0,0,0.45);color: white;border-radius: 10px;padding: 50px;margin-top: 80px;text-shadow: 1px 1px 1px black;font-size: 25px;">
+                                  <tbody>
+                                    <tr>
+                                      <td class="text-left" style="text-align: left;">
+                                        <h3>Welcome <%= @email %>!</h3>
+                                        <p style="margin: 0 0 10px;">You can confirm your account email through the link below:</p>
+                                      </td>
+                                    </tr>
+                                    <tr>
+                                      <td class="main-link" style="padding: 30px 0;color: #62ECFF;">                                       
+                                      </td>
+                                    </tr>
+                                  </tbody>
+                                </table>
+                              </td>
+                            </tr>
                         </tbody>
 
                         <!-- Footer -->
                         <tfoot style="padding-top: 50px;">
                           <tr>
                             <td>
-                              <p class="footer-text" style="margin: 0 0 10px;text-align: left;margin-top: 100px;line-height: 21px;">
+                              <p class="footer-text" style="margin: 0 0 10px;text-align: left;margin-top: 100px;">
                                 Copyright © 2022, All rights reserved. <br>
                                 St. Paul Baptist Church<br>
 
                                 1995 Globe Road<br>
-                                Aylett, VA 23009
+                                Aylett, VA 23009     
                               </p><p style="margin: 0 0 10px;">
                             </p></td>
                           </tr>

@@ -15,6 +15,10 @@ Rails.application.routes.draw do
 
   devise_scope :user do
     post 'reset_password' => 'users/passwords#update'
+  end  
+
+  resource :fallback do
+    get 'test_image', to: 'fallback#test_image'
   end
 
   namespace :api do

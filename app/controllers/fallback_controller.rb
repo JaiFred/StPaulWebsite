@@ -6,4 +6,9 @@ class FallbackController < ActionController::Base
       # React app index page
       render file: 'public/index.html'
     end
+  
+
+    def test_image
+          render 'fallback/test_image'
+    end
   end
