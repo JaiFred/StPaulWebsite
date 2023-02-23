@@ -101,4 +101,9 @@
             margin: 20px auto;
         }
     }
+
+    // padding-bottom: 120px;
+    @supports (-webkit-touch-callout: none) {
+        padding-bottom: 120px;
+    }
 }
