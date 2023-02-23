@@ -363,8 +363,8 @@ const RecurringCheckoutForm = ({
           <div className="ResultMessage">
           Thank you! We have recieved your recurring offering request. 
           You can find and manage your reccuring offerings in your profile. 
-          <br/>{paymentMethod.id}
           </div>
+          Go back
           <ResetButton onClick={reset} />
         </div>
       ) : (

@@ -9,7 +9,6 @@ import { BackHomeButtonBordered } from './BackHomeButton/BackHomeButtonBordered'
 import './PasswordRecoveryPage.scss';
 
 function PasswordRecoveryPage(){
-  // const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
 
   const navigate = useNavigate();
   const [email, setEmail] = useState("");    
@@ -45,6 +44,7 @@ function PasswordRecoveryPage(){
                   className="email-input"
                   required
                   type="email"
+                  name="email"
                   placeholder="Email"
                   onChange={(event) => setEmail(event.target.value)}
                   />

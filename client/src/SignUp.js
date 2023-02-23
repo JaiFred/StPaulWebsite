@@ -111,6 +111,7 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
                       required
                       className="first-name-input"
                       type="text"
+                      name="first-name-input"
                       placeholder="First Name"
                       onChange={(event) => setFirstName(event.target.value)}
                       />
@@ -123,6 +124,7 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
                       required
                       className="last-name-input"
                       type="text"
+                      name="last-name-input"
                       placeholder="Last Name"
                       onChange={(event) => setLastName(event.target.value)}
                       />
@@ -134,6 +136,7 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
                 <input
                   required
                   className="email-input"
+                  name="email"
                   type="text"
                   placeholder="Email"
                   onChange={(event) => setEmail(event.target.value)}
@@ -182,7 +185,14 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
                 <Link to='/login' className="button-custom">Back to Login</Link>
               </div>
           </form>
-          
+          <footer>
+            <div>
+              Have an account, but
+            </div>
+            <Link to='/password_recovery' className="forgot-password">
+              Forgot your password
+            </Link>
+          </footer>
           <BackHomeButtonBordered/>
         </div>
       
