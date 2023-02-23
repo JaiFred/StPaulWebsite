@@ -87,22 +87,31 @@
         margin-bottom: 30px;
     }
 
-    .checkout-form-buttons button {
-        padding: 10px 20px;
-        border: 0;
-        box-shadow: 0 10px 5px #999;
-        color: white;
-        border-radius: 5px;
-        font-size: 22px;
-        font-weight: bold;
-        
-        &.checkout-confirm {
-            background: #FFC9F6;
+    .checkout-form-buttons {
+        display: flex;
+        gap: 10px;
+        margin-bottom: 15px;
+
+        button {
+            padding: 10px 20px;
+            border: 0;
+            box-shadow: 0 10px 5px #999;
+            color: white;
+            border-radius: 5px;
+            font-size: 22px;
+            font-weight: bold;
             
+            &.checkout-confirm {
+                background: #FFC9F6;
+                
+            }
+            &.checkout-cancel {
+                background: #87E0FC;
+            }
         }
-        &.checkout-cancel {
-            background: #87E0FC;
-            margin-left: 10px;
+
+        @include media-breakpoint-down(sm) {
+            flex-direction: column;
         }
     }
 
@@ -114,7 +123,7 @@
         font-weight: bold;
         background: #868686;
         margin-bottom: 30px;
-        display: inline-block;
-        width: 435px;
+        display: block;
+        max-width: 435px;
     }
 }
