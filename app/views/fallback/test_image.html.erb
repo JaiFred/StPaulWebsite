@@ -24,8 +24,11 @@
                         <tbody>
                           <tr>
                             <td>
-                              <%#= image_tag("EmailBanner.png", width: 350, height: 200,  style: "display:block") %>
-                              <img src='<%= image_url("EmailBanner.png") %>' style="width: 350; height: 200; display:block;">
+                              <% if Rails.env.production? %>
+                                  <img src='https://st-paul-baptist-church.herokuapp.com/<%= image_url("EmailBanner.png") %>' style="width: 350; height: 200; display:block;">
+                              <% else %>
+                                  <img src='<%= image_url("EmailBanner.png") %>' style="width: 350; height: 200; display:block;">
+                              <% end %>
                             </td>
                           </tr>
                         </tbody>
@@ -44,12 +47,12 @@
                               <table class="main-content-box" style="width: 100%;text-align: center;background: rgba(0,0,0,0.45);color: white;border-radius: 10px;padding: 50px;margin-top: 80px;font-size: 25px;">
                                 <tbody>
                                   <tr>
-                                    <td class="text-left" style="text-align: left;">                                      
+                                    <td class="text-left" style="text-align: left;">
                                       <p style="margin: 0 0 10px;">Someone has requested a link to change your password. You can do this through the link below.</p>
                                     </td>
                                   </tr>
                                   <tr>
-                                    <td class="main-link" style="padding: 30px 0;color: #62ECFF;">                                      
+                                    <td class="main-link" style="padding: 30px 0;color: #62ECFF;">
                                     </td>
                                   </tr>
                                   <tr>

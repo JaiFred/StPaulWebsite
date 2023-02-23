@@ -24,8 +24,11 @@
                         <tbody>
                           <tr>
                             <td>
-                              <%#= image_tag("EmailBanner.png", width: 350, height: 200,  style: "display:block")%>
-                              <img src='https://st-paul-baptist-church.herokuapp.com/<%= image_url("EmailBanner.png") %>' style="width: 350; height: 200; display:block;">
+                              <% if Rails.env.production? %>
+                                  <img src='https://st-paul-baptist-church.herokuapp.com/<%= image_url("EmailBanner.png") %>' style="width: 350; height: 200; display:block;">
+                              <% else %>
+                                  <img src='http://localhost:3000/<%= image_url("EmailBanner.png") %>' style="width: 350; height: 200; display:block;">
+                              <% end %>
                             </td>
                           </tr>
                         </tbody>
@@ -69,7 +72,7 @@
                                 St. Paul Baptist Church<br>
 
                                 1995 Globe Road<br>
-                                Aylett, VA 23009     
+                                Aylett, VA 23009
                               </p><p style="margin: 0 0 10px;">
                             </p></td>
                           </tr>
