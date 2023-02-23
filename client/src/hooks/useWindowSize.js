@@ -12,8 +12,8 @@ function useWindowSize() {
     function handleResize() {
       // Set window width/height to state
       setWindowSize({
-        width: window.innerWidth,
-        height: window.innerHeight,
+        width: window.innerWidth / window.devicePixelRatio,
+        height: window.innerHeight / window.devicePixelRatio,
       });
     }
     // Add event listener

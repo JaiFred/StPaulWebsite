@@ -8,8 +8,6 @@ const useAvoidBounce = (useOn = 'all') => {
     const windowSize = useWindowSize();
 
     useEffect(() => {
-        return;
-
         const htmlTag = document.querySelector('html');
         const contains = () => htmlTag.classList.contains(className);
         const addClass = () => {
