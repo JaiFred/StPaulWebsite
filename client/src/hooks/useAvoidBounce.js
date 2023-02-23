@@ -7,9 +7,9 @@ const className = 'bounce-proof';
 const useAvoidBounce = (useOn = 'all') => {
     const windowSize = useWindowSize();
 
-    console.log({windowSize})
-
     useEffect(() => {
+        return;
+
         const htmlTag = document.querySelector('html');
         const contains = () => htmlTag.classList.contains(className);
         const addClass = () => {
