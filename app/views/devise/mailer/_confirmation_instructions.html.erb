@@ -99,13 +99,7 @@
                         <tbody>
                           <tr>
                             <td>
-                              <%# <img src="http://localhost:3000/assets/img/EmailBanner.png" /> %>
-                              <%# <%= image_tag("EmailBanner.png") %>
-                              <% if Rails.env.production? %>
-                                  <img src='https://st-paul-baptist-church.herokuapp.com/<%= image_url("EmailBanner.png") %>' style="width: 350; height: 200; display:block;">
-                              <% else %>
-                                  <img src='<%= image_url("EmailBanner.png") %>' style="width: 350; height: 200; display:block;">
-                              <% end %>
+                              <img src='https://st-paul-baptist-church.herokuapp.com/<%= image_url("EmailBanner.png") %>' style="width: 350; height: 200; display:block;">
                             </td>
                           </tr>
                         </tbody>
@@ -115,7 +109,7 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="main-content-background">
+                    <td class="main-content-background" style="background-color: #543;background-image: url('https://st-paul-baptist-church.herokuapp.com/<%= image_url('Cross.png') %>');background-size: 75%;background-repeat: no-repeat;background-position: center -170px;">
 
                       <!-- Main content -->
                       <table class="main-content">

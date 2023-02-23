@@ -24,11 +24,7 @@
                         <tbody>
                           <tr>
                             <td>
-                              <% if Rails.env.production? %>
-                                  <img src='https://st-paul-baptist-church.herokuapp.com/<%= image_url("EmailBanner.png") %>' style="width: 350; height: 200; display:block;">
-                              <% else %>
-                                  <img src='http://localhost:3000/<%= image_url("EmailBanner.png") %>' style="width: 350; height: 200; display:block;">
-                              <% end %>
+                              <img src='https://st-paul-baptist-church.herokuapp.com/<%= image_url("EmailBanner.png") %>' style="width: 350;">
                             </td>
                           </tr>
                         </tbody>
@@ -38,7 +34,7 @@
                 </thead>
                 <tbody>
                   <tr>
-                    <td class="main-content-background" style="background-color: #543;background-image: url('<%= image_url('Cross.png') %>');background-size: 75%;background-repeat: no-repeat;background-position: center -170px;">
+                    <td class="main-content-background" style="background-color: #543;background-image: url('https://st-paul-baptist-church.herokuapp.com/<%= image_url('Cross.png') %>');background-size: 75%;background-repeat: no-repeat;background-position: center -170px;">
                         <!-- Main content -->
                         <table class="main-content" style="width: 100%;text-align: center;background: rgba(78, 55, 43, .7);color: white;padding: 50px;">
                           <tbody>
