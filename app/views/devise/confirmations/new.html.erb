@@ -38,19 +38,6 @@
           </div>
         </main>
 
-        <%= javascript_include_tag 'main' %>
-        <%= javascript_include_tag 'background-video' %>
-
-        <script>
-          function animate (selector, className, delay) {
-            setTimeout(() => document.querySelector(selector).classList.add(className), delay)
-          }
-
-          animate('.edit-container', 'animated', 500);
-          animate('header h2', 'slide-up-fade-in', 800);
-          animate('.main-content', 'slide-up-fade-in', 1000);
-        </script>
-
         <div class="svg-container">
           <svg width="16" height="16" viewBox="0 0 17 17" id="svg-cross">
             <path
@@ -63,5 +50,18 @@
             />
           </svg>
         </div>
+
+        <%= javascript_include_tag 'main' %>
+        <%= javascript_include_tag 'background-video' %>
+
+        <script>
+          function animate (selector, className, delay) {
+            setTimeout(() => document.querySelector(selector).classList.add(className), delay)
+          }
+
+          animate('.edit-container', 'animated', 500);
+          animate('header h2', 'slide-up-fade-in', 800);
+          animate('.main-content', 'slide-up-fade-in', 1000);
+        </script>
     </body>
 </html>

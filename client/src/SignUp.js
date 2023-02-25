@@ -185,8 +185,8 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
                 <Link to='/login' className="button-custom">Back to Login</Link>
               </div>
           </form>
-          <footer>
-            <div>
+          <footer className="text-center">
+            <div >
               Have an account, but
             </div>
             <Link to='/password_recovery' className="forgot-password">

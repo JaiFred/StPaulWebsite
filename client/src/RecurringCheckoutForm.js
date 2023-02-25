@@ -96,7 +96,7 @@ const SubmitButton = ({ processing, error, children, disabled }) => (
 );
 
 const ResetButton = ({ onClick }) => (
-  <button type="button" className="ResetButton" onClick={onClick}>
+  <button type="button" className="ResetButton border-0" onClick={onClick}>
     <svg width="32px" height="32px" viewBox="0 0 32 32">
       <path
         fill="#FFF"
@@ -353,19 +353,24 @@ const RecurringCheckoutForm = ({
   }
 
   return (
+
     <div className="stripe-containersssss recurring-checkout-form">      
       {paymentMethod ? (
         <div className="Result">
-          <div className="ResultTitle" role="alert">
-            Payment successful
-            {submitPaymentSubscription()}
+          <div className="result-container">
+            <div className="ResultTitle" role="alert">
+              Payment successful
+              {submitPaymentSubscription()}
+            </div>
+            <div className="ResultMessage">
+              Thank you! We have recieved your recurring offering request. 
+              You can find and manage your reccuring offerings in your profile. 
+            </div>
           </div>
-          <div className="ResultMessage">
-          Thank you! We have recieved your recurring offering request. 
-          You can find and manage your reccuring offerings in your profile. 
+          <div className="d-flex justify-content-center align-items-center my-3 flex-column gap-2">
+            Go back
+            <ResetButton onClick={reset} />
           </div>
-          Go back
-          <ResetButton onClick={reset} />
         </div>
       ) : (
         <form className="Form" onSubmit={handleSubmit}>

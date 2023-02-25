@@ -47,7 +47,7 @@ function PasswordRecoveryPage(){
                   name="email"
                   placeholder="Email"
                   onChange={(event) => setEmail(event.target.value)}
-                  />
+                />
 
                 <Button variant="primary" type="submit">
                   Reset Password
@@ -55,8 +55,10 @@ function PasswordRecoveryPage(){
                 </div>
             </form>
 
-            <div className='d-flex justify-content-center gap-2'>
-              <Link to='/login' className="back-from-password-recovery button-custom d-flex align-items-center">Back to login</Link>
+            <div className='go-back-buttons d-flex justify-content-center gap-2'>
+              <Link to='/login' className="back-from-password-recovery button-custom d-flex align-items-center justify-content-center">
+                Back to login
+              </Link>
               <BackHomeButtonBordered noContainer />        
             </div>
         </div>

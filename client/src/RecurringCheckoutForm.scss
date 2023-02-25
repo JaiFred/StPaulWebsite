@@ -1,6 +1,32 @@
 @import './bootstrap-utils';
 
 .recurring-checkout-form {
+    .result-container{
+        background: #FFC9F6;
+        padding: 15px 20px;
+        border-radius: 5px;
+        color: white
+    }
+
+    .ResultTitle {
+        font-weight: bold;
+    }
+
+    .ResetButton {
+        cursor: pointer;
+        background: gray;
+        padding: 10px;
+        border-radius: 4px;
+
+        svg {
+            transition: .3s transform;
+        }
+
+        &:hover svg {
+            transform: rotate(180deg);
+        }
+    }
+
     .recurring-submit {
         font-size: 25px;
         color:$white;
@@ -8,9 +34,9 @@
         border-radius: 20px;
         box-shadow: 0px 8px 4px rgba(0, 0, 0, 0.3);
         transition: all 0.3s ease-in-out; 
-            &:hover{
-                transform: translateY(-3px);
-            }
+        &:hover{
+            transform: translateY(-3px);
+        }
     }
 
     .text-center{
