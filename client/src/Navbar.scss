@@ -52,6 +52,7 @@
 
     &-collapse {
         flex:1 0 100%;
+        overflow: hidden;
 
         @include media-breakpoint-up(md) {
             flex:initial;
