@@ -31,6 +31,15 @@ function PrayerRequestsContainer(){
     const videoRef = useRef();
 
     useEffect(() => {
+        const videoContainer = document.createElement('div');
+        const video = `<video muted loop autoPlay playsInline src=${prayerRequestBackground} />`;
+        videoContainer.classList.add('video-container')
+        videoContainer.innerHTML = video;
+        document.body.appendChild(videoContainer);
+
+        return () => videoContainer.remove();
+
+        return;
         if (!videoRef.current) return;
 
         const root = document.querySelector('#root');
@@ -100,7 +109,7 @@ function PrayerRequestsContainer(){
 
     return (
         <section className="prayer-requests-page">
-            <video ref={videoRef} muted loop autoPlay playsInline src={prayerRequestBackground} />
+            {/*<video ref={videoRef} muted loop autoPlay playsInline src={prayerRequestBackground} />*/}
 
             <main>
                 <h1>God's word has much to say on Prayer, and God's Desire to grant us our requests</h1>

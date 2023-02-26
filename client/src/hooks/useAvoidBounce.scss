@@ -9,6 +9,8 @@ html.bounce-proof {
   #root {
     height: 100vh;
     overflow: auto;
+    position: relative;
+    z-index: 1;
   }
 }
 
