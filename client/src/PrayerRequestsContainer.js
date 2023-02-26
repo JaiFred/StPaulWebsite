@@ -1,5 +1,5 @@
 //Hooks
-import React, { useState, useRef, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import { useNavigate } from "react-router-dom";
 import emailjs from "@emailjs/browser"
 import moment from "moment";
@@ -28,50 +28,17 @@ function PrayerRequestsContainer(){
     const [drone1, setDrone1] = useState('yes');
     const [drone2, setDrone2] = useState('yes');
     const navigate = useNavigate();
-    const videoRef = useRef();
 
     useEffect(() => {
         const videoContainer = document.createElement('div');
         const video = `<video muted loop autoPlay playsInline src=${prayerRequestBackground} />`;
         videoContainer.classList.add('video-container')
+        videoContainer.classList.add('absolute-video-container')
         videoContainer.innerHTML = video;
         document.body.appendChild(videoContainer);
 
         return () => videoContainer.remove();
-
-        return;
-        if (!videoRef.current) return;
-
-        const root = document.querySelector('#root');
-        const header = document.querySelector('.header');
-        const footer = document.querySelector('.footer');
-
-        const onScroll = () => {
-            console.log('scroll')
-
-            const video = videoRef.current;
-            const scrolledPage = header.getBoundingClientRect().y < 0;
-            const scrolledVideo = video.classList.contains('scrolled');
-
-            const { top } = footer.getBoundingClientRect()
-
-            const screenHeight = window.screen.height;
-            const atFooter = top + 100 < screenHeight;
-
-            console.log({atFooter})
-
-            video.classList.toggle('at-footer', atFooter)
-
-            if (scrolledPage && !scrolledVideo) {
-                video.classList.add('scrolled');
-            } else if (!scrolledPage && scrolledVideo) {
-                video.classList.remove('scrolled');
-            }
-        }
-
-        root.addEventListener('scroll', onScroll);
-        return () => root.removeEventListener('scroll', onScroll);
-    }, [videoRef])
+    }, [])
 
     const sendEmail = (e) => {
         e.preventDefault();
@@ -109,7 +76,7 @@ function PrayerRequestsContainer(){
 
     return (
         <section className="prayer-requests-page">
-            {/*<video ref={videoRef} muted loop autoPlay playsInline src={prayerRequestBackground} />*/}
+            {/*<video muted loop autoPlay playsInline src={prayerRequestBackground} />*/}
 
             <main>
                 <h1>God's word has much to say on Prayer, and God's Desire to grant us our requests</h1>

@@ -234,6 +234,7 @@ main.edit-container header {
 #error_explanation li svg {
     transform: translateY(-2px);
 }
+
 /*
 #error_explanation li::before {/*
     content: 'x';
