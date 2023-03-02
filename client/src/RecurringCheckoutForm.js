@@ -110,6 +110,8 @@ const SubmitButton = ({ processing, error, children, disabled }) => (
     className={`btn recurring-submit ${error ? "btn-danger" : "btn-pink"}`}
     type="submit"
     disabled={processing || disabled}
+    title="submit subscription"
+    alt="submit subscription"
   >
     {processing ? "Processing..." : children}
   </button>
@@ -479,7 +481,7 @@ const RecurringCheckoutForm = ({
           </div>
 
           {error && <ErrorMessage message={error.message || error} />}
-          <h3>Click to submit recurring payment</h3>
+          <h3 className="recurring-submit-button-instructions">Click to submit recurring payment</h3>
           <SubmitButton
             processing={processing}
             error={error}
@@ -505,7 +507,7 @@ const RecurringCheckoutForm = ({
               </p>
             )}
           </SubmitButton>
-          <h3>
+          <h3 className="recurring-submit-button-instructions">
             *You can cancel your subscription at any time in your profile page
           </h3>
         </form>
