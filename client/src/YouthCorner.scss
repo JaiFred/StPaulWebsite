@@ -1,0 +1,26 @@
+
+@import './bootstrap-utils';
+
+.youth-corner {
+
+    &-overlay{
+        padding: 100px 0;
+        background-size: cover;
+        background-position: center;
+        background-color: #ECECEC;
+
+        @include media-breakpoint-down(lg) {
+            background-size: 100%;
+            background-repeat: no-repeat;
+        }
+    }
+
+    &-page{
+        margin-top: 100px;
+        text-align: center;
+        padding: 10px 15% 30px;
+
+    }
+
+
+}

@@ -138,7 +138,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
             billing_details: billingDetails
         }
 
-        fetch(`${API_ENDPOINT}/api/client_secret`, {
+        fetch(`/api/client_secret`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

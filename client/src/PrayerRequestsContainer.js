@@ -18,7 +18,7 @@ function PrayerRequestsContainer(){
     useAvoidBounce();
 
     const prayerRequestBackground = "https://st-paul-baptist-website-uploads.s3.amazonaws.com/Prayer-request-background.mp4"
-    
+
     const [name, setName] = useState('');
     const [email, setEmail] = useState('');
     const [date, setDate] = useState('');
@@ -69,14 +69,12 @@ function PrayerRequestsContainer(){
             body: JSON.stringify(reqBody)
         })
         .then((_res) => {
-            // window.location.reload(false);
             navigate('/prayer_request_success')
         });
     }
 
     return (
         <section className="prayer-requests-page">
-            {/*<video muted loop autoPlay playsInline src={prayerRequestBackground} />*/}
 
             <main>
                 <h1>God's word has much to say on Prayer, and God's Desire to grant us our requests</h1>
