@@ -90,7 +90,7 @@ module Api
       '85_dollars_BiWeekly' => ENV.fetch('',nil),
       '90_dollars_BiWeekly' => ENV.fetch('',nil),
       '95_dollars_BiWeekly' => ENV.fetch('',nil),
-      '100_dollars_BiWeekly' => ENV.fetch('DOLLARS_BIWEEKLY_100', nil)
+      '100_dollars_BiWeekly' => ENV.fetch('DOLLARS_BIWEEKLY_100', nil),
       '150_dollars_BiWeekly' => ENV.fetch('',nil),
       '200_dollars_BiWeekly' => ENV.fetch('',nil),
       '250_dollars_BiWeekly' => ENV.fetch('',nil),
@@ -99,7 +99,6 @@ module Api
       '400_dollars_BiWeekly' => ENV.fetch('',nil),
       '450_dollars_BiWeekly' => ENV.fetch('',nil),
       '500_dollars_BiWeekly' => ENV.fetch('',nil),
-
     }.freeze
 
     FREQUENCY_HASH = {
