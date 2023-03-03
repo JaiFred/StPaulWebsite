@@ -37,6 +37,7 @@ import './App.css';
 import './YouthCorner.css';
 import './Modals.scss';
 import PasswordRecoveryRequestFailiure from './PasswordRecoveryRequestFailiure';
+import CheckoutFormSuccess from './CheckoutFormSuccess';
 
 //Goal:
 
@@ -50,12 +51,12 @@ import PasswordRecoveryRequestFailiure from './PasswordRecoveryRequestFailiure';
 // Password recovery
   // have a form where the user fills up their email with us
   // it goes to backend (route/controller/action). we check in the database whether the email exists
-  // password_verifications_controller  
+  // password_verifications_controller
   // if email does not exist, we return a message saying 'we could not find this email!'
   // if the email exist, we have to generate an OTP code and send it to the user at his email
   // think about OTP expiration, how to generate and store OTP codes in our database
   // then user needs to come to a page in our website, where they can submit their email and OTP code, and the new passord
-  // and then in the backend (another route/controller/action) we will verify the OTP code and email, if all good, we will 
+  // and then in the backend (another route/controller/action) we will verify the OTP code and email, if all good, we will
   // reset the password for the user to the new passord...
 
 //For accounts
@@ -72,11 +73,11 @@ import PasswordRecoveryRequestFailiure from './PasswordRecoveryRequestFailiure';
 //password confirmation sends alert if it is not filled or not the same as password
 
 
-//Youth Corner - can is be created post deployment - 
+//Youth Corner - can is be created post deployment -
 
-//Admin has the ability to disable Facebook button 
+//Admin has the ability to disable Facebook button
 
-//2 way authentication for signup - email √ 
+//2 way authentication for signup - email √
 
 //
 
@@ -103,7 +104,7 @@ import PasswordRecoveryRequestFailiure from './PasswordRecoveryRequestFailiure';
 
 //Events page issues √
   //BUGS
-  //event errors out when created - without date - without title - 
+  //event errors out when created - without date - without title -
   //events arent
 
 // 2nd
@@ -113,11 +114,11 @@ import PasswordRecoveryRequestFailiure from './PasswordRecoveryRequestFailiure';
   //document errors out when created with just a picture
 
 
-//Sign up - "all parameters required" first_name, Last_name, email, username, password and password confirmation... 
+//Sign up - "all parameters required" first_name, Last_name, email, username, password and password confirmation...
 //user can edit their info - email adress, name,  in their profile
 //user must delete subscriptions before deleting account or subscriptions delete with account
 //user must fill out name and email before proceeding with custom payment
-//Adding an Event produces visible error and doesn't get created if end and start date values aren't present 
+//Adding an Event produces visible error and doesn't get created if end and start date values aren't present
 //Mapbox Gl directions
 
 //BUGS
@@ -129,7 +130,7 @@ import PasswordRecoveryRequestFailiure from './PasswordRecoveryRequestFailiure';
 // Goal:
 // I want recurring modal visible even if single payment is not
 // fix address inputs on edit event and add event
-// connect address input routes in backend  
+// connect address input routes in backend
 
 // Goal:
 // Get broadcast page to show most recent three videos on Broadcast Page √
@@ -139,7 +140,7 @@ import PasswordRecoveryRequestFailiure from './PasswordRecoveryRequestFailiure';
 
 // # Send Invoice to subscription payers
 // # TODO Make an Admin request to delete customers that want to leave subscription.
-// # TODO Make twice monthly cycles for: 
+// # TODO Make twice monthly cycles for:
 // # 1st and 15th
 // # 6th and 20th
 // # 11th and 25th
@@ -148,13 +149,13 @@ import PasswordRecoveryRequestFailiure from './PasswordRecoveryRequestFailiure';
 
 // Prayer Request Page to be able to submit prayers to leader's email - sender gets an acknowlegdement email back to their email
 
-// Get the Add new event to work properly 
+// Get the Add new event to work properly
 // clean up Event info page
 // Event isn't showing up for December
 // Submit a picture for the Event Thumbnail
 
 //BUGS
-// The Admin's name doesn't show up when first logging in - have to refresh page 
+// The Admin's name doesn't show up when first logging in - have to refresh page
 // Single Payment only sending $1.00
 // Single payment doesn't submit if no value has been added
 
@@ -173,7 +174,7 @@ function App() {
   const [ editProfileIsOpen, setEditProfileIsOpen ] = useState(false);
   const [ cancelSubscriptionIsOpen, setCancelSubscriptionIsOpen ] = useState(false);
   const [ cancelFutureSubscriptionIsOpen, setCancelFutureSubscriptionIsOpen ] = useState(false);
-  
+
   // console.log(`process.env.NODE_ENV: ${process.env.NODE_ENV}`);
   // const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
   // console.log(`API_ENDPOINT: ${API_ENDPOINT}`);
@@ -205,7 +206,7 @@ function App() {
     setEvents(newEvents);
   }
 
-  //function that runs an update request for an event 
+  //function that runs an update request for an event
   const handleEditEvent = (editedEvent) => {
     const eventEdit = events.map((oldEvent) => {
       if (oldEvent.id === editedEvent.id){
@@ -233,84 +234,84 @@ function App() {
   }
   return (
     <div className="App">
-      <Navbar 
-        givingIsOpen={givingIsOpen} 
-        setGivingIsOpen={setGivingIsOpen} 
-        signUpIsOpen={signUpIsOpen} 
-        setSignUpIsOpen={setSignUpIsOpen} 
-        loginIsOpen={loginIsOpen} 
-        setLoginIsOpen={setLoginIsOpen} 
-        currentUser={currentUser} 
-        setCurrentUser={setCurrentUser} 
-        logoutIsOpen={logoutIsOpen} 
-        setLogoutIsOpen={setLogoutIsOpen} 
-        authChecked={authChecked} 
+      <Navbar
+        givingIsOpen={givingIsOpen}
+        setGivingIsOpen={setGivingIsOpen}
+        signUpIsOpen={signUpIsOpen}
+        setSignUpIsOpen={setSignUpIsOpen}
+        loginIsOpen={loginIsOpen}
+        setLoginIsOpen={setLoginIsOpen}
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+        logoutIsOpen={logoutIsOpen}
+        setLogoutIsOpen={setLogoutIsOpen}
+        authChecked={authChecked}
         setAuthChecked={setAuthChecked}
       />
-        <Routes>      
+        <Routes>
           <Route path='/' element={
-            <ChurchLandingAttributes 
-              currentUser={currentUser} 
-              givingIsOpen={givingIsOpen} 
+            <ChurchLandingAttributes
+              currentUser={currentUser}
+              givingIsOpen={givingIsOpen}
               setGivingIsOpen={setGivingIsOpen}
             />
           }
-          />  
+          />
           <Route path='/events' element={
-            <EventsContainer 
-              currentUser={currentUser} 
-              
+            <EventsContainer
+              currentUser={currentUser}
+
               // Events lists and local events state setter
               events={events}
               setEvents={setEvents}
 
               // Handles add, edit and delete events callbacks
-              handleAddNewEvent={handleAddNewEvent} 
-              handleEditEvent={handleEditEvent} 
-              handleDeleteEvent={handleDeleteEvent} 
+              handleAddNewEvent={handleAddNewEvent}
+              handleEditEvent={handleEditEvent}
+              handleDeleteEvent={handleDeleteEvent}
 
               // Handles opening of add and edit modals
-              addEventIsOpen={addEventIsOpen} 
+              addEventIsOpen={addEventIsOpen}
               setAddEventIsOpen={setAddEventIsOpen}
             />
           }
           />
           {/* <Route exact path='/about_us' component={AboutUsContainer} /> */}
           <Route path='/events/:id'element={
-            <EventInfoPage 
-              currentUser={currentUser} 
-              events={events} 
+            <EventInfoPage
+              currentUser={currentUser}
+              events={events}
               setEvents={setEvents}
             />
           }
           />
           <Route path='/login' element={
-            <Login 
-              currentUser={currentUser} 
-              setCurrentUser={setCurrentUser} 
-              authChecked={authChecked} 
-              setLogoutIsOpen={setLogoutIsOpen} 
+            <Login
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              authChecked={authChecked}
+              setLogoutIsOpen={setLogoutIsOpen}
             />
           }
           />
           <Route path='/signup' element={
-            <SignUp 
-              currentUser={currentUser} 
-              setCurrentUser={setCurrentUser} 
-              authChecked={authChecked} 
+            <SignUp
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              authChecked={authChecked}
               setLogoutIsOpen={setLogoutIsOpen}
             />
           }
           />
           <Route path='/signup_success' element={<SignUpSuccessPage/>}/>
           <Route path='/profile' element={
-            <ProfilePage 
-              currentUser={currentUser} 
-              setCurrentUser={setCurrentUser} 
-              authChecked={authChecked} 
+            <ProfilePage
+              currentUser={currentUser}
+              setCurrentUser={setCurrentUser}
+              authChecked={authChecked}
               editProfileIsOpen={editProfileIsOpen}
-              setEditProfileIsOpen={setEditProfileIsOpen} 
-              accountDeleteIsOpen={accountDeleteIsOpen} 
+              setEditProfileIsOpen={setEditProfileIsOpen}
+              accountDeleteIsOpen={accountDeleteIsOpen}
               setAccountDeleteIsOpen={setAccountDeleteIsOpen}
             />
           }
@@ -323,21 +324,21 @@ function App() {
           <Route path='/contact_us' element={<ContactUsPage/>}/>
           <Route path='/contact_us_success' element={<ContactUsSuccess/>}/>
           <Route path='/honors' element={
-            <HonorsPage 
-              currentUser={currentUser} 
-              addHonorIsOpen={addHonorIsOpen} 
+            <HonorsPage
+              currentUser={currentUser}
+              addHonorIsOpen={addHonorIsOpen}
               setAddHonorIsOpen={setAddHonorIsOpen}
             />
           }
           />
           <Route path='/edithonors/:id' element={<EditHonorsDocuments/>}/>
           <Route path='/subscriptions_page' element={
-            <SubscriptionCard 
-              currentUser={currentUser} 
-              cancelSubscriptionIsOpen={cancelSubscriptionIsOpen} 
-              setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen} 
-              cancelFutureSubscriptionIsOpen={cancelFutureSubscriptionIsOpen} 
-              setCancelFutureSubscriptionIsOpen={setCancelFutureSubscriptionIsOpen} 
+            <SubscriptionCard
+              currentUser={currentUser}
+              cancelSubscriptionIsOpen={cancelSubscriptionIsOpen}
+              setCancelSubscriptionIsOpen={setCancelSubscriptionIsOpen}
+              cancelFutureSubscriptionIsOpen={cancelFutureSubscriptionIsOpen}
+              setCancelFutureSubscriptionIsOpen={setCancelFutureSubscriptionIsOpen}
               />
             }
             />
@@ -348,24 +349,26 @@ function App() {
           <Route path='/youth_corner' element={<YouthCorner/>}/>
           <Route path='/bible_study' element={<BibleStudyPage currentUser={currentUser}/>}/>
           <Route path='/honor_view_item/:id' element={<HonorViewItem/>}/>
+          <Route path='/checkout_form_success' element={<CheckoutFormSuccess/>}/>
+
 
         </Routes>
-      <Footer 
-        givingIsOpen={givingIsOpen} 
-        setGivingIsOpen={setGivingIsOpen} 
-        signUpIsOpen={signUpIsOpen} 
-        setSignUpIsOpen={setSignUpIsOpen} 
-        loginIsOpen={loginIsOpen} 
-        setLoginIsOpen={setLoginIsOpen} 
-        currentUser={currentUser} 
-        setCurrentUser={setCurrentUser} 
-        logoutIsOpen={logoutIsOpen} 
-        setLogoutIsOpen={setLogoutIsOpen} 
-        authChecked={authChecked} 
+      <Footer
+        givingIsOpen={givingIsOpen}
+        setGivingIsOpen={setGivingIsOpen}
+        signUpIsOpen={signUpIsOpen}
+        setSignUpIsOpen={setSignUpIsOpen}
+        loginIsOpen={loginIsOpen}
+        setLoginIsOpen={setLoginIsOpen}
+        currentUser={currentUser}
+        setCurrentUser={setCurrentUser}
+        logoutIsOpen={logoutIsOpen}
+        setLogoutIsOpen={setLogoutIsOpen}
+        authChecked={authChecked}
         setAuthChecked={setAuthChecked}/>
 
-      <Modals 
-        currentUser={currentUser} 
+      <Modals
+        currentUser={currentUser}
         loginIsOpen={loginIsOpen}
         setLoginIsOpen={setLoginIsOpen}
         logoutIsOpen={logoutIsOpen}
@@ -373,7 +376,7 @@ function App() {
         signUpIsOpen={signUpIsOpen}
         setSignUpIsOpen={setSignUpIsOpen}
         givingIsOpen={givingIsOpen}
-        setGivingIsOpen={setGivingIsOpen} 
+        setGivingIsOpen={setGivingIsOpen}
         addEventIsOpen={addEventIsOpen}
         setAddEventIsOpen={setAddEventIsOpen}
         addHonorIsOpen={addHonorIsOpen}

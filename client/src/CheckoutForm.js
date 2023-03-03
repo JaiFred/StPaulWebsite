@@ -3,11 +3,11 @@ import {CardElement} from '@stripe/react-stripe-js';
 import {useStripe, useElements, PaymentElement} from '@stripe/react-stripe-js';
 
 const CheckoutForm = ({
-  setGivingIsOpen, 
-  setAmount, 
-  setClientSecret, 
-  setShowAmountForm, 
-  setShowRecurringForm, 
+  setGivingIsOpen,
+  setAmount,
+  setClientSecret,
+  setShowAmountForm,
+  setShowRecurringForm,
   children
 }) => {
   const stripe = useStripe();
@@ -24,11 +24,8 @@ const CheckoutForm = ({
   const handleSubmit = async (event) => {
     // We don't want to let default form submission happen here,
     // which would refresh the page.
-    console.log('I AM HERE 0')
 
     event.preventDefault();
-    
-    console.log('I AM HERE 1')
 
     if (!stripe || !elements) {
       // Stripe.js has not yet loaded.
@@ -40,25 +37,19 @@ const CheckoutForm = ({
       //`Elements` instance that was used to create the Payment Element
       elements,
       confirmParams: {
-        return_url: process.env.NODE_ENV == "development" ? "http://localhost:3001" : "https://st-paul-baptist-church.herokuapp.com"
+        return_url: process.env.NODE_ENV == "development" ? "http://localhost:3001/checkout_form_success" : "https://www.st-paul-baptist-church.com/checkout_form_success"
       },
     });
 
-    console.log('I AM HERE 2')
-
     if (result.error) {
-      console.log('I AM HERE 3')
       // Show error to your customer (for example, payment details incomplete)
-      console.log(result.error.message);
+      alert(result.error.message);
     } else {
-      console.log('I AM HERE 4')
-      alert("Thank you! We appreciate your offering.");
       // Your customer will be redirected to your `return_url`. For some payment
       // methods like iDEAL, your customer will be redirected to an intermediate
       // site first to authorize the payment, then redirected to the `return_url`.
+      resetForm();
     }
-    
-    resetForm();
   };
 
   return (
@@ -66,7 +57,7 @@ const CheckoutForm = ({
       <PaymentElement />
       {children}
       <div className="checkout-form-buttons">
-        <button disabled={!stripe} className="checkout-confirm">Confirm Payment</button>      
+        <button disabled={!stripe} className="checkout-confirm">Confirm Payment</button>
         <button type="button" onClick={() => resetForm()} className="checkout-cancel">Cancel Payment</button>
       </div>
     </form>
