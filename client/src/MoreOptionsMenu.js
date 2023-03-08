@@ -47,7 +47,7 @@ export const MoreOptionsMenu = ({currentUser, signUpIsOpen, setSignUpIsOpen, log
       { 
         currentUser &&
         <div>
-          <button className='dropdown-item' type='button' onClick={() => setLogoutIsOpen(true)}>Logout 1</button>
+          <button className='dropdown-item' type='button' onClick={() => setLogoutIsOpen(true)}>Logout</button>
           <LogoutProcedureModal logoutIsOpen={logoutIsOpen} setLogoutIsOpen={setLogoutIsOpen} currentUser={currentUser} setCurrentUser={setCurrentUser}/>
         </div>                    
       }              

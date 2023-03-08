@@ -49,7 +49,7 @@ export const FooterAccountOptions = ({
 
             {currentUser && 
                 <div className="footer-menu">
-                    <button className='footer-menu-item' type='button' onClick={() => setLogoutIsOpen(true)}>Logout 1</button>
+                    <button className='footer-menu-item' type='button' onClick={() => setLogoutIsOpen(true)}>Logout</button>
                     <Link to='/profile' className='footer-menu-item'>Profile</Link>
                     <LogoutProcedureModal
                         logoutIsOpen={logoutIsOpen}
