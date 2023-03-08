@@ -14,7 +14,7 @@ module Api
       '10_dollars_Monthly' => ENV.fetch('DOLLARS_MONTHLY_10', nil),
       '15_dollars_Monthly' => ENV.fetch('DOLLARS_MONTHLY_15', nil),
       '20_dollars_Monthly' => ENV.fetch('DOLLARS_MONTHLY_20', nil),
-      '25_dollars_Monthly' => ENV.fetch('',nil),
+      '25_dollars_Monthly' => ENV.fetch('DOLLARS_MONTHLY_25',nil),
       '30_dollars_Monthly' => ENV.fetch('',nil),
       '35_dollars_Monthly' => ENV.fetch('',nil),
       '40_dollars_Monthly' => ENV.fetch('',nil),
