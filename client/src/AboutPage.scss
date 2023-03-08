@@ -148,15 +148,25 @@
     }
     
     .pastor-pictures {
+        // position: relative;
+        // list-style-type: none;
+        // display: grid;
+        // grid-template-columns: repeat(2, 1fr);
+        // justify-content: center;
+        // gap: 40px;
+        // padding: 0;
+        // max-width: 780px;
+        // margin: 0 auto;
+
         position: relative;
         list-style-type: none;
         display: grid;
-        grid-template-columns: repeat(2, 1fr);
+        grid-template-columns: repeat(1, 1fr);
         justify-content: center;
         gap: 40px;
         padding: 0;
-        max-width: 780px;
-        margin: 0 auto;
+        max-width: 400px;
+        margin: 0px auto;
 
         &::before {
             content: '';
@@ -171,6 +181,7 @@
         }
         
         .pastor-picture {
+
             width: 100%;
             aspect-ratio: 1/1;
             border-radius: 50%;
@@ -179,11 +190,12 @@
             background-position: center;
             box-shadow: 0 5px 10px #999;
     
-            &.pastor-brown {
-                background-position: top center;
-            }
+            // &.pastor-brown {
+            //     background-position: top center;
+            // }
+
             &.pastor-bullock {
-                background-position: 25% top;
+                background-position: top center;
                 background-size: 170%;
             }
         }

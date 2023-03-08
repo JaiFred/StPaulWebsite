@@ -37,10 +37,10 @@ function AboutPage(){
                         {/* Pastors */}
                         <div className="pastor-info-container">
                             <ul className="pastor-pictures">
-                                <li>
+                                {/* <li>
                                     <div className="pastor-picture pastor-brown" style={{ backgroundImage: `url(${PastorBrown})` }}></div>
                                     <h5>Rev. Robert D. Brown<br />&<br /> Pastor Kim Bullock</h5>
-                                </li>
+                                </li> */}
                                 <li>
                                     <div className="pastor-picture pastor-bullock" style={{ backgroundImage: `url(${PastorBullock})` }}></div>
                                     <h5>Pastor Kim Bullock</h5>
