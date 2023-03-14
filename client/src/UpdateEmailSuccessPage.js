@@ -16,7 +16,9 @@ function UpdateEmailSuccessPage(){
                 <p>Please check your email to confirm this change. Your password is the same.</p>
                 <p>You have been automatically logged out to complete this change</p>
             </div>
-            <Link to='/' className="back-home-button">Back Home</Link>
+            <div className="back-home mt-5">
+                <Link to='/' className="back-home-success"><h3 className="button-text">Back Home</h3></Link>
+            </div>
         </div>
     )
 }

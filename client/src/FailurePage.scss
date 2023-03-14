@@ -1,0 +1,40 @@
+.failure-page-wrapper {
+    padding: 100px 0;
+    background-size: cover;
+    background-position: center;
+}
+
+.failure-page-message {
+    padding: 60px;
+    background: #dc3545;
+    color: white;
+    text-align: center;
+    margin: 0 auto;
+    max-width: 800px;
+    width: 90%;
+    border-radius: 20px;
+    
+    h1 {
+        font-weight: 800;
+        margin-bottom: 40px;
+    }
+
+    .contact-us-text{
+        font-weight: 800;
+        margin-bottom: 0px;
+    }
+    
+    p {
+        font-weight: 700;
+        font-size: 1.33em;
+        margin-bottom: 0;
+    }
+}
+
+.button-text{
+    margin: 0;
+
+    &:hover{
+        color: rgb(255, 250, 195);
+    }
+}
