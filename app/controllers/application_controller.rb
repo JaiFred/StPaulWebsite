@@ -1,11 +1,13 @@
 # frozen_string_literal: true
 
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
   include ActionController::Cookies
   rescue_from ActiveRecord::RecordInvalid, with: :render_validation_errors
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
   before_action :configure_permitted_parameters, if: :devise_controller?
+
+  skip_before_action :verify_authenticity_token
 
   protected
 

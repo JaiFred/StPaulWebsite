@@ -12,6 +12,7 @@ module BackEnd
   class Application < Rails::Application
     config.middleware.use ActionDispatch::Cookies
     config.middleware.use ActionDispatch::Session::CookieStore
+    config.middleware.use ActionDispatch::Flash
 
     # Use SameSite=Strict for all cookies to help protect against CSRF
     config.action_dispatch.cookies_same_site_protection = :strict
@@ -21,7 +22,7 @@ module BackEnd
 
     config.api_only = true
 
-    config.active_storage.variant_processor = :mini_magick
+    config.active_storage.variant_processor = :mini_magick    
 
     # Configuration for the application, engines, and railties goes here.
     #
