@@ -15,7 +15,9 @@ ActiveAdmin.register Subscription do
   #   permitted
   # end
 
-  member_action :cancel do    
+  actions :all, :except => [:destroy, :new, :create, :edit, :update]
+
+  member_action :cancel do
     Stripe::Subscription.update(
       resource.stripe_subscription_id,
       {
@@ -29,15 +31,24 @@ ActiveAdmin.register Subscription do
   end
 
   action_item :cancel, only: %i[show] do
-    link_to 'Cancel Subscription', cancel_admin_subscription_path(resource)
+    link_to 'Cancel Subscription', cancel_admin_subscription_path(resource) if resource.cancelled_at.blank?
   end
 
+  index do
+    selectable_column
+    id_column
+    column :user
+    column :title
+    column :stripe_subscription_id
+    column :created_at
+    column :updated_at
+    column :cancelled_at
 
-  # action_item :cancel do
-  #   link_to 'Cancel Subscription', cancel_subscription_path(resource)
-  # end
+    actions defaults: %i[show] do |sub|
+      if sub.cancelled_at.blank?
+        item "Cancel Subscription", cancel_admin_subscription_path(sub), data: { confirm: "Are you sure you want to cancel this subscription?" }
+      end
+    end
+  end
 
-  # member_action :cancel do
-  # end
-  
 end
