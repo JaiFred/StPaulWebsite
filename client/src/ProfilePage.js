@@ -139,6 +139,15 @@ function ProfilePage({
           {profileEmail}
         </div>
 
+        {(currentUser?.admin || currentUser?.user?.admin) && (
+          <div>
+            <h3>Admin controls</h3>
+            <div className="profile-info-action-buttons mb-5">
+              <Link to="/admin/login">Admin panel for managing data</Link>
+            </div>
+          </div>
+        )}
+
         {/* Subscription */}
         <div className="pb-5">
           <h3>Subscriptions</h3>
