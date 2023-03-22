@@ -39,3 +39,6 @@ e6 =  Event.create!(title: 'Test5', starts: DateTime.new(2022, 0o5, 10, 10, 0o0,
 ButtonVisibleConfig.create!
 
 Rails.logger.debug 'Done seeding!'
+
+AdminUser.create!(email: 'admin@example.com', password: 'password', password_confirmation: 'password') if Rails.env.development?
+

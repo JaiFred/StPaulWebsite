@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class ApplicationController < ActionController::API
+class ApplicationController < ActionController::Base
   include ActionController::Cookies
   rescue_from ActiveRecord::RecordInvalid, with: :render_validation_errors
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
