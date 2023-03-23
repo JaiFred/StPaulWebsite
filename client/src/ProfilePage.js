@@ -21,7 +21,9 @@ function ProfilePage({
   accountDeleteIsOpen,
   setAccountDeleteIsOpen,
 }) {
-  // const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
+
+
+  const ADMIN_LOGIN_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000/admin/login" : "https://www.st-paul-baptist-church.com/admin/login";
 
 
   const navigate = useNavigate();
@@ -111,10 +113,10 @@ function ProfilePage({
     <div className="profile-page-background">
       <div className="profile-info-square">
         <h3 className="profile-info-name">{profileFirstName} {profileLastName}</h3>
-        
+
         {/* Heading */}
         <h1 className="profile-page-title">Your Profile</h1>
-        
+
         {/* Buttons */}
         <div className="profile-info-action-buttons mb-5">
           <button
@@ -143,7 +145,7 @@ function ProfilePage({
           <div>
             <h3>Admin controls</h3>
             <div className="profile-info-action-buttons mb-5">
-              <Link to="/admin/login">Admin panel for managing data</Link>
+              <a href={ADMIN_LOGIN_ENDPOINT}>Admin panel for managing data</a>
             </div>
           </div>
         )}
