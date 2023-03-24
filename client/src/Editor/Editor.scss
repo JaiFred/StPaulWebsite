@@ -1,3 +1,24 @@
+.quill {
+    background: white;
+
+    .ql-toolbar.ql-snow {
+        background: black;
+        * {
+            color: white;
+            background: black;
+        }
+        .ql-stroke {
+            stroke: white;
+        }
+        .ql-fill {
+            fill: white;
+        }
+        .ql-transparent {
+            opacity: 1;
+        }
+    }
+}
+
 .ck-editor__editable_inline {
     min-height: 200px;
 }

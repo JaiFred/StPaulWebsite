@@ -36,7 +36,9 @@ function HonorViewItem(props) {
 
     return (
         <div className="honor-view-item">
-            <File file={document.file} />
+            <div className="honor-view__file-wrapper">
+                <File file={document.file} />
+            </div>
             <main className="dark-buttons">
                 <div className="honor-view-item__content" dangerouslySetInnerHTML={{ __html: isSafeHTML(document.description) }} />
                 <Link className="back-to-honor-page button-small button-custom mx-auto" to={`/honors`}>Back</Link>

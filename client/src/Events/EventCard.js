@@ -42,7 +42,7 @@ function EventCard({event, currentUser, handleDeleteEvent, handleEditEvent}){
 
     const imgSrc = image || "https://media.istockphoto.com/id/1147544807/vector/thumbnail-image-vector-graphic.jpg?s=612x612&w=0&k=20&c=rnCKVbdxqkjlcs3xH87-9gocETqpspHFXu5dIGB4wuM="
     
-    return <div className="event-card" style={{backgroundImage: `url(${imgSrc})`}}>
+    return <div className="event-card">
         <div className="event-card-outer">
             <div className="event-card-inner">
                 <Link to={`/events/${event.id}`} className="event-card-link"></Link>
@@ -59,9 +59,12 @@ function EventCard({event, currentUser, handleDeleteEvent, handleEditEvent}){
                     />
 
                     <div className="event-card-infos">
-                        <div className="event-card-infos-inner">
-                            <h2 className="event-card-title">{title}</h2>
-                            <p className="event-card-date">{starts_short}&#160;&#160; - &#160;&#160;{ends_short}</p>
+                        <div className="event-card-infos-image" style={{backgroundImage: `url(${imgSrc})`}}></div>
+                        <div className="event-card-infos-inner__wrapper">
+                            <div className="event-card-infos-inner">
+                                <h2 className="event-card-title">{title}</h2>
+                                <p className="event-card-date">{starts_short}&#160;&#160; - &#160;&#160;{ends_short}</p>
+                            </div>
                         </div>
                     </div>
                 </div>
