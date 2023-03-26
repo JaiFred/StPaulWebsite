@@ -333,3 +333,13 @@ ActiveAdmin.setup do |config|
   #
   # config.use_webpacker = true
 end
+
+Rails.application.config.after_initialize do
+  ActiveAdmin::Devise::SessionsController.class_eval do
+    def destroy
+      sign_out(resource_name)
+      redirect_to '/admin/login', allow_other_host: true
+      return
+    end
+  end
+end
