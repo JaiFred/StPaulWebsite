@@ -104,7 +104,6 @@ ActiveAdmin.setup do |config|
   #
   # Default:
   config.logout_link_path = :destroy_admin_user_session_path
-  config.logout_link_method = :post
 
   # This setting changes the http method used when rendering the
   # link. For example :get, :delete, :put, etc..
@@ -333,4 +332,14 @@ ActiveAdmin.setup do |config|
   # You can switch to using Webpacker here.
   #
   # config.use_webpacker = true
+end
+
+Rails.application.config.after_initialize do
+  ActiveAdmin::Devise::SessionsController.class_eval do
+    def destroy
+      sign_out(resource_name)
+      redirect_to '/admin/login', allow_other_host: true
+      return
+    end
+  end
 end

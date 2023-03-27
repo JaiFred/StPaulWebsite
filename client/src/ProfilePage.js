@@ -22,7 +22,6 @@ function ProfilePage({
   setAccountDeleteIsOpen,
 }) {
 
-
   const ADMIN_LOGIN_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000/admin/login" : "https://www.st-paul-baptist-church.com/admin/login";
 
 
@@ -145,7 +144,7 @@ function ProfilePage({
           <div>
             <h3>Admin controls</h3>
             <div className="profile-info-action-buttons mb-5">
-              <a href={ADMIN_LOGIN_ENDPOINT}>Admin panel for managing data</a>
+              <a href={ADMIN_LOGIN_ENDPOINT} target="_blank">Admin panel for managing data</a>
             </div>
           </div>
         )}
