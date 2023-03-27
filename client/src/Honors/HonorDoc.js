@@ -23,7 +23,7 @@ export const HonorDoc = ({
   <div className={"honor-doc"}>
     <div className="honor-doc-outer">
       <div className="honor-doc-inner">
-        {doc.file.endsWith(".pdf") ? (
+        {doc.file?.endsWith(".pdf") ? (
           <div className="honor-doc-media-container">
             <embed
               className="honor-doc-media media-embed"

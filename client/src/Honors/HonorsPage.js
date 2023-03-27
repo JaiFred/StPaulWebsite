@@ -5,7 +5,7 @@ import { useNavigate, Link } from "react-router-dom";
 
 //components
 import AddHonorsItemModal from "../AddHonorsItemModal";
-import { Parallax, ParallaxBannerLayer } from 'react-scroll-parallax'; 
+import { Parallax, ParallaxBannerLayer } from 'react-scroll-parallax';
 import { HonorDoc } from "./HonorDoc";
 import { BackHomeButton } from '../BackHomeButton/BackHomeButton';
 import { fetchDocuments } from '../utils';
@@ -15,9 +15,9 @@ import honorPageVideo from '../images/honor-page-video.mp4'
 import background from "../images/trees-wallpaper-green.jpeg"
 import './HonorsPage.scss'
 
-function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){    
+function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
     const [ selectedDocument, setSelectedDocument ] = useState(null)
-    const [ documents, setDocuments ] = useState(null)    
+    const [ documents, setDocuments ] = useState(null)
     const [ editHonorIsOpen , setEditHonorIsOpen ] = useState(false);
     const [ deleteHonorIsOpen, setDeleteHonorIsOpen ] = useState(false);
 
@@ -53,11 +53,11 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
 
                 {/* */}
                 <AddHonorsItemModal
-                    setDocuments={setDocuments} 
-                    addHonorIsOpen={addHonorIsOpen} 
+                    setDocuments={setDocuments}
+                    addHonorIsOpen={addHonorIsOpen}
                     setAddHonorIsOpen={setAddHonorIsOpen}
                 />
-            
+
                 <div className="add-new-honor-container">
                     <div className="column"></div>
                     <div className="column document-page-title">
@@ -77,7 +77,7 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
 
                 {/* */}
                 <div class="row">
-                    {documents && documents.map(doc => 
+                    {documents && documents.map(doc =>
                         <div class="col-12 col-md-6"><HonorDoc currentUser={currentUser}
                             doc={doc}
                             fetchDocuments={fetchDocuments}
@@ -96,8 +96,8 @@ function HonorsPage({ currentUser, addHonorIsOpen, setAddHonorIsOpen}){
                 <BackHomeButton/>
             </div>
         </div>
-           
-    
+
+
     )
 }
 

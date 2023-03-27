@@ -34,8 +34,10 @@
             overflow: hidden;
             
             &.media-image {
-                background-size: cover;
+                background-size: 90%;
                 background-position: center;
+                background-repeat: no-repeat;
+                margin: 20px 0;
             }
             
             .media-embed {

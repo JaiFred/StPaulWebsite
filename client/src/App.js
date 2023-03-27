@@ -182,7 +182,10 @@ function App() {
   useEffect(() => {
     fetch(`/api/events`)
       .then((r) => r.json())
-      .then(events => setEvents(events))
+      .then(events => {
+        if (events.error) return;
+        setEvents(events);
+      })
   },[])
 
   useEffect(() => {

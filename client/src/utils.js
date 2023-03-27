@@ -2,7 +2,6 @@ export function fetchDocuments(onFetch, id) {
     console.log('Fetching documents from the backend server !!!');
 
     // const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
-
     
     fetch(`/api/honor_pages`, {
         id,
@@ -11,7 +10,7 @@ export function fetchDocuments(onFetch, id) {
     .then(res => {
         if (!res.ok) return;
         res.json().then(honorPages => {
-            onFetch(honorPages[0].documents)
+            onFetch(honorPages[0].documents.sort((a,b) => a.id < b.id ? 1 : -1))
         })
     })
 }

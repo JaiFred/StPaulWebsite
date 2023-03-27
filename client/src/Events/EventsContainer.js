@@ -28,6 +28,7 @@ function EventsContainer({
     addEventIsOpen,
     setAddEventIsOpen
 }){
+    console.log({events})
     // debugger;
     const EventList = events.map((event) => (
         <div class="col-12 col-md-6 col-lg-4 col-xl-3">

@@ -21,6 +21,7 @@ function ProfilePage({
   accountDeleteIsOpen,
   setAccountDeleteIsOpen,
 }) {
+
   const ADMIN_LOGIN_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000/admin/login" : "https://www.st-paul-baptist-church.com/admin/login";
 
 
@@ -111,10 +112,10 @@ function ProfilePage({
     <div className="profile-page-background">
       <div className="profile-info-square">
         <h3 className="profile-info-name">{profileFirstName} {profileLastName}</h3>
-        
+
         {/* Heading */}
         <h1 className="profile-page-title">Your Profile</h1>
-        
+
         {/* Buttons */}
         <div className="profile-info-action-buttons mb-5">
           <button
