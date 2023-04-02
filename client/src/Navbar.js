@@ -88,7 +88,7 @@ function Navbar({givingIsOpen, signUpIsOpen, setSignUpIsOpen, loginIsOpen, setLo
         </div>
       </nav>
       <div className="navbar-banner-container">
-      <h3 className="navbar-banner">Impacting Lives For God's kingdom</h3>
+      <h3 className="navbar-banner">Impacting Lives For God's Kingdom</h3>
       </div>
   </div>
       
