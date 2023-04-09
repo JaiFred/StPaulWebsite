@@ -11,4 +11,8 @@ class DeviseMailerPreview < ActionMailer::Preview
     def reset_password_instructions
       Devise::Mailer.reset_password_instructions(User.first, "faketoken")
     end
+
+    def payment_failed
+      UserInvoiceMailer.payment_failed(User.first, reason = 'Invalid Card')
+    end
 end

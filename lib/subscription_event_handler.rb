@@ -16,13 +16,11 @@ class SubscriptionEventHandler
   end
 
   def handle_invoice_payment_failed(event)
-    binding.pry
-    raise event.data
     invoice = event.data.object
     reason = invoice.billing_reason
     customer_id = invoice.customer
     user = User.find_by(stripe_customer_id: customer_id)
-    # UserMailer.send_payment_failed_email(user: user, reason: reason)
-    # put Logger to see the log later on
+    Rails.logger.info("sending UserInvoiceMailer email to user: #{user.email}")
+    UserInvoiceMailer.payment_failed(user, reason)
   end
 end
