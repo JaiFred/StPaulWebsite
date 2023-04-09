@@ -301,3 +301,10 @@ module Api
     end
   end
 end
+
+# Stripe::Subscription.update(
+#   subscription.stripe_subscription_id,
+#   {
+#     "trial_end" => (Time.current + 1.minute).to_i
+#   }
+# )

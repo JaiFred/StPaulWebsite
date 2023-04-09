@@ -55,6 +55,7 @@ gem 'byebug'
 gem 'pry'
 
 gem 'stripe'
+gem 'stripe_event'
 
 # Use Sass to process CSS
 # gem "sassc-rails"
