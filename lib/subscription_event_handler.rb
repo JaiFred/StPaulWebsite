@@ -21,6 +21,7 @@ class SubscriptionEventHandler
     customer_id = invoice.customer
     user = User.find_by(stripe_customer_id: customer_id)
     Rails.logger.info("sending UserInvoiceMailer email to user: #{user.email}")
-    UserInvoiceMailer.payment_failed(user, reason)
+    UserInvoiceMailer.payment_failed(user, reason).deliver_now
+    user.update!(payment_failed_email_sent_at: DateTime.current)
   end
 end
