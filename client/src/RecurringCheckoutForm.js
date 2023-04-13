@@ -105,11 +105,12 @@ const Field = ({
   </div>
 );
 
+// look into how error value changes this behaviour!
 const SubmitButton = ({ processing, error, children, disabled }) => (
   <button
     className={`btn recurring-submit ${error ? "btn-danger" : "btn-pink"}`}
     type="submit"
-    disabled={processing || disabled}
+    disabled={processing || disabled }
     title="submit subscription"
     alt="submit subscription"
   >
@@ -137,7 +138,7 @@ const ELEMENTS_OPTIONS = {
 };
 
 const RecurringCheckoutForm = ({
-  currentUser  
+  currentUser
 }) => {
   const stripe = useStripe();
   const elements = useElements();
@@ -357,10 +358,17 @@ const RecurringCheckoutForm = ({
         payment_start_date: paymentStartDate,
         user_id: currentUser?.id || currentUser?.user?.id,
       }),
-    }).then((res) => console.log(JSON.stringify(res)))
-    .then(alert("Subscription successfully made!")
-    );
-
+    }).then((response) => {
+        console.log(`response: ${JSON.stringify(response)}`);
+        if (response.ok) {
+          alert("Subscription successfully made!")
+        } else {
+          response.json().then((response) => {
+            setError(response.errors);
+            console.log(`response with errors: ${JSON.stringify(response)}`);
+          });
+        }
+      });
   };
 
   function handlePaymentStartDateChange(e) {
@@ -376,8 +384,8 @@ const RecurringCheckoutForm = ({
 
   return (
 
-    <div className="stripe-containersssss recurring-checkout-form">      
-      {paymentMethod ? (
+    <div className="stripe-containersssss recurring-checkout-form">
+      {paymentMethod && !error ? (
         <div className="Result">
           <div className="result-container">
             <div className="ResultTitle" role="alert">
@@ -385,8 +393,8 @@ const RecurringCheckoutForm = ({
               {submitPaymentSubscription()}
             </div>
             <div className="ResultMessage">
-              Thank you! We have recieved your recurring offering request. 
-              You can find and manage your reccuring offerings in your profile. 
+              Thank you! We have recieved your recurring offering request.
+              You can find and manage your reccuring offerings in your profile.
             </div>
           </div>
           <div className="d-flex justify-content-center align-items-center my-3 flex-column gap-2">
