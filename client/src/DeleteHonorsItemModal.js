@@ -34,7 +34,7 @@ function DeleteHonorsItemModal({ selectedDocument, doc, documents, setDocuments,
         >
             <ModalHeader className="justify-content-center">
                 <ModalTitle className='bold'>
-                        Are you sure you want<br /> to delete Document #{doc.id}?
+                        Are you sure you want<br />to delete Document #{doc.id}?
                 </ModalTitle>
             </ModalHeader>
             <ModalFooter 
