@@ -342,6 +342,13 @@ const RecurringCheckoutForm = ({
 
     console.log(`frequency: ${frequency} | amount: ${amount} | biWeeklyPaymentDate: ${biWeeklyPaymentDate}`)
 
+     if (error) {
+      return;
+    }
+    // deal with stripe api server error differently than the client side error
+    // may be? setStripeApiError()
+    //
+
     fetch("/api/payment_subscription", {
       method: "POST",
       headers: {
