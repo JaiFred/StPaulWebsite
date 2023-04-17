@@ -143,7 +143,7 @@ const RecurringCheckoutForm = ({
   const stripe = useStripe();
   const elements = useElements();
   const [error, setError] = useState(null);
-  const [stripeApiError, setStripeApiError] = useState(null);  
+  const [stripeApiError, setStripeApiError] = useState(null);
   const [cardComplete, setCardComplete] = useState(false);
   const [processing, setProcessing] = useState(false);
   // const [stripeApiProcessing, setStripeApiProcessing] = useState(false);
@@ -373,13 +373,13 @@ const RecurringCheckoutForm = ({
         console.log(`response: ${JSON.stringify(response)}`);
         // setStripeApiProcessing(false);
         if (response.ok) {
-          alert("Subscription successfully made!")          
+          alert("Subscription successfully made!")
         } else {
           response.json().then((response) => {
             setStripeApiError(response.errors);
             console.log(`response with errors: ${JSON.stringify(response)}`);
           });
-        }        
+        }
       });
   };
 
@@ -502,7 +502,7 @@ const RecurringCheckoutForm = ({
           </div>
 
           {error && <ErrorMessage message={error.message || error} />}
-          {stripeApiError && <ErrorMessage message={stripeApiError} />}          
+          {stripeApiError && <ErrorMessage message={stripeApiError} />}
 
           <h3 className="recurring-submit-button-instructions">Click to submit recurring payment</h3>
           <SubmitButton
