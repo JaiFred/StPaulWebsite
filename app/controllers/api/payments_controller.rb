@@ -284,6 +284,9 @@ module Api
 
       # https://stripe.com/docs/billing/subscriptions/billing-cycle
       render json: { subscription: response }, status: :ok
+
+    rescue Stripe::CardError, Stripe::InvalidRequestError, StandardError => ex
+      render json: { errors: ex.message }, status: :unprocessable_entity
     end
 
     def cancel_subscription
