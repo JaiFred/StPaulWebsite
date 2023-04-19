@@ -105,7 +105,6 @@ const Field = ({
   </div>
 );
 
-// look into how error value changes this behaviour!
 const SubmitButton = ({ processing, error, children, disabled }) => (
   <button
     className={`btn recurring-submit ${error ? "btn-danger" : "btn-pink"}`}
@@ -144,9 +143,9 @@ const RecurringCheckoutForm = ({
   const elements = useElements();
   const [error, setError] = useState(null);
   const [stripeApiError, setStripeApiError] = useState(null);
+  const [loading, setLoading] = useState(true);
   const [cardComplete, setCardComplete] = useState(false);
   const [processing, setProcessing] = useState(false);
-  // const [stripeApiProcessing, setStripeApiProcessing] = useState(false);
   const [paymentStartDate, setPaymentStartDate] = useState(new Date());
   const [billingDetails, setBillingDetails] = useState({
     email: "",
@@ -260,8 +259,6 @@ const RecurringCheckoutForm = ({
   const handleSubmit = async (event) => {
     event.preventDefault();
 
-    console.log("submitting to stripe API");
-
     if (!stripe || !elements) {
       // Stripe.js has not loaded yet. Make sure to disable
       // form submission until Stripe.js has loaded.
@@ -279,20 +276,13 @@ const RecurringCheckoutForm = ({
       return;
     }
 
-    console.log("checking paymentStartdate");
-    console.log(new Date(paymentStartDate) < new Date());
-
-    console.log("paymant method from recurring form (inside handleSubmit)", paymentMethod);
-
     if (new Date(paymentStartDate) < new Date()) {
-      console.log(`setting error to: Please choose a future date!`)
       setError("Please choose a future date!");
       return;
     }
 
     if (cardComplete) {
       setProcessing(true);
-      // setStripeApiProcessing(true);
     }
 
     const payload = await stripe.createPaymentMethod({
@@ -301,20 +291,13 @@ const RecurringCheckoutForm = ({
       billing_details: billingDetails,
     });
 
-    console.log(`payload: ${JSON.stringify(payload)}`);
-
-    console.log('setProcessing 1')
     setProcessing(false);
-    // setStripeApiProcessing(false);
-    console.log('setProcessing 2')
-    console.log(`payload.error: ${payload.error}`)
 
     if (payload.error) {
       setError(payload.error);
     } else {
-      console.log(`setting paymentMethod....${payload.paymentMethod}`)
       setPaymentMethod(payload.paymentMethod);
-      // setStripeApiProcessing(true);
+      submitPaymentSubscription(payload.paymentMethod.id);
     }
   };
 
@@ -322,6 +305,8 @@ const RecurringCheckoutForm = ({
     setError(null);
     setProcessing(false);
     setPaymentMethod(null);
+    setStripeApiError(null)
+    setLoading(true)
     setBillingDetails({
       email: "",
       phone: "",
@@ -329,25 +314,8 @@ const RecurringCheckoutForm = ({
     });
   };
 
-  // Must make another fetch request for the days
-  // Must make a method in the backend for the payday options
-  // dropdown for the pay day options
 
-  console.log(`paymentStartDate 2: ${paymentStartDate}`);
-
-  const submitPaymentSubscription = () => {
-    console.log("checking paymentStartdate inside submitPaymentSubscription");
-    console.log(new Date(paymentStartDate) < new Date());
-
-    // if (new Date(paymentStartDate) < new Date()) {
-    //   console.log("setting error:  Please choose a future date!");
-    //   setError("Please choose a future date!");
-    //   return;
-    // }
-
-    // setStripeApiProcessing(true);
-
-    console.log(`frequency: ${frequency} | amount: ${amount} | biWeeklyPaymentDate: ${biWeeklyPaymentDate}`)
+  const submitPaymentSubscription = (paymentMethodId) => {
 
      if (error) {
       return;
@@ -365,19 +333,19 @@ const RecurringCheckoutForm = ({
         payment_date: paymentDate,
         weekday: weekday,
         biweekly_payment_date: biWeeklyPaymentDate,
-        payment_method_id: paymentMethod.id,
+        payment_method_id: paymentMethodId,
         payment_start_date: paymentStartDate,
         user_id: currentUser?.id || currentUser?.user?.id,
       }),
     }).then((response) => {
-        console.log(`response: ${JSON.stringify(response)}`);
-        // setStripeApiProcessing(false);
         if (response.ok) {
+          setLoading(false);
+          setStripeApiError(null);
           alert("Subscription successfully made!")
         } else {
           response.json().then((response) => {
             setStripeApiError(response.errors);
-            console.log(`response with errors: ${JSON.stringify(response)}`);
+            setLoading(false);
           });
         }
       });
@@ -392,18 +360,15 @@ const RecurringCheckoutForm = ({
     } else {
       setError(null);
     }
-  }
-
-  // TODO: play with stripeApiProcessing mor to stop the first blinking.
+  }  
 
   return (
     <div className="stripe-containersssss recurring-checkout-form">
-      {paymentMethod && !stripeApiError ? (
+      {!loading && !stripeApiError ? (
         <div className="Result">
           <div className="result-container">
             <div className="ResultTitle" role="alert">
               Payment successful
-              {submitPaymentSubscription()}
             </div>
             <div className="ResultMessage">
               Thank you! We have recieved your recurring offering request.

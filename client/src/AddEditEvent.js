@@ -77,15 +77,11 @@ function AddEditEvent({
     };
 
     const handleChange = (e) => {
-        console.log(`e.target.name: ${e.target.name}`);
-        console.log(`e.target.value: ${e.target.value}`);
         const { name, value } = e.target;
         setFormData({...formData, [name]: value })
     };
 
     function handleImageChange (e) {
-        console.log(`handleImageChange....`)
-        console.log(`e.target.files[0]: ${e.target.files[0]}`)
         const { name, value } = e.target;
         if (e.target.files[0]) {
             const [file] = e.target.files;

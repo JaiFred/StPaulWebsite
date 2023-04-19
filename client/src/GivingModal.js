@@ -18,7 +18,6 @@ import { ErrorMessage } from "./Forms/ErrorMessage";
 
 // Make sure to call `loadStripe` outside of a component’s render to avoid
 // recreating the `Stripe` object on every render.
-console.log(`process.env.REACT_APP_STRIPE_PUBLIC_KEY: ${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`)
 const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`);
 
 function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
@@ -39,10 +38,6 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
     });
     
     const [paymentOption, PaymentOptionDropdown, setPaymentOption] = useDropdown("Choose a Payment option", "One Time Payment", "", ["One Time Payment", "Regularly"], true, 'giving-dropdown');
-
-    // console.log(`paymentOption: ${paymentOption}`);
-    // console.log(`clientSecretRecurring: ${clientSecretRecurring}`);
-    // console.log(`showRecurringForm: ${showRecurringForm}`);
 
     const resetForm = () => {
         setPaymentOption("One Time Payment")        
@@ -80,8 +75,6 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
 
     const fetchClientSecret = (e) => {
         e.preventDefault();
-        
-        console.log(`amount: ${amount}`)
 
         if (!billingDetails.name && billingDetails.email ) {
             setError('please fill out your full name before proceeding')
@@ -169,8 +162,6 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
             },
           ],
       };
-
-    console.log('One form?', paymentOption == 'One Time Payment' && clientSecret )
 
     return(
         <div className='overlay_giving_modal'>

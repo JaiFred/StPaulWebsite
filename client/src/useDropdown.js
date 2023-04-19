@@ -12,8 +12,6 @@ const useDropdown = (
   const id = `use-dropdown-${label.replace(" ", "").toLowerCase()}`;
   const secondId = `use-dropdown-${label.replace(" ", "").toLowerCase()}`;
 
-  console.log(`label: ${label} | state: ${state}`);
-
   const Dropdown = () => (
     <div className="mb-4">
       <label htmlFor={id} className="form-label">
