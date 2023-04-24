@@ -70,7 +70,7 @@ function EventInfoPage({ currentUser }){
                         
                         {/* Time */}
                         <h3>Time:</h3>
-                        <p className="time-info"><small>Starts:</small> <strong>{event.starts}</strong> <br/><small>Ends:</small> <strong>{event.ends}</strong><br/></p>
+                        <p className="time-info"><small>Starting - </small> <strong>{event.starts}</strong> <br/><small>Ending - </small> <strong>{event.ends}</strong><br/></p>
                         
                         {/* Details */}
                         <h3>Details:</h3>
