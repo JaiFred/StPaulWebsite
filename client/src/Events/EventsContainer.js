@@ -72,6 +72,12 @@ function EventsContainer({
                 <div className="row upcoming-event">
                     <div className="col text-center">
                         <h2 className="bolder">Upcoming Event</h2>
+                        {/* Show All Button */}
+                        {/* <button
+                        className='events-filters-button'
+                        type='button'
+                        >Show all events
+                        </button> */}
                     </div>
                 </div>
             </div>

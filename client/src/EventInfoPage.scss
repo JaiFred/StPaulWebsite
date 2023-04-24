@@ -1,5 +1,25 @@
 @import './bootstrap-utils';
 
+.button-back {
+    display: inline-block;
+    text-decoration: none;
+    padding: 5px 30px;
+    background-color: black;
+    font-weight: thin;
+    color: white;
+    border-radius: 100px;
+    font-size: 2rem;
+    border: 2px solid black;
+    transition: 0.5s;
+
+        &:hover {
+            border: 2px solid #69F;
+            color: #69F;
+            transform: scale(1.1);
+            box-shadow: 0 20px 40px rgb(0, 0, 0);
+        }
+}
+
 .info-page {
     padding: 40px 0;
 

@@ -11,9 +11,6 @@ export const EventsFilter = ({setEvents}) => {
         e.preventDefault()
         let month = e.target.value;
         console.log(`clicked on month: ${month}`);
-        // let monthNumber = months[month];
-        // console.log(`clicked button: ${month} | ${monthNumber}`);
-        
     
         fetch(`/api/events?month=${month}`)
             .then((res) => res.json())

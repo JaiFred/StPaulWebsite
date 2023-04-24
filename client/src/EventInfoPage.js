@@ -51,7 +51,7 @@ function EventInfoPage({ currentUser }){
 
     const BackButton = () => (
         <div className="col-12 col-md-4 d-flex justify-content-center align-items-center">
-            <Link to='/events' className="main button-custom">Back</Link>
+            <Link to='/events' className="button-back">Back</Link>
         </div>
     )
 
