@@ -20,16 +20,25 @@ function EventsContainer({
     currentUser,
     events,
     setEvents,
-    
+
     handleAddNewEvent,
     handleEditEvent,
     handleDeleteEvent,
-    
+
     addEventIsOpen,
     setAddEventIsOpen
 }){
     console.log({events})
     // debugger;
+
+    function fetchAllEvents() {
+        fetch(`/api/events`)
+        .then((res) => res.json())
+        .then(events => {
+            setEvents(events);
+        })
+     }
+
     const EventList = events.map((event) => (
         <div class="col-12 col-md-6 col-lg-4 col-xl-3">
             <EventCard
@@ -56,11 +65,11 @@ function EventsContainer({
     //     "December": "12",
     // }
 
-  
+
 
       // let monthNames = ["Jan","Feb","Mar","Apr","May","Jun","Jul","Aug","Sep","Oct","Nov","Dec"];
 
-  
+
 
     console.log(`In EventsContainer: currentUser?.admin: ${currentUser?.admin} | currentUser?.user?.admin: ${currentUser?.user?.admin}`)
     console.log({addEventIsOpen})
@@ -73,18 +82,19 @@ function EventsContainer({
                     <div className="col text-center">
                         <h2 className="bolder">Upcoming Event</h2>
                         {/* Show All Button */}
-                        {/* <button
+                        <button
                         className='events-filters-button'
                         type='button'
+                        onClick={() => fetchAllEvents()}
                         >Show all events
-                        </button> */}
+                        </button>
                     </div>
                 </div>
             </div>
             <div className="container-fluid">
                 <div className="events-content">
                     <EventsFilter setEvents={setEvents}/>
-                
+
                     <div className="events-content-scroll-wrapper">
                         <div className="events-content-scroll">
                             <div className="row">{EventList}</div>
@@ -100,7 +110,7 @@ function EventsContainer({
                                 Add New Event
                             </button>
                             {addEventIsOpen && (
-                                <EventAddEditModal 
+                                <EventAddEditModal
                                     addEditEventIsOpen={true}
                                     setAddEditEventIsOpen={setAddEventIsOpen}
                                     handleAddEditEvent={handleAddNewEvent}
@@ -117,7 +127,7 @@ function EventsContainer({
                 </div>
                 <BackHomeButton/>
             </div>
-        </div> 
+        </div>
     )
 }
 

@@ -1,9 +1,6 @@
 import { useNavigate } from 'react-router-dom';
 import './EventsFilter.scss';
 
-
-
-
 export const EventsFilter = ({setEvents}) => {
     const navigate = useNavigate()
 
