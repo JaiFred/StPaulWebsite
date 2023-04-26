@@ -12,20 +12,17 @@ module Api
         image = Image.create!
         image.file.attach(image_params[:image])
 
-        image_url = if image_params[:aspect_ratio] == 'small'
-                      Rails.application.routes.default_url_options[:host] + Rails.application.routes.url_helpers.rails_representation_url(
-                        image.file.variant(resize: '485x485').processed, only_path: true
-                      )
-                    else
-                      Rails.application.routes.default_url_options[:host] + Rails.application.routes.url_helpers.rails_representation_url(
-                        image.file.variant(resize: '700x700').processed, only_path: true
-                      )
-                    end
+        resize_value = if image_params[:aspect_ratio] == 'small'
+          '485x485'
+        else
+          '700x700'
+        end
 
-      ImageDatum.create!(image: image, image_url: image_url)
+        image_url = Rails.application.routes.default_url_options[:host] + Rails.application.routes.url_helpers.rails_representation_url(
+          image.file.variant(resize: resize_value).processed, only_path: true
+        )
 
-      # ImageData: image_id, image_url
-      # Document.description parsing will give array of valid image_urls
+        ImageDatum.create!(image: image, image_url: image_url, resize_value: resize_value)
 
         render json: {
           image_url: image_url

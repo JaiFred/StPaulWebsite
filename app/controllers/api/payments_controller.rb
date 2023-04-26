@@ -106,8 +106,7 @@ module Api
       'BiWeekly' => 14
     }.freeze
 
-    def client_secret_recurring
-      # TODO:  move secret keys to ENV variable
+    def client_secret_recurring      
       # TODO: think about proper authentication
 
       Rails.logger.debug { "PARAMS: #{params.inspect}" }
@@ -227,17 +226,6 @@ module Api
 
                              when 'BiWeekly'
                                natural_billing_date += 2.weeks
-
-                               # TODO: use payment_start_date
-                               # if DateTime.now.strftime("%d").to_i > params[:biweekly_payment_date].to_i
-                               #     (DateTime.now.beginning_of_month + (params[:biweekly_payment_date].to_i + 13).days).to_time.to_i
-                               # elsif DateTime.now.strftime("%d").to_i == params[:biweekly_payment_date].to_i
-                               #     DateTime.now.to_i
-                               # else
-                               #     (DateTime.now.beginning_of_month + (params[:biweekly_payment_date].to_i - 1).days).to_time.to_i
-                               # end
-
-                               # binding.pry
 
                                if DateTime.now.year == payment_start_date.year && DateTime.now.month == payment_start_date.month && payment_start_date.strftime('%d').to_i > params[:biweekly_payment_date].to_i
                                  (payment_start_date.next_month.beginning_of_month + (params[:biweekly_payment_date].to_i - 1).days).to_time.to_i

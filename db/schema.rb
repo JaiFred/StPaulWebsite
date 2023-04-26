@@ -125,6 +125,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_26_024450) do
   create_table "image_data", force: :cascade do |t|
     t.bigint "image_id", null: false
     t.string "image_url"
+    t.string "resize_value"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["image_id"], name: "index_image_data_on_image_id"
