@@ -22,6 +22,11 @@ module Api
                       )
                     end
 
+      ImageDatum.create!(image: image, image_url: image_url)
+
+      # ImageData: image_id, image_url
+      # Document.description parsing will give array of valid image_urls
+
         render json: {
           image_url: image_url
         }, status: :ok
