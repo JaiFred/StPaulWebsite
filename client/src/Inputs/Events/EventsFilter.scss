@@ -1,0 +1,33 @@
+
+@import '../bootstrap-utils';
+
+.events-filters {
+    display: flex;
+    flex-direction: column;
+    padding: 15px 30px;
+    flex-wrap: wrap;
+    justify-content: center;
+    background-color: white;
+    border-radius: 40px;
+    gap: 10px;
+
+    @include media-breakpoint-up(md) {
+        padding: 15px 15px 6px;
+        flex-direction: row;
+    }
+
+    &-button {
+        background-color: black;
+        border-radius: 100px;
+        color: white;
+        border: 0;
+        padding: 5px 12px;
+        text-transform: uppercase;
+        transition: all 0.3s ease-in-out; 
+
+        &:hover{
+            transform: translateY(-4px);
+            color: rgb(247, 255, 128);
+        }
+    }
+}
