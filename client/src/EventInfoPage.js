@@ -58,7 +58,7 @@ function EventInfoPage({ currentUser }){
     return (
         <div className="info-page">
             <div className="container overflow-hidden p-0">
-                <ChurchHours className="justify-content-end my-5 text-center" after={<BackButton />} />
+                <ChurchHours className="church-hours-event-info" after={<BackButton />} />
             </div> 
             <div className="container overflow-hidden p-0">
                 <div className="row mx-xl info-page__content">
