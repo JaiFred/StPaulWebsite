@@ -4,7 +4,7 @@ class DeleteS3ImagesJob
   include Sidekiq::Job
   include Rails.application.routes.url_helpers
 
-  def perform      
+  def perform
     valid_image_urls = []
     (Document.pluck(:description) + DashboardDocument.pluck(:description)).each do |document|
       html = Nokogiri::HTML(document)      

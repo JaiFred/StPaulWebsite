@@ -1,6 +1,7 @@
 log/
 tmp/
 storage/
+storage/*/**
 
 # misc
 .DS_Store
