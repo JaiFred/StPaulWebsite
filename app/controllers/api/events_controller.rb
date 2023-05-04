@@ -14,7 +14,6 @@ module Api
     # Have a months filter bar that appears when an event within that month is made - you can click on months to show events that take place during the month
 
     def index
-      # binding.pry
       @events = if params[:starts_time].present? && params[:ends_time].present?
                   Event.between(params[:starts_time], params[:ends_time])
                 elsif (month = params[:month]).present?
