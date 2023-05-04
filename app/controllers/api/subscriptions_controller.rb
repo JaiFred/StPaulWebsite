@@ -2,7 +2,7 @@
 
 module Api
   class SubscriptionsController < ApplicationController
-    before_action :authenticate_user!, only: %i[create update destroy]
+    before_action :authenticate_user!
 
     def index
       user = User.find(params[:user_id])

@@ -6,8 +6,6 @@ import ModalFooter from "./Modal/Footer";
 import Editor from './Editor/Editor';
 
 const EditDashboardDocument = ({ document, fetchDashboardDocuments, editDashboardDocumentModalIsOpen, setEditDashboardDocumentModalIsOpen, onCancel }) => {    
-    
-    // const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
 
     const description = document.description;
     const [editedDescription, setEditedDescription] = useState(description);

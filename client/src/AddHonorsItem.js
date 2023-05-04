@@ -14,25 +14,23 @@ function AddHonorsItem({ setDocuments, onCancel }){
     const [document, setDocument] = useState(null)
     const [error, setError] = useState(null);
 
-    // const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
-
 
     function handleSubmit(e) {
         console.log("submitted!")
         e.preventDefault();
-        
+
         if (!document && !description) {
             setError('Both document and description cant be blank!')
             return
         }
-        
+
         if (!document) {
             setError('Image must be uploaded!')
             return;
         }
 
         const formData = new FormData();
-        
+
         if (document) {
             formData.append("file", document);
         }
@@ -62,9 +60,9 @@ function AddHonorsItem({ setDocuments, onCancel }){
                     accept="image/png, image/jpeg, application/pdf,application/vnd.ms-excel"
                     onChange={handleDocumentsChange}
                     className="mb-3"
-                /> 
+                />
                 <h6 className="document-content-title-box">Add information about this document</h6>
-                <Editor 
+                <Editor
                     id='description'
                     value={description}
                     onChange={setDescription}

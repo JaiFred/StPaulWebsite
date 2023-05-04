@@ -22,9 +22,6 @@ const stripePromise = loadStripe(`${process.env.REACT_APP_STRIPE_PUBLIC_KEY}`);
 
 function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
 
-    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
-
-
     const [ clientSecret, setClientSecret] = useState(null);
     const [ clientSecretRecurring, setClientSecretRecurring] = useState(null);
     const [ amount, setAmount ] = useState(null);

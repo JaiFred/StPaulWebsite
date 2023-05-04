@@ -2,8 +2,7 @@
 
 module Api
   class FutureSubscriptionsController < ApplicationController
-    # TODO: must figure out why user authentication stopped working on this page!
-    # before_action :authenticate_user!
+    before_action :authenticate_user!
 
     def index
       user = User.find(params[:user_id])

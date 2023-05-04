@@ -12,20 +12,6 @@ import './EventInfoPage.scss';
 
 function EventInfoPage({ currentUser }){
 
-    // const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
-
-
-    // t.string "title"
-    // t.datetime "starts"
-    // t.datetime "ends"
-    // t.string "details"
-    // t.string "address_line_1"
-    // t.string "address_line_2"
-    // t.string "city"
-    // t.string "state_province_region"
-    // t.string "zip_postalcode"
-    // t.string "country"
-
     let { id } = useParams();
 
     // console.log(`event id: ${id}`);
@@ -37,15 +23,6 @@ function EventInfoPage({ currentUser }){
             .then((res) => res.json())
             .then((event) => setEvent(event));
     }, []);
-
-
-    //  const EventDetails = showEvents.map((event) =>(
-    //     <EventInfoDetails key={event.id} event={event}/>
-
-    // ))
-
-    //const { id, title, starts, ends } = event;
-    console.log({event})
 
     if (!event) return null;
 

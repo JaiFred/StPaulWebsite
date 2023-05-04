@@ -15,8 +15,6 @@ function EventAddEditModal({
     handleAddEditEvent
 }){
 
-    // const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
-
     const [formData, setFormData] = useState({
         title: "",
         starts: "",
@@ -30,8 +28,6 @@ function EventAddEditModal({
         country: "",
         image: "",
     });
-
-    console.log(`formData in EventEditModal: ${JSON.stringify(formData)}`);
 
     useEffect(() => {
         if (!id) return;

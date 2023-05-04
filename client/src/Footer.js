@@ -16,8 +16,6 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
     const [facebook, setFacebook] = useState(null);
     const [configId, setConfigId] = useState(null);
 
-    // const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
-
 
     function fetchConfig() {
         fetch(`/api/button_visible_configs`)
