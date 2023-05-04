@@ -13,12 +13,10 @@ function FutureSubscriptionCard({currentUser, cancelFutureSubscriptionIsOpen, se
     const [ subscriptions, setSubscriptions] = useState([]);
     const [ selectedFutureSubscription, setSelectedFutureSubscription ] = useState(null)
 
-    const API_ENDPOINT = process.env.NODE_ENV == "development" ? "http://localhost:3000" : "https://st-paul-baptist-church.herokuapp.com";
-
 
     useEffect(() => {
         if (userId) {
-            fetch(`${API_ENDPOINT}/api/future_subscriptions?user_id=${userId}`)
+            fetch(`/api/future_subscriptions?user_id=${userId}`)
             .then((r) => r.json())
             .then(subscriptions => setSubscriptions(subscriptions))
         }
@@ -27,7 +25,7 @@ function FutureSubscriptionCard({currentUser, cancelFutureSubscriptionIsOpen, se
     function cancelSubscription(subscriptionId) {
         console.log(`cancelling...! ${subscriptionId}`);
 
-        fetch(`${API_ENDPOINT}/api/future_subscriptions/${subscriptionId}?user_id=${userId}`, {
+        fetch(`/api/future_subscriptions/${subscriptionId}?user_id=${userId}`, {
             method: "DELETE",
             headers: {
                 "Content-Type": "application/json",
