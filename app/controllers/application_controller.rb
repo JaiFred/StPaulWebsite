@@ -5,7 +5,10 @@ class ApplicationController < ActionController::Base
   rescue_from ActiveRecord::RecordInvalid, with: :render_validation_errors
   rescue_from ActiveRecord::RecordNotFound, with: :render_not_found
 
+
+
   before_action :configure_permitted_parameters, if: :devise_controller?
+  before_action :set_sentry_context
 
   skip_before_action :verify_authenticity_token
 
@@ -49,4 +52,9 @@ class ApplicationController < ActionController::Base
   def render_validation_errors
     render json: { errors: 'unable to save' }
   end
+
+  def set_sentry_context
+    Sentry.set_user(id: current_user&.id)
+  end
+
 end

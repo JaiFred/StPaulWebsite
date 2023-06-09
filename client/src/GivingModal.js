@@ -28,22 +28,24 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
     const [showAmountForm, setShowAmountForm] = useState(true);
     const [showRecurringForm, setShowRecurringForm] = useState(true);
     const [error, setError] = useState(null);
+    const [stripeApiError, setStripeApiError] = useState(null);
     const [billingDetails, setBillingDetails] = useState({
         email: '',
         phone: '',
         name: '',
     });
-    
+
     const [paymentOption, PaymentOptionDropdown, setPaymentOption] = useDropdown("Choose a Payment option", "One Time Payment", "", ["One Time Payment", "Regularly"], true, 'giving-dropdown');
 
     const resetForm = () => {
-        setPaymentOption("One Time Payment")        
+        setPaymentOption("One Time Payment")
         setAmount(null);
         setClientSecret(null);
         setGivingIsOpen(false);
         setShowAmountForm(true);
         setShowRecurringForm(true);
         setBillingDetails('');
+        setStripeApiError(null);
     }
 
     const handleAmountChange = (e) => {
@@ -66,8 +68,17 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
 
     useEffect(() => {
         fetch(`/api/client_secret_recurring?amount=1`)
-        .then((r) => r.json())
-        .then(res => setClientSecretRecurring(res.client_secret))
+        .then((response) => {
+            if (response.ok) {
+                response.json().then((response) => {
+                    setClientSecretRecurring(response.client_secret)
+                })
+            } else {
+              response.json().then((response) => {
+                setStripeApiError(response.errors);
+              });
+            }
+          })
       }, [])
 
     const fetchClientSecret = (e) => {
@@ -134,9 +145,17 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                 "Content-Type": "application/json",
               },
             body: JSON.stringify(reqBody)
-        })
-        .then((res) => res.json())
-        .then((res) => setClientSecret(res.client_secret))
+        }).then((response) => {
+            if (response.ok) {
+                response.json().then((response) => {
+                    setClientSecret(response.client_secret);
+                })
+            } else {
+              response.json().then((response) => {
+                setStripeApiError(response.errors);
+              });
+            }
+          })
 
     }
 
@@ -165,7 +184,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
             <Modal className='modal modal-light giving-modal'
                 show={ givingIsOpen }
             >
-            <DarkHeader onCancel={resetForm} />                  
+            <DarkHeader onCancel={resetForm} />
                 <ModalBody>
                     <div className="giving-modal-one-time-pay-page">
                         {showAmountForm && (
@@ -177,12 +196,19 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                                 {error && paymentOption == 'One Time Payment' &&
                                     <ErrorMessage message={error}/>
                                 }
+                                { stripeApiError && paymentOption == 'One Time Payment' &&
+                                <ErrorMessage message={stripeApiError} />
+                                }
                             </>
                         )}
-                    
+
+                        { stripeApiError && paymentOption == 'One Time Payment' &&
+                                                        <ErrorMessage message={stripeApiError} />
+                                                        }
+
                         { currentUser  && <PaymentOptionDropdown />}
                         { paymentOption == 'One Time Payment' && showAmountForm &&
-                        <form onSubmit={fetchClientSecret}>                
+                        <form onSubmit={fetchClientSecret}>
                             <div className="one-time-payment-container">
                                 <h3 className="give-subtitle text-center text-bold">Give Box</h3>
                                 <div className="amount-input-container">
@@ -224,7 +250,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                             </div>
                         </form>
                         }
-        
+
                         { paymentOption == 'One Time Payment' && clientSecret &&
                             <Elements stripe={stripePromise} options={options}>
                                 <CheckoutForm
@@ -242,7 +268,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                         }
 
                     </div>
-        
+
                     { currentUser && <div className="AppWrapper">
                         { paymentOption == 'Regularly' && clientSecretRecurring && showRecurringForm &&
                         <div className="recurring-payment-container">
@@ -253,7 +279,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                         </div>
                         }
                     </div>}
-    
+
                     <div className="giving-buttons d-flex justify-content-end gap-2">
                         {paymentOption == 'One Time Payment' && showAmountForm &&
                             <button
@@ -265,7 +291,7 @@ function GivingModal({ currentUser, givingIsOpen, setGivingIsOpen }){
                         <button type="button" className="btn btn-secondary" onClick={resetForm}>Cancel</button>
                     </div>
                 </ModalBody>
-            </Modal> 
+            </Modal>
         </div>
     )
 }

@@ -38,7 +38,7 @@ module Api
       '400_dollars_Monthly' => ENV.fetch('DOLLARS_MONTHLY_400',nil),
       '450_dollars_Monthly' => ENV.fetch('DOLLARS_MONTHLY_450',nil),
       '500_dollars_Monthly' => ENV.fetch('DOLLARS_MONTHLY_500',nil),
-      
+
       # weekly rates
       '5_dollars_Weekly' => ENV.fetch('DOLLARS_WEEKLY_5', nil),
       '10_dollars_Weekly' => ENV.fetch('DOLLARS_WEEKLY_10', nil),
@@ -68,7 +68,7 @@ module Api
       '400_dollars_Weekly' => ENV.fetch('DOLLARS_WEEKLY_400',nil),
       '450_dollars_Weekly' => ENV.fetch('DOLLARS_WEEKLY_450',nil),
       '500_dollars_Weekly' => ENV.fetch('DOLLARS_WEEKLY_500',nil),
-      
+
       # biweekly rates
       '5_dollars_BiWeekly' => ENV.fetch('DOLLARS_BIWEEKLY_5',nil),
       '10_dollars_BiWeekly' => ENV.fetch('DOLLARS_BIWEEKLY_10',nil),
@@ -106,7 +106,7 @@ module Api
       'BiWeekly' => 14
     }.freeze
 
-    def client_secret_recurring      
+    def client_secret_recurring
       # TODO: think about proper authentication
 
       Rails.logger.debug { "PARAMS: #{params.inspect}" }
@@ -132,6 +132,9 @@ module Api
       Rails.logger.debug { "intent.client_secret: #{intent.client_secret.inspect}" }
 
       render json: { client_secret: intent.client_secret }.to_json
+      rescue Stripe::CardError, Stripe::InvalidRequestError, StandardError => ex
+      Sentry.capture_message(ex.message, backtrace: caller)
+      render json: { errors: ex.message }, status: :unprocessable_entity
     end
 
     def client_secret
@@ -166,6 +169,9 @@ module Api
       Rails.logger.debug { "intent.client_secret: #{intent.client_secret.inspect}" }
 
       render json: { client_secret: intent.client_secret }.to_json
+    rescue Stripe::CardError, Stripe::InvalidRequestError, StandardError => ex
+      Sentry.capture_message(ex.message, backtrace: caller)
+      render json: { errors: ex.message }, status: :unprocessable_entity
     end
 
     def payment_subscription
@@ -274,6 +280,8 @@ module Api
       render json: { subscription: response }, status: :ok
 
     rescue Stripe::CardError, Stripe::InvalidRequestError, StandardError => ex
+      # binding.pry
+      Sentry.capture_message(ex.message, backtrace: caller)
       render json: { errors: ex.message }, status: :unprocessable_entity
     end
 
