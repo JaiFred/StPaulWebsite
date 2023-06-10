@@ -230,7 +230,12 @@ function App() {
     return(
       <div></div>
     )
+  }  
+
+  function sendError(){
+    console.logss123();
   }
+
   return (
     <div className="App">
       <Navbar
@@ -246,7 +251,8 @@ function App() {
         setLogoutIsOpen={setLogoutIsOpen}
         authChecked={authChecked}
         setAuthChecked={setAuthChecked}
-      />
+      />     
+      <button onClick={() => sendError()}>Break the world</button>; 
         <Routes>
           <Route path='/' element={
             <ChurchLandingAttributes

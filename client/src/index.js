@@ -11,12 +11,26 @@ import App from './App';
 import reportWebVitals from './reportWebVitals';
 import 'bootstrap'
 // import './test.scss'
+import * as Sentry from "@sentry/react";
+
+console.log(`process.env.REACT_SENTRY_DSN_KEY: ${process.env.REACT_SENTRY_DSN_KEY}`);
+console.log(`process.env.REACT_APP_MAPBOX_TOKEN: ${process.env.REACT_APP_MAPBOX_TOKEN}`);
+
+Sentry.init({
+  dsn: process.env.REACT_SENTRY_DSN_KEY,
+  integrations: [
+    new Sentry.BrowserTracing({
+      // Set `tracePropagationTargets` to control for which URLs distributed tracing should be enabled
+      tracePropagationTargets: ["localhost", "https://www.st-paul-baptist-church.com"],
+    }),
+  ],
+  tracesSampleRate: 1.0,
+});
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
-
   <Router>
-    <ParallaxProvider>
+    <ParallaxProvider>    
       <App />
     </ParallaxProvider>
   </Router>
