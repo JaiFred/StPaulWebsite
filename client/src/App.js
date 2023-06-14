@@ -39,6 +39,8 @@ import './Modals.scss';
 import PasswordRecoveryRequestFailiure from './PasswordRecoveryRequestFailiure';
 import CheckoutFormSuccess from './CheckoutFormSuccess';
 
+
+// Comment for update
 //Goal:
 
 //Subscription schedule date should only issue the creation of a subscription and should not prompt it to consider previous dates it has missed
