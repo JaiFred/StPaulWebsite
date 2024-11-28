@@ -16,6 +16,7 @@ import moment from 'moment';
     //remember to remove these when pushing to github
     const API = process.env.REACT_APP_MY_GOOGLE_API_KEY
     const channelID = process.env.REACT_APP_YOUTUBE_CHANNEL_ID
+    const playListId = 'PLpzt143tqUaGyovVMaA7foeOsn7VdSoDm';
     const result = 3
    
 
@@ -27,21 +28,26 @@ import moment from 'moment';
    
     function BroadcastsContainer () {
         const BroadcastPageVideo = 'https://st-paul-baptist-website-uploads.s3.amazonaws.com/Broadcast-page.mp4'
-        var finalURL = `https://www.googleapis.com/youtube/v3/search?key=${API}&channelId=${channelID}&part=snippet,id&order=date&maxResults=${result}`
-        console.log(`finalURL: ${finalURL}`);
+        // var finalURL = `https://www.googleapis.com/youtube/v3/search?key=${API}&channelId=${channelID}&part=snippet,id&order=date&maxResults=${result}`
+        // console.log(`finalURL: ${finalURL}`);
+        // var newUrl = `https://www.googleapis.com/youtube/v3/playlists?channelId=${channelID}&key=${API}`
+        // console.log(`newURL: ${newUrl}`);
+        
+        var playlistItemsUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playListId}&maxResults=50&key=${API}`
+        console.log(`playlistItemsUrl: ${playlistItemsUrl}`);
 
         const [videos, setVideos] = useState([]);
 
         useEffect(() => {
-            fetch(finalURL)
+            fetch(playlistItemsUrl)
               .then((r) => r.json())
               .then((response) => {
-                console.log('response', response)
-                setVideos(response.items.map((item) => ({url: `https://www.youtube.com/watch?v=${item.id.videoId}`, title: item.snippet.title, date: item.snippet.publishedAt})));
+                // console.log('response', JSON.stringify(response.items[0]))
+                setVideos(response.items.map((item) => ({url: `https://www.youtube.com/watch?v=${item?.snippet?.resourceId?.videoId}`, title: item.snippet.title, date: item.snippet.publishedAt})));
               })
           },[])
                     
-        console.log(`videos: ${JSON.stringify(videos)}`, videos);
+        // console.log(`videos: ${JSON.stringify(videos)}`, videos);
 
             return(
                 <div className="broadcasts-page">

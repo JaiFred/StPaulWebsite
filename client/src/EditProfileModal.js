@@ -9,7 +9,7 @@ import { DarkHeader } from './Modal/Header';
 
 function EditProfileModal({ errors, currentUser, editProfileIsOpen, setEditProfileIsOpen, handleUserEdit, firstName, setFirstName, lastName, setLastName, email, setEmail }){
 
-    console.log(`firstName 1: ${firstName}`);
+    // console.log(`firstName 1: ${firstName}`);
     const onCancel = () => setEditProfileIsOpen(false)
 
     return(

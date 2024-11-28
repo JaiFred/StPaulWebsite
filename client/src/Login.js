@@ -37,10 +37,10 @@ function Login({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
           }
         }),
       }).then((response) => {
-        console.log(`response: ${JSON.stringify(response)}`);
+        // console.log(`response: ${JSON.stringify(response)}`);
         if (response.ok) {
           response.json().then((user) => {
-            console.log(`I AM HERE: user: ${JSON.stringify(user)}`);
+            // console.log(`I AM HERE: user: ${JSON.stringify(user)}`);
             if (user.errors) {
               console.log(user.errors || 'Wrong credentials!');
               setError(user.errors || 'Wrong credentials!');

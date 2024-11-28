@@ -56,7 +56,7 @@ function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubsc
     }, [])
 
     function cancelSubscription(subscriptionId) {
-        console.log(`cancelling...! ${subscriptionId}`);
+        // console.log(`cancelling...! ${subscriptionId}`);
 
         fetch("api/cancel_subscription", {
             method: "PATCH",
@@ -76,13 +76,13 @@ function SubscriptionCard({currentUser, cancelSubscriptionIsOpen, setCancelSubsc
     }
 
     function selectCancelSubscriptionModal(subscription) {
-        console.log('inside selectCancelSubscriptionModal')
-        console.log(`selected subscription: ${subscription.id}`)
+        // console.log('inside selectCancelSubscriptionModal')
+        // console.log(`selected subscription: ${subscription.id}`)
         setSelectedSubscription(subscription);
         setCancelSubscriptionIsOpen(true)
     }
 
-    console.log(`subscriptions: ${JSON.stringify(subscriptions)}`);
+    // console.log(`subscriptions: ${JSON.stringify(subscriptions)}`);
 
     return (
         <div className="subscriptions-page-overlay text-center">

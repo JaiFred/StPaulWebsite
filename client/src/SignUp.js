@@ -76,9 +76,9 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
 
         if (response.ok) {
           response.json().then((user) => {
-            console.log(`I AM HERE: user: ${JSON.stringify(user)}`);
+            // console.log(`I AM HERE: user: ${JSON.stringify(user)}`);
             if (user.errors) {
-              console.log(user.errors || 'Wrong credentials!');
+              // console.log(user.errors || 'Wrong credentials!');
               setErrors(user.errors || ['Wrong credentials!']);
             }
             else {
@@ -86,7 +86,7 @@ function SignUp({ currentUser, setCurrentUser, authChecked, setLogoutIsOpen }) {
             }
           });
         } else {            
-            console.log('Wrong credentials!');
+            // console.log('Wrong credentials!');
             setErrors(["Wrong email/password!"]);
         }
 

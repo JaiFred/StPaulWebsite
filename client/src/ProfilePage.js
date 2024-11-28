@@ -27,8 +27,8 @@ function ProfilePage({
 
   const navigate = useNavigate();
 
-  console.log(`currentUser: ${JSON.stringify(currentUser)}`);
-  console.log(`currentUser?.user: ${JSON.stringify(currentUser?.user)}`);
+  // console.log(`currentUser: ${JSON.stringify(currentUser)}`);
+  // console.log(`currentUser?.user: ${JSON.stringify(currentUser?.user)}`);
 
   const profileFirstName =
     currentUser?.first_name || currentUser?.user.first_name;
@@ -64,7 +64,7 @@ function ProfilePage({
           setAccountDeleteIsOpen(false); //new
         });
       } else {
-        console.log("Wrong credentials!");
+        // console.log("Wrong credentials!");
         setError("Wrong username/password!");
       }
     });
@@ -95,9 +95,9 @@ function ProfilePage({
           }
         });
       } else {
-        console.log("server response");
+        // console.log("server response");
         response.json().then((error) => {
-          console.log(`message: ${JSON.stringify(error)}`);
+          // console.log(`message: ${JSON.stringify(error)}`);
           setErrors(error.message);
         });
       }

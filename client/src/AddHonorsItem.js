@@ -16,7 +16,7 @@ function AddHonorsItem({ setDocuments, onCancel }){
 
 
     function handleSubmit(e) {
-        console.log("submitted!")
+        // console.log("submitted!")
         e.preventDefault();
 
         if (!document && !description) {
@@ -47,7 +47,7 @@ function AddHonorsItem({ setDocuments, onCancel }){
     }
 
     function handleDocumentsChange (e) {
-        console.log(`e.target.files[0]: ${e.target.files[0]}`)
+        // console.log(`e.target.files[0]: ${e.target.files[0]}`)
         if (e.target.files[0]) setDocument(e.target.files[0]);
     };
 

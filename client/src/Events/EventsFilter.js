@@ -7,7 +7,7 @@ export const EventsFilter = ({setEvents}) => {
     function handleButtonClick(e) {
         e.preventDefault()
         let month = e.target.value;
-        console.log(`clicked on month: ${month}`);
+        // console.log(`clicked on month: ${month}`);
     
         fetch(`/api/events?month=${month}`)
             .then((res) => res.json())
@@ -35,7 +35,7 @@ export const EventsFilter = ({setEvents}) => {
       ];
 
     let allMonths = Array.from({length: 19}, (_, offset) => {
-        console.log(`offset: ${offset}`);
+        // console.log(`offset: ${offset}`);
         return currentAbsMonth - 7 + offset
       }
       );

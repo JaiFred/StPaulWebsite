@@ -28,7 +28,7 @@ export const FooterAccountOptions = ({
     configId}) => {
 
    
-      console.log(`facebook: ${facebook}`);
+    //   console.log(`facebook: ${facebook}`);
 
     return(
         <div className="footer-account-options-wrapper"> 
