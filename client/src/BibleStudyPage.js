@@ -33,7 +33,7 @@ function BibleStudyPage({ currentUser }) {
 
 
   var finalURL = `https://www.googleapis.com/youtube/v3/search?key=${API}&channelId=${channelID}&part=snippet,id&order=date&maxResults=${result}`;
-  console.log(`finalURL: ${finalURL}`);
+  // console.log(`finalURL: ${finalURL}`);
 
   const [videos, setVideos] = useState([]);
   const [document, setDocument] = useState([]);
@@ -46,7 +46,7 @@ function BibleStudyPage({ currentUser }) {
     return blankLinks(html);
   };
 
-  console.log({ currentUser, editDashboardDocumentModalIsOpen });
+  // console.log({ currentUser, editDashboardDocumentModalIsOpen });
 
   function fetchDashboardDocuments() {
     fetch(`/api/dashboard_documents`)
@@ -72,9 +72,9 @@ function BibleStudyPage({ currentUser }) {
 
   }, [windowSize.width])*/
 
-  console.log(`videos: ${JSON.stringify(videos)}`);
-  console.log(`document inside BibleStudyPage: ${JSON.stringify(document)}`);
-  console.log('currentUser?.admin', currentUser?.admin)
+  // console.log(`videos: ${JSON.stringify(videos)}`);
+  // console.log(`document inside BibleStudyPage: ${JSON.stringify(document)}`);
+  // console.log('currentUser?.admin', currentUser?.admin)
 
   if (!document) {
     return <div>Loading!</div>;

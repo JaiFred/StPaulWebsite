@@ -9,13 +9,13 @@ import EventInfoPage from './EventInfoPage';
 function ChurchLandingAttributes({ events, setEvents, showEvents, setShowEvents, givingIsOpen, setGivingIsOpen, currentUser}) {
 
     if ((currentUser?.admin === true || currentUser?.user?.admin === true)) {
-        console.log("Admin logged in!");
+        // console.log("Admin logged in!");
     }
     else if ((currentUser?.admin === false || currentUser?.user?.admin === false)) {
-        console.log("Regular user logged in!")
+        // console.log("Regular user logged in!")
     }
     else {
-        console.log("User not logged in!");
+        // console.log("User not logged in!");
       }
     return(
         <div>

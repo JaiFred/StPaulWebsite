@@ -22,7 +22,7 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
           .then((r) => r.json())
           .then(config => {
             if (!config) return;
-            console.log( {config})
+            // console.log( {config})
             setFacebook(config.facebook)
             setConfigId(config.id)
           })
@@ -40,7 +40,7 @@ function Footer({ currentUser, setCurrentUser, givingIsOpen, setGivingIsOpen, si
         }),
       }).then((response) => {
         if (response.ok) {
-          console.log('config updated successfully!');
+          // console.log('config updated successfully!');
           fetchConfig();
         }
       });

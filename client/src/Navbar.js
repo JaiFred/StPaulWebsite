@@ -25,13 +25,13 @@ function Navbar({givingIsOpen, signUpIsOpen, setSignUpIsOpen, loginIsOpen, setLo
   //   )
   // }
 
-  console.log(`Inside NavBar, currentUser: ${JSON.stringify(currentUser)}`);
+  // console.log(`Inside NavBar, currentUser: ${JSON.stringify(currentUser)}`);
   const lastName = currentUser?.user?.last_name || currentUser?.last_name;
   const firstName = currentUser?.user?.first_name || currentUser?.first_name;
-  console.log(`Inside NavBar, currentUser last name: ${lastName}`);
-  console.log(`currentUser?.admin: ${currentUser?.admin}`)
-  console.log(`currentUser?.user?.admin: ${currentUser?.user?.admin}`)
-  console.log(`currentUser?.user: ${currentUser?.user || currentUser}`)
+  // console.log(`Inside NavBar, currentUser last name: ${lastName}`);
+  // console.log(`currentUser?.admin: ${currentUser?.admin}`)
+  // console.log(`currentUser?.user?.admin: ${currentUser?.user?.admin}`)
+  // console.log(`currentUser?.user: ${currentUser?.user || currentUser}`)
 
   return (
     <>

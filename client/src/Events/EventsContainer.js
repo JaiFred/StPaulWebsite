@@ -28,7 +28,7 @@ function EventsContainer({
     addEventIsOpen,
     setAddEventIsOpen
 }){
-    console.log({events})
+    // console.log({events})
     // debugger;
 
     function fetchAllEvents() {
@@ -71,8 +71,8 @@ function EventsContainer({
 
 
 
-    console.log(`In EventsContainer: currentUser?.admin: ${currentUser?.admin} | currentUser?.user?.admin: ${currentUser?.user?.admin}`)
-    console.log({addEventIsOpen})
+    // console.log(`In EventsContainer: currentUser?.admin: ${currentUser?.admin} | currentUser?.user?.admin: ${currentUser?.user?.admin}`)
+    // console.log({addEventIsOpen})
 
     return(
         <div className="events-container">

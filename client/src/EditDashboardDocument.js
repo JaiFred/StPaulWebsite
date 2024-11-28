@@ -10,11 +10,11 @@ const EditDashboardDocument = ({ document, fetchDashboardDocuments, editDashboar
     const description = document.description;
     const [editedDescription, setEditedDescription] = useState(description);
     
-    console.log(`editedDescription: ${editedDescription}`)
+    // console.log(`editedDescription: ${editedDescription}`)
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log(`handleSubmit updating document: ${document.id}`);
+        // console.log(`handleSubmit updating document: ${document.id}`);
 
         const formData = new FormData();       
         formData.append("description", editedDescription);
@@ -27,10 +27,10 @@ const EditDashboardDocument = ({ document, fetchDashboardDocuments, editDashboar
 
         fetch(`/api/dashboard_documents/${document.id}`, configObj)
             .then((response) => {
-                console.log('dashoard document updated successfully');
-                console.log('fetching latest documents 1')
+                // console.log('dashoard document updated successfully');
+                // console.log('fetching latest documents 1')
                 setEditDashboardDocumentModalIsOpen(false);
-                console.log('fetching latest documents 2')
+                // console.log('fetching latest documents 2')
                 fetchDashboardDocuments();
             })     
     };

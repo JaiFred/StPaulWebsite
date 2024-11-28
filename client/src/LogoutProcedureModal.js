@@ -11,11 +11,11 @@ import ModalFooter from './Modal/Footer';
 function LogoutProcedureModal({ logoutIsOpen, setLogoutIsOpen, currentUser, setCurrentUser }){
     const navigate = useNavigate();
 
-    console.log('Rendered LogoutProcedureModal');
-    console.log(`logoutIsOpen: ${logoutIsOpen}`);
+    // console.log('Rendered LogoutProcedureModal');
+    // console.log(`logoutIsOpen: ${logoutIsOpen}`);
 
     const handleLogout = (e) => {
-      console.log('inside handleLogout');
+    //   console.log('inside handleLogout');
         e.preventDefault()
         fetch(`/logout`, {
           method: 'DELETE',

@@ -37,7 +37,7 @@ function AddEditEvent({
 
     function handleSubmit(e) {
         e.preventDefault();
-        console.log("handleSubmit updating event");
+        // console.log("handleSubmit updating event");
         const formData = new FormData();
 
         if (typeof image === 'object') {
@@ -62,8 +62,8 @@ function AddEditEvent({
 
         fetch(url, configObj)
             .then((response) => {
-                console.log('event created successfully!')
-                console.log(response)
+                // console.log('event created successfully!')
+                // console.log(response)
                 if (response.ok) {
                     response.json().then((editedEvent) => {
                         handleAddEditEvent(editedEvent);

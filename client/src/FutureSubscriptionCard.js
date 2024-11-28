@@ -23,7 +23,7 @@ function FutureSubscriptionCard({currentUser, cancelFutureSubscriptionIsOpen, se
     },[])
 
     function cancelSubscription(subscriptionId) {
-        console.log(`cancelling...! ${subscriptionId}`);
+        // console.log(`cancelling...! ${subscriptionId}`);
 
         fetch(`/api/future_subscriptions/${subscriptionId}?user_id=${userId}`, {
             method: "DELETE",
@@ -40,13 +40,13 @@ function FutureSubscriptionCard({currentUser, cancelFutureSubscriptionIsOpen, se
     }
 
     function selectCancelFutureSubscriptionModal(subscription) {
-        console.log('inside selectCancelFutureSubscriptionModal')
-        console.log(`selected future subscription: ${subscription.id}`)
+        // console.log('inside selectCancelFutureSubscriptionModal')
+        // console.log(`selected future subscription: ${subscription.id}`)
         setSelectedFutureSubscription(subscription);        
         setCancelFutureSubscriptionIsOpen(true)
     }
 
-    console.log(`subscriptions: ${JSON.stringify(subscriptions)}`);
+    // console.log(`subscriptions: ${JSON.stringify(subscriptions)}`);
 
     if (!subscriptions.length) return <div>You have no subscriptions yet! Add one!</div>
 

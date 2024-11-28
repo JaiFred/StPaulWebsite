@@ -22,7 +22,7 @@ function HonorViewItem(props) {
     const { id } = useParams();
     const [document, setDocument] = useState(null);
 
-    console.log({ id, document })
+    // console.log({ id, document })
 
     useEffect(() => {
         fetchDocuments(documents => 
@@ -32,7 +32,7 @@ function HonorViewItem(props) {
 
     if (!document) return null;
 
-    console.log({document})
+    // console.log({document})
 
     return (
         <div className="honor-view-item">
