@@ -63,7 +63,7 @@ function BibleStudyPage({ currentUser }) {
       .then((response) => {
         setVideos(
           response.items.map(
-            (item) => `https://www.youtube.com/watch?v=${item.id.videoId}`
+            (item) => `https://www.youtube.com/watch?v=${item.snippet.resourceId.videoId}`
           )
         );
       });
