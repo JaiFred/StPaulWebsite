@@ -32,13 +32,8 @@ function BibleStudyPage({ currentUser }) {
   useAvoidBounce('mobile');
 
 
-<<<<<<< HEAD
-
-  var finalURL = `https://www.googleapis.com/youtube/v3/search?key=${API}&channelId=${channelID}&part=snippet,id&order=date&maxResults=${result}`;
-=======
   var playlistItemsUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playListId}&maxResults=${result}&key=${API}`
   // var finalURL = `https://www.googleapis.com/youtube/v3/search?key=${API}&channelId=${channelID}&part=snippet,id&order=date&maxResults=${result}`;
->>>>>>> Ruby-Upgrade-3-2
   // console.log(`finalURL: ${finalURL}`);
 
   const [videos, setVideos] = useState([]);
