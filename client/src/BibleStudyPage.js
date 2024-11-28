@@ -27,12 +27,13 @@ function BibleStudyPage({ currentUser }) {
   const { width } = useWindowSize()
   const API = process.env.REACT_APP_MY_GOOGLE_API_KEY;
   const channelID = process.env.REACT_APP_YOUTUBE_CHANNEL_ID;
+  const playListId = 'PLpzt143tqUaGyovVMaA7foeOsn7VdSoDm';
   const result = 1;
   useAvoidBounce('mobile');
 
 
-
-  var finalURL = `https://www.googleapis.com/youtube/v3/search?key=${API}&channelId=${channelID}&part=snippet,id&order=date&maxResults=${result}`;
+  var playlistItemsUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playListId}&maxResults=${result}&key=${API}`
+  // var finalURL = `https://www.googleapis.com/youtube/v3/search?key=${API}&channelId=${channelID}&part=snippet,id&order=date&maxResults=${result}`;
   // console.log(`finalURL: ${finalURL}`);
 
   const [videos, setVideos] = useState([]);
@@ -57,7 +58,7 @@ function BibleStudyPage({ currentUser }) {
   useEffect(() => {
     fetchDashboardDocuments();
 
-    fetch(finalURL)
+    fetch(playlistItemsUrl)
       .then((r) => r.json())
       .then((response) => {
         setVideos(

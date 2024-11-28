@@ -33,8 +33,8 @@ import moment from 'moment';
         // var newUrl = `https://www.googleapis.com/youtube/v3/playlists?channelId=${channelID}&key=${API}`
         // console.log(`newURL: ${newUrl}`);
         
-        var playlistItemsUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playListId}&maxResults=50&key=${API}`
-        console.log(`playlistItemsUrl: ${playlistItemsUrl}`);
+        var playlistItemsUrl = `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${playListId}&maxResults=${result}&key=${API}`
+        // console.log(`playlistItemsUrl: ${playlistItemsUrl}`);
 
         const [videos, setVideos] = useState([]);
 
