@@ -21,7 +21,7 @@ function AboutPage(){
     return(
         <ParallaxBanner style={{ aspectRatio: 'auto' }}>
             <ParallaxBannerLayer image={Church} speed={45} className="about-page-background-container" />
-                <ParallaxBannerLayer className={'about-page-background'} >
+                <ParallaxBannerLayer className={'about-page-background'}>
                     <div className='about-page text-center'>
                         <h3 className='about'>About</h3>
                         <h1 className='about-page-title'>St Paul Baptist Church</h1>
